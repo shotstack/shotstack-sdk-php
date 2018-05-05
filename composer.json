@@ -1,0 +1,17 @@
+{
+    "name": "shotstack/shotstack-sdk-php",
+    "description": "PHP SDK for Shotstack, the cloud video editing API",
+    "type": "library",
+    "license": "MIT",
+    "minimum-stability": "dev",
+    "keywords": ["shotstack", "video", "video editing", "api"],
+    "require": {
+        "php": ">=5.3.3",
+        "ext-curl": "*",
+        "ext-json": "*",
+        "ext-mbstring": "*"
+    },
+    "autoload": {
+        "psr-4": { "Shotstack\\" : "src/" }
+    }
+}
