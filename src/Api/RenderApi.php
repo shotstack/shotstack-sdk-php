@@ -189,4 +189,106 @@ class RenderApi
         }
     }
     
+    /**
+     * getRender
+     *
+     * 
+     *
+     * @param string $id The id of the timeline render task in UUID format (required)
+     * @return \Shotstack\Model\RenderResponse
+     * @throws \Shotstack\ApiException on non-2xx response
+     */
+    public function getRender($id)
+    {
+        list($response, $statusCode, $httpHeader) = $this->getRenderWithHttpInfo ($id);
+        return $response; 
+    }
+
+
+    /**
+     * getRenderWithHttpInfo
+     *
+     * 
+     *
+     * @param string $id The id of the timeline render task in UUID format (required)
+     * @return Array of \Shotstack\Model\RenderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @throws \Shotstack\ApiException on non-2xx response
+     */
+    public function getRenderWithHttpInfo($id)
+    {
+        
+        // verify the required parameter 'id' is set
+        if ($id === null) {
+            throw new \InvalidArgumentException('Missing the required parameter $id when calling getRender');
+        }
+  
+        // parse inputs
+        $resourcePath = "/render/{id}";
+        $httpBody = '';
+        $queryParams = array();
+        $headerParams = array();
+        $formParams = array();
+        $_header_accept = ApiClient::selectHeaderAccept(array('application/json'));
+        if (!is_null($_header_accept)) {
+            $headerParams['Accept'] = $_header_accept;
+        }
+        $headerParams['Content-Type'] = ApiClient::selectHeaderContentType(array());
+  
+        
+        
+        // path params
+        
+        if ($id !== null) {
+            $resourcePath = str_replace(
+                "{" . "id" . "}",
+                $this->apiClient->getSerializer()->toPathValue($id),
+                $resourcePath
+            );
+        }
+        // default format to json
+        $resourcePath = str_replace("{format}", "json", $resourcePath);
+
+        
+        
+  
+        // for model (json/xml)
+        if (isset($_tempBody)) {
+            $httpBody = $_tempBody; // $_tempBody is the method argument, if present
+        } elseif (count($formParams) > 0) {
+            $httpBody = $formParams; // for HTTP post (form)
+        }
+        
+        // this endpoint requires API key authentication
+        $apiKey = $this->apiClient->getApiKeyWithPrefix('x-api-key');
+        if (strlen($apiKey) !== 0) {
+            $headerParams['x-api-key'] = $apiKey;
+        }
+        
+        
+        // make the API Call
+        try {
+            list($response, $statusCode, $httpHeader) = $this->apiClient->callApi(
+                $resourcePath, 'GET',
+                $queryParams, $httpBody,
+                $headerParams, '\Shotstack\Model\RenderResponse'
+            );
+            
+            if (!$response) {
+                return array(null, $statusCode, $httpHeader);
+            }
+
+            return array(\Shotstack\ObjectSerializer::deserialize($response, '\Shotstack\Model\RenderResponse', $httpHeader), $statusCode, $httpHeader);
+            
+        } catch (ApiException $e) {
+            switch ($e->getCode()) { 
+            case 200:
+                $data = \Shotstack\ObjectSerializer::deserialize($e->getResponseBody(), '\Shotstack\Model\RenderResponse', $e->getResponseHeaders());
+                $e->setResponseObject($data);
+                break;
+            }
+  
+            throw $e;
+        }
+    }
+    
 }

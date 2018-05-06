@@ -1,6 +1,6 @@
 <?php
 /**
- * QueuedResponse
+ * RenderResponseData
  *
  * PHP version 5
  *
@@ -35,25 +35,28 @@ namespace Shotstack\Model;
 
 use \ArrayAccess;
 /**
- * QueuedResponse Class Doc Comment
+ * RenderResponseData Class Doc Comment
  *
  * @category    Class
- * @description Model for QueuedResponse
+ * @description Model for RenderResponseData
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class QueuedResponse implements ArrayAccess
+class RenderResponseData implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'message' => 'string',
-        'response' => '\Shotstack\Model\QueuedResponseData',
-        'success' => 'bool'
+        'created' => 'string',
+        'data' => '\Shotstack\Model\Edit',
+        'id' => 'string',
+        'owner' => 'string',
+        'status' => 'string',
+        'updated' => 'string'
     );
   
     /** 
@@ -61,9 +64,12 @@ class QueuedResponse implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'message' => 'message',
-        'response' => 'response',
-        'success' => 'success'
+        'created' => 'created',
+        'data' => 'data',
+        'id' => 'id',
+        'owner' => 'owner',
+        'status' => 'status',
+        'updated' => 'updated'
     );
   
     /**
@@ -71,9 +77,12 @@ class QueuedResponse implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'message' => 'setMessage',
-        'response' => 'setResponse',
-        'success' => 'setSuccess'
+        'created' => 'setCreated',
+        'data' => 'setData',
+        'id' => 'setId',
+        'owner' => 'setOwner',
+        'status' => 'setStatus',
+        'updated' => 'setUpdated'
     );
   
     /**
@@ -81,29 +90,50 @@ class QueuedResponse implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'message' => 'getMessage',
-        'response' => 'getResponse',
-        'success' => 'getSuccess'
+        'created' => 'getCreated',
+        'data' => 'getData',
+        'id' => 'getId',
+        'owner' => 'getOwner',
+        'status' => 'getStatus',
+        'updated' => 'getUpdated'
     );
   
     
     /**
-      * $message 
+      * $created 
       * @var string
       */
-    protected $message;
+    protected $created;
     
     /**
-      * $response 
-      * @var \Shotstack\Model\QueuedResponseData
+      * $data 
+      * @var \Shotstack\Model\Edit
       */
-    protected $response;
+    protected $data;
     
     /**
-      * $success 
-      * @var bool
+      * $id 
+      * @var string
       */
-    protected $success;
+    protected $id;
+    
+    /**
+      * $owner 
+      * @var string
+      */
+    protected $owner;
+    
+    /**
+      * $status 
+      * @var string
+      */
+    protected $status;
+    
+    /**
+      * $updated 
+      * @var string
+      */
+    protected $updated;
     
 
     /**
@@ -113,72 +143,141 @@ class QueuedResponse implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->message = $data["message"];
-            $this->response = $data["response"];
-            $this->success = $data["success"];
+            $this->created = $data["created"];
+            $this->data = $data["data"];
+            $this->id = $data["id"];
+            $this->owner = $data["owner"];
+            $this->status = $data["status"];
+            $this->updated = $data["updated"];
         }
     }
     
     /**
-     * Gets message
+     * Gets created
      * @return string
      */
-    public function getMessage()
+    public function getCreated()
     {
-        return $this->message;
+        return $this->created;
     }
   
     /**
-     * Sets message
-     * @param string $message 
+     * Sets created
+     * @param string $created 
      * @return $this
      */
-    public function setMessage($message)
+    public function setCreated($created)
     {
         
-        $this->message = $message;
+        $this->created = $created;
         return $this;
     }
     
     /**
-     * Gets response
-     * @return \Shotstack\Model\QueuedResponseData
+     * Gets data
+     * @return \Shotstack\Model\Edit
      */
-    public function getResponse()
+    public function getData()
     {
-        return $this->response;
+        return $this->data;
     }
   
     /**
-     * Sets response
-     * @param \Shotstack\Model\QueuedResponseData $response 
+     * Sets data
+     * @param \Shotstack\Model\Edit $data 
      * @return $this
      */
-    public function setResponse($response)
+    public function setData($data)
     {
         
-        $this->response = $response;
+        $this->data = $data;
         return $this;
     }
     
     /**
-     * Gets success
-     * @return bool
+     * Gets id
+     * @return string
      */
-    public function getSuccess()
+    public function getId()
     {
-        return $this->success;
+        return $this->id;
     }
   
     /**
-     * Sets success
-     * @param bool $success 
+     * Sets id
+     * @param string $id 
      * @return $this
      */
-    public function setSuccess($success)
+    public function setId($id)
     {
         
-        $this->success = $success;
+        $this->id = $id;
+        return $this;
+    }
+    
+    /**
+     * Gets owner
+     * @return string
+     */
+    public function getOwner()
+    {
+        return $this->owner;
+    }
+  
+    /**
+     * Sets owner
+     * @param string $owner 
+     * @return $this
+     */
+    public function setOwner($owner)
+    {
+        
+        $this->owner = $owner;
+        return $this;
+    }
+    
+    /**
+     * Gets status
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+  
+    /**
+     * Sets status
+     * @param string $status 
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $allowed_values = array("queued", "fetching", "rendering", "saving", "done", "failed");
+        if (!in_array($status, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'status', must be one of 'queued', 'fetching', 'rendering', 'saving', 'done', 'failed'");
+        }
+        $this->status = $status;
+        return $this;
+    }
+    
+    /**
+     * Gets updated
+     * @return string
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
+  
+    /**
+     * Sets updated
+     * @param string $updated 
+     * @return $this
+     */
+    public function setUpdated($updated)
+    {
+        
+        $this->updated = $updated;
         return $this;
     }
     

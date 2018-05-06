@@ -1,6 +1,6 @@
 <?php
 /**
- * QueuedTest
+ * RenderResponseTest
  *
  * PHP version 5
  *
@@ -34,16 +34,16 @@
 namespace Shotstack\Model;
 
 /**
- * QueuedTest Class Doc Comment
+ * RenderResponseTest Class Doc Comment
  *
  * @category    Class
- * @description Model for Queued
+ * @description Model for RenderResponse
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class QueuedTest extends \PHPUnit_Framework_TestCase
+class RenderResponseTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -61,9 +61,9 @@ class QueuedTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test Queued
+     * Test RenderResponse
      */
-    public function testQueued() {
+    public function testRenderResponse() {
 
     }
 

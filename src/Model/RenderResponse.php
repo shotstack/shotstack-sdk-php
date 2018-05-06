@@ -1,6 +1,6 @@
 <?php
 /**
- * QueuedResponse
+ * RenderResponse
  *
  * PHP version 5
  *
@@ -35,16 +35,16 @@ namespace Shotstack\Model;
 
 use \ArrayAccess;
 /**
- * QueuedResponse Class Doc Comment
+ * RenderResponse Class Doc Comment
  *
  * @category    Class
- * @description Model for QueuedResponse
+ * @description Model for RenderResponse
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class QueuedResponse implements ArrayAccess
+class RenderResponse implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
@@ -52,7 +52,7 @@ class QueuedResponse implements ArrayAccess
       */
     static $swaggerTypes = array(
         'message' => 'string',
-        'response' => '\Shotstack\Model\QueuedResponseData',
+        'response' => '\Shotstack\Model\RenderResponseData',
         'success' => 'bool'
     );
   
@@ -95,7 +95,7 @@ class QueuedResponse implements ArrayAccess
     
     /**
       * $response 
-      * @var \Shotstack\Model\QueuedResponseData
+      * @var \Shotstack\Model\RenderResponseData
       */
     protected $response;
     
@@ -142,7 +142,7 @@ class QueuedResponse implements ArrayAccess
     
     /**
      * Gets response
-     * @return \Shotstack\Model\QueuedResponseData
+     * @return \Shotstack\Model\RenderResponseData
      */
     public function getResponse()
     {
@@ -151,7 +151,7 @@ class QueuedResponse implements ArrayAccess
   
     /**
      * Sets response
-     * @param \Shotstack\Model\QueuedResponseData $response 
+     * @param \Shotstack\Model\RenderResponseData $response 
      * @return $this
      */
     public function setResponse($response)
