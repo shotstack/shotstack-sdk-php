@@ -64,7 +64,7 @@ class RenderApi
     {
         if ($apiClient == null) {
             $apiClient = new ApiClient();
-            $apiClient->getConfig()->setHost('http://api.shotstack.io/v1');
+            $apiClient->getConfig()->setHost('https://api.shotstack.io/v1');
         }
   
         $this->apiClient = $apiClient;
