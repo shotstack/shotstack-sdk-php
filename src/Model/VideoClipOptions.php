@@ -52,7 +52,8 @@ class VideoClipOptions implements ArrayAccess
       */
     static $swaggerTypes = array(
         'effect' => 'string',
-        'filter' => 'string'
+        'filter' => 'string',
+        'volume' => 'Number'
     );
   
     /** 
@@ -61,7 +62,8 @@ class VideoClipOptions implements ArrayAccess
       */
     static $attributeMap = array(
         'effect' => 'effect',
-        'filter' => 'filter'
+        'filter' => 'filter',
+        'volume' => 'volume'
     );
   
     /**
@@ -70,7 +72,8 @@ class VideoClipOptions implements ArrayAccess
       */
     static $setters = array(
         'effect' => 'setEffect',
-        'filter' => 'setFilter'
+        'filter' => 'setFilter',
+        'volume' => 'setVolume'
     );
   
     /**
@@ -79,7 +82,8 @@ class VideoClipOptions implements ArrayAccess
       */
     static $getters = array(
         'effect' => 'getEffect',
-        'filter' => 'getFilter'
+        'filter' => 'getFilter',
+        'volume' => 'getVolume'
     );
   
     
@@ -95,6 +99,12 @@ class VideoClipOptions implements ArrayAccess
       */
     protected $filter;
     
+    /**
+      * $volume 
+      * @var Number
+      */
+    protected $volume;
+    
 
     /**
      * Constructor
@@ -105,6 +115,7 @@ class VideoClipOptions implements ArrayAccess
         if ($data != null) {
             $this->effect = $data["effect"];
             $this->filter = $data["filter"];
+            $this->volume = $data["volume"];
         }
     }
     
@@ -153,6 +164,27 @@ class VideoClipOptions implements ArrayAccess
             throw new \InvalidArgumentException("Invalid value for 'filter', must be one of 'boost', 'contrast', 'darken', 'greyscale', 'lighten', 'muted', 'negative'");
         }
         $this->filter = $filter;
+        return $this;
+    }
+    
+    /**
+     * Gets volume
+     * @return Number
+     */
+    public function getVolume()
+    {
+        return $this->volume;
+    }
+  
+    /**
+     * Sets volume
+     * @param Number $volume 
+     * @return $this
+     */
+    public function setVolume($volume)
+    {
+        
+        $this->volume = $volume;
         return $this;
     }
     
