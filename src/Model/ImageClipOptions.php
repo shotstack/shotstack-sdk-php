@@ -124,9 +124,9 @@ class ImageClipOptions implements ArrayAccess
      */
     public function setEffect($effect)
     {
-        $allowed_values = array("zoomIn", "zoomOut");
+        $allowed_values = array("zoomIn", "zoomOut", "slideLeft", "slideRight", "slideUp", "slideDown");
         if (!in_array($effect, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'effect', must be one of 'zoomIn', 'zoomOut'");
+            throw new \InvalidArgumentException("Invalid value for 'effect', must be one of 'zoomIn', 'zoomOut', 'slideLeft', 'slideRight', 'slideUp', 'slideDown'");
         }
         $this->effect = $effect;
         return $this;

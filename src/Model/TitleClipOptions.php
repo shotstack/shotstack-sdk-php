@@ -52,7 +52,8 @@ class TitleClipOptions implements ArrayAccess
       */
     static $swaggerTypes = array(
         'effect' => 'string',
-        'filter' => 'string'
+        'filter' => 'string',
+        'style' => 'string'
     );
   
     /** 
@@ -61,7 +62,8 @@ class TitleClipOptions implements ArrayAccess
       */
     static $attributeMap = array(
         'effect' => 'effect',
-        'filter' => 'filter'
+        'filter' => 'filter',
+        'style' => 'style'
     );
   
     /**
@@ -70,7 +72,8 @@ class TitleClipOptions implements ArrayAccess
       */
     static $setters = array(
         'effect' => 'setEffect',
-        'filter' => 'setFilter'
+        'filter' => 'setFilter',
+        'style' => 'setStyle'
     );
   
     /**
@@ -79,7 +82,8 @@ class TitleClipOptions implements ArrayAccess
       */
     static $getters = array(
         'effect' => 'getEffect',
-        'filter' => 'getFilter'
+        'filter' => 'getFilter',
+        'style' => 'getStyle'
     );
   
     
@@ -95,6 +99,12 @@ class TitleClipOptions implements ArrayAccess
       */
     protected $filter;
     
+    /**
+      * $style 
+      * @var string
+      */
+    protected $style;
+    
 
     /**
      * Constructor
@@ -105,6 +115,7 @@ class TitleClipOptions implements ArrayAccess
         if ($data != null) {
             $this->effect = $data["effect"];
             $this->filter = $data["filter"];
+            $this->style = $data["style"];
         }
     }
     
@@ -124,9 +135,9 @@ class TitleClipOptions implements ArrayAccess
      */
     public function setEffect($effect)
     {
-        $allowed_values = array("minimal", "blockbuster", "vogue", "sketchy", "skinny");
+        $allowed_values = array("zoomIn", "zoomOut", "slideLeft", "slideRight", "slideUp", "slideDown");
         if (!in_array($effect, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'effect', must be one of 'minimal', 'blockbuster', 'vogue', 'sketchy', 'skinny'");
+            throw new \InvalidArgumentException("Invalid value for 'effect', must be one of 'zoomIn', 'zoomOut', 'slideLeft', 'slideRight', 'slideUp', 'slideDown'");
         }
         $this->effect = $effect;
         return $this;
@@ -153,6 +164,30 @@ class TitleClipOptions implements ArrayAccess
             throw new \InvalidArgumentException("Invalid value for 'filter', must be one of 'boost', 'contrast', 'darken', 'greyscale', 'lighten', 'muted', 'negative'");
         }
         $this->filter = $filter;
+        return $this;
+    }
+    
+    /**
+     * Gets style
+     * @return string
+     */
+    public function getStyle()
+    {
+        return $this->style;
+    }
+  
+    /**
+     * Sets style
+     * @param string $style 
+     * @return $this
+     */
+    public function setStyle($style)
+    {
+        $allowed_values = array("minimal", "blockbuster", "vogue", "sketchy", "skinny");
+        if (!in_array($style, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'style', must be one of 'minimal', 'blockbuster', 'vogue', 'sketchy', 'skinny'");
+        }
+        $this->style = $style;
         return $this;
     }
     

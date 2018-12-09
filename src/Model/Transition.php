@@ -124,9 +124,9 @@ class Transition implements ArrayAccess
      */
     public function setIn($in)
     {
-        $allowed_values = array("fadeIn");
+        $allowed_values = array("fade", "wipeLeft", "WipeRight");
         if (!in_array($in, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'in', must be one of 'fadeIn'");
+            throw new \InvalidArgumentException("Invalid value for 'in', must be one of 'fade', 'wipeLeft', 'WipeRight'");
         }
         $this->in = $in;
         return $this;
@@ -148,9 +148,9 @@ class Transition implements ArrayAccess
      */
     public function setOut($out)
     {
-        $allowed_values = array("fadeOut");
+        $allowed_values = array("fade", "wipeLeft", "WipeRight");
         if (!in_array($out, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'out', must be one of 'fadeOut'");
+            throw new \InvalidArgumentException("Invalid value for 'out', must be one of 'fade', 'wipeLeft', 'WipeRight'");
         }
         $this->out = $out;
         return $this;
