@@ -34,6 +34,7 @@
 namespace Shotstack\Model;
 
 use \ArrayAccess;
+use \Shotstack\Model\Asset;
 /**
  * VideoAsset Class Doc Comment
  *
@@ -44,7 +45,7 @@ use \ArrayAccess;
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class VideoAsset implements ArrayAccess
+class VideoAsset extends Asset implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
