@@ -1,6 +1,6 @@
 <?php
 /**
- * TitleClipOptions
+ * TitleAsset
  *
  * PHP version 5
  *
@@ -35,25 +35,24 @@ namespace Shotstack\Model;
 
 use \ArrayAccess;
 /**
- * TitleClipOptions Class Doc Comment
+ * TitleAsset Class Doc Comment
  *
  * @category    Class
- * @description Model for TitleClipOptions
+ * @description Model for TitleAsset
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class TitleClipOptions implements ArrayAccess
+class TitleAsset implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'effect' => 'string',
-        'filter' => 'string',
-        'style' => 'string'
+        'style' => 'string',
+        'title' => 'string'
     );
   
     /** 
@@ -61,9 +60,8 @@ class TitleClipOptions implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'effect' => 'effect',
-        'filter' => 'filter',
-        'style' => 'style'
+        'style' => 'style',
+        'title' => 'title'
     );
   
     /**
@@ -71,9 +69,8 @@ class TitleClipOptions implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'effect' => 'setEffect',
-        'filter' => 'setFilter',
-        'style' => 'setStyle'
+        'style' => 'setStyle',
+        'title' => 'setTitle'
     );
   
     /**
@@ -81,29 +78,22 @@ class TitleClipOptions implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'effect' => 'getEffect',
-        'filter' => 'getFilter',
-        'style' => 'getStyle'
+        'style' => 'getStyle',
+        'title' => 'getTitle'
     );
   
-    
-    /**
-      * $effect 
-      * @var string
-      */
-    protected $effect;
-    
-    /**
-      * $filter 
-      * @var string
-      */
-    protected $filter;
     
     /**
       * $style 
       * @var string
       */
     protected $style;
+    
+    /**
+      * $title 
+      * @var string
+      */
+    protected $title;
     
 
     /**
@@ -113,58 +103,9 @@ class TitleClipOptions implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->effect = $data["effect"];
-            $this->filter = $data["filter"];
             $this->style = $data["style"];
+            $this->title = $data["title"];
         }
-    }
-    
-    /**
-     * Gets effect
-     * @return string
-     */
-    public function getEffect()
-    {
-        return $this->effect;
-    }
-  
-    /**
-     * Sets effect
-     * @param string $effect 
-     * @return $this
-     */
-    public function setEffect($effect)
-    {
-        $allowed_values = array("zoomIn", "zoomOut", "slideLeft", "slideRight", "slideUp", "slideDown");
-        if (!in_array($effect, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'effect', must be one of 'zoomIn', 'zoomOut', 'slideLeft', 'slideRight', 'slideUp', 'slideDown'");
-        }
-        $this->effect = $effect;
-        return $this;
-    }
-    
-    /**
-     * Gets filter
-     * @return string
-     */
-    public function getFilter()
-    {
-        return $this->filter;
-    }
-  
-    /**
-     * Sets filter
-     * @param string $filter 
-     * @return $this
-     */
-    public function setFilter($filter)
-    {
-        $allowed_values = array("boost", "contrast", "darken", "greyscale", "lighten", "muted", "negative");
-        if (!in_array($filter, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'filter', must be one of 'boost', 'contrast', 'darken', 'greyscale', 'lighten', 'muted', 'negative'");
-        }
-        $this->filter = $filter;
-        return $this;
     }
     
     /**
@@ -188,6 +129,27 @@ class TitleClipOptions implements ArrayAccess
             throw new \InvalidArgumentException("Invalid value for 'style', must be one of 'minimal', 'blockbuster', 'vogue', 'sketchy', 'skinny'");
         }
         $this->style = $style;
+        return $this;
+    }
+    
+    /**
+     * Gets title
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+  
+    /**
+     * Sets title
+     * @param string $title 
+     * @return $this
+     */
+    public function setTitle($title)
+    {
+        
+        $this->title = $title;
         return $this;
     }
     

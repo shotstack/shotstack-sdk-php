@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageClip
+ * Clip
  *
  * PHP version 5
  *
@@ -35,29 +35,28 @@ namespace Shotstack\Model;
 
 use \ArrayAccess;
 /**
- * ImageClip Class Doc Comment
+ * Clip Class Doc Comment
  *
  * @category    Class
- * @description Model for ImageClip
+ * @description Model for Clip
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ImageClip implements ArrayAccess
+class Clip implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'in' => 'Number',
-        'options' => '\Shotstack\Model\ImageClipOptions',
-        'out' => 'Number',
-        'src' => 'string',
+        'asset' => '\Shotstack\Model\Asset',
+        'effect' => 'string',
+        'filter' => 'string',
+        'length' => 'Number',
         'start' => 'Number',
-        'transition' => '\Shotstack\Model\Transition',
-        'type' => 'string'
+        'transition' => '\Shotstack\Model\Transition'
     );
   
     /** 
@@ -65,13 +64,12 @@ class ImageClip implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'in' => 'in',
-        'options' => 'options',
-        'out' => 'out',
-        'src' => 'src',
+        'asset' => 'asset',
+        'effect' => 'effect',
+        'filter' => 'filter',
+        'length' => 'length',
         'start' => 'start',
-        'transition' => 'transition',
-        'type' => 'type'
+        'transition' => 'transition'
     );
   
     /**
@@ -79,13 +77,12 @@ class ImageClip implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'in' => 'setIn',
-        'options' => 'setOptions',
-        'out' => 'setOut',
-        'src' => 'setSrc',
+        'asset' => 'setAsset',
+        'effect' => 'setEffect',
+        'filter' => 'setFilter',
+        'length' => 'setLength',
         'start' => 'setStart',
-        'transition' => 'setTransition',
-        'type' => 'setType'
+        'transition' => 'setTransition'
     );
   
     /**
@@ -93,39 +90,38 @@ class ImageClip implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'in' => 'getIn',
-        'options' => 'getOptions',
-        'out' => 'getOut',
-        'src' => 'getSrc',
+        'asset' => 'getAsset',
+        'effect' => 'getEffect',
+        'filter' => 'getFilter',
+        'length' => 'getLength',
         'start' => 'getStart',
-        'transition' => 'getTransition',
-        'type' => 'getType'
+        'transition' => 'getTransition'
     );
   
     
     /**
-      * $in 
-      * @var Number
+      * $asset 
+      * @var \Shotstack\Model\Asset
       */
-    protected $in;
+    protected $asset;
     
     /**
-      * $options 
-      * @var \Shotstack\Model\ImageClipOptions
-      */
-    protected $options;
-    
-    /**
-      * $out 
-      * @var Number
-      */
-    protected $out;
-    
-    /**
-      * $src 
+      * $effect 
       * @var string
       */
-    protected $src;
+    protected $effect;
+    
+    /**
+      * $filter 
+      * @var string
+      */
+    protected $filter;
+    
+    /**
+      * $length 
+      * @var Number
+      */
+    protected $length;
     
     /**
       * $start 
@@ -139,12 +135,6 @@ class ImageClip implements ArrayAccess
       */
     protected $transition;
     
-    /**
-      * $type 
-      * @var string
-      */
-    protected $type;
-    
 
     /**
      * Constructor
@@ -153,97 +143,102 @@ class ImageClip implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->in = $data["in"];
-            $this->options = $data["options"];
-            $this->out = $data["out"];
-            $this->src = $data["src"];
+            $this->asset = $data["asset"];
+            $this->effect = $data["effect"];
+            $this->filter = $data["filter"];
+            $this->length = $data["length"];
             $this->start = $data["start"];
             $this->transition = $data["transition"];
-            $this->type = $data["type"];
         }
     }
     
     /**
-     * Gets in
-     * @return Number
+     * Gets asset
+     * @return \Shotstack\Model\Asset
      */
-    public function getIn()
+    public function getAsset()
     {
-        return $this->in;
+        return $this->asset;
     }
   
     /**
-     * Sets in
-     * @param Number $in 
+     * Sets asset
+     * @param \Shotstack\Model\Asset $asset 
      * @return $this
      */
-    public function setIn($in)
+    public function setAsset($asset)
     {
         
-        $this->in = $in;
+        $this->asset = $asset;
         return $this;
     }
     
     /**
-     * Gets options
-     * @return \Shotstack\Model\ImageClipOptions
-     */
-    public function getOptions()
-    {
-        return $this->options;
-    }
-  
-    /**
-     * Sets options
-     * @param \Shotstack\Model\ImageClipOptions $options 
-     * @return $this
-     */
-    public function setOptions($options)
-    {
-        
-        $this->options = $options;
-        return $this;
-    }
-    
-    /**
-     * Gets out
-     * @return Number
-     */
-    public function getOut()
-    {
-        return $this->out;
-    }
-  
-    /**
-     * Sets out
-     * @param Number $out 
-     * @return $this
-     */
-    public function setOut($out)
-    {
-        
-        $this->out = $out;
-        return $this;
-    }
-    
-    /**
-     * Gets src
+     * Gets effect
      * @return string
      */
-    public function getSrc()
+    public function getEffect()
     {
-        return $this->src;
+        return $this->effect;
     }
   
     /**
-     * Sets src
-     * @param string $src 
+     * Sets effect
+     * @param string $effect 
      * @return $this
      */
-    public function setSrc($src)
+    public function setEffect($effect)
+    {
+        $allowed_values = array("zoomIn", "zoomOut", "slideLeft", "slideRight", "slideUp", "slideDown");
+        if (!in_array($effect, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'effect', must be one of 'zoomIn', 'zoomOut', 'slideLeft', 'slideRight', 'slideUp', 'slideDown'");
+        }
+        $this->effect = $effect;
+        return $this;
+    }
+    
+    /**
+     * Gets filter
+     * @return string
+     */
+    public function getFilter()
+    {
+        return $this->filter;
+    }
+  
+    /**
+     * Sets filter
+     * @param string $filter 
+     * @return $this
+     */
+    public function setFilter($filter)
+    {
+        $allowed_values = array("boost", "contrast", "darken", "greyscale", "lighten", "muted", "negative");
+        if (!in_array($filter, $allowed_values)) {
+            throw new \InvalidArgumentException("Invalid value for 'filter', must be one of 'boost', 'contrast', 'darken', 'greyscale', 'lighten', 'muted', 'negative'");
+        }
+        $this->filter = $filter;
+        return $this;
+    }
+    
+    /**
+     * Gets length
+     * @return Number
+     */
+    public function getLength()
+    {
+        return $this->length;
+    }
+  
+    /**
+     * Sets length
+     * @param Number $length 
+     * @return $this
+     */
+    public function setLength($length)
     {
         
-        $this->src = $src;
+        $this->length = $length;
         return $this;
     }
     
@@ -286,30 +281,6 @@ class ImageClip implements ArrayAccess
     {
         
         $this->transition = $transition;
-        return $this;
-    }
-    
-    /**
-     * Gets type
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-  
-    /**
-     * Sets type
-     * @param string $type 
-     * @return $this
-     */
-    public function setType($type)
-    {
-        $allowed_values = array("image");
-        if (!in_array($type, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'image'");
-        }
-        $this->type = $type;
         return $this;
     }
     

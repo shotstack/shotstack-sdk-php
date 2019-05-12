@@ -110,7 +110,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = "PHP-Swagger/0.0.8";
+    protected $userAgent = "PHP-Swagger/0.0.9";
 
     /**
      * Debug switch (default set to false)
@@ -516,8 +516,8 @@ class Configuration
         $report  = "PHP SDK (Shotstack) Debug Report:\n";
         $report .= "    OS: ".php_uname()."\n";
         $report .= "    PHP Version: ".phpversion()."\n";
-        $report .= "    OpenAPI Spec Version: 0.0.8\n";
-        $report .= "    SDK Package Version: 0.0.8\n";
+        $report .= "    OpenAPI Spec Version: 0.0.9\n";
+        $report .= "    SDK Package Version: 0.0.9\n";
         $report .= "    Temp Folder Path: ".self::getDefaultConfiguration()->getTempFolderPath()."\n";
 
         return $report;

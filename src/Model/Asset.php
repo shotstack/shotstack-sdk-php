@@ -1,6 +1,6 @@
 <?php
 /**
- * Clips
+ * Asset
  *
  * PHP version 5
  *
@@ -35,16 +35,16 @@ namespace Shotstack\Model;
 
 use \ArrayAccess;
 /**
- * Clips Class Doc Comment
+ * Asset Class Doc Comment
  *
  * @category    Class
- * @description Model for Clips
+ * @description Model for Asset
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class Clips implements ArrayAccess
+class Asset implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 

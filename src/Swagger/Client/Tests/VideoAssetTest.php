@@ -1,6 +1,6 @@
 <?php
 /**
- * TitleClipOptionsTest
+ * VideoAssetTest
  *
  * PHP version 5
  *
@@ -34,16 +34,16 @@
 namespace Shotstack\Model;
 
 /**
- * TitleClipOptionsTest Class Doc Comment
+ * VideoAssetTest Class Doc Comment
  *
  * @category    Class
- * @description Model for TitleClipOptions
+ * @description Model for VideoAsset
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class TitleClipOptionsTest extends \PHPUnit_Framework_TestCase
+class VideoAssetTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -61,9 +61,9 @@ class TitleClipOptionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test TitleClipOptions
+     * Test VideoAsset
      */
-    public function testTitleClipOptions() {
+    public function testVideoAsset() {
 
     }
 

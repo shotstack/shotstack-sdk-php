@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoClip
+ * VideoAsset
  *
  * PHP version 5
  *
@@ -35,29 +35,25 @@ namespace Shotstack\Model;
 
 use \ArrayAccess;
 /**
- * VideoClip Class Doc Comment
+ * VideoAsset Class Doc Comment
  *
  * @category    Class
- * @description Model for VideoClip
+ * @description Model for VideoAsset
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class VideoClip implements ArrayAccess
+class VideoAsset implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'in' => 'Number',
-        'options' => '\Shotstack\Model\VideoClipOptions',
-        'out' => 'Number',
-        'src' => 'string',
-        'start' => 'Number',
-        'transition' => '\Shotstack\Model\Transition',
-        'type' => 'string'
+        'trim' => 'Number',
+        'video' => 'string',
+        'volume' => 'Number'
     );
   
     /** 
@@ -65,13 +61,9 @@ class VideoClip implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'in' => 'in',
-        'options' => 'options',
-        'out' => 'out',
-        'src' => 'src',
-        'start' => 'start',
-        'transition' => 'transition',
-        'type' => 'type'
+        'trim' => 'trim',
+        'video' => 'video',
+        'volume' => 'volume'
     );
   
     /**
@@ -79,13 +71,9 @@ class VideoClip implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'in' => 'setIn',
-        'options' => 'setOptions',
-        'out' => 'setOut',
-        'src' => 'setSrc',
-        'start' => 'setStart',
-        'transition' => 'setTransition',
-        'type' => 'setType'
+        'trim' => 'setTrim',
+        'video' => 'setVideo',
+        'volume' => 'setVolume'
     );
   
     /**
@@ -93,57 +81,29 @@ class VideoClip implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'in' => 'getIn',
-        'options' => 'getOptions',
-        'out' => 'getOut',
-        'src' => 'getSrc',
-        'start' => 'getStart',
-        'transition' => 'getTransition',
-        'type' => 'getType'
+        'trim' => 'getTrim',
+        'video' => 'getVideo',
+        'volume' => 'getVolume'
     );
   
     
     /**
-      * $in 
+      * $trim 
       * @var Number
       */
-    protected $in;
+    protected $trim;
     
     /**
-      * $options 
-      * @var \Shotstack\Model\VideoClipOptions
-      */
-    protected $options;
-    
-    /**
-      * $out 
-      * @var Number
-      */
-    protected $out;
-    
-    /**
-      * $src 
+      * $video 
       * @var string
       */
-    protected $src;
+    protected $video;
     
     /**
-      * $start 
+      * $volume 
       * @var Number
       */
-    protected $start;
-    
-    /**
-      * $transition 
-      * @var \Shotstack\Model\Transition
-      */
-    protected $transition;
-    
-    /**
-      * $type 
-      * @var string
-      */
-    protected $type;
+    protected $volume;
     
 
     /**
@@ -153,163 +113,72 @@ class VideoClip implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->in = $data["in"];
-            $this->options = $data["options"];
-            $this->out = $data["out"];
-            $this->src = $data["src"];
-            $this->start = $data["start"];
-            $this->transition = $data["transition"];
-            $this->type = $data["type"];
+            $this->trim = $data["trim"];
+            $this->video = $data["video"];
+            $this->volume = $data["volume"];
         }
     }
     
     /**
-     * Gets in
+     * Gets trim
      * @return Number
      */
-    public function getIn()
+    public function getTrim()
     {
-        return $this->in;
+        return $this->trim;
     }
   
     /**
-     * Sets in
-     * @param Number $in 
+     * Sets trim
+     * @param Number $trim 
      * @return $this
      */
-    public function setIn($in)
+    public function setTrim($trim)
     {
         
-        $this->in = $in;
+        $this->trim = $trim;
         return $this;
     }
     
     /**
-     * Gets options
-     * @return \Shotstack\Model\VideoClipOptions
-     */
-    public function getOptions()
-    {
-        return $this->options;
-    }
-  
-    /**
-     * Sets options
-     * @param \Shotstack\Model\VideoClipOptions $options 
-     * @return $this
-     */
-    public function setOptions($options)
-    {
-        
-        $this->options = $options;
-        return $this;
-    }
-    
-    /**
-     * Gets out
-     * @return Number
-     */
-    public function getOut()
-    {
-        return $this->out;
-    }
-  
-    /**
-     * Sets out
-     * @param Number $out 
-     * @return $this
-     */
-    public function setOut($out)
-    {
-        
-        $this->out = $out;
-        return $this;
-    }
-    
-    /**
-     * Gets src
+     * Gets video
      * @return string
      */
-    public function getSrc()
+    public function getVideo()
     {
-        return $this->src;
+        return $this->video;
     }
   
     /**
-     * Sets src
-     * @param string $src 
+     * Sets video
+     * @param string $video 
      * @return $this
      */
-    public function setSrc($src)
+    public function setVideo($video)
     {
         
-        $this->src = $src;
+        $this->video = $video;
         return $this;
     }
     
     /**
-     * Gets start
+     * Gets volume
      * @return Number
      */
-    public function getStart()
+    public function getVolume()
     {
-        return $this->start;
+        return $this->volume;
     }
   
     /**
-     * Sets start
-     * @param Number $start 
+     * Sets volume
+     * @param Number $volume 
      * @return $this
      */
-    public function setStart($start)
+    public function setVolume($volume)
     {
         
-        $this->start = $start;
-        return $this;
-    }
-    
-    /**
-     * Gets transition
-     * @return \Shotstack\Model\Transition
-     */
-    public function getTransition()
-    {
-        return $this->transition;
-    }
-  
-    /**
-     * Sets transition
-     * @param \Shotstack\Model\Transition $transition 
-     * @return $this
-     */
-    public function setTransition($transition)
-    {
-        
-        $this->transition = $transition;
-        return $this;
-    }
-    
-    /**
-     * Gets type
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-  
-    /**
-     * Sets type
-     * @param string $type 
-     * @return $this
-     */
-    public function setType($type)
-    {
-        $allowed_values = array("video");
-        if (!in_array($type, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'type', must be one of 'video'");
-        }
-        $this->type = $type;
+        $this->volume = $volume;
         return $this;
     }
     

@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageClipTest
+ * ImageAssetTest
  *
  * PHP version 5
  *
@@ -34,16 +34,16 @@
 namespace Shotstack\Model;
 
 /**
- * ImageClipTest Class Doc Comment
+ * ImageAssetTest Class Doc Comment
  *
  * @category    Class
- * @description Model for ImageClip
+ * @description Model for ImageAsset
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class ImageClipTest extends \PHPUnit_Framework_TestCase
+class ImageAssetTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -61,9 +61,9 @@ class ImageClipTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test ImageClip
+     * Test ImageAsset
      */
-    public function testImageClip() {
+    public function testImageAsset() {
 
     }
 

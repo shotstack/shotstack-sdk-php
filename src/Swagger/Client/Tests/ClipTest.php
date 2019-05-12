@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoClipOptionsTest
+ * ClipTest
  *
  * PHP version 5
  *
@@ -34,16 +34,16 @@
 namespace Shotstack\Model;
 
 /**
- * VideoClipOptionsTest Class Doc Comment
+ * ClipTest Class Doc Comment
  *
  * @category    Class
- * @description Model for VideoClipOptions
+ * @description Model for Clip
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class VideoClipOptionsTest extends \PHPUnit_Framework_TestCase
+class ClipTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -61,9 +61,9 @@ class VideoClipOptionsTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Test VideoClipOptions
+     * Test Clip
      */
-    public function testVideoClipOptions() {
+    public function testClip() {
 
     }
 

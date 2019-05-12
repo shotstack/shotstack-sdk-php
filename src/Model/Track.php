@@ -51,7 +51,7 @@ class Track implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'clips' => '\Shotstack\Model\Clips[]'
+        'clips' => '\Shotstack\Model\Clip[]'
     );
   
     /** 
@@ -81,7 +81,7 @@ class Track implements ArrayAccess
     
     /**
       * $clips 
-      * @var \Shotstack\Model\Clips[]
+      * @var \Shotstack\Model\Clip[]
       */
     protected $clips;
     
@@ -99,7 +99,7 @@ class Track implements ArrayAccess
     
     /**
      * Gets clips
-     * @return \Shotstack\Model\Clips[]
+     * @return \Shotstack\Model\Clip[]
      */
     public function getClips()
     {
@@ -108,7 +108,7 @@ class Track implements ArrayAccess
   
     /**
      * Sets clips
-     * @param \Shotstack\Model\Clips[] $clips 
+     * @param \Shotstack\Model\Clip[] $clips 
      * @return $this
      */
     public function setClips($clips)

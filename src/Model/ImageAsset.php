@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoClipOptions
+ * ImageAsset
  *
  * PHP version 5
  *
@@ -35,25 +35,23 @@ namespace Shotstack\Model;
 
 use \ArrayAccess;
 /**
- * VideoClipOptions Class Doc Comment
+ * ImageAsset Class Doc Comment
  *
  * @category    Class
- * @description Model for VideoClipOptions
+ * @description Model for ImageAsset
  * @package     Shotstack
  * @author      http://github.com/swagger-api/swagger-codegen
  * @license     http://www.apache.org/licenses/LICENSE-2.0 Apache Licene v2
  * @link        https://github.com/swagger-api/swagger-codegen
  */
-class VideoClipOptions implements ArrayAccess
+class ImageAsset implements ArrayAccess
 {
     /**
       * Array of property to type mappings. Used for (de)serialization 
       * @var string[]
       */
     static $swaggerTypes = array(
-        'effect' => 'string',
-        'filter' => 'string',
-        'volume' => 'Number'
+        'image' => 'string'
     );
   
     /** 
@@ -61,9 +59,7 @@ class VideoClipOptions implements ArrayAccess
       * @var string[] 
       */
     static $attributeMap = array(
-        'effect' => 'effect',
-        'filter' => 'filter',
-        'volume' => 'volume'
+        'image' => 'image'
     );
   
     /**
@@ -71,9 +67,7 @@ class VideoClipOptions implements ArrayAccess
       * @var string[]
       */
     static $setters = array(
-        'effect' => 'setEffect',
-        'filter' => 'setFilter',
-        'volume' => 'setVolume'
+        'image' => 'setImage'
     );
   
     /**
@@ -81,29 +75,15 @@ class VideoClipOptions implements ArrayAccess
       * @var string[]
       */
     static $getters = array(
-        'effect' => 'getEffect',
-        'filter' => 'getFilter',
-        'volume' => 'getVolume'
+        'image' => 'getImage'
     );
   
     
     /**
-      * $effect 
+      * $image 
       * @var string
       */
-    protected $effect;
-    
-    /**
-      * $filter 
-      * @var string
-      */
-    protected $filter;
-    
-    /**
-      * $volume 
-      * @var Number
-      */
-    protected $volume;
+    protected $image;
     
 
     /**
@@ -113,78 +93,28 @@ class VideoClipOptions implements ArrayAccess
     public function __construct(array $data = null)
     {
         if ($data != null) {
-            $this->effect = $data["effect"];
-            $this->filter = $data["filter"];
-            $this->volume = $data["volume"];
+            $this->image = $data["image"];
         }
     }
     
     /**
-     * Gets effect
+     * Gets image
      * @return string
      */
-    public function getEffect()
+    public function getImage()
     {
-        return $this->effect;
+        return $this->image;
     }
   
     /**
-     * Sets effect
-     * @param string $effect 
+     * Sets image
+     * @param string $image 
      * @return $this
      */
-    public function setEffect($effect)
-    {
-        $allowed_values = array("zoomIn", "zoomOut", "slideLeft", "slideRight", "slideUp", "slideDown");
-        if (!in_array($effect, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'effect', must be one of 'zoomIn', 'zoomOut', 'slideLeft', 'slideRight', 'slideUp', 'slideDown'");
-        }
-        $this->effect = $effect;
-        return $this;
-    }
-    
-    /**
-     * Gets filter
-     * @return string
-     */
-    public function getFilter()
-    {
-        return $this->filter;
-    }
-  
-    /**
-     * Sets filter
-     * @param string $filter 
-     * @return $this
-     */
-    public function setFilter($filter)
-    {
-        $allowed_values = array("boost", "contrast", "darken", "greyscale", "lighten", "muted", "negative");
-        if (!in_array($filter, $allowed_values)) {
-            throw new \InvalidArgumentException("Invalid value for 'filter', must be one of 'boost', 'contrast', 'darken', 'greyscale', 'lighten', 'muted', 'negative'");
-        }
-        $this->filter = $filter;
-        return $this;
-    }
-    
-    /**
-     * Gets volume
-     * @return Number
-     */
-    public function getVolume()
-    {
-        return $this->volume;
-    }
-  
-    /**
-     * Sets volume
-     * @param Number $volume 
-     * @return $this
-     */
-    public function setVolume($volume)
+    public function setImage($image)
     {
         
-        $this->volume = $volume;
+        $this->image = $image;
         return $this;
     }
     
