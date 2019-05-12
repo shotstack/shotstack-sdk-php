@@ -34,7 +34,6 @@
 namespace Shotstack\Model;
 
 use \ArrayAccess;
-use \Shotstack\Model\Asset;
 /**
  * ImageAsset Class Doc Comment
  *
