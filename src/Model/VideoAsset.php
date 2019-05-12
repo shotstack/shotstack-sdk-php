@@ -51,9 +51,9 @@ class VideoAsset extends Asset implements ArrayAccess
       * @var string[]
       */
     static $swaggerTypes = array(
-        'trim' => 'Number',
+        'trim' => 'float',
         'video' => 'string',
-        'volume' => 'Number'
+        'volume' => 'float'
     );
   
     /** 

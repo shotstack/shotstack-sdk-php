@@ -54,8 +54,8 @@ class Clip implements ArrayAccess
         'asset' => '\Shotstack\Model\Asset',
         'effect' => 'string',
         'filter' => 'string',
-        'length' => 'Number',
-        'start' => 'Number',
+        'length' => 'float',
+        'start' => 'float',
         'transition' => '\Shotstack\Model\Transition'
     );
   
