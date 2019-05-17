@@ -59,7 +59,7 @@ class QueuedResponse implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'success' => 'bool',
         'message' => 'string',
-        'response' => '\OpenAPI\Client\Model\QueuedResponseData'
+        'response' => '\Shotstack\Client\Model\QueuedResponseData'
     ];
 
     /**
@@ -276,7 +276,7 @@ class QueuedResponse implements ModelInterface, ArrayAccess
     /**
      * Gets response
      *
-     * @return \OpenAPI\Client\Model\QueuedResponseData
+     * @return \Shotstack\Client\Model\QueuedResponseData
      */
     public function getResponse()
     {

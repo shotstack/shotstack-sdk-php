@@ -59,7 +59,7 @@ class RenderResponse implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'success' => 'bool',
         'message' => 'string',
-        'response' => '\OpenAPI\Client\Model\RenderResponseData'
+        'response' => '\Shotstack\Client\Model\RenderResponseData'
     ];
 
     /**
@@ -276,7 +276,7 @@ class RenderResponse implements ModelInterface, ArrayAccess
     /**
      * Gets response
      *
-     * @return \OpenAPI\Client\Model\RenderResponseData
+     * @return \Shotstack\Client\Model\RenderResponseData
      */
     public function getResponse()
     {

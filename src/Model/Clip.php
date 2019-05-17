@@ -61,7 +61,7 @@ class Clip implements ModelInterface, ArrayAccess
         'asset' => 'OneOfTitleAssetImageAssetVideoAsset',
         'start' => 'float',
         'length' => 'float',
-        'transition' => '\OpenAPI\Client\Model\Transition',
+        'transition' => '\Shotstack\Client\Model\Transition',
         'effect' => 'string',
         'filter' => 'string'
     ];
@@ -383,7 +383,7 @@ class Clip implements ModelInterface, ArrayAccess
     /**
      * Gets transition
      *
-     * @return \OpenAPI\Client\Model\Transition|null
+     * @return \Shotstack\Client\Model\Transition|null
      */
     public function getTransition()
     {

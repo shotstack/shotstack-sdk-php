@@ -120,9 +120,9 @@ class DefaultApi
      *
      * @param  string $id The id of the timeline render task in UUID format (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Shotstack\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\RenderResponse
+     * @return \Shotstack\Client\Model\RenderResponse
      */
     public function getRenderId($id)
     {
@@ -135,9 +135,9 @@ class DefaultApi
      *
      * @param  string $id The id of the timeline render task in UUID format (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Shotstack\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\RenderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Shotstack\Client\Model\RenderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function gETRenderIdWithHttpInfo($id)
     {
@@ -174,20 +174,20 @@ class DefaultApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 200:
-                    if ('\OpenAPI\Client\Model\RenderResponse' === '\SplFileObject') {
+                    if ('\Shotstack\Client\Model\RenderResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\RenderResponse', []),
+                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\RenderResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\RenderResponse';
+            $returnType = '\Shotstack\Client\Model\RenderResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -206,7 +206,7 @@ class DefaultApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\RenderResponse',
+                        '\Shotstack\Client\Model\RenderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -248,7 +248,7 @@ class DefaultApi
      */
     public function gETRenderIdAsyncWithHttpInfo($id)
     {
-        $returnType = '\OpenAPI\Client\Model\RenderResponse';
+        $returnType = '\Shotstack\Client\Model\RenderResponse';
         $request = $this->gETRenderIdRequest($id);
 
         return $this->client
@@ -395,11 +395,11 @@ class DefaultApi
     /**
      * Operation pOSTRender
      *
-     * @param  \OpenAPI\Client\Model\Edit $edit edit (required)
+     * @param  \Shotstack\Client\Model\Edit $edit edit (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Shotstack\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return \OpenAPI\Client\Model\QueuedResponse
+     * @return \Shotstack\Client\Model\QueuedResponse
      */
     public function postRender($edit)
     {
@@ -410,11 +410,11 @@ class DefaultApi
     /**
      * Operation pOSTRenderWithHttpInfo
      *
-     * @param  \OpenAPI\Client\Model\Edit $edit (required)
+     * @param  \Shotstack\Client\Model\Edit $edit (required)
      *
-     * @throws \OpenAPI\Client\ApiException on non-2xx response
+     * @throws \Shotstack\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
-     * @return array of \OpenAPI\Client\Model\QueuedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \Shotstack\Client\Model\QueuedResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function pOSTRenderWithHttpInfo($edit)
     {
@@ -451,20 +451,20 @@ class DefaultApi
             $responseBody = $response->getBody();
             switch($statusCode) {
                 case 201:
-                    if ('\OpenAPI\Client\Model\QueuedResponse' === '\SplFileObject') {
+                    if ('\Shotstack\Client\Model\QueuedResponse' === '\SplFileObject') {
                         $content = $responseBody; //stream goes to serializer
                     } else {
                         $content = $responseBody->getContents();
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\OpenAPI\Client\Model\QueuedResponse', []),
+                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\QueuedResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\OpenAPI\Client\Model\QueuedResponse';
+            $returnType = '\Shotstack\Client\Model\QueuedResponse';
             $responseBody = $response->getBody();
             if ($returnType === '\SplFileObject') {
                 $content = $responseBody; //stream goes to serializer
@@ -483,7 +483,7 @@ class DefaultApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\OpenAPI\Client\Model\QueuedResponse',
+                        '\Shotstack\Client\Model\QueuedResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -498,7 +498,7 @@ class DefaultApi
      *
      * 
      *
-     * @param  \OpenAPI\Client\Model\Edit $edit (required)
+     * @param  \Shotstack\Client\Model\Edit $edit (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
@@ -518,14 +518,14 @@ class DefaultApi
      *
      * 
      *
-     * @param  \OpenAPI\Client\Model\Edit $edit (required)
+     * @param  \Shotstack\Client\Model\Edit $edit (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
     public function pOSTRenderAsyncWithHttpInfo($edit)
     {
-        $returnType = '\OpenAPI\Client\Model\QueuedResponse';
+        $returnType = '\Shotstack\Client\Model\QueuedResponse';
         $request = $this->pOSTRenderRequest($edit);
 
         return $this->client
@@ -565,7 +565,7 @@ class DefaultApi
     /**
      * Create request for operation 'pOSTRender'
      *
-     * @param  \OpenAPI\Client\Model\Edit $edit (required)
+     * @param  \Shotstack\Client\Model\Edit $edit (required)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request

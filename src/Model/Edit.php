@@ -58,8 +58,8 @@ class Edit implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'timeline' => '\OpenAPI\Client\Model\Timeline',
-        'output' => '\OpenAPI\Client\Model\Output'
+        'timeline' => '\Shotstack\Client\Model\Timeline',
+        'output' => '\Shotstack\Client\Model\Output'
     ];
 
     /**
@@ -220,7 +220,7 @@ class Edit implements ModelInterface, ArrayAccess
     /**
      * Gets timeline
      *
-     * @return \OpenAPI\Client\Model\Timeline
+     * @return \Shotstack\Client\Model\Timeline
      */
     public function getTimeline()
     {
@@ -244,7 +244,7 @@ class Edit implements ModelInterface, ArrayAccess
     /**
      * Gets output
      *
-     * @return \OpenAPI\Client\Model\Output
+     * @return \Shotstack\Client\Model\Output
      */
     public function getOutput()
     {

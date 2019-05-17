@@ -58,9 +58,9 @@ class Timeline implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'soundtrack' => '\OpenAPI\Client\Model\Soundtrack',
+        'soundtrack' => '\Shotstack\Client\Model\Soundtrack',
         'background' => 'string',
-        'tracks' => '\OpenAPI\Client\Model\Track[]'
+        'tracks' => '\Shotstack\Client\Model\Track[]'
     ];
 
     /**
@@ -223,7 +223,7 @@ class Timeline implements ModelInterface, ArrayAccess
     /**
      * Gets soundtrack
      *
-     * @return \OpenAPI\Client\Model\Soundtrack|null
+     * @return \Shotstack\Client\Model\Soundtrack|null
      */
     public function getSoundtrack()
     {
@@ -271,7 +271,7 @@ class Timeline implements ModelInterface, ArrayAccess
     /**
      * Gets tracks
      *
-     * @return \OpenAPI\Client\Model\Track[]
+     * @return \Shotstack\Client\Model\Track[]
      */
     public function getTracks()
     {

@@ -58,7 +58,7 @@ class Track implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'clips' => '\OpenAPI\Client\Model\Clip[]'
+        'clips' => '\Shotstack\Client\Model\Clip[]'
     ];
 
     /**
@@ -211,7 +211,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Gets clips
      *
-     * @return \OpenAPI\Client\Model\Clip[]
+     * @return \Shotstack\Client\Model\Clip[]
      */
     public function getClips()
     {

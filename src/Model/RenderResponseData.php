@@ -60,7 +60,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess
         'status' => 'string',
         'id' => 'string',
         'owner' => 'string',
-        'data' => '\OpenAPI\Client\Model\Edit',
+        'data' => '\Shotstack\Client\Model\Edit',
         'created' => 'string',
         'updated' => 'string'
     ];
@@ -367,7 +367,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess
     /**
      * Gets data
      *
-     * @return \OpenAPI\Client\Model\Edit
+     * @return \Shotstack\Client\Model\Edit
      */
     public function getData()
     {
