@@ -183,7 +183,7 @@ class ImageAsset implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'image';
         $this->container['src'] = isset($data['src']) ? $data['src'] : null;
     }
 

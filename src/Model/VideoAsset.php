@@ -193,7 +193,7 @@ class VideoAsset implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'video';
         $this->container['src'] = isset($data['src']) ? $data['src'] : null;
         $this->container['trim'] = isset($data['trim']) ? $data['trim'] : null;
         $this->container['volume'] = isset($data['volume']) ? $data['volume'] : null;

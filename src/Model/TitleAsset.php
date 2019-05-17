@@ -209,7 +209,7 @@ class TitleAsset implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'title';
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
         $this->container['style'] = isset($data['style']) ? $data['style'] : null;
     }
