@@ -58,7 +58,7 @@ class Clip implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'asset' => 'OneOfTitleAssetImageAssetVideoAsset',
+        'asset' => '\Shotstack\Client\Model\Asset',
         'start' => 'float',
         'length' => 'float',
         'transition' => '\Shotstack\Client\Model\Transition',
@@ -311,7 +311,7 @@ class Clip implements ModelInterface, ArrayAccess
     /**
      * Gets asset
      *
-     * @return OneOfTitleAssetImageAssetVideoAsset
+     * @return Asset
      */
     public function getAsset()
     {
@@ -321,7 +321,7 @@ class Clip implements ModelInterface, ArrayAccess
     /**
      * Sets asset
      *
-     * @param OneOfTitleAssetImageAssetVideoAsset $asset The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>.
+     * @param Asset $asset The type of asset to display for the duration of this Clip. Value must be one of <b>TitleAsset</b>, <b>ImageAsset</b> or <b>VideoAsset</b>.
      *
      * @return $this
      */

@@ -41,7 +41,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class TitleAsset implements ModelInterface, ArrayAccess
+class TitleAsset extends Asset implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
