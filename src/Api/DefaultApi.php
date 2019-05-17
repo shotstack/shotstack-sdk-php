@@ -124,7 +124,7 @@ class DefaultApi
      * @throws \InvalidArgumentException
      * @return \Shotstack\Client\Model\RenderResponse
      */
-    public function getRenderId($id)
+    public function getRender($id)
     {
         list($response) = $this->gETRenderIdWithHttpInfo($id);
         return $response;
