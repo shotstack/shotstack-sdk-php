@@ -286,7 +286,7 @@ class RenderResponse implements ModelInterface, ArrayAccess
     /**
      * Sets response
      *
-     * @param \OpenAPI\Client\Model\RenderResponseData $response response
+     * @param \Shotstack\Client\Model\RenderResponseData $response response
      *
      * @return $this
      */

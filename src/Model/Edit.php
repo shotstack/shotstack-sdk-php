@@ -230,7 +230,7 @@ class Edit implements ModelInterface, ArrayAccess
     /**
      * Sets timeline
      *
-     * @param \OpenAPI\Client\Model\Timeline $timeline timeline
+     * @param \Shotstack\Client\Model\Timeline $timeline timeline
      *
      * @return $this
      */
@@ -254,7 +254,7 @@ class Edit implements ModelInterface, ArrayAccess
     /**
      * Sets output
      *
-     * @param \OpenAPI\Client\Model\Output $output output
+     * @param \Shotstack\Client\Model\Output $output output
      *
      * @return $this
      */

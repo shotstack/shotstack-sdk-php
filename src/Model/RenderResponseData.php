@@ -377,7 +377,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess
     /**
      * Sets data
      *
-     * @param \OpenAPI\Client\Model\Edit $data data
+     * @param \Shotstack\Client\Model\Edit $data data
      *
      * @return $this
      */

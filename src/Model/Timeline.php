@@ -233,7 +233,7 @@ class Timeline implements ModelInterface, ArrayAccess
     /**
      * Sets soundtrack
      *
-     * @param \OpenAPI\Client\Model\Soundtrack|null $soundtrack soundtrack
+     * @param \Shotstack\Client\Model\Soundtrack|null $soundtrack soundtrack
      *
      * @return $this
      */
@@ -281,7 +281,7 @@ class Timeline implements ModelInterface, ArrayAccess
     /**
      * Sets tracks
      *
-     * @param \OpenAPI\Client\Model\Track[] $tracks A timeline consists of an array of tracks, each track containing clips. Tracks are layered on top of each other in the same order they are added to the array with the top most track layered over the top of those below it. Ensure that a track containing titles is the top most track so that it is displayed above videos and images.
+     * @param \Shotstack\Client\Model\Track[] $tracks A timeline consists of an array of tracks, each track containing clips. Tracks are layered on top of each other in the same order they are added to the array with the top most track layered over the top of those below it. Ensure that a track containing titles is the top most track so that it is displayed above videos and images.
      *
      * @return $this
      */

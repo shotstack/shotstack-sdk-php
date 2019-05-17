@@ -286,7 +286,7 @@ class QueuedResponse implements ModelInterface, ArrayAccess
     /**
      * Sets response
      *
-     * @param \OpenAPI\Client\Model\QueuedResponseData $response response
+     * @param \Shotstack\Client\Model\QueuedResponseData $response response
      *
      * @return $this
      */

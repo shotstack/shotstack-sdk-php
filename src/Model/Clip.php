@@ -393,7 +393,7 @@ class Clip implements ModelInterface, ArrayAccess
     /**
      * Sets transition
      *
-     * @param \OpenAPI\Client\Model\Transition|null $transition transition
+     * @param \Shotstack\Client\Model\Transition|null $transition transition
      *
      * @return $this
      */

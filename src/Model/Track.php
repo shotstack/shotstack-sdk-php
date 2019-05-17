@@ -221,7 +221,7 @@ class Track implements ModelInterface, ArrayAccess
     /**
      * Sets clips
      *
-     * @param \OpenAPI\Client\Model\Clip[] $clips An array of Clips comprising of TitleClip, ImageClip or VideoClip.
+     * @param \Shotstack\Client\Model\Clip[] $clips An array of Clips comprising of TitleClip, ImageClip or VideoClip.
      *
      * @return $this
      */
