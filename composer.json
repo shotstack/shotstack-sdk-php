@@ -6,10 +6,11 @@
     "minimum-stability": "dev",
     "keywords": ["shotstack", "video", "video editing", "api"],
     "require": {
-        "php": ">=5.3.3",
+        "php": ">=5.5",
         "ext-curl": "*",
         "ext-json": "*",
-        "ext-mbstring": "*"
+        "ext-mbstring": "*",
+        "guzzlehttp/guzzle": "^6.2"
     },
     "autoload": {
         "psr-4": { "Shotstack\\" : "src/" }
