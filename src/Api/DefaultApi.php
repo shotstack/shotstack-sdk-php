@@ -34,10 +34,10 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use OpenAPI\Client\ApiException;
-use OpenAPI\Client\Configuration;
-use OpenAPI\Client\HeaderSelector;
-use OpenAPI\Client\ObjectSerializer;
+use Shotstack\Client\ApiException;
+use Shotstack\Client\Configuration;
+use Shotstack\Client\HeaderSelector;
+use Shotstack\Client\ObjectSerializer;
 
 /**
  * DefaultApi Class Doc Comment

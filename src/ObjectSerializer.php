@@ -29,7 +29,7 @@
 
 namespace Shotstack\Client;
 
-use OpenAPI\Client\Model\ModelInterface;
+use Shotstack\Client\Model\ModelInterface;
 
 /**
  * ObjectSerializer Class Doc Comment
