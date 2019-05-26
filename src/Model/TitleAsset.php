@@ -1,6 +1,6 @@
 <?php
 /**
- * RenderResponse
+ * TitleAsset
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * RenderResponse Class Doc Comment
+ * TitleAsset Class Doc Comment
  *
  * @category Class
+ * @description The TitleAsset clip type lets you create video titles from a text string and apply styling.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class RenderResponse implements ModelInterface, ArrayAccess
+class TitleAsset extends Asset implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class RenderResponse implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RenderResponse';
+    protected static $openAPIModelName = 'TitleAsset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +58,9 @@ class RenderResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'success' => 'bool',
-        'message' => 'string',
-        'response' => '\Shotstack\Client\Model\RenderResponseData'
+        'type' => 'string',
+        'text' => 'string',
+        'style' => 'string'
     ];
 
     /**
@@ -68,9 +69,9 @@ class RenderResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'success' => null,
-        'message' => null,
-        'response' => null
+        'type' => null,
+        'text' => null,
+        'style' => null
     ];
 
     /**
@@ -100,9 +101,9 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'success' => 'success',
-        'message' => 'message',
-        'response' => 'response'
+        'type' => 'type',
+        'text' => 'text',
+        'style' => 'style'
     ];
 
     /**
@@ -111,9 +112,9 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'success' => 'setSuccess',
-        'message' => 'setMessage',
-        'response' => 'setResponse'
+        'type' => 'setType',
+        'text' => 'setText',
+        'style' => 'setStyle'
     ];
 
     /**
@@ -122,9 +123,9 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'success' => 'getSuccess',
-        'message' => 'getMessage',
-        'response' => 'getResponse'
+        'type' => 'getType',
+        'text' => 'getText',
+        'style' => 'getStyle'
     ];
 
     /**
@@ -168,8 +169,29 @@ class RenderResponse implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const STYLE_MINIMAL = 'minimal';
+    const STYLE_BLOCKBUSTER = 'blockbuster';
+    const STYLE_VOGUE = 'vogue';
+    const STYLE_SKETCHY = 'sketchy';
+    const STYLE_SKINNY = 'skinny';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStyleAllowableValues()
+    {
+        return [
+            self::STYLE_MINIMAL,
+            self::STYLE_BLOCKBUSTER,
+            self::STYLE_VOGUE,
+            self::STYLE_SKETCHY,
+            self::STYLE_SKINNY,
+        ];
+    }
     
 
     /**
@@ -187,9 +209,9 @@ class RenderResponse implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['response'] = isset($data['response']) ? $data['response'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'title';
+        $this->container['text'] = isset($data['text']) ? $data['text'] : null;
+        $this->container['style'] = isset($data['style']) ? $data['style'] : null;
     }
 
     /**
@@ -201,15 +223,20 @@ class RenderResponse implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['success'] === null) {
-            $invalidProperties[] = "'success' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
+        if ($this->container['text'] === null) {
+            $invalidProperties[] = "'text' can't be null";
         }
-        if ($this->container['response'] === null) {
-            $invalidProperties[] = "'response' can't be null";
+        $allowedValues = $this->getStyleAllowableValues();
+        if (!is_null($this->container['style']) && !in_array($this->container['style'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'style', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
         }
+
         return $invalidProperties;
     }
 
@@ -226,73 +253,82 @@ class RenderResponse implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets success
-     *
-     * @return bool
-     */
-    public function getSuccess()
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool $success success
-     *
-     * @return $this
-     */
-    public function setSuccess($success)
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
+     * Gets type
      *
      * @return string
      */
-    public function getMessage()
+    public function getType()
     {
-        return $this->container['message'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets message
+     * Sets type
      *
-     * @param string $message message
+     * @param string $type The type of asset - set to <b>title</b> for titles.
      *
      * @return $this
      */
-    public function setMessage($message)
+    public function setType($type)
     {
-        $this->container['message'] = $message;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets response
+     * Gets text
      *
-     * @return \Shotstack\Client\Model\RenderResponseData
+     * @return string
      */
-    public function getResponse()
+    public function getText()
     {
-        return $this->container['response'];
+        return $this->container['text'];
     }
 
     /**
-     * Sets response
+     * Sets text
      *
-     * @param \Shotstack\Client\Model\RenderResponseData $response response
+     * @param string $text The title text string - i.e. \"My Title\".
      *
      * @return $this
      */
-    public function setResponse($response)
+    public function setText($text)
     {
-        $this->container['response'] = $response;
+        $this->container['text'] = $text;
+
+        return $this;
+    }
+
+    /**
+     * Gets style
+     *
+     * @return string|null
+     */
+    public function getStyle()
+    {
+        return $this->container['style'];
+    }
+
+    /**
+     * Sets style
+     *
+     * @param string|null $style Uses a preset to apply font properties and stylng to the title.
+     *
+     * @return $this
+     */
+    public function setStyle($style)
+    {
+        $allowedValues = $this->getStyleAllowableValues();
+        if (!is_null($style) && !in_array($style, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'style', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['style'] = $style;
 
         return $this;
     }

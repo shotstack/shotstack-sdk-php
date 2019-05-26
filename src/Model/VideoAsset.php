@@ -1,6 +1,6 @@
 <?php
 /**
- * RenderResponse
+ * VideoAsset
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * RenderResponse Class Doc Comment
+ * VideoAsset Class Doc Comment
  *
  * @category Class
+ * @description The VideoAsset is used to create video sequences from video files. The src must be a publicly accesible URL to a video resource such as an mp4 file. The in and out attributes of the parent Clip let you trim the video file by setting the start and end point to use.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class RenderResponse implements ModelInterface, ArrayAccess
+class VideoAsset extends Asset implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class RenderResponse implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RenderResponse';
+    protected static $openAPIModelName = 'VideoAsset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +58,10 @@ class RenderResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'success' => 'bool',
-        'message' => 'string',
-        'response' => '\Shotstack\Client\Model\RenderResponseData'
+        'type' => 'string',
+        'src' => 'string',
+        'trim' => 'float',
+        'volume' => 'float'
     ];
 
     /**
@@ -68,9 +70,10 @@ class RenderResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'success' => null,
-        'message' => null,
-        'response' => null
+        'type' => null,
+        'src' => null,
+        'trim' => null,
+        'volume' => null
     ];
 
     /**
@@ -100,9 +103,10 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'success' => 'success',
-        'message' => 'message',
-        'response' => 'response'
+        'type' => 'type',
+        'src' => 'src',
+        'trim' => 'trim',
+        'volume' => 'volume'
     ];
 
     /**
@@ -111,9 +115,10 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'success' => 'setSuccess',
-        'message' => 'setMessage',
-        'response' => 'setResponse'
+        'type' => 'setType',
+        'src' => 'setSrc',
+        'trim' => 'setTrim',
+        'volume' => 'setVolume'
     ];
 
     /**
@@ -122,9 +127,10 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'success' => 'getSuccess',
-        'message' => 'getMessage',
-        'response' => 'getResponse'
+        'type' => 'getType',
+        'src' => 'getSrc',
+        'trim' => 'getTrim',
+        'volume' => 'getVolume'
     ];
 
     /**
@@ -187,9 +193,10 @@ class RenderResponse implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['response'] = isset($data['response']) ? $data['response'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'video';
+        $this->container['src'] = isset($data['src']) ? $data['src'] : null;
+        $this->container['trim'] = isset($data['trim']) ? $data['trim'] : null;
+        $this->container['volume'] = isset($data['volume']) ? $data['volume'] : null;
     }
 
     /**
@@ -201,14 +208,11 @@ class RenderResponse implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['success'] === null) {
-            $invalidProperties[] = "'success' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        if ($this->container['response'] === null) {
-            $invalidProperties[] = "'response' can't be null";
+        if ($this->container['src'] === null) {
+            $invalidProperties[] = "'src' can't be null";
         }
         return $invalidProperties;
     }
@@ -226,73 +230,97 @@ class RenderResponse implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets success
-     *
-     * @return bool
-     */
-    public function getSuccess()
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool $success success
-     *
-     * @return $this
-     */
-    public function setSuccess($success)
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
+     * Gets type
      *
      * @return string
      */
-    public function getMessage()
+    public function getType()
     {
-        return $this->container['message'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets message
+     * Sets type
      *
-     * @param string $message message
+     * @param string $type The type of asset - set to <b>video</b> for videos.
      *
      * @return $this
      */
-    public function setMessage($message)
+    public function setType($type)
     {
-        $this->container['message'] = $message;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets response
+     * Gets src
      *
-     * @return \Shotstack\Client\Model\RenderResponseData
+     * @return string
      */
-    public function getResponse()
+    public function getSrc()
     {
-        return $this->container['response'];
+        return $this->container['src'];
     }
 
     /**
-     * Sets response
+     * Sets src
      *
-     * @param \Shotstack\Client\Model\RenderResponseData $response response
+     * @param string $src The video source URL. The URL must be publicly accessible or include credentials.
      *
      * @return $this
      */
-    public function setResponse($response)
+    public function setSrc($src)
     {
-        $this->container['response'] = $response;
+        $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets trim
+     *
+     * @return float|null
+     */
+    public function getTrim()
+    {
+        return $this->container['trim'];
+    }
+
+    /**
+     * Sets trim
+     *
+     * @param float|null $trim The start trim point of the clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+     *
+     * @return $this
+     */
+    public function setTrim($trim)
+    {
+        $this->container['trim'] = $trim;
+
+        return $this;
+    }
+
+    /**
+     * Gets volume
+     *
+     * @return float|null
+     */
+    public function getVolume()
+    {
+        return $this->container['volume'];
+    }
+
+    /**
+     * Sets volume
+     *
+     * @param float|null $volume Set the volume for the clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+     *
+     * @return $this
+     */
+    public function setVolume($volume)
+    {
+        $this->container['volume'] = $volume;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * RenderResponse
+ * ImageAsset
  *
  * PHP version 5
  *
@@ -33,14 +33,15 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * RenderResponse Class Doc Comment
+ * ImageAsset Class Doc Comment
  *
  * @category Class
+ * @description The ImageAsset is used to create video from images. The src must be a publicly accesible URL to an image resource such as a jpg or png file.
  * @package  OpenAPI\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class RenderResponse implements ModelInterface, ArrayAccess
+class ImageAsset extends Asset implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -49,7 +50,7 @@ class RenderResponse implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RenderResponse';
+    protected static $openAPIModelName = 'ImageAsset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -57,9 +58,8 @@ class RenderResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'success' => 'bool',
-        'message' => 'string',
-        'response' => '\Shotstack\Client\Model\RenderResponseData'
+        'type' => 'string',
+        'src' => 'string'
     ];
 
     /**
@@ -68,9 +68,8 @@ class RenderResponse implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'success' => null,
-        'message' => null,
-        'response' => null
+        'type' => null,
+        'src' => null
     ];
 
     /**
@@ -100,9 +99,8 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'success' => 'success',
-        'message' => 'message',
-        'response' => 'response'
+        'type' => 'type',
+        'src' => 'src'
     ];
 
     /**
@@ -111,9 +109,8 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'success' => 'setSuccess',
-        'message' => 'setMessage',
-        'response' => 'setResponse'
+        'type' => 'setType',
+        'src' => 'setSrc'
     ];
 
     /**
@@ -122,9 +119,8 @@ class RenderResponse implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'success' => 'getSuccess',
-        'message' => 'getMessage',
-        'response' => 'getResponse'
+        'type' => 'getType',
+        'src' => 'getSrc'
     ];
 
     /**
@@ -187,9 +183,8 @@ class RenderResponse implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['success'] = isset($data['success']) ? $data['success'] : null;
-        $this->container['message'] = isset($data['message']) ? $data['message'] : null;
-        $this->container['response'] = isset($data['response']) ? $data['response'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'image';
+        $this->container['src'] = isset($data['src']) ? $data['src'] : null;
     }
 
     /**
@@ -201,14 +196,11 @@ class RenderResponse implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['success'] === null) {
-            $invalidProperties[] = "'success' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['message'] === null) {
-            $invalidProperties[] = "'message' can't be null";
-        }
-        if ($this->container['response'] === null) {
-            $invalidProperties[] = "'response' can't be null";
+        if ($this->container['src'] === null) {
+            $invalidProperties[] = "'src' can't be null";
         }
         return $invalidProperties;
     }
@@ -226,73 +218,49 @@ class RenderResponse implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets success
-     *
-     * @return bool
-     */
-    public function getSuccess()
-    {
-        return $this->container['success'];
-    }
-
-    /**
-     * Sets success
-     *
-     * @param bool $success success
-     *
-     * @return $this
-     */
-    public function setSuccess($success)
-    {
-        $this->container['success'] = $success;
-
-        return $this;
-    }
-
-    /**
-     * Gets message
+     * Gets type
      *
      * @return string
      */
-    public function getMessage()
+    public function getType()
     {
-        return $this->container['message'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets message
+     * Sets type
      *
-     * @param string $message message
+     * @param string $type The type of asset - set to <b>image</b> for images.
      *
      * @return $this
      */
-    public function setMessage($message)
+    public function setType($type)
     {
-        $this->container['message'] = $message;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets response
+     * Gets src
      *
-     * @return \Shotstack\Client\Model\RenderResponseData
+     * @return string
      */
-    public function getResponse()
+    public function getSrc()
     {
-        return $this->container['response'];
+        return $this->container['src'];
     }
 
     /**
-     * Sets response
+     * Sets src
      *
-     * @param \Shotstack\Client\Model\RenderResponseData $response response
+     * @param string $src The image source URL. The URL must be publicly accessible or include credentials.
      *
      * @return $this
      */
-    public function setResponse($response)
+    public function setSrc($src)
     {
-        $this->container['response'] = $response;
+        $this->container['src'] = $src;
 
         return $this;
     }
