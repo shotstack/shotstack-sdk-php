@@ -14,7 +14,7 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
 
 ### Composer
 
-The recomended way to use the SDK is as a compoaser package. Install using the command:
+The recomended way to use the SDK is as a composer package. Install using the command:
 
 ```
 composer require shotstack/shotstack-sdk-php
