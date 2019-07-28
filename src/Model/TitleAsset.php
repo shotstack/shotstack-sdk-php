@@ -61,7 +61,11 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
         'type' => 'string',
         'text' => 'string',
         'style' => 'string',
-        'position' => 'string'
+        'color' => 'string',
+        'size' => 'string',
+        'background' => 'string',
+        'position' => 'string',
+        'offset' => '\Shotstack\Client\Model\Offset'
     ];
 
     /**
@@ -73,7 +77,11 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
         'type' => null,
         'text' => null,
         'style' => null,
-        'position' => null
+        'color' => null,
+        'size' => null,
+        'background' => null,
+        'position' => null,
+        'offset' => null
     ];
 
     /**
@@ -106,7 +114,11 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
         'type' => 'type',
         'text' => 'text',
         'style' => 'style',
-        'position' => 'position'
+        'color' => 'color',
+        'size' => 'size',
+        'background' => 'background',
+        'position' => 'position',
+        'offset' => 'offset'
     ];
 
     /**
@@ -118,7 +130,11 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
         'type' => 'setType',
         'text' => 'setText',
         'style' => 'setStyle',
-        'position' => 'setPosition'
+        'color' => 'setColor',
+        'size' => 'setSize',
+        'background' => 'setBackground',
+        'position' => 'setPosition',
+        'offset' => 'setOffset'
     ];
 
     /**
@@ -130,7 +146,11 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
         'type' => 'getType',
         'text' => 'getText',
         'style' => 'getStyle',
-        'position' => 'getPosition'
+        'color' => 'getColor',
+        'size' => 'getSize',
+        'background' => 'getBackground',
+        'position' => 'getPosition',
+        'offset' => 'getOffset'
     ];
 
     /**
@@ -179,6 +199,18 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
     const STYLE_VOGUE = 'vogue';
     const STYLE_SKETCHY = 'sketchy';
     const STYLE_SKINNY = 'skinny';
+    const STYLE_CHUNK = 'chunk';
+    const STYLE_CHUNK_LIGHT = 'chunkLight';
+    const STYLE_MARKER = 'marker';
+    const STYLE_FUTURE = 'future';
+    const STYLE_SUBTITLE = 'subtitle';
+    const SIZE_XX_SMALL = 'xx-small';
+    const SIZE_X_SMALL = 'x-small';
+    const SIZE_SMALL = 'small';
+    const SIZE_MEDIUM = 'medium';
+    const SIZE_LARGE = 'large';
+    const SIZE_X_LARGE = 'x-large';
+    const SIZE_XX_LARGE = 'xx-large';
     const POSITION_TOP = 'top';
     const POSITION_TOP_RIGHT = 'topRight';
     const POSITION_RIGHT = 'right';
@@ -204,6 +236,29 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
             self::STYLE_VOGUE,
             self::STYLE_SKETCHY,
             self::STYLE_SKINNY,
+            self::STYLE_CHUNK,
+            self::STYLE_CHUNK_LIGHT,
+            self::STYLE_MARKER,
+            self::STYLE_FUTURE,
+            self::STYLE_SUBTITLE,
+        ];
+    }
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getSizeAllowableValues()
+    {
+        return [
+            self::SIZE_XX_SMALL,
+            self::SIZE_X_SMALL,
+            self::SIZE_SMALL,
+            self::SIZE_MEDIUM,
+            self::SIZE_LARGE,
+            self::SIZE_X_LARGE,
+            self::SIZE_XX_LARGE,
         ];
     }
     
@@ -246,7 +301,11 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
         $this->container['type'] = isset($data['type']) ? $data['type'] : 'title';
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
         $this->container['style'] = isset($data['style']) ? $data['style'] : null;
+        $this->container['color'] = isset($data['color']) ? $data['color'] : 'white';
+        $this->container['size'] = isset($data['size']) ? $data['size'] : 'medium';
+        $this->container['background'] = isset($data['background']) ? $data['background'] : null;
         $this->container['position'] = isset($data['position']) ? $data['position'] : 'center';
+        $this->container['offset'] = isset($data['offset']) ? $data['offset'] : null;
     }
 
     /**
@@ -268,6 +327,14 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
         if (!is_null($this->container['style']) && !in_array($this->container['style'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
                 "invalid value for 'style', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getSizeAllowableValues();
+        if (!is_null($this->container['size']) && !in_array($this->container['size'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'size', must be one of '%s'",
                 implode("', '", $allowedValues)
             );
         }
@@ -377,6 +444,87 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
     }
 
     /**
+     * Gets color
+     *
+     * @return string|null
+     */
+    public function getColor()
+    {
+        return $this->container['color'];
+    }
+
+    /**
+     * Sets color
+     *
+     * @param string|null $color Set the text color using HTML color notation including hexidecimal, rgb, rgba and  color name. Transparency is supported by setting the last two characters of a hex string,  i.e. #ffffff33 or using rgba, i.e. rgba(255, 255, 255, 0.5).
+     *
+     * @return $this
+     */
+    public function setColor($color)
+    {
+        $this->container['color'] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Gets size
+     *
+     * @return string|null
+     */
+    public function getSize()
+    {
+        return $this->container['size'];
+    }
+
+    /**
+     * Sets size
+     *
+     * @param string|null $size Set the relative size of the text using predefined sizes from xx-small to xx-large.
+     *
+     * @return $this
+     */
+    public function setSize($size)
+    {
+        $allowedValues = $this->getSizeAllowableValues();
+        if (!is_null($size) && !in_array($size, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'size', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['size'] = $size;
+
+        return $this;
+    }
+
+    /**
+     * Gets background
+     *
+     * @return string|null
+     */
+    public function getBackground()
+    {
+        return $this->container['background'];
+    }
+
+    /**
+     * Sets background
+     *
+     * @param string|null $background Apply a background color behind the text using HTML color notation with support for  transparency. Useful for subtitles.
+     *
+     * @return $this
+     */
+    public function setBackground($background)
+    {
+        $this->container['background'] = $background;
+
+        return $this;
+    }
+
+    /**
      * Gets position
      *
      * @return string|null
@@ -405,6 +553,30 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
             );
         }
         $this->container['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Gets offset
+     *
+     * @return \Shotstack\Client\Model\Offset|null
+     */
+    public function getOffset()
+    {
+        return $this->container['offset'];
+    }
+
+    /**
+     * Sets offset
+     *
+     * @param \Shotstack\Client\Model\Offset|null $offset offset
+     *
+     * @return $this
+     */
+    public function setOffset($offset)
+    {
+        $this->container['offset'] = $offset;
 
         return $this;
     }
