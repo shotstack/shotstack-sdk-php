@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageAsset
+ * HtmlAsset
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * ImageAsset Class Doc Comment
+ * HtmlAsset Class Doc Comment
  *
  * @category Class
- * @description The ImageAsset is used to create video from images. The src must be a publicly accesible URL to an image resource such as a jpg or png file.
+ * @description The HtmlAsset clip type lets you create text based layout and formatting using HTML and CSS. You can also set the height and width of a bounding box for the HTML content to sit within. Text and elements will wrap within the bounding box.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class ImageAsset extends Asset implements ModelInterface, ArrayAccess
+class HtmlAsset extends Asset implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImageAsset';
+    protected static $openAPIModelName = 'HtmlAsset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,7 +59,12 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'src' => 'string'
+        'html' => 'string',
+        'css' => 'string',
+        'width' => 'float',
+        'height' => 'float',
+        'background' => 'string',
+        'position' => 'string'
     ];
 
     /**
@@ -69,7 +74,12 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'src' => null
+        'html' => null,
+        'css' => null,
+        'width' => null,
+        'height' => null,
+        'background' => null,
+        'position' => null
     ];
 
     /**
@@ -100,7 +110,12 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'src' => 'src'
+        'html' => 'html',
+        'css' => 'css',
+        'width' => 'width',
+        'height' => 'height',
+        'background' => 'background',
+        'position' => 'position'
     ];
 
     /**
@@ -110,7 +125,12 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'type' => 'setType',
-        'src' => 'setSrc'
+        'html' => 'setHtml',
+        'css' => 'setCss',
+        'width' => 'setWidth',
+        'height' => 'setHeight',
+        'background' => 'setBackground',
+        'position' => 'setPosition'
     ];
 
     /**
@@ -120,7 +140,12 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'type' => 'getType',
-        'src' => 'getSrc'
+        'html' => 'getHtml',
+        'css' => 'getCss',
+        'width' => 'getWidth',
+        'height' => 'getHeight',
+        'background' => 'getBackground',
+        'position' => 'getPosition'
     ];
 
     /**
@@ -164,8 +189,37 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
+    const POSITION_TOP = 'top';
+    const POSITION_TOP_RIGHT = 'topRight';
+    const POSITION_RIGHT = 'right';
+    const POSITION_BOTTOM_RIGHT = 'bottomRight';
+    const POSITION_BOTTOM = 'bottom';
+    const POSITION_BOTTOM_LEFT = 'bottomLeft';
+    const POSITION_LEFT = 'left';
+    const POSITION_TOP_LEFT = 'topLeft';
+    const POSITION_CENTER = 'center';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getPositionAllowableValues()
+    {
+        return [
+            self::POSITION_TOP,
+            self::POSITION_TOP_RIGHT,
+            self::POSITION_RIGHT,
+            self::POSITION_BOTTOM_RIGHT,
+            self::POSITION_BOTTOM,
+            self::POSITION_BOTTOM_LEFT,
+            self::POSITION_LEFT,
+            self::POSITION_TOP_LEFT,
+            self::POSITION_CENTER,
+        ];
+    }
     
 
     /**
@@ -183,8 +237,13 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : 'image';
-        $this->container['src'] = isset($data['src']) ? $data['src'] : null;
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'html';
+        $this->container['html'] = isset($data['html']) ? $data['html'] : null;
+        $this->container['css'] = isset($data['css']) ? $data['css'] : null;
+        $this->container['width'] = isset($data['width']) ? $data['width'] : null;
+        $this->container['height'] = isset($data['height']) ? $data['height'] : null;
+        $this->container['background'] = isset($data['background']) ? $data['background'] : 'transparent';
+        $this->container['position'] = isset($data['position']) ? $data['position'] : 'center';
     }
 
     /**
@@ -199,9 +258,17 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['html'] === null) {
+            $invalidProperties[] = "'html' can't be null";
         }
+        $allowedValues = $this->getPositionAllowableValues();
+        if (!is_null($this->container['position']) && !in_array($this->container['position'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'position', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -230,7 +297,7 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to <b>image</b> for images.
+     * @param string $type The type of asset - set to <b>html</b> for HTML.
      *
      * @return $this
      */
@@ -242,25 +309,154 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets src
+     * Gets html
      *
      * @return string
      */
-    public function getSrc()
+    public function getHtml()
     {
-        return $this->container['src'];
+        return $this->container['html'];
     }
 
     /**
-     * Sets src
+     * Sets html
      *
-     * @param string $src The image source URL. The URL must be publicly accessible or include credentials.
+     * @param string $html The HTML text string.
      *
      * @return $this
      */
-    public function setSrc($src)
+    public function setHtml($html)
     {
-        $this->container['src'] = $src;
+        $this->container['html'] = $html;
+
+        return $this;
+    }
+
+    /**
+     * Gets css
+     *
+     * @return string|null
+     */
+    public function getCss()
+    {
+        return $this->container['css'];
+    }
+
+    /**
+     * Sets css
+     *
+     * @param string|null $css The CSS text string to apply styling to the HTML.
+     *
+     * @return $this
+     */
+    public function setCss($css)
+    {
+        $this->container['css'] = $css;
+
+        return $this;
+    }
+
+    /**
+     * Gets width
+     *
+     * @return float|null
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /**
+     * Sets width
+     *
+     * @param float|null $width Set the width of the HTML asset bounding box. Text will wrap to fill the bounding box.
+     *
+     * @return $this
+     */
+    public function setWidth($width)
+    {
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets height
+     *
+     * @return float|null
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /**
+     * Sets height
+     *
+     * @param float|null $height Set the width of the HTML asset bounding box. Text and elements will be masked if they exceed the  height of the bounding box.
+     *
+     * @return $this
+     */
+    public function setHeight($height)
+    {
+        $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /**
+     * Gets background
+     *
+     * @return string|null
+     */
+    public function getBackground()
+    {
+        return $this->container['background'];
+    }
+
+    /**
+     * Sets background
+     *
+     * @param string|null $background Apply a background color behind the HTML bounding box using HTML color notation with support for transparency.
+     *
+     * @return $this
+     */
+    public function setBackground($background)
+    {
+        $this->container['background'] = $background;
+
+        return $this;
+    }
+
+    /**
+     * Gets position
+     *
+     * @return string|null
+     */
+    public function getPosition()
+    {
+        return $this->container['position'];
+    }
+
+    /**
+     * Sets position
+     *
+     * @param string|null $position Place the HTML in one of nine predefined positions within the HTML area.
+     *
+     * @return $this
+     */
+    public function setPosition($position)
+    {
+        $allowedValues = $this->getPositionAllowableValues();
+        if (!is_null($position) && !in_array($position, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'position', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['position'] = $position;
 
         return $this;
     }
