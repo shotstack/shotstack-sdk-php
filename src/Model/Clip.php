@@ -36,7 +36,7 @@ use \Shotstack\Client\ObjectSerializer;
  * Clip Class Doc Comment
  *
  * @category Class
- * @description A clip is a container for a specific type of asset, i.e. a title, photo or video. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions and effects to apply to it.
+ * @description A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -67,7 +67,8 @@ class Clip implements ModelInterface, ArrayAccess
         'offset' => '\Shotstack\Client\Model\Offset',
         'transition' => '\Shotstack\Client\Model\Transition',
         'effect' => 'string',
-        'filter' => 'string'
+        'filter' => 'string',
+        'opacity' => 'float'
     ];
 
     /**
@@ -85,7 +86,8 @@ class Clip implements ModelInterface, ArrayAccess
         'offset' => null,
         'transition' => null,
         'effect' => null,
-        'filter' => null
+        'filter' => null,
+        'opacity' => null
     ];
 
     /**
@@ -124,7 +126,8 @@ class Clip implements ModelInterface, ArrayAccess
         'offset' => 'offset',
         'transition' => 'transition',
         'effect' => 'effect',
-        'filter' => 'filter'
+        'filter' => 'filter',
+        'opacity' => 'opacity'
     ];
 
     /**
@@ -142,7 +145,8 @@ class Clip implements ModelInterface, ArrayAccess
         'offset' => 'setOffset',
         'transition' => 'setTransition',
         'effect' => 'setEffect',
-        'filter' => 'setFilter'
+        'filter' => 'setFilter',
+        'opacity' => 'setOpacity'
     ];
 
     /**
@@ -160,7 +164,8 @@ class Clip implements ModelInterface, ArrayAccess
         'offset' => 'getOffset',
         'transition' => 'getTransition',
         'effect' => 'getEffect',
-        'filter' => 'getFilter'
+        'filter' => 'getFilter',
+        'opacity' => 'getOpacity'
     ];
 
     /**
@@ -327,6 +332,7 @@ class Clip implements ModelInterface, ArrayAccess
         $this->container['transition'] = isset($data['transition']) ? $data['transition'] : null;
         $this->container['effect'] = isset($data['effect']) ? $data['effect'] : null;
         $this->container['filter'] = isset($data['filter']) ? $data['filter'] : null;
+        $this->container['opacity'] = isset($data['opacity']) ? $data['opacity'] : null;
     }
 
     /**
@@ -666,6 +672,30 @@ class Clip implements ModelInterface, ArrayAccess
             );
         }
         $this->container['filter'] = $filter;
+
+        return $this;
+    }
+
+    /**
+     * Gets opacity
+     *
+     * @return float|null
+     */
+    public function getOpacity()
+    {
+        return $this->container['opacity'];
+    }
+
+    /**
+     * Sets opacity
+     *
+     * @param float|null $opacity Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
+     *
+     * @return $this
+     */
+    public function setOpacity($opacity)
+    {
+        $this->container['opacity'] = $opacity;
 
         return $this;
     }

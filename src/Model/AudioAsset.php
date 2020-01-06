@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoAsset
+ * AudioAsset
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * VideoAsset Class Doc Comment
+ * AudioAsset Class Doc Comment
  *
  * @category Class
- * @description The VideoAsset is used to create video sequences from video files. The src must be a publicly accesible URL to a video resource such as an mp4 file.
+ * @description The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accesible URL to an audio resource such  as an mp3 file.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class VideoAsset extends Asset implements ModelInterface, ArrayAccess
+class AudioAsset extends Asset implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'VideoAsset';
+    protected static $openAPIModelName = 'AudioAsset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -193,7 +193,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : 'video';
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'audio';
         $this->container['src'] = isset($data['src']) ? $data['src'] : null;
         $this->container['trim'] = isset($data['trim']) ? $data['trim'] : null;
         $this->container['volume'] = isset($data['volume']) ? $data['volume'] : null;
@@ -242,7 +242,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to <b>video</b> for videos.
+     * @param string $type The type of asset - set to <b>audio</b> for audio assets.
      *
      * @return $this
      */
@@ -266,7 +266,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets src
      *
-     * @param string $src The video source URL. The URL must be publicly accessible or include credentials.
+     * @param string $src The audio source URL. The URL must be publicly accessible or include credentials.
      *
      * @return $this
      */
@@ -290,7 +290,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets trim
      *
-     * @param float|null $trim The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+     * @param float|null $trim The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
      *
      * @return $this
      */
@@ -314,7 +314,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets volume
      *
-     * @param float|null $volume Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
+     * @param float|null $volume Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
      *
      * @return $this
      */

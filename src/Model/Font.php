@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoAsset
+ * Font
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * VideoAsset Class Doc Comment
+ * Font Class Doc Comment
  *
  * @category Class
- * @description The VideoAsset is used to create video sequences from video files. The src must be a publicly accesible URL to a video resource such as an mp4 file.
+ * @description Download a custom font to use with the HTML asset type, using the font name in the CSS or font tag.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class VideoAsset extends Asset implements ModelInterface, ArrayAccess
+class Font implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'VideoAsset';
+    protected static $openAPIModelName = 'Font';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'src' => 'string',
-        'trim' => 'float',
-        'volume' => 'float'
+        'src' => 'string'
     ];
 
     /**
@@ -70,10 +67,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'src' => null,
-        'trim' => null,
-        'volume' => null
+        'src' => null
     ];
 
     /**
@@ -103,10 +97,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'src' => 'src',
-        'trim' => 'trim',
-        'volume' => 'volume'
+        'src' => 'src'
     ];
 
     /**
@@ -115,10 +106,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'src' => 'setSrc',
-        'trim' => 'setTrim',
-        'volume' => 'setVolume'
+        'src' => 'setSrc'
     ];
 
     /**
@@ -127,10 +115,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'src' => 'getSrc',
-        'trim' => 'getTrim',
-        'volume' => 'getVolume'
+        'src' => 'getSrc'
     ];
 
     /**
@@ -193,10 +178,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = isset($data['type']) ? $data['type'] : 'video';
         $this->container['src'] = isset($data['src']) ? $data['src'] : null;
-        $this->container['trim'] = isset($data['trim']) ? $data['trim'] : null;
-        $this->container['volume'] = isset($data['volume']) ? $data['volume'] : null;
     }
 
     /**
@@ -208,9 +190,6 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
         if ($this->container['src'] === null) {
             $invalidProperties[] = "'src' can't be null";
         }
@@ -230,30 +209,6 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type The type of asset - set to <b>video</b> for videos.
-     *
-     * @return $this
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
      * Gets src
      *
      * @return string
@@ -266,61 +221,13 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets src
      *
-     * @param string $src The video source URL. The URL must be publicly accessible or include credentials.
+     * @param string $src The URL of the font file. The URL must be publicly accessible or include credentials.
      *
      * @return $this
      */
     public function setSrc($src)
     {
         $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets trim
-     *
-     * @return float|null
-     */
-    public function getTrim()
-    {
-        return $this->container['trim'];
-    }
-
-    /**
-     * Sets trim
-     *
-     * @param float|null $trim The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
-     *
-     * @return $this
-     */
-    public function setTrim($trim)
-    {
-        $this->container['trim'] = $trim;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
-     *
-     * @return float|null
-     */
-    public function getVolume()
-    {
-        return $this->container['volume'];
-    }
-
-    /**
-     * Sets volume
-     *
-     * @param float|null $volume Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0).
-     *
-     * @return $this
-     */
-    public function setVolume($volume)
-    {
-        $this->container['volume'] = $volume;
 
         return $this;
     }

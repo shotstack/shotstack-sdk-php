@@ -60,6 +60,7 @@ class Timeline implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'soundtrack' => '\Shotstack\Client\Model\Soundtrack',
         'background' => 'string',
+        'fonts' => '\Shotstack\Client\Model\Font[]',
         'tracks' => '\Shotstack\Client\Model\Track[]'
     ];
 
@@ -71,6 +72,7 @@ class Timeline implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'soundtrack' => null,
         'background' => null,
+        'fonts' => null,
         'tracks' => null
     ];
 
@@ -103,6 +105,7 @@ class Timeline implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'soundtrack' => 'soundtrack',
         'background' => 'background',
+        'fonts' => 'fonts',
         'tracks' => 'tracks'
     ];
 
@@ -114,6 +117,7 @@ class Timeline implements ModelInterface, ArrayAccess
     protected static $setters = [
         'soundtrack' => 'setSoundtrack',
         'background' => 'setBackground',
+        'fonts' => 'setFonts',
         'tracks' => 'setTracks'
     ];
 
@@ -125,6 +129,7 @@ class Timeline implements ModelInterface, ArrayAccess
     protected static $getters = [
         'soundtrack' => 'getSoundtrack',
         'background' => 'getBackground',
+        'fonts' => 'getFonts',
         'tracks' => 'getTracks'
     ];
 
@@ -190,6 +195,7 @@ class Timeline implements ModelInterface, ArrayAccess
     {
         $this->container['soundtrack'] = isset($data['soundtrack']) ? $data['soundtrack'] : null;
         $this->container['background'] = isset($data['background']) ? $data['background'] : null;
+        $this->container['fonts'] = isset($data['fonts']) ? $data['fonts'] : null;
         $this->container['tracks'] = isset($data['tracks']) ? $data['tracks'] : null;
     }
 
@@ -264,6 +270,30 @@ class Timeline implements ModelInterface, ArrayAccess
     public function setBackground($background)
     {
         $this->container['background'] = $background;
+
+        return $this;
+    }
+
+    /**
+     * Gets fonts
+     *
+     * @return \Shotstack\Client\Model\Font[]|null
+     */
+    public function getFonts()
+    {
+        return $this->container['fonts'];
+    }
+
+    /**
+     * Sets fonts
+     *
+     * @param \Shotstack\Client\Model\Font[]|null $fonts An array of custom fonts to be downloaded for use by the HTML assets.
+     *
+     * @return $this
+     */
+    public function setFonts($fonts)
+    {
+        $this->container['fonts'] = $fonts;
 
         return $this;
     }
