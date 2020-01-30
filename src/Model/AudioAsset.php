@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
  *
  * The version of the OpenAPI document: v1
  * 
@@ -36,7 +36,7 @@ use \Shotstack\Client\ObjectSerializer;
  * AudioAsset Class Doc Comment
  *
  * @category Class
- * @description The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accesible URL to an audio resource such  as an mp3 file.
+ * @description The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

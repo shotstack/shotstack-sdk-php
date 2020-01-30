@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
  *
  * The version of the OpenAPI document: v1
  * 
@@ -301,7 +301,7 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
         $this->container['type'] = isset($data['type']) ? $data['type'] : 'title';
         $this->container['text'] = isset($data['text']) ? $data['text'] : null;
         $this->container['style'] = isset($data['style']) ? $data['style'] : null;
-        $this->container['color'] = isset($data['color']) ? $data['color'] : 'white';
+        $this->container['color'] = isset($data['color']) ? $data['color'] : '#ffffff';
         $this->container['size'] = isset($data['size']) ? $data['size'] : 'medium';
         $this->container['background'] = isset($data['background']) ? $data['background'] : null;
         $this->container['position'] = isset($data['position']) ? $data['position'] : 'center';
@@ -423,7 +423,7 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets style
      *
-     * @param string|null $style Uses a preset to apply font properties and stylng to the title.
+     * @param string|null $style Uses a preset to apply font properties and styling to the title.
      *
      * @return $this
      */
@@ -456,7 +456,7 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets color
      *
-     * @param string|null $color Set the text color using HTML color notation including hexidecimal, rgb, rgba and  color name. Transparency is supported by setting the last two characters of a hex string,  i.e. #ffffff33 or using rgba, i.e. rgba(255, 255, 255, 0.5).
+     * @param string|null $color Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with  50% transparency.
      *
      * @return $this
      */
@@ -513,7 +513,7 @@ class TitleAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets background
      *
-     * @param string|null $background Apply a background color behind the text using HTML color notation with support for  transparency. Useful for subtitles.
+     * @param string|null $background Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency.
      *
      * @return $this
      */

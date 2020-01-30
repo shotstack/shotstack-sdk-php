@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the programatic creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
  *
  * The version of the OpenAPI document: v1
  * 
@@ -194,7 +194,7 @@ class Timeline implements ModelInterface, ArrayAccess
     public function __construct(array $data = null)
     {
         $this->container['soundtrack'] = isset($data['soundtrack']) ? $data['soundtrack'] : null;
-        $this->container['background'] = isset($data['background']) ? $data['background'] : null;
+        $this->container['background'] = isset($data['background']) ? $data['background'] : '#000000';
         $this->container['fonts'] = isset($data['fonts']) ? $data['fonts'] : null;
         $this->container['tracks'] = isset($data['tracks']) ? $data['tracks'] : null;
     }
@@ -263,7 +263,7 @@ class Timeline implements ModelInterface, ArrayAccess
     /**
      * Sets background
      *
-     * @param string|null $background A hexidecimal value for the timeline background colour. Defaults to black (#000000).
+     * @param string|null $background A hexadecimal value for the timeline background colour. Defaults to #000000 (black).
      *
      * @return $this
      */
