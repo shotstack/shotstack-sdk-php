@@ -59,7 +59,8 @@ class Edit implements ModelInterface, ArrayAccess
       */
     protected static $openAPITypes = [
         'timeline' => '\Shotstack\Client\Model\Timeline',
-        'output' => '\Shotstack\Client\Model\Output'
+        'output' => '\Shotstack\Client\Model\Output',
+        'callback' => 'string'
     ];
 
     /**
@@ -69,7 +70,8 @@ class Edit implements ModelInterface, ArrayAccess
       */
     protected static $openAPIFormats = [
         'timeline' => null,
-        'output' => null
+        'output' => null,
+        'callback' => null
     ];
 
     /**
@@ -100,7 +102,8 @@ class Edit implements ModelInterface, ArrayAccess
      */
     protected static $attributeMap = [
         'timeline' => 'timeline',
-        'output' => 'output'
+        'output' => 'output',
+        'callback' => 'callback'
     ];
 
     /**
@@ -110,7 +113,8 @@ class Edit implements ModelInterface, ArrayAccess
      */
     protected static $setters = [
         'timeline' => 'setTimeline',
-        'output' => 'setOutput'
+        'output' => 'setOutput',
+        'callback' => 'setCallback'
     ];
 
     /**
@@ -120,7 +124,8 @@ class Edit implements ModelInterface, ArrayAccess
      */
     protected static $getters = [
         'timeline' => 'getTimeline',
-        'output' => 'getOutput'
+        'output' => 'getOutput',
+        'callback' => 'getCallback'
     ];
 
     /**
@@ -185,6 +190,7 @@ class Edit implements ModelInterface, ArrayAccess
     {
         $this->container['timeline'] = isset($data['timeline']) ? $data['timeline'] : null;
         $this->container['output'] = isset($data['output']) ? $data['output'] : null;
+        $this->container['callback'] = isset($data['callback']) ? $data['callback'] : null;
     }
 
     /**
@@ -261,6 +267,30 @@ class Edit implements ModelInterface, ArrayAccess
     public function setOutput($output)
     {
         $this->container['output'] = $output;
+
+        return $this;
+    }
+
+    /**
+     * Gets callback
+     *
+     * @return string|null
+     */
+    public function getCallback()
+    {
+        return $this->container['callback'];
+    }
+
+    /**
+     * Sets callback
+     *
+     * @param string|null $callback An optional webhook callback URL used to receive status notifications when a render completes or fails.
+     *
+     * @return $this
+     */
+    public function setCallback($callback)
+    {
+        $this->container['callback'] = $callback;
 
         return $this;
     }
