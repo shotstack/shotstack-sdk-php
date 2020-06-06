@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * LumaAsset
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * LumaAsset Class Doc Comment
  *
  * @category Class
- * @description A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description The LumaAsset is used to create luma matte transitions between other assets. A luma matte is  a grey scale animated video where the black areas are transparent and the white areas solid. The luma matte animation should be provided as an mp4 video file. The src must be a publicly  accessible URL to the file.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Soundtrack implements ModelInterface, ArrayAccess
+class LumaAsset extends Asset implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Soundtrack implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'LumaAsset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,9 @@ class Soundtrack implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
+        'type' => 'string',
         'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'trim' => 'float'
     ];
 
     /**
@@ -69,9 +69,9 @@ class Soundtrack implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
+        'type' => null,
         'src' => null,
-        'effect' => null,
-        'volume' => null
+        'trim' => null
     ];
 
     /**
@@ -101,9 +101,9 @@ class Soundtrack implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
+        'type' => 'type',
         'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'trim' => 'trim'
     ];
 
     /**
@@ -112,9 +112,9 @@ class Soundtrack implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
+        'type' => 'setType',
         'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'trim' => 'setTrim'
     ];
 
     /**
@@ -123,9 +123,9 @@ class Soundtrack implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
+        'type' => 'getType',
         'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'trim' => 'getTrim'
     ];
 
     /**
@@ -169,25 +169,8 @@ class Soundtrack implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const EFFECT_FADE_IN = 'fadeIn';
-    const EFFECT_FADE_OUT = 'fadeOut';
-    const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
     
 
     /**
@@ -205,9 +188,9 @@ class Soundtrack implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
+        $this->container['type'] = isset($data['type']) ? $data['type'] : 'luma';
         $this->container['src'] = isset($data['src']) ? $data['src'] : null;
-        $this->container['effect'] = isset($data['effect']) ? $data['effect'] : null;
-        $this->container['volume'] = isset($data['volume']) ? $data['volume'] : null;
+        $this->container['trim'] = isset($data['trim']) ? $data['trim'] : null;
     }
 
     /**
@@ -219,17 +202,12 @@ class Soundtrack implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
         if ($this->container['src'] === null) {
             $invalidProperties[] = "'src' can't be null";
         }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'effect', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -246,6 +224,30 @@ class Soundtrack implements ModelInterface, ArrayAccess
 
 
     /**
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type The type of asset - set to <b>luma</b> for luma mattes.
+     *
+     * @return $this
+     */
+    public function setType($type)
+    {
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
      * Gets src
      *
      * @return string
@@ -258,7 +260,7 @@ class Soundtrack implements ModelInterface, ArrayAccess
     /**
      * Sets src
      *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param string $src The luma matte video source URL. The URL must be publicly accessible or include credentials.
      *
      * @return $this
      */
@@ -270,58 +272,25 @@ class Soundtrack implements ModelInterface, ArrayAccess
     }
 
     /**
-     * Gets effect
-     *
-     * @return string|null
-     */
-    public function getEffect()
-    {
-        return $this->container['effect'];
-    }
-
-    /**
-     * Sets effect
-     *
-     * @param string|null $effect The effect to apply to the audio file
-     *
-     * @return $this
-     */
-    public function setEffect($effect)
-    {
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($effect) && !in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'effect', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['effect'] = $effect;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
+     * Gets trim
      *
      * @return float|null
      */
-    public function getVolume()
+    public function getTrim()
     {
-        return $this->container['volume'];
+        return $this->container['trim'];
     }
 
     /**
-     * Sets volume
+     * Sets trim
      *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param float|null $trim The start trim point of the luma video clip, in seconds (defaults to 0). Videos will start from the in trim point. The luma matte video will play until the file ends or the Clip length is reached.
      *
      * @return $this
      */
-    public function setVolume($volume)
+    public function setTrim($trim)
     {
-        $this->container['volume'] = $volume;
+        $this->container['trim'] = $trim;
 
         return $this;
     }

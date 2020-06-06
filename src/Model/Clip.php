@@ -212,6 +212,7 @@ class Clip implements ModelInterface, ArrayAccess
     const FIT_COVER = 'cover';
     const FIT_CONTAIN = 'contain';
     const FIT_CROP = 'crop';
+    const FIT_NONE = 'none';
     const POSITION_TOP = 'top';
     const POSITION_TOP_RIGHT = 'topRight';
     const POSITION_RIGHT = 'right';
@@ -248,6 +249,7 @@ class Clip implements ModelInterface, ArrayAccess
             self::FIT_COVER,
             self::FIT_CONTAIN,
             self::FIT_CROP,
+            self::FIT_NONE,
         ];
     }
     
@@ -485,7 +487,7 @@ class Clip implements ModelInterface, ArrayAccess
     /**
      * Sets fit
      *
-     * @param string|null $fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>   </ul>
+     * @param string|null $fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
      *
      * @return $this
      */

@@ -60,7 +60,10 @@ class Output implements ModelInterface, ArrayAccess
     protected static $openAPITypes = [
         'format' => 'string',
         'resolution' => 'string',
-        'aspect_ratio' => 'string'
+        'aspect_ratio' => 'string',
+        'scale_to' => 'string',
+        'poster' => '\Shotstack\Client\Model\Poster',
+        'thumbnail' => '\Shotstack\Client\Model\Thumbnail'
     ];
 
     /**
@@ -71,7 +74,10 @@ class Output implements ModelInterface, ArrayAccess
     protected static $openAPIFormats = [
         'format' => null,
         'resolution' => null,
-        'aspect_ratio' => null
+        'aspect_ratio' => null,
+        'scale_to' => null,
+        'poster' => null,
+        'thumbnail' => null
     ];
 
     /**
@@ -103,7 +109,10 @@ class Output implements ModelInterface, ArrayAccess
     protected static $attributeMap = [
         'format' => 'format',
         'resolution' => 'resolution',
-        'aspect_ratio' => 'aspectRatio'
+        'aspect_ratio' => 'aspectRatio',
+        'scale_to' => 'scaleTo',
+        'poster' => 'poster',
+        'thumbnail' => 'thumbnail'
     ];
 
     /**
@@ -114,7 +123,10 @@ class Output implements ModelInterface, ArrayAccess
     protected static $setters = [
         'format' => 'setFormat',
         'resolution' => 'setResolution',
-        'aspect_ratio' => 'setAspectRatio'
+        'aspect_ratio' => 'setAspectRatio',
+        'scale_to' => 'setScaleTo',
+        'poster' => 'setPoster',
+        'thumbnail' => 'setThumbnail'
     ];
 
     /**
@@ -125,7 +137,10 @@ class Output implements ModelInterface, ArrayAccess
     protected static $getters = [
         'format' => 'getFormat',
         'resolution' => 'getResolution',
-        'aspect_ratio' => 'getAspectRatio'
+        'aspect_ratio' => 'getAspectRatio',
+        'scale_to' => 'getScaleTo',
+        'poster' => 'getPoster',
+        'thumbnail' => 'getThumbnail'
     ];
 
     /**
@@ -170,6 +185,7 @@ class Output implements ModelInterface, ArrayAccess
     }
 
     const FORMAT_MP4 = 'mp4';
+    const FORMAT_WEBM = 'webm';
     const FORMAT_GIF = 'gif';
     const RESOLUTION_PREVIEW = 'preview';
     const RESOLUTION_MOBILE = 'mobile';
@@ -179,6 +195,11 @@ class Output implements ModelInterface, ArrayAccess
     const ASPECT_RATIO__169 = '16:9';
     const ASPECT_RATIO__916 = '9:16';
     const ASPECT_RATIO__11 = '1:1';
+    const SCALE_TO_PREVIEW = 'preview';
+    const SCALE_TO_MOBILE = 'mobile';
+    const SCALE_TO_SD = 'sd';
+    const SCALE_TO_HD = 'hd';
+    const SCALE_TO__1080 = '1080';
     
 
     
@@ -191,6 +212,7 @@ class Output implements ModelInterface, ArrayAccess
     {
         return [
             self::FORMAT_MP4,
+            self::FORMAT_WEBM,
             self::FORMAT_GIF,
         ];
     }
@@ -225,6 +247,22 @@ class Output implements ModelInterface, ArrayAccess
         ];
     }
     
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getScaleToAllowableValues()
+    {
+        return [
+            self::SCALE_TO_PREVIEW,
+            self::SCALE_TO_MOBILE,
+            self::SCALE_TO_SD,
+            self::SCALE_TO_HD,
+            self::SCALE_TO__1080,
+        ];
+    }
+    
 
     /**
      * Associative array for storing property values
@@ -244,6 +282,9 @@ class Output implements ModelInterface, ArrayAccess
         $this->container['format'] = isset($data['format']) ? $data['format'] : null;
         $this->container['resolution'] = isset($data['resolution']) ? $data['resolution'] : null;
         $this->container['aspect_ratio'] = isset($data['aspect_ratio']) ? $data['aspect_ratio'] : null;
+        $this->container['scale_to'] = isset($data['scale_to']) ? $data['scale_to'] : null;
+        $this->container['poster'] = isset($data['poster']) ? $data['poster'] : null;
+        $this->container['thumbnail'] = isset($data['thumbnail']) ? $data['thumbnail'] : null;
     }
 
     /**
@@ -285,6 +326,14 @@ class Output implements ModelInterface, ArrayAccess
             );
         }
 
+        $allowedValues = $this->getScaleToAllowableValues();
+        if (!is_null($this->container['scale_to']) && !in_array($this->container['scale_to'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value for 'scale_to', must be one of '%s'",
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -313,7 +362,7 @@ class Output implements ModelInterface, ArrayAccess
     /**
      * Sets format
      *
-     * @param string $format `mp4` video or animated `gif`
+     * @param string $format `mp4`, `webm` video or animated `gif`
      *
      * @return $this
      */
@@ -346,7 +395,7 @@ class Output implements ModelInterface, ArrayAccess
     /**
      * Sets resolution
      *
-     * @param string $resolution The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+     * @param string $resolution The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
      *
      * @return $this
      */
@@ -395,6 +444,87 @@ class Output implements ModelInterface, ArrayAccess
             );
         }
         $this->container['aspect_ratio'] = $aspect_ratio;
+
+        return $this;
+    }
+
+    /**
+     * Gets scale_to
+     *
+     * @return string|null
+     */
+    public function getScaleTo()
+    {
+        return $this->container['scale_to'];
+    }
+
+    /**
+     * Sets scale_to
+     *
+     * @param string|null $scale_to Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+     *
+     * @return $this
+     */
+    public function setScaleTo($scale_to)
+    {
+        $allowedValues = $this->getScaleToAllowableValues();
+        if (!is_null($scale_to) && !in_array($scale_to, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'scale_to', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['scale_to'] = $scale_to;
+
+        return $this;
+    }
+
+    /**
+     * Gets poster
+     *
+     * @return \Shotstack\Client\Model\Poster|null
+     */
+    public function getPoster()
+    {
+        return $this->container['poster'];
+    }
+
+    /**
+     * Sets poster
+     *
+     * @param \Shotstack\Client\Model\Poster|null $poster poster
+     *
+     * @return $this
+     */
+    public function setPoster($poster)
+    {
+        $this->container['poster'] = $poster;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumbnail
+     *
+     * @return \Shotstack\Client\Model\Thumbnail|null
+     */
+    public function getThumbnail()
+    {
+        return $this->container['thumbnail'];
+    }
+
+    /**
+     * Sets thumbnail
+     *
+     * @param \Shotstack\Client\Model\Thumbnail|null $thumbnail thumbnail
+     *
+     * @return $this
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->container['thumbnail'] = $thumbnail;
 
         return $this;
     }

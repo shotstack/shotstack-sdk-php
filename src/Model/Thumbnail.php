@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * Thumbnail
  *
  * PHP version 5
  *
@@ -33,15 +33,15 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * Thumbnail Class Doc Comment
  *
  * @category Class
- * @description A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description Generate a thumbnail image for the video at a specific point from the timeline.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
-class Soundtrack implements ModelInterface, ArrayAccess
+class Thumbnail implements ModelInterface, ArrayAccess
 {
     const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Soundtrack implements ModelInterface, ArrayAccess
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'Thumbnail';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,8 @@ class Soundtrack implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'capture' => 'float',
+        'scale' => 'float'
     ];
 
     /**
@@ -69,9 +68,8 @@ class Soundtrack implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'capture' => null,
+        'scale' => null
     ];
 
     /**
@@ -101,9 +99,8 @@ class Soundtrack implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'capture' => 'capture',
+        'scale' => 'scale'
     ];
 
     /**
@@ -112,9 +109,8 @@ class Soundtrack implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'capture' => 'setCapture',
+        'scale' => 'setScale'
     ];
 
     /**
@@ -123,9 +119,8 @@ class Soundtrack implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'capture' => 'getCapture',
+        'scale' => 'getScale'
     ];
 
     /**
@@ -169,25 +164,8 @@ class Soundtrack implements ModelInterface, ArrayAccess
         return self::$openAPIModelName;
     }
 
-    const EFFECT_FADE_IN = 'fadeIn';
-    const EFFECT_FADE_OUT = 'fadeOut';
-    const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
     
 
     /**
@@ -205,9 +183,8 @@ class Soundtrack implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['src'] = isset($data['src']) ? $data['src'] : null;
-        $this->container['effect'] = isset($data['effect']) ? $data['effect'] : null;
-        $this->container['volume'] = isset($data['volume']) ? $data['volume'] : null;
+        $this->container['capture'] = isset($data['capture']) ? $data['capture'] : null;
+        $this->container['scale'] = isset($data['scale']) ? $data['scale'] : null;
     }
 
     /**
@@ -219,17 +196,12 @@ class Soundtrack implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['capture'] === null) {
+            $invalidProperties[] = "'capture' can't be null";
         }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value for 'effect', must be one of '%s'",
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['scale'] === null) {
+            $invalidProperties[] = "'scale' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -246,82 +218,49 @@ class Soundtrack implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets src
+     * Gets capture
      *
-     * @return string
+     * @return float
      */
-    public function getSrc()
+    public function getCapture()
     {
-        return $this->container['src'];
+        return $this->container['capture'];
     }
 
     /**
-     * Sets src
+     * Sets capture
      *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param float $capture The point on the timeline in seconds to capture a single frame to use as the thumbnail image.
      *
      * @return $this
      */
-    public function setSrc($src)
+    public function setCapture($capture)
     {
-        $this->container['src'] = $src;
+        $this->container['capture'] = $capture;
 
         return $this;
     }
 
     /**
-     * Gets effect
+     * Gets scale
      *
-     * @return string|null
+     * @return float
      */
-    public function getEffect()
+    public function getScale()
     {
-        return $this->container['effect'];
+        return $this->container['scale'];
     }
 
     /**
-     * Sets effect
+     * Sets scale
      *
-     * @param string|null $effect The effect to apply to the audio file
+     * @param float $scale Scale the thumbnail size to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale  the thumbnail to half the size of the viewport.
      *
      * @return $this
      */
-    public function setEffect($effect)
+    public function setScale($scale)
     {
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($effect) && !in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'effect', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['effect'] = $effect;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
-     *
-     * @return float|null
-     */
-    public function getVolume()
-    {
-        return $this->container['volume'];
-    }
-
-    /**
-     * Sets volume
-     *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     *
-     * @return $this
-     */
-    public function setVolume($volume)
-    {
-        $this->container['volume'] = $volume;
+        $this->container['scale'] = $scale;
 
         return $this;
     }
