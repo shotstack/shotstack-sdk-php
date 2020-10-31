@@ -185,7 +185,6 @@ class Output implements ModelInterface, ArrayAccess
     }
 
     const FORMAT_MP4 = 'mp4';
-    const FORMAT_WEBM = 'webm';
     const FORMAT_GIF = 'gif';
     const RESOLUTION_PREVIEW = 'preview';
     const RESOLUTION_MOBILE = 'mobile';
@@ -212,7 +211,6 @@ class Output implements ModelInterface, ArrayAccess
     {
         return [
             self::FORMAT_MP4,
-            self::FORMAT_WEBM,
             self::FORMAT_GIF,
         ];
     }
@@ -362,7 +360,7 @@ class Output implements ModelInterface, ArrayAccess
     /**
      * Sets format
      *
-     * @param string $format `mp4`, `webm` video or animated `gif`
+     * @param string $format `mp4` video or animated `gif`
      *
      * @return $this
      */

@@ -118,6 +118,8 @@ class EndpointsApi
     /**
      * Operation getRender
      *
+     * Get Render Status
+     *
      * @param  string $id The id of the timeline render task in UUID format (required)
      *
      * @throws \Shotstack\Client\ApiException on non-2xx response
@@ -132,6 +134,8 @@ class EndpointsApi
 
     /**
      * Operation getRenderWithHttpInfo
+     *
+     * Get Render Status
      *
      * @param  string $id The id of the timeline render task in UUID format (required)
      *
@@ -219,7 +223,7 @@ class EndpointsApi
     /**
      * Operation getRenderAsync
      *
-     * 
+     * Get Render Status
      *
      * @param  string $id The id of the timeline render task in UUID format (required)
      *
@@ -239,7 +243,7 @@ class EndpointsApi
     /**
      * Operation getRenderAsyncWithHttpInfo
      *
-     * 
+     * Get Render Status
      *
      * @param  string $id The id of the timeline render task in UUID format (required)
      *
@@ -395,30 +399,36 @@ class EndpointsApi
     /**
      * Operation postRender
      *
-     * @param  \Shotstack\Client\Model\Edit $edit edit (required)
+     * Render Video
+     *
+     * @param  \Shotstack\Client\Model\Edit $edit The video edit specified using JSON. (required)
+     * @param  string $x_api_queue_id The id of a dedicated queue (enterprise customers only). (optional)
      *
      * @throws \Shotstack\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return \Shotstack\Client\Model\QueuedResponse
      */
-    public function postRender($edit)
+    public function postRender($edit, $x_api_queue_id = null)
     {
-        list($response) = $this->postRenderWithHttpInfo($edit);
+        list($response) = $this->postRenderWithHttpInfo($edit, $x_api_queue_id);
         return $response;
     }
 
     /**
      * Operation postRenderWithHttpInfo
      *
-     * @param  \Shotstack\Client\Model\Edit $edit (required)
+     * Render Video
+     *
+     * @param  \Shotstack\Client\Model\Edit $edit The video edit specified using JSON. (required)
+     * @param  string $x_api_queue_id The id of a dedicated queue (enterprise customers only). (optional)
      *
      * @throws \Shotstack\Client\ApiException on non-2xx response
      * @throws \InvalidArgumentException
      * @return array of \Shotstack\Client\Model\QueuedResponse, HTTP status code, HTTP response headers (array of strings)
      */
-    public function postRenderWithHttpInfo($edit)
+    public function postRenderWithHttpInfo($edit, $x_api_queue_id = null)
     {
-        $request = $this->postRenderRequest($edit);
+        $request = $this->postRenderRequest($edit, $x_api_queue_id);
 
         try {
             $options = $this->createHttpClientOption();
@@ -496,16 +506,17 @@ class EndpointsApi
     /**
      * Operation postRenderAsync
      *
-     * 
+     * Render Video
      *
-     * @param  \Shotstack\Client\Model\Edit $edit (required)
+     * @param  \Shotstack\Client\Model\Edit $edit The video edit specified using JSON. (required)
+     * @param  string $x_api_queue_id The id of a dedicated queue (enterprise customers only). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postRenderAsync($edit)
+    public function postRenderAsync($edit, $x_api_queue_id = null)
     {
-        return $this->postRenderAsyncWithHttpInfo($edit)
+        return $this->postRenderAsyncWithHttpInfo($edit, $x_api_queue_id)
             ->then(
                 function ($response) {
                     return $response[0];
@@ -516,17 +527,18 @@ class EndpointsApi
     /**
      * Operation postRenderAsyncWithHttpInfo
      *
-     * 
+     * Render Video
      *
-     * @param  \Shotstack\Client\Model\Edit $edit (required)
+     * @param  \Shotstack\Client\Model\Edit $edit The video edit specified using JSON. (required)
+     * @param  string $x_api_queue_id The id of a dedicated queue (enterprise customers only). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Promise\PromiseInterface
      */
-    public function postRenderAsyncWithHttpInfo($edit)
+    public function postRenderAsyncWithHttpInfo($edit, $x_api_queue_id = null)
     {
         $returnType = '\Shotstack\Client\Model\QueuedResponse';
-        $request = $this->postRenderRequest($edit);
+        $request = $this->postRenderRequest($edit, $x_api_queue_id);
 
         return $this->client
             ->sendAsync($request, $this->createHttpClientOption())
@@ -565,12 +577,13 @@ class EndpointsApi
     /**
      * Create request for operation 'postRender'
      *
-     * @param  \Shotstack\Client\Model\Edit $edit (required)
+     * @param  \Shotstack\Client\Model\Edit $edit The video edit specified using JSON. (required)
+     * @param  string $x_api_queue_id The id of a dedicated queue (enterprise customers only). (optional)
      *
      * @throws \InvalidArgumentException
      * @return \GuzzleHttp\Psr7\Request
      */
-    protected function postRenderRequest($edit)
+    protected function postRenderRequest($edit, $x_api_queue_id = null)
     {
         // verify the required parameter 'edit' is set
         if ($edit === null || (is_array($edit) && count($edit) === 0)) {
@@ -586,6 +599,10 @@ class EndpointsApi
         $httpBody = '';
         $multipart = false;
 
+        // header params
+        if ($x_api_queue_id !== null) {
+            $headerParams['x-api-queue-id'] = ObjectSerializer::toHeaderValue($x_api_queue_id);
+        }
 
 
         // body params

@@ -230,7 +230,7 @@ class ImageAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to <b>image</b> for images.
+     * @param string $type The type of asset - set to `image` for images.
      *
      * @return $this
      */

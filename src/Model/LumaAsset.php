@@ -236,7 +236,7 @@ class LumaAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to <b>luma</b> for luma mattes.
+     * @param string $type The type of asset - set to `luma` for luma mattes.
      *
      * @return $this
      */

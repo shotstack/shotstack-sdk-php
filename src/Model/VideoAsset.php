@@ -242,7 +242,7 @@ class VideoAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to <b>video</b> for videos.
+     * @param string $type The type of asset - set to `video` for videos.
      *
      * @return $this
      */

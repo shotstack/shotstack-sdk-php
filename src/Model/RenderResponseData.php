@@ -57,10 +57,16 @@ class RenderResponseData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPITypes = [
-        'status' => 'string',
         'id' => 'string',
         'owner' => 'string',
+        'plan' => 'string',
+        'status' => 'string',
+        'error' => 'string',
+        'duration' => 'float',
+        'render_time' => 'float',
         'url' => 'string',
+        'poster' => 'string',
+        'thumbnail' => 'string',
         'data' => '\Shotstack\Client\Model\Edit',
         'created' => 'string',
         'updated' => 'string'
@@ -72,10 +78,16 @@ class RenderResponseData implements ModelInterface, ArrayAccess
       * @var string[]
       */
     protected static $openAPIFormats = [
-        'status' => null,
         'id' => null,
         'owner' => null,
+        'plan' => null,
+        'status' => null,
+        'error' => null,
+        'duration' => null,
+        'render_time' => null,
         'url' => null,
+        'poster' => null,
+        'thumbnail' => null,
         'data' => null,
         'created' => null,
         'updated' => null
@@ -108,10 +120,16 @@ class RenderResponseData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $attributeMap = [
-        'status' => 'status',
         'id' => 'id',
         'owner' => 'owner',
+        'plan' => 'plan',
+        'status' => 'status',
+        'error' => 'error',
+        'duration' => 'duration',
+        'render_time' => 'renderTime',
         'url' => 'url',
+        'poster' => 'poster',
+        'thumbnail' => 'thumbnail',
         'data' => 'data',
         'created' => 'created',
         'updated' => 'updated'
@@ -123,10 +141,16 @@ class RenderResponseData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $setters = [
-        'status' => 'setStatus',
         'id' => 'setId',
         'owner' => 'setOwner',
+        'plan' => 'setPlan',
+        'status' => 'setStatus',
+        'error' => 'setError',
+        'duration' => 'setDuration',
+        'render_time' => 'setRenderTime',
         'url' => 'setUrl',
+        'poster' => 'setPoster',
+        'thumbnail' => 'setThumbnail',
         'data' => 'setData',
         'created' => 'setCreated',
         'updated' => 'setUpdated'
@@ -138,10 +162,16 @@ class RenderResponseData implements ModelInterface, ArrayAccess
      * @var string[]
      */
     protected static $getters = [
-        'status' => 'getStatus',
         'id' => 'getId',
         'owner' => 'getOwner',
+        'plan' => 'getPlan',
+        'status' => 'getStatus',
+        'error' => 'getError',
+        'duration' => 'getDuration',
+        'render_time' => 'getRenderTime',
         'url' => 'getUrl',
+        'poster' => 'getPoster',
+        'thumbnail' => 'getThumbnail',
         'data' => 'getData',
         'created' => 'getCreated',
         'updated' => 'getUpdated'
@@ -230,10 +260,16 @@ class RenderResponseData implements ModelInterface, ArrayAccess
      */
     public function __construct(array $data = null)
     {
-        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
         $this->container['id'] = isset($data['id']) ? $data['id'] : null;
         $this->container['owner'] = isset($data['owner']) ? $data['owner'] : null;
+        $this->container['plan'] = isset($data['plan']) ? $data['plan'] : null;
+        $this->container['status'] = isset($data['status']) ? $data['status'] : null;
+        $this->container['error'] = isset($data['error']) ? $data['error'] : null;
+        $this->container['duration'] = isset($data['duration']) ? $data['duration'] : null;
+        $this->container['render_time'] = isset($data['render_time']) ? $data['render_time'] : null;
         $this->container['url'] = isset($data['url']) ? $data['url'] : null;
+        $this->container['poster'] = isset($data['poster']) ? $data['poster'] : null;
+        $this->container['thumbnail'] = isset($data['thumbnail']) ? $data['thumbnail'] : null;
         $this->container['data'] = isset($data['data']) ? $data['data'] : null;
         $this->container['created'] = isset($data['created']) ? $data['created'] : null;
         $this->container['updated'] = isset($data['updated']) ? $data['updated'] : null;
@@ -248,6 +284,12 @@ class RenderResponseData implements ModelInterface, ArrayAccess
     {
         $invalidProperties = [];
 
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
+        }
+        if ($this->container['owner'] === null) {
+            $invalidProperties[] = "'owner' can't be null";
+        }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
@@ -259,12 +301,6 @@ class RenderResponseData implements ModelInterface, ArrayAccess
             );
         }
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
-        }
-        if ($this->container['owner'] === null) {
-            $invalidProperties[] = "'owner' can't be null";
-        }
         if ($this->container['data'] === null) {
             $invalidProperties[] = "'data' can't be null";
         }
@@ -290,39 +326,6 @@ class RenderResponseData implements ModelInterface, ArrayAccess
 
 
     /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status The status of the render task
-     *
-     * @return $this
-     */
-    public function setStatus($status)
-    {
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value for 'status', must be one of '%s'",
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['status'] = $status;
-
-        return $this;
-    }
-
-    /**
      * Gets id
      *
      * @return string
@@ -335,7 +338,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string $id The id of the render task in UUID format
+     * @param string $id The id of the render task in UUID format.
      *
      * @return $this
      */
@@ -359,13 +362,142 @@ class RenderResponseData implements ModelInterface, ArrayAccess
     /**
      * Sets owner
      *
-     * @param string $owner The owner id of the render task
+     * @param string $owner The owner id of the render task.
      *
      * @return $this
      */
     public function setOwner($owner)
     {
         $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets plan
+     *
+     * @return string|null
+     */
+    public function getPlan()
+    {
+        return $this->container['plan'];
+    }
+
+    /**
+     * Sets plan
+     *
+     * @param string|null $plan The customer subscription plan.
+     *
+     * @return $this
+     */
+    public function setPlan($plan)
+    {
+        $this->container['plan'] = $plan;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+     *
+     * @return $this
+     */
+    public function setStatus($status)
+    {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value for 'status', must be one of '%s'",
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets error
+     *
+     * @return string|null
+     */
+    public function getError()
+    {
+        return $this->container['error'];
+    }
+
+    /**
+     * Sets error
+     *
+     * @param string|null $error An error message, only displayed if an error occurred.
+     *
+     * @return $this
+     */
+    public function setError($error)
+    {
+        $this->container['error'] = $error;
+
+        return $this;
+    }
+
+    /**
+     * Gets duration
+     *
+     * @return float|null
+     */
+    public function getDuration()
+    {
+        return $this->container['duration'];
+    }
+
+    /**
+     * Sets duration
+     *
+     * @param float|null $duration The output video length in seconds.
+     *
+     * @return $this
+     */
+    public function setDuration($duration)
+    {
+        $this->container['duration'] = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets render_time
+     *
+     * @return float|null
+     */
+    public function getRenderTime()
+    {
+        return $this->container['render_time'];
+    }
+
+    /**
+     * Sets render_time
+     *
+     * @param float|null $render_time The time taken to render the video in milliseconds.
+     *
+     * @return $this
+     */
+    public function setRenderTime($render_time)
+    {
+        $this->container['render_time'] = $render_time;
 
         return $this;
     }
@@ -390,6 +522,54 @@ class RenderResponseData implements ModelInterface, ArrayAccess
     public function setUrl($url)
     {
         $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets poster
+     *
+     * @return string|null
+     */
+    public function getPoster()
+    {
+        return $this->container['poster'];
+    }
+
+    /**
+     * Sets poster
+     *
+     * @param string|null $poster The URL of the poster image if requested. This will only be available if status is done.
+     *
+     * @return $this
+     */
+    public function setPoster($poster)
+    {
+        $this->container['poster'] = $poster;
+
+        return $this;
+    }
+
+    /**
+     * Gets thumbnail
+     *
+     * @return string|null
+     */
+    public function getThumbnail()
+    {
+        return $this->container['thumbnail'];
+    }
+
+    /**
+     * Sets thumbnail
+     *
+     * @param string|null $thumbnail The URL of the thumbnail image if requested. This will only be available if status is done.
+     *
+     * @return $this
+     */
+    public function setThumbnail($thumbnail)
+    {
+        $this->container['thumbnail'] = $thumbnail;
 
         return $this;
     }
@@ -431,7 +611,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess
     /**
      * Sets created
      *
-     * @param string $created The time the render task was initially queued
+     * @param string $created The time the render task was initially queued.
      *
      * @return $this
      */
@@ -455,7 +635,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess
     /**
      * Sets updated
      *
-     * @param string $updated The time the render status was last updated
+     * @param string $updated The time the render status was last updated.
      *
      * @return $this
      */

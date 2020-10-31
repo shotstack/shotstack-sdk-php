@@ -196,7 +196,7 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess
         $this->container['type'] = isset($data['type']) ? $data['type'] : 'audio';
         $this->container['src'] = isset($data['src']) ? $data['src'] : null;
         $this->container['trim'] = isset($data['trim']) ? $data['trim'] : null;
-        $this->container['volume'] = isset($data['volume']) ? $data['volume'] : null;
+        $this->container['volume'] = isset($data['volume']) ? $data['volume'] : 1;
     }
 
     /**
@@ -242,7 +242,7 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to <b>audio</b> for audio assets.
+     * @param string $type The type of asset - set to `audio` for audio assets.
      *
      * @return $this
      */

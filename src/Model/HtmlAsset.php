@@ -297,7 +297,7 @@ class HtmlAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to <b>html</b> for HTML.
+     * @param string $type The type of asset - set to `html` for HTML.
      *
      * @return $this
      */
@@ -441,7 +441,7 @@ class HtmlAsset extends Asset implements ModelInterface, ArrayAccess
     /**
      * Sets position
      *
-     * @param string|null $position Place the HTML in one of nine predefined positions within the HTML area.
+     * @param string|null $position Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
      *
      * @return $this
      */
