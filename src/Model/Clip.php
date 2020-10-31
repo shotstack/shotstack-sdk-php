@@ -334,7 +334,7 @@ class Clip implements ModelInterface, ArrayAccess
         $this->container['transition'] = isset($data['transition']) ? $data['transition'] : null;
         $this->container['effect'] = isset($data['effect']) ? $data['effect'] : null;
         $this->container['filter'] = isset($data['filter']) ? $data['filter'] : null;
-        $this->container['opacity'] = isset($data['opacity']) ? $data['opacity'] : null;
+        $this->container['opacity'] = isset($data['opacity']) ? $data['opacity'] : 1;
     }
 
     /**
@@ -544,7 +544,7 @@ class Clip implements ModelInterface, ArrayAccess
     /**
      * Sets position
      *
-     * @param string|null $position Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position.
+     * @param string|null $position Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
      *
      * @return $this
      */
@@ -625,7 +625,7 @@ class Clip implements ModelInterface, ArrayAccess
     /**
      * Sets effect
      *
-     * @param string|null $effect A motion effect to apply to the Clip.
+     * @param string|null $effect A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
      *
      * @return $this
      */
@@ -658,7 +658,7 @@ class Clip implements ModelInterface, ArrayAccess
     /**
      * Sets filter
      *
-     * @param string|null $filter A filter effect to apply to the Clip.
+     * @param string|null $filter A filter effect to apply to the Clip. <ul>   <li>`blur` - blurs the image or video</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
      *
      * @return $this
      */

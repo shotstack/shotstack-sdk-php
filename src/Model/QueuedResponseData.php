@@ -229,7 +229,7 @@ class QueuedResponseData implements ModelInterface, ArrayAccess
     /**
      * Sets message
      *
-     * @param string $message Success response message
+     * @param string $message Success response message or error details.
      *
      * @return $this
      */
@@ -253,7 +253,7 @@ class QueuedResponseData implements ModelInterface, ArrayAccess
     /**
      * Sets id
      *
-     * @param string $id The id of the render task in UUID format
+     * @param string $id The id of the render task in UUID format.
      *
      * @return $this
      */

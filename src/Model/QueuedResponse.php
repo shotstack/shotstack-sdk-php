@@ -238,7 +238,7 @@ class QueuedResponse implements ModelInterface, ArrayAccess
     /**
      * Sets success
      *
-     * @param bool $success success
+     * @param bool $success `true` if successfully queued, else `false`.
      *
      * @return $this
      */
@@ -262,7 +262,7 @@ class QueuedResponse implements ModelInterface, ArrayAccess
     /**
      * Sets message
      *
-     * @param string $message message
+     * @param string $message `Created`, `Bad Request` or an error message.
      *
      * @return $this
      */

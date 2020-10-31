@@ -238,7 +238,7 @@ class RenderResponse implements ModelInterface, ArrayAccess
     /**
      * Sets success
      *
-     * @param bool $success success
+     * @param bool $success `true` if status available, else `false`.
      *
      * @return $this
      */
@@ -262,7 +262,7 @@ class RenderResponse implements ModelInterface, ArrayAccess
     /**
      * Sets message
      *
-     * @param string $message message
+     * @param string $message `OK` or an error message.
      *
      * @return $this
      */

@@ -168,10 +168,28 @@ class Transition implements ModelInterface, ArrayAccess
     const IN_REVEAL = 'reveal';
     const IN_WIPE_LEFT = 'wipeLeft';
     const IN_WIPE_RIGHT = 'wipeRight';
+    const IN_SLIDE_LEFT = 'slideLeft';
+    const IN_SLIDE_RIGHT = 'slideRight';
+    const IN_SLIDE_UP = 'slideUp';
+    const IN_SLIDE_DOWN = 'slideDown';
+    const IN_CAROUSEL_LEFT = 'carouselLeft';
+    const IN_CAROUSEL_RIGHT = 'carouselRight';
+    const IN_CAROUSEL_UP = 'carouselUp';
+    const IN_CAROUSEL_DOWN = 'carouselDown';
+    const IN_ZOOM = 'zoom';
     const OUT_FADE = 'fade';
     const OUT_REVEAL = 'reveal';
     const OUT_WIPE_LEFT = 'wipeLeft';
     const OUT_WIPE_RIGHT = 'wipeRight';
+    const OUT_SLIDE_LEFT = 'slideLeft';
+    const OUT_SLIDE_RIGHT = 'slideRight';
+    const OUT_SLIDE_UP = 'slideUp';
+    const OUT_SLIDE_DOWN = 'slideDown';
+    const OUT_CAROUSEL_LEFT = 'carouselLeft';
+    const OUT_CAROUSEL_RIGHT = 'carouselRight';
+    const OUT_CAROUSEL_UP = 'carouselUp';
+    const OUT_CAROUSEL_DOWN = 'carouselDown';
+    const OUT_ZOOM = 'zoom';
     
 
     
@@ -187,6 +205,15 @@ class Transition implements ModelInterface, ArrayAccess
             self::IN_REVEAL,
             self::IN_WIPE_LEFT,
             self::IN_WIPE_RIGHT,
+            self::IN_SLIDE_LEFT,
+            self::IN_SLIDE_RIGHT,
+            self::IN_SLIDE_UP,
+            self::IN_SLIDE_DOWN,
+            self::IN_CAROUSEL_LEFT,
+            self::IN_CAROUSEL_RIGHT,
+            self::IN_CAROUSEL_UP,
+            self::IN_CAROUSEL_DOWN,
+            self::IN_ZOOM,
         ];
     }
     
@@ -202,6 +229,15 @@ class Transition implements ModelInterface, ArrayAccess
             self::OUT_REVEAL,
             self::OUT_WIPE_LEFT,
             self::OUT_WIPE_RIGHT,
+            self::OUT_SLIDE_LEFT,
+            self::OUT_SLIDE_RIGHT,
+            self::OUT_SLIDE_UP,
+            self::OUT_SLIDE_DOWN,
+            self::OUT_CAROUSEL_LEFT,
+            self::OUT_CAROUSEL_RIGHT,
+            self::OUT_CAROUSEL_UP,
+            self::OUT_CAROUSEL_DOWN,
+            self::OUT_ZOOM,
         ];
     }
     
@@ -278,7 +314,7 @@ class Transition implements ModelInterface, ArrayAccess
     /**
      * Sets in
      *
-     * @param string|null $in The transition in
+     * @param string|null $in The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top  to bottom</li>     <li>`zoom` - fast zoom in</li>   </ul>
      *
      * @return $this
      */
@@ -311,7 +347,7 @@ class Transition implements ModelInterface, ArrayAccess
     /**
      * Sets out
      *
-     * @param string|null $out The transition out
+     * @param string|null $out The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`zoom` - fast zoom out</li>   </ul>
      *
      * @return $this
      */

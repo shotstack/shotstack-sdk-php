@@ -207,7 +207,7 @@ class Soundtrack implements ModelInterface, ArrayAccess
     {
         $this->container['src'] = isset($data['src']) ? $data['src'] : null;
         $this->container['effect'] = isset($data['effect']) ? $data['effect'] : null;
-        $this->container['volume'] = isset($data['volume']) ? $data['volume'] : null;
+        $this->container['volume'] = isset($data['volume']) ? $data['volume'] : 1;
     }
 
     /**
@@ -282,7 +282,7 @@ class Soundtrack implements ModelInterface, ArrayAccess
     /**
      * Sets effect
      *
-     * @param string|null $effect The effect to apply to the audio file
+     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
      *
      * @return $this
      */
