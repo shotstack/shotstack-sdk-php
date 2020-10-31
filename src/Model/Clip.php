@@ -228,6 +228,7 @@ class Clip implements ModelInterface, ArrayAccess
     const EFFECT_SLIDE_RIGHT = 'slideRight';
     const EFFECT_SLIDE_UP = 'slideUp';
     const EFFECT_SLIDE_DOWN = 'slideDown';
+    const FILTER_BLUR = 'blur';
     const FILTER_BOOST = 'boost';
     const FILTER_CONTRAST = 'contrast';
     const FILTER_DARKEN = 'darken';
@@ -298,6 +299,7 @@ class Clip implements ModelInterface, ArrayAccess
     public function getFilterAllowableValues()
     {
         return [
+            self::FILTER_BLUR,
             self::FILTER_BOOST,
             self::FILTER_CONTRAST,
             self::FILTER_DARKEN,
