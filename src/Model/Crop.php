@@ -1,6 +1,6 @@
 <?php
 /**
- * AudioAsset
+ * Crop
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * AudioAsset Class Doc Comment
+ * Crop Class Doc Comment
  *
  * @category Class
- * @description The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
+ * @description Crop the sides of an asset by a relative amount. The size of the crop is specified using a scale between 0 and 1, relative to the screen width - i.e a left crop of 0.5 will crop half of the asset from the left, a top crop  of 0.25 will crop the top by quarter of the asset.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSerializable
+class Crop implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AudioAsset';
+    protected static $openAPIModelName = 'Crop';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,11 +61,10 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'src' => 'string',
-        'trim' => 'float',
-        'volume' => 'float',
-        'effect' => 'string'
+        'top' => 'float',
+        'bottom' => 'float',
+        'left' => 'float',
+        'right' => 'float'
     ];
 
     /**
@@ -76,11 +75,10 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'src' => null,
-        'trim' => null,
-        'volume' => null,
-        'effect' => null
+        'top' => 'float',
+        'bottom' => 'float',
+        'left' => 'float',
+        'right' => 'float'
     ];
 
     /**
@@ -110,11 +108,10 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'src' => 'src',
-        'trim' => 'trim',
-        'volume' => 'volume',
-        'effect' => 'effect'
+        'top' => 'top',
+        'bottom' => 'bottom',
+        'left' => 'left',
+        'right' => 'right'
     ];
 
     /**
@@ -123,11 +120,10 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'src' => 'setSrc',
-        'trim' => 'setTrim',
-        'volume' => 'setVolume',
-        'effect' => 'setEffect'
+        'top' => 'setTop',
+        'bottom' => 'setBottom',
+        'left' => 'setLeft',
+        'right' => 'setRight'
     ];
 
     /**
@@ -136,11 +132,10 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'src' => 'getSrc',
-        'trim' => 'getTrim',
-        'volume' => 'getVolume',
-        'effect' => 'getEffect'
+        'top' => 'getTop',
+        'bottom' => 'getBottom',
+        'left' => 'getLeft',
+        'right' => 'getRight'
     ];
 
     /**
@@ -184,25 +179,8 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    const EFFECT_FADE_IN = 'fadeIn';
-    const EFFECT_FADE_OUT = 'fadeOut';
-    const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
     
 
     /**
@@ -220,11 +198,10 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = $data['type'] ?? 'audio';
-        $this->container['src'] = $data['src'] ?? null;
-        $this->container['trim'] = $data['trim'] ?? null;
-        $this->container['volume'] = $data['volume'] ?? 1;
-        $this->container['effect'] = $data['effect'] ?? null;
+        $this->container['top'] = $data['top'] ?? null;
+        $this->container['bottom'] = $data['bottom'] ?? null;
+        $this->container['left'] = $data['left'] ?? null;
+        $this->container['right'] = $data['right'] ?? null;
     }
 
     /**
@@ -236,19 +213,36 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if (!is_null($this->container['top']) && ($this->container['top'] > 1)) {
+            $invalidProperties[] = "invalid value for 'top', must be smaller than or equal to 1.";
         }
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+
+        if (!is_null($this->container['top']) && ($this->container['top'] < 0)) {
+            $invalidProperties[] = "invalid value for 'top', must be bigger than or equal to 0.";
         }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
-                implode("', '", $allowedValues)
-            );
+
+        if (!is_null($this->container['bottom']) && ($this->container['bottom'] > 1)) {
+            $invalidProperties[] = "invalid value for 'bottom', must be smaller than or equal to 1.";
+        }
+
+        if (!is_null($this->container['bottom']) && ($this->container['bottom'] < 0)) {
+            $invalidProperties[] = "invalid value for 'bottom', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['left']) && ($this->container['left'] > 1)) {
+            $invalidProperties[] = "invalid value for 'left', must be smaller than or equal to 1.";
+        }
+
+        if (!is_null($this->container['left']) && ($this->container['left'] < 0)) {
+            $invalidProperties[] = "invalid value for 'left', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['right']) && ($this->container['right'] > 1)) {
+            $invalidProperties[] = "invalid value for 'right', must be smaller than or equal to 1.";
+        }
+
+        if (!is_null($this->container['right']) && ($this->container['right'] < 0)) {
+            $invalidProperties[] = "invalid value for 'right', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -267,131 +261,129 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type The type of asset - set to `audio` for audio assets.
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets src
-     *
-     * @return string
-     */
-    public function getSrc()
-    {
-        return $this->container['src'];
-    }
-
-    /**
-     * Sets src
-     *
-     * @param string $src The audio source URL. The URL must be publicly accessible or include credentials.
-     *
-     * @return self
-     */
-    public function setSrc($src)
-    {
-        $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets trim
+     * Gets top
      *
      * @return float|null
      */
-    public function getTrim()
+    public function getTop()
     {
-        return $this->container['trim'];
+        return $this->container['top'];
     }
 
     /**
-     * Sets trim
+     * Sets top
      *
-     * @param float|null $trim The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
+     * @param float|null $top Crop from the top of the asset
      *
      * @return self
      */
-    public function setTrim($trim)
+    public function setTop($top)
     {
-        $this->container['trim'] = $trim;
 
-        return $this;
-    }
-
-    /**
-     * Gets volume
-     *
-     * @return float|null
-     */
-    public function getVolume()
-    {
-        return $this->container['volume'];
-    }
-
-    /**
-     * Sets volume
-     *
-     * @param float|null $volume Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     *
-     * @return self
-     */
-    public function setVolume($volume)
-    {
-        $this->container['volume'] = $volume;
-
-        return $this;
-    }
-
-    /**
-     * Gets effect
-     *
-     * @return string|null
-     */
-    public function getEffect()
-    {
-        return $this->container['effect'];
-    }
-
-    /**
-     * Sets effect
-     *
-     * @param string|null $effect The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     *
-     * @return self
-     */
-    public function setEffect($effect)
-    {
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($effect) && !in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
-                    implode("', '", $allowedValues)
-                )
-            );
+        if (!is_null($top) && ($top > 1)) {
+            throw new \InvalidArgumentException('invalid value for $top when calling Crop., must be smaller than or equal to 1.');
         }
-        $this->container['effect'] = $effect;
+        if (!is_null($top) && ($top < 0)) {
+            throw new \InvalidArgumentException('invalid value for $top when calling Crop., must be bigger than or equal to 0.');
+        }
+
+        $this->container['top'] = $top;
+
+        return $this;
+    }
+
+    /**
+     * Gets bottom
+     *
+     * @return float|null
+     */
+    public function getBottom()
+    {
+        return $this->container['bottom'];
+    }
+
+    /**
+     * Sets bottom
+     *
+     * @param float|null $bottom Crop from the bottom of the asset
+     *
+     * @return self
+     */
+    public function setBottom($bottom)
+    {
+
+        if (!is_null($bottom) && ($bottom > 1)) {
+            throw new \InvalidArgumentException('invalid value for $bottom when calling Crop., must be smaller than or equal to 1.');
+        }
+        if (!is_null($bottom) && ($bottom < 0)) {
+            throw new \InvalidArgumentException('invalid value for $bottom when calling Crop., must be bigger than or equal to 0.');
+        }
+
+        $this->container['bottom'] = $bottom;
+
+        return $this;
+    }
+
+    /**
+     * Gets left
+     *
+     * @return float|null
+     */
+    public function getLeft()
+    {
+        return $this->container['left'];
+    }
+
+    /**
+     * Sets left
+     *
+     * @param float|null $left Crop from the left of the asset
+     *
+     * @return self
+     */
+    public function setLeft($left)
+    {
+
+        if (!is_null($left) && ($left > 1)) {
+            throw new \InvalidArgumentException('invalid value for $left when calling Crop., must be smaller than or equal to 1.');
+        }
+        if (!is_null($left) && ($left < 0)) {
+            throw new \InvalidArgumentException('invalid value for $left when calling Crop., must be bigger than or equal to 0.');
+        }
+
+        $this->container['left'] = $left;
+
+        return $this;
+    }
+
+    /**
+     * Gets right
+     *
+     * @return float|null
+     */
+    public function getRight()
+    {
+        return $this->container['right'];
+    }
+
+    /**
+     * Sets right
+     *
+     * @param float|null $right Crop from the left of the asset
+     *
+     * @return self
+     */
+    public function setRight($right)
+    {
+
+        if (!is_null($right) && ($right > 1)) {
+            throw new \InvalidArgumentException('invalid value for $right when calling Crop., must be smaller than or equal to 1.');
+        }
+        if (!is_null($right) && ($right < 0)) {
+            throw new \InvalidArgumentException('invalid value for $right when calling Crop., must be bigger than or equal to 0.');
+        }
+
+        $this->container['right'] = $right;
 
         return $this;
     }
