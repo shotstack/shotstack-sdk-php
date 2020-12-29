@@ -64,7 +64,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'string',
         'resolution' => 'string',
         'aspect_ratio' => 'string',
-        'fps' => 'float',
+        'fps' => 'int',
         'scale_to' => 'string',
         'range' => '\Shotstack\Client\Model\Range',
         'poster' => '\Shotstack\Client\Model\Poster',
@@ -507,7 +507,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets fps
      *
-     * @return float|null
+     * @return int|null
      */
     public function getFps()
     {
@@ -517,7 +517,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fps
      *
-     * @param float|null $fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file  size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`25` - 25fps</li>   <li>`30` - 30fps</li> </ul>
+     * @param int|null $fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file  size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`25` - 25fps</li>   <li>`30` - 30fps</li> </ul>
      *
      * @return self
      */
