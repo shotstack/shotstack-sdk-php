@@ -64,8 +64,8 @@ class HtmlAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeria
         'type' => 'string',
         'html' => 'string',
         'css' => 'string',
-        'width' => 'float',
-        'height' => 'float',
+        'width' => 'int',
+        'height' => 'int',
         'background' => 'string',
         'position' => 'string'
     ];
@@ -365,7 +365,7 @@ class HtmlAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets width
      *
-     * @return float|null
+     * @return int|null
      */
     public function getWidth()
     {
@@ -375,7 +375,7 @@ class HtmlAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets width
      *
-     * @param float|null $width Set the width of the HTML asset bounding box. Text will wrap to fill the bounding box.
+     * @param int|null $width Set the width of the HTML asset bounding box. Text will wrap to fill the bounding box.
      *
      * @return self
      */
@@ -389,7 +389,7 @@ class HtmlAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets height
      *
-     * @return float|null
+     * @return int|null
      */
     public function getHeight()
     {
@@ -399,7 +399,7 @@ class HtmlAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets height
      *
-     * @param float|null $height Set the width of the HTML asset bounding box. Text and elements will be masked if they exceed the  height of the bounding box.
+     * @param int|null $height Set the width of the HTML asset bounding box. Text and elements will be masked if they exceed the  height of the bounding box.
      *
      * @return self
      */
