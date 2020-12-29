@@ -1,3 +1,5 @@
 .idea
 src/autoload.php
 src/composer.json
+composer.lock
+vendor
