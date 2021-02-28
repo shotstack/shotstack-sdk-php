@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
  *
  * The version of the OpenAPI document: v1
  * 
@@ -63,7 +63,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'timeline' => '\Shotstack\Client\Model\Timeline',
         'output' => '\Shotstack\Client\Model\Output',
-        'callback' => 'string'
+        'callback' => 'string',
+        'disk' => 'string'
     ];
 
     /**
@@ -76,7 +77,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'timeline' => null,
         'output' => null,
-        'callback' => null
+        'callback' => null,
+        'disk' => null
     ];
 
     /**
@@ -108,7 +110,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'timeline' => 'timeline',
         'output' => 'output',
-        'callback' => 'callback'
+        'callback' => 'callback',
+        'disk' => 'disk'
     ];
 
     /**
@@ -119,7 +122,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'timeline' => 'setTimeline',
         'output' => 'setOutput',
-        'callback' => 'setCallback'
+        'callback' => 'setCallback',
+        'disk' => 'setDisk'
     ];
 
     /**
@@ -130,7 +134,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'timeline' => 'getTimeline',
         'output' => 'getOutput',
-        'callback' => 'getCallback'
+        'callback' => 'getCallback',
+        'disk' => 'getDisk'
     ];
 
     /**
@@ -174,8 +179,23 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    const DISK_LOCAL = 'local';
+    const DISK_MOUNT = 'mount';
     
 
+    
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDiskAllowableValues()
+    {
+        return [
+            self::DISK_LOCAL,
+            self::DISK_MOUNT,
+        ];
+    }
     
 
     /**
@@ -196,6 +216,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['timeline'] = $data['timeline'] ?? null;
         $this->container['output'] = $data['output'] ?? null;
         $this->container['callback'] = $data['callback'] ?? null;
+        $this->container['disk'] = $data['disk'] ?? 'local';
     }
 
     /**
@@ -213,6 +234,15 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['output'] === null) {
             $invalidProperties[] = "'output' can't be null";
         }
+        $allowedValues = $this->getDiskAllowableValues();
+        if (!is_null($this->container['disk']) && !in_array($this->container['disk'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'disk', must be one of '%s'",
+                $this->container['disk'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -289,13 +319,47 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets callback
      *
-     * @param string|null $callback An optional webhook callback URL used to receive status notifications when a render completes or fails.
+     * @param string|null $callback An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.gitbook.io/docs/guides/architecting-an-application/webhooks) for  more details.
      *
      * @return self
      */
     public function setCallback($callback)
     {
         $this->container['callback'] = $callback;
+
+        return $this;
+    }
+
+    /**
+     * Gets disk
+     *
+     * @return string|null
+     */
+    public function getDisk()
+    {
+        return $this->container['disk'];
+    }
+
+    /**
+     * Sets disk
+     *
+     * @param string|null $disk The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.gitbook.io/docs/guides/architecting-an-application/disk-types) for more details. <ul>   <li>`local` - optimised for high speed rendering with up to 512MB storage</li>   <li>`mount` - optimised for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li> </ul>
+     *
+     * @return self
+     */
+    public function setDisk($disk)
+    {
+        $allowedValues = $this->getDiskAllowableValues();
+        if (!is_null($disk) && !in_array($disk, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'disk', must be one of '%s'",
+                    $disk,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['disk'] = $disk;
 
         return $this;
     }
