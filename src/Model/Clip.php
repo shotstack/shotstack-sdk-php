@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
  *
  * The version of the OpenAPI document: v1
  * 
@@ -233,7 +233,6 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     const EFFECT_SLIDE_RIGHT = 'slideRight';
     const EFFECT_SLIDE_UP = 'slideUp';
     const EFFECT_SLIDE_DOWN = 'slideDown';
-    const FILTER_BLUR = 'blur';
     const FILTER_BOOST = 'boost';
     const FILTER_CONTRAST = 'contrast';
     const FILTER_DARKEN = 'darken';
@@ -304,7 +303,6 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getFilterAllowableValues()
     {
         return [
-            self::FILTER_BLUR,
             self::FILTER_BOOST,
             self::FILTER_CONTRAST,
             self::FILTER_DARKEN,

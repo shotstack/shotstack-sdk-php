@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details check https://shotstack.io
+ * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
  *
  * The version of the OpenAPI document: v1
  * 
@@ -64,7 +64,8 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
         'soundtrack' => '\Shotstack\Client\Model\Soundtrack',
         'background' => 'string',
         'fonts' => '\Shotstack\Client\Model\Font[]',
-        'tracks' => '\Shotstack\Client\Model\Track[]'
+        'tracks' => '\Shotstack\Client\Model\Track[]',
+        'cache' => 'bool'
     ];
 
     /**
@@ -78,7 +79,8 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
         'soundtrack' => null,
         'background' => null,
         'fonts' => null,
-        'tracks' => null
+        'tracks' => null,
+        'cache' => null
     ];
 
     /**
@@ -111,7 +113,8 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
         'soundtrack' => 'soundtrack',
         'background' => 'background',
         'fonts' => 'fonts',
-        'tracks' => 'tracks'
+        'tracks' => 'tracks',
+        'cache' => 'cache'
     ];
 
     /**
@@ -123,7 +126,8 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
         'soundtrack' => 'setSoundtrack',
         'background' => 'setBackground',
         'fonts' => 'setFonts',
-        'tracks' => 'setTracks'
+        'tracks' => 'setTracks',
+        'cache' => 'setCache'
     ];
 
     /**
@@ -135,7 +139,8 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
         'soundtrack' => 'getSoundtrack',
         'background' => 'getBackground',
         'fonts' => 'getFonts',
-        'tracks' => 'getTracks'
+        'tracks' => 'getTracks',
+        'cache' => 'getCache'
     ];
 
     /**
@@ -202,6 +207,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['background'] = $data['background'] ?? '#000000';
         $this->container['fonts'] = $data['fonts'] ?? null;
         $this->container['tracks'] = $data['tracks'] ?? null;
+        $this->container['cache'] = $data['cache'] ?? true;
     }
 
     /**
@@ -323,6 +329,30 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setTracks($tracks)
     {
         $this->container['tracks'] = $tracks;
+
+        return $this;
+    }
+
+    /**
+     * Gets cache
+     *
+     * @return bool|null
+     */
+    public function getCache()
+    {
+        return $this->container['cache'];
+    }
+
+    /**
+     * Sets cache
+     *
+     * @param bool|null $cache Disable the caching of ingested source footage and assets. See  [caching](https://shotstack.gitbook.io/docs/guides/architecting-an-application/caching) for more details.
+     *
+     * @return self
+     */
+    public function setCache($cache)
+    {
+        $this->container['cache'] = $cache;
 
         return $this;
     }
