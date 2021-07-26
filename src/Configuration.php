@@ -12,7 +12,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
+ * <p>Shotstack is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. </p> <p> There are two main API's, one for editing videos and images (Edit API) and one for managing hosted assets (Serve API). </p> <p> The Edit API base URL is: <b>https://api.shotstack.io/{version}</b> </p> <p> The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> </p>
  *
  * The version of the OpenAPI document: v1
  * 
@@ -443,7 +443,21 @@ class Configuration
                 "description" => "No description provided",
                 "variables" => [
                     "version" => [
-                        "description" => "No description provided",
+                        "description" => "Set the stage to `v1` for production usage without watermarks. Set to `stage` to use the development sandbox.",
+                        "default_value" => "v1",
+                        "enum_values" => [
+                            "v1",
+                            "stage"
+                        ]
+                    ]
+                ]
+            ],
+            [
+                "url" => "https://api.shotstack.io/serve/{version}",
+                "description" => "No description provided",
+                "variables" => [
+                    "version" => [
+                        "description" => "Set the stage to `v1` for production usage. Set to `stage` to use the development sandbox.",
                         "default_value" => "v1",
                         "enum_values" => [
                             "v1",

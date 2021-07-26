@@ -1,6 +1,6 @@
 <?php
 /**
- * Poster
+ * AssetResponseData
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Poster Class Doc Comment
+ * AssetResponseData Class Doc Comment
  *
  * @category Class
- * @description Generate a poster image for the video at a specific point from the timeline. The poster image size will match the size of the output video.
+ * @description The type of resource (an asset) and attributes of the asset.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssetResponseData implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Poster';
+    protected static $openAPIModelName = 'AssetResponseData';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'capture' => 'float'
+        'type' => 'string',
+        'attributes' => '\Shotstack\Client\Model\AssetResponseAttributes'
     ];
 
     /**
@@ -72,7 +73,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'capture' => null
+        'type' => null,
+        'attributes' => null
     ];
 
     /**
@@ -102,7 +104,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'capture' => 'capture'
+        'type' => 'type',
+        'attributes' => 'attributes'
     ];
 
     /**
@@ -111,7 +114,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'capture' => 'setCapture'
+        'type' => 'setType',
+        'attributes' => 'setAttributes'
     ];
 
     /**
@@ -120,7 +124,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'capture' => 'getCapture'
+        'type' => 'getType',
+        'attributes' => 'getAttributes'
     ];
 
     /**
@@ -183,7 +188,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['capture'] = $data['capture'] ?? null;
+        $this->container['type'] = $data['type'] ?? null;
+        $this->container['attributes'] = $data['attributes'] ?? null;
     }
 
     /**
@@ -195,9 +201,6 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['capture'] === null) {
-            $invalidProperties[] = "'capture' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -214,25 +217,49 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets capture
+     * Gets type
      *
-     * @return float
+     * @return string|null
      */
-    public function getCapture()
+    public function getType()
     {
-        return $this->container['capture'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets capture
+     * Sets type
      *
-     * @param float $capture The point on the timeline in seconds to capture a single frame to use as the poster image.
+     * @param string|null $type The type of resource, in this case it is an assets.
      *
      * @return self
      */
-    public function setCapture($capture)
+    public function setType($type)
     {
-        $this->container['capture'] = $capture;
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets attributes
+     *
+     * @return \Shotstack\Client\Model\AssetResponseAttributes|null
+     */
+    public function getAttributes()
+    {
+        return $this->container['attributes'];
+    }
+
+    /**
+     * Sets attributes
+     *
+     * @param \Shotstack\Client\Model\AssetResponseAttributes|null $attributes attributes
+     *
+     * @return self
+     */
+    public function setAttributes($attributes)
+    {
+        $this->container['attributes'] = $attributes;
 
         return $this;
     }

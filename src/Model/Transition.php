@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
+ * <p>Shotstack is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. </p> <p> There are two main API's, one for editing videos and images (Edit API) and one for managing hosted assets (Serve API). </p> <p> The Edit API base URL is: <b>https://api.shotstack.io/{version}</b> </p> <p> The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> </p>
  *
  * The version of the OpenAPI document: v1
  * 
@@ -170,30 +170,126 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     const IN_FADE = 'fade';
+    const IN_FADE_SLOW = 'fadeSlow';
+    const IN_FADE_FAST = 'fadeFast';
     const IN_REVEAL = 'reveal';
+    const IN_REVEAL_SLOW = 'revealSlow';
+    const IN_REVEAL_FAST = 'revealFast';
     const IN_WIPE_LEFT = 'wipeLeft';
+    const IN_WIPE_LEFT_SLOW = 'wipeLeftSlow';
+    const IN_WIPE_LEFT_FAST = 'wipeLeftFast';
     const IN_WIPE_RIGHT = 'wipeRight';
+    const IN_WIPE_RIGHT_SLOW = 'wipeRightSlow';
+    const IN_WIPE_RIGHT_FAST = 'wipeRightFast';
     const IN_SLIDE_LEFT = 'slideLeft';
+    const IN_SLIDE_LEFT_SLOW = 'slideLeftSlow';
+    const IN_SLIDE_LEFT_FAST = 'slideLeftFast';
     const IN_SLIDE_RIGHT = 'slideRight';
+    const IN_SLIDE_RIGHT_SLOW = 'slideRightSlow';
+    const IN_SLIDE_RIGHT_FAST = 'slideRightFast';
     const IN_SLIDE_UP = 'slideUp';
+    const IN_SLIDE_UP_SLOW = 'slideUpSlow';
+    const IN_SLIDE_UP_FAST = 'slideUpFast';
     const IN_SLIDE_DOWN = 'slideDown';
+    const IN_SLIDE_DOWN_SLOW = 'slideDownSlow';
+    const IN_SLIDE_DOWN_FAST = 'slideDownFast';
     const IN_CAROUSEL_LEFT = 'carouselLeft';
+    const IN_CAROUSEL_LEFT_SLOW = 'carouselLeftSlow';
+    const IN_CAROUSEL_LEFT_FAST = 'carouselLeftFast';
     const IN_CAROUSEL_RIGHT = 'carouselRight';
+    const IN_CAROUSEL_RIGHT_SLOW = 'carouselRightSlow';
+    const IN_CAROUSEL_RIGHT_FAST = 'carouselRightFast';
     const IN_CAROUSEL_UP = 'carouselUp';
+    const IN_CAROUSEL_UP_SLOW = 'carouselUpSlow';
+    const IN_CAROUSEL_UP_FAST = 'carouselUpFast';
     const IN_CAROUSEL_DOWN = 'carouselDown';
+    const IN_CAROUSEL_DOWN_SLOW = 'carouselDownSlow';
+    const IN_CAROUSEL_DOWN_FAST = 'carouselDownFast';
+    const IN_SHUFFLE_TOP_RIGHT = 'shuffleTopRight';
+    const IN_SHUFFLE_TOP_RIGHT_SLOW = 'shuffleTopRightSlow';
+    const IN_SHUFFLE_TOP_RIGHT_FAST = 'shuffleTopRightFast';
+    const IN_SHUFFLE_RIGHT_TOP = 'shuffleRightTop';
+    const IN_SHUFFLE_RIGHT_TOP_SLOW = 'shuffleRightTopSlow';
+    const IN_SHUFFLE_RIGHT_TOP_FAST = 'shuffleRightTopFast';
+    const IN_SHUFFLE_RIGHT_BOTTOM = 'shuffleRightBottom';
+    const IN_SHUFFLE_RIGHT_BOTTOM_SLOW = 'shuffleRightBottomSlow';
+    const IN_SHUFFLE_RIGHT_BOTTOM_FAST = 'shuffleRightBottomFast';
+    const IN_SHUFFLE_BOTTOM_RIGHT = 'shuffleBottomRight';
+    const IN_SHUFFLE_BOTTOM_RIGHT_SLOW = 'shuffleBottomRightSlow';
+    const IN_SHUFFLE_BOTTOM_RIGHT_FAST = 'shuffleBottomRightFast';
+    const IN_SHUFFLE_BOTTOM_LEFT = 'shuffleBottomLeft';
+    const IN_SHUFFLE_BOTTOM_LEFT_SLOW = 'shuffleBottomLeftSlow';
+    const IN_SHUFFLE_BOTTOM_LEFT_FAST = 'shuffleBottomLeftFast';
+    const IN_SHUFFLE_LEFT_BOTTOM = 'shuffleLeftBottom';
+    const IN_SHUFFLE_LEFT_BOTTOM_SLOW = 'shuffleLeftBottomSlow';
+    const IN_SHUFFLE_LEFT_BOTTOM_FAST = 'shuffleLeftBottomFast';
+    const IN_SHUFFLE_LEFT_TOP = 'shuffleLeftTop';
+    const IN_SHUFFLE_LEFT_TOP_SLOW = 'shuffleLeftTopSlow';
+    const IN_SHUFFLE_LEFT_TOP_FAST = 'shuffleLeftTopFast';
+    const IN_SHUFFLE_TOP_LEFT = 'shuffleTopLeft';
+    const IN_SHUFFLE_TOP_LEFT_SLOW = 'shuffleTopLeftSlow';
+    const IN_SHUFFLE_TOP_LEFT_FAST = 'shuffleTopLeftFast';
     const IN_ZOOM = 'zoom';
     const OUT_FADE = 'fade';
+    const OUT_FADE_SLOW = 'fadeSlow';
+    const OUT_FADE_FAST = 'fadeFast';
     const OUT_REVEAL = 'reveal';
+    const OUT_REVEAL_SLOW = 'revealSlow';
+    const OUT_REVEAL_FAST = 'revealFast';
     const OUT_WIPE_LEFT = 'wipeLeft';
+    const OUT_WIPE_LEFT_SLOW = 'wipeLeftSlow';
+    const OUT_WIPE_LEFT_FAST = 'wipeLeftFast';
     const OUT_WIPE_RIGHT = 'wipeRight';
+    const OUT_WIPE_RIGHT_SLOW = 'wipeRightSlow';
+    const OUT_WIPE_RIGHT_FAST = 'wipeRightFast';
     const OUT_SLIDE_LEFT = 'slideLeft';
+    const OUT_SLIDE_LEFT_SLOW = 'slideLeftSlow';
+    const OUT_SLIDE_LEFT_FAST = 'slideLeftFast';
     const OUT_SLIDE_RIGHT = 'slideRight';
+    const OUT_SLIDE_RIGHT_SLOW = 'slideRightSlow';
+    const OUT_SLIDE_RIGHT_FAST = 'slideRightFast';
     const OUT_SLIDE_UP = 'slideUp';
+    const OUT_SLIDE_UP_SLOW = 'slideUpSlow';
+    const OUT_SLIDE_UP_FAST = 'slideUpFast';
     const OUT_SLIDE_DOWN = 'slideDown';
+    const OUT_SLIDE_DOWN_SLOW = 'slideDownSlow';
+    const OUT_SLIDE_DOWN_FAST = 'slideDownFast';
     const OUT_CAROUSEL_LEFT = 'carouselLeft';
+    const OUT_CAROUSEL_LEFT_SLOW = 'carouselLeftSlow';
+    const OUT_CAROUSEL_LEFT_FAST = 'carouselLeftFast';
     const OUT_CAROUSEL_RIGHT = 'carouselRight';
+    const OUT_CAROUSEL_RIGHT_SLOW = 'carouselRightSlow';
+    const OUT_CAROUSEL_RIGHT_FAST = 'carouselRightFast';
     const OUT_CAROUSEL_UP = 'carouselUp';
+    const OUT_CAROUSEL_UP_SLOW = 'carouselUpSlow';
+    const OUT_CAROUSEL_UP_FAST = 'carouselUpFast';
     const OUT_CAROUSEL_DOWN = 'carouselDown';
+    const OUT_CAROUSEL_DOWN_SLOW = 'carouselDownSlow';
+    const OUT_CAROUSEL_DOWN_FAST = 'carouselDownFast';
+    const OUT_SHUFFLE_TOP_RIGHT = 'shuffleTopRight';
+    const OUT_SHUFFLE_TOP_RIGHT_SLOW = 'shuffleTopRightSlow';
+    const OUT_SHUFFLE_TOP_RIGHT_FAST = 'shuffleTopRightFast';
+    const OUT_SHUFFLE_RIGHT_TOP = 'shuffleRightTop';
+    const OUT_SHUFFLE_RIGHT_TOP_SLOW = 'shuffleRightTopSlow';
+    const OUT_SHUFFLE_RIGHT_TOP_FAST = 'shuffleRightTopFast';
+    const OUT_SHUFFLE_RIGHT_BOTTOM = 'shuffleRightBottom';
+    const OUT_SHUFFLE_RIGHT_BOTTOM_SLOW = 'shuffleRightBottomSlow';
+    const OUT_SHUFFLE_RIGHT_BOTTOM_FAST = 'shuffleRightBottomFast';
+    const OUT_SHUFFLE_BOTTOM_RIGHT = 'shuffleBottomRight';
+    const OUT_SHUFFLE_BOTTOM_RIGHT_SLOW = 'shuffleBottomRightSlow';
+    const OUT_SHUFFLE_BOTTOM_RIGHT_FAST = 'shuffleBottomRightFast';
+    const OUT_SHUFFLE_BOTTOM_LEFT = 'shuffleBottomLeft';
+    const OUT_SHUFFLE_BOTTOM_LEFT_SLOW = 'shuffleBottomLeftSlow';
+    const OUT_SHUFFLE_BOTTOM_LEFT_FAST = 'shuffleBottomLeftFast';
+    const OUT_SHUFFLE_LEFT_BOTTOM = 'shuffleLeftBottom';
+    const OUT_SHUFFLE_LEFT_BOTTOM_SLOW = 'shuffleLeftBottomSlow';
+    const OUT_SHUFFLE_LEFT_BOTTOM_FAST = 'shuffleLeftBottomFast';
+    const OUT_SHUFFLE_LEFT_TOP = 'shuffleLeftTop';
+    const OUT_SHUFFLE_LEFT_TOP_SLOW = 'shuffleLeftTopSlow';
+    const OUT_SHUFFLE_LEFT_TOP_FAST = 'shuffleLeftTopFast';
+    const OUT_SHUFFLE_TOP_LEFT = 'shuffleTopLeft';
+    const OUT_SHUFFLE_TOP_LEFT_SLOW = 'shuffleTopLeftSlow';
+    const OUT_SHUFFLE_TOP_LEFT_FAST = 'shuffleTopLeftFast';
     const OUT_ZOOM = 'zoom';
     
 
@@ -207,17 +303,65 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::IN_FADE,
+            self::IN_FADE_SLOW,
+            self::IN_FADE_FAST,
             self::IN_REVEAL,
+            self::IN_REVEAL_SLOW,
+            self::IN_REVEAL_FAST,
             self::IN_WIPE_LEFT,
+            self::IN_WIPE_LEFT_SLOW,
+            self::IN_WIPE_LEFT_FAST,
             self::IN_WIPE_RIGHT,
+            self::IN_WIPE_RIGHT_SLOW,
+            self::IN_WIPE_RIGHT_FAST,
             self::IN_SLIDE_LEFT,
+            self::IN_SLIDE_LEFT_SLOW,
+            self::IN_SLIDE_LEFT_FAST,
             self::IN_SLIDE_RIGHT,
+            self::IN_SLIDE_RIGHT_SLOW,
+            self::IN_SLIDE_RIGHT_FAST,
             self::IN_SLIDE_UP,
+            self::IN_SLIDE_UP_SLOW,
+            self::IN_SLIDE_UP_FAST,
             self::IN_SLIDE_DOWN,
+            self::IN_SLIDE_DOWN_SLOW,
+            self::IN_SLIDE_DOWN_FAST,
             self::IN_CAROUSEL_LEFT,
+            self::IN_CAROUSEL_LEFT_SLOW,
+            self::IN_CAROUSEL_LEFT_FAST,
             self::IN_CAROUSEL_RIGHT,
+            self::IN_CAROUSEL_RIGHT_SLOW,
+            self::IN_CAROUSEL_RIGHT_FAST,
             self::IN_CAROUSEL_UP,
+            self::IN_CAROUSEL_UP_SLOW,
+            self::IN_CAROUSEL_UP_FAST,
             self::IN_CAROUSEL_DOWN,
+            self::IN_CAROUSEL_DOWN_SLOW,
+            self::IN_CAROUSEL_DOWN_FAST,
+            self::IN_SHUFFLE_TOP_RIGHT,
+            self::IN_SHUFFLE_TOP_RIGHT_SLOW,
+            self::IN_SHUFFLE_TOP_RIGHT_FAST,
+            self::IN_SHUFFLE_RIGHT_TOP,
+            self::IN_SHUFFLE_RIGHT_TOP_SLOW,
+            self::IN_SHUFFLE_RIGHT_TOP_FAST,
+            self::IN_SHUFFLE_RIGHT_BOTTOM,
+            self::IN_SHUFFLE_RIGHT_BOTTOM_SLOW,
+            self::IN_SHUFFLE_RIGHT_BOTTOM_FAST,
+            self::IN_SHUFFLE_BOTTOM_RIGHT,
+            self::IN_SHUFFLE_BOTTOM_RIGHT_SLOW,
+            self::IN_SHUFFLE_BOTTOM_RIGHT_FAST,
+            self::IN_SHUFFLE_BOTTOM_LEFT,
+            self::IN_SHUFFLE_BOTTOM_LEFT_SLOW,
+            self::IN_SHUFFLE_BOTTOM_LEFT_FAST,
+            self::IN_SHUFFLE_LEFT_BOTTOM,
+            self::IN_SHUFFLE_LEFT_BOTTOM_SLOW,
+            self::IN_SHUFFLE_LEFT_BOTTOM_FAST,
+            self::IN_SHUFFLE_LEFT_TOP,
+            self::IN_SHUFFLE_LEFT_TOP_SLOW,
+            self::IN_SHUFFLE_LEFT_TOP_FAST,
+            self::IN_SHUFFLE_TOP_LEFT,
+            self::IN_SHUFFLE_TOP_LEFT_SLOW,
+            self::IN_SHUFFLE_TOP_LEFT_FAST,
             self::IN_ZOOM,
         ];
     }
@@ -231,17 +375,65 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::OUT_FADE,
+            self::OUT_FADE_SLOW,
+            self::OUT_FADE_FAST,
             self::OUT_REVEAL,
+            self::OUT_REVEAL_SLOW,
+            self::OUT_REVEAL_FAST,
             self::OUT_WIPE_LEFT,
+            self::OUT_WIPE_LEFT_SLOW,
+            self::OUT_WIPE_LEFT_FAST,
             self::OUT_WIPE_RIGHT,
+            self::OUT_WIPE_RIGHT_SLOW,
+            self::OUT_WIPE_RIGHT_FAST,
             self::OUT_SLIDE_LEFT,
+            self::OUT_SLIDE_LEFT_SLOW,
+            self::OUT_SLIDE_LEFT_FAST,
             self::OUT_SLIDE_RIGHT,
+            self::OUT_SLIDE_RIGHT_SLOW,
+            self::OUT_SLIDE_RIGHT_FAST,
             self::OUT_SLIDE_UP,
+            self::OUT_SLIDE_UP_SLOW,
+            self::OUT_SLIDE_UP_FAST,
             self::OUT_SLIDE_DOWN,
+            self::OUT_SLIDE_DOWN_SLOW,
+            self::OUT_SLIDE_DOWN_FAST,
             self::OUT_CAROUSEL_LEFT,
+            self::OUT_CAROUSEL_LEFT_SLOW,
+            self::OUT_CAROUSEL_LEFT_FAST,
             self::OUT_CAROUSEL_RIGHT,
+            self::OUT_CAROUSEL_RIGHT_SLOW,
+            self::OUT_CAROUSEL_RIGHT_FAST,
             self::OUT_CAROUSEL_UP,
+            self::OUT_CAROUSEL_UP_SLOW,
+            self::OUT_CAROUSEL_UP_FAST,
             self::OUT_CAROUSEL_DOWN,
+            self::OUT_CAROUSEL_DOWN_SLOW,
+            self::OUT_CAROUSEL_DOWN_FAST,
+            self::OUT_SHUFFLE_TOP_RIGHT,
+            self::OUT_SHUFFLE_TOP_RIGHT_SLOW,
+            self::OUT_SHUFFLE_TOP_RIGHT_FAST,
+            self::OUT_SHUFFLE_RIGHT_TOP,
+            self::OUT_SHUFFLE_RIGHT_TOP_SLOW,
+            self::OUT_SHUFFLE_RIGHT_TOP_FAST,
+            self::OUT_SHUFFLE_RIGHT_BOTTOM,
+            self::OUT_SHUFFLE_RIGHT_BOTTOM_SLOW,
+            self::OUT_SHUFFLE_RIGHT_BOTTOM_FAST,
+            self::OUT_SHUFFLE_BOTTOM_RIGHT,
+            self::OUT_SHUFFLE_BOTTOM_RIGHT_SLOW,
+            self::OUT_SHUFFLE_BOTTOM_RIGHT_FAST,
+            self::OUT_SHUFFLE_BOTTOM_LEFT,
+            self::OUT_SHUFFLE_BOTTOM_LEFT_SLOW,
+            self::OUT_SHUFFLE_BOTTOM_LEFT_FAST,
+            self::OUT_SHUFFLE_LEFT_BOTTOM,
+            self::OUT_SHUFFLE_LEFT_BOTTOM_SLOW,
+            self::OUT_SHUFFLE_LEFT_BOTTOM_FAST,
+            self::OUT_SHUFFLE_LEFT_TOP,
+            self::OUT_SHUFFLE_LEFT_TOP_SLOW,
+            self::OUT_SHUFFLE_LEFT_TOP_FAST,
+            self::OUT_SHUFFLE_TOP_LEFT,
+            self::OUT_SHUFFLE_TOP_LEFT_SLOW,
+            self::OUT_SHUFFLE_TOP_LEFT_FAST,
             self::OUT_ZOOM,
         ];
     }
@@ -321,7 +513,7 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets in
      *
-     * @param string|null $in The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top  to bottom</li>     <li>`zoom` - fast zoom in</li>   </ul>
+     * @param string|null $in The transition in. Available transitions are:   <ul>     <li>`fade` - fade in</li>     <li>`reveal` - reveal from left to right</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade in</li>     <li>`slideRight` - move slightly right and fade in</li>     <li>`slideUp` - move slightly up and fade in</li>     <li>`slideDown` - move slightly down and fade in</li>     <li>`carouselLeft` - slide in from right to left</li>     <li>`carouselRight` - slide in from left to right</li>     <li>`carouselUp` - slide in from bottom to top</li>     <li>`carouselDown` - slide in from top to bottom</li>     <li>`shuffleTopRight` - rotate in from top right</li>     <li>`shuffleRightTop` - rotate in from right top</li>     <li>`shuffleRightBottom` - rotate in from right bottom</li>     <li>`shuffleBottomRight` - rotate in from bottom right</li>     <li>`shuffleBottomLeft` - rotate in from bottom left</li>     <li>`shuffleLeftBottom` - rotate in from left bottom</li>     <li>`shuffleLeftTop` - rotate in from left top</li>     <li>`shuffleTopLeft` - rotate in from top left</li>     <li>`zoom` - fast zoom in</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
      *
      * @return self
      */
@@ -355,7 +547,7 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets out
      *
-     * @param string|null $out The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`zoom` - fast zoom out</li>   </ul>
+     * @param string|null $out The transition out. Available transitions are:   <ul>     <li>`fade` - fade out</li>     <li>`reveal` - reveal from right to left</li>     <li>`wipeLeft` - fade across screen to the left</li>     <li>`wipeRight` - fade across screen to the right</li>     <li>`slideLeft` - move slightly left and fade out</li>     <li>`slideRight` - move slightly right and fade out</li>     <li>`slideUp` - move slightly up and fade out</li>     <li>`slideDown` - move slightly down and fade out</li>     <li>`carouselLeft` - slide out from right to left</li>     <li>`carouselRight` - slide out from left to right</li>     <li>`carouselUp` - slide out from bottom to top</li>     <li>`carouselDown` - slide out from top  to bottom</li>     <li>`shuffleTopRight` - rotate out from top right</li>     <li>`shuffleRightTop` - rotate out from right top</li>     <li>`shuffleRightBottom` - rotate out from right bottom</li>     <li>`shuffleBottomRight` - rotate out from bottom right</li>     <li>`shuffleBottomLeft` - rotate out from bottom left</li>     <li>`shuffleLeftBottom` - rotate out from left bottom</li>     <li>`shuffleLeftTop` - rotate out from left top</li>     <li>`shuffleTopLeft` - rotate out from top left</li>     <li>`zoom` - fast zoom out</li>   </ul> The transition speed can also be controlled by appending `Fast` or `Slow` to the transition, e.g. `fadeFast` or `CarouselLeftSlow`.
      *
      * @return self
      */
