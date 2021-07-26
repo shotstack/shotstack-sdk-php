@@ -12,7 +12,7 @@
 /**
  * Shotstack
  *
- * <p>Shotstack is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. </p> <p> There are two main API's, one for editing videos and images (Edit API) and one for managing hosted assets (Serve API). </p> <p> The Edit API base URL is: <b>https://api.shotstack.io/{version}</b> </p> <p> The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> </p>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  * 
@@ -370,7 +370,7 @@ class ServeApi
      * Get Asset
      *
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://legacy.shotstack.io/{version}
+     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -390,7 +390,7 @@ class ServeApi
      * Get Asset
      *
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://legacy.shotstack.io/{version}
+     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -481,7 +481,7 @@ class ServeApi
      * Get Asset
      *
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://legacy.shotstack.io/{version}
+     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -504,7 +504,7 @@ class ServeApi
      * Get Asset
      *
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://legacy.shotstack.io/{version}
+     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -554,7 +554,7 @@ class ServeApi
      * Create request for operation 'getAsset'
      *
      * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://legacy.shotstack.io/{version}
+     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -646,7 +646,7 @@ class ServeApi
             $headers
         );
 
-        $operationHosts = ["https://legacy.shotstack.io/{version}"];
+        $operationHosts = ["https://api.shotstack.io/serve/{version}"];
         if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
             throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
         }
