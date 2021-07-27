@@ -1,6 +1,6 @@
 <?php
 /**
- * Poster
+ * ShotstackDestination
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Poster Class Doc Comment
+ * ShotstackDestination Class Doc Comment
  *
  * @category Class
- * @description Generate a poster image for the video at a specific point from the timeline. The poster image size will match the size of the output video.
+ * @description Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
+class ShotstackDestination extends Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Poster';
+    protected static $openAPIModelName = 'ShotstackDestination';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'capture' => 'float'
+        'provider' => 'string',
+        'exclude' => 'bool'
     ];
 
     /**
@@ -72,7 +73,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'capture' => null
+        'provider' => null,
+        'exclude' => null
     ];
 
     /**
@@ -102,7 +104,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'capture' => 'capture'
+        'provider' => 'provider',
+        'exclude' => 'exclude'
     ];
 
     /**
@@ -111,7 +114,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'capture' => 'setCapture'
+        'provider' => 'setProvider',
+        'exclude' => 'setExclude'
     ];
 
     /**
@@ -120,7 +124,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'capture' => 'getCapture'
+        'provider' => 'getProvider',
+        'exclude' => 'getExclude'
     ];
 
     /**
@@ -183,7 +188,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['capture'] = $data['capture'] ?? null;
+        $this->container['provider'] = $data['provider'] ?? 'shotstack';
+        $this->container['exclude'] = $data['exclude'] ?? false;
     }
 
     /**
@@ -195,9 +201,6 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['capture'] === null) {
-            $invalidProperties[] = "'capture' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -214,25 +217,49 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets capture
+     * Gets provider
      *
-     * @return float
+     * @return string|null
      */
-    public function getCapture()
+    public function getProvider()
     {
-        return $this->container['capture'];
+        return $this->container['provider'];
     }
 
     /**
-     * Sets capture
+     * Sets provider
      *
-     * @param float $capture The point on the timeline in seconds to capture a single frame to use as the poster image.
+     * @param string|null $provider The destination to send rendered assets to - set to `shotstack` for Shotstack hosting and CDN.
      *
      * @return self
      */
-    public function setCapture($capture)
+    public function setProvider($provider)
     {
-        $this->container['capture'] = $capture;
+        $this->container['provider'] = $provider;
+
+        return $this;
+    }
+
+    /**
+     * Gets exclude
+     *
+     * @return bool|null
+     */
+    public function getExclude()
+    {
+        return $this->container['exclude'];
+    }
+
+    /**
+     * Sets exclude
+     *
+     * @param bool|null $exclude Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+     *
+     * @return self
+     */
+    public function setExclude($exclude)
+    {
+        $this->container['exclude'] = $exclude;
 
         return $this;
     }

@@ -1,6 +1,6 @@
 <?php
 /**
- * AudioAsset
+ * AssetResponseAttributes
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * AudioAsset Class Doc Comment
+ * AssetResponseAttributes Class Doc Comment
  *
  * @category Class
- * @description The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
+ * @description The list of asset attributes and their values.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AudioAsset';
+    protected static $openAPIModelName = 'AssetResponseAttributes';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,11 +61,15 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'src' => 'string',
-        'trim' => 'float',
-        'volume' => 'float',
-        'effect' => 'string'
+        'id' => 'string',
+        'owner' => 'string',
+        'region' => 'string',
+        'render_id' => 'string',
+        'filename' => 'string',
+        'url' => 'string',
+        'status' => 'string',
+        'created' => 'string',
+        'updated' => 'string'
     ];
 
     /**
@@ -76,11 +80,15 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'src' => null,
-        'trim' => null,
-        'volume' => null,
-        'effect' => null
+        'id' => null,
+        'owner' => null,
+        'region' => null,
+        'render_id' => null,
+        'filename' => null,
+        'url' => null,
+        'status' => null,
+        'created' => null,
+        'updated' => null
     ];
 
     /**
@@ -110,11 +118,15 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'src' => 'src',
-        'trim' => 'trim',
-        'volume' => 'volume',
-        'effect' => 'effect'
+        'id' => 'id',
+        'owner' => 'owner',
+        'region' => 'region',
+        'render_id' => 'renderId',
+        'filename' => 'filename',
+        'url' => 'url',
+        'status' => 'status',
+        'created' => 'created',
+        'updated' => 'updated'
     ];
 
     /**
@@ -123,11 +135,15 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'src' => 'setSrc',
-        'trim' => 'setTrim',
-        'volume' => 'setVolume',
-        'effect' => 'setEffect'
+        'id' => 'setId',
+        'owner' => 'setOwner',
+        'region' => 'setRegion',
+        'render_id' => 'setRenderId',
+        'filename' => 'setFilename',
+        'url' => 'setUrl',
+        'status' => 'setStatus',
+        'created' => 'setCreated',
+        'updated' => 'setUpdated'
     ];
 
     /**
@@ -136,11 +152,15 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'src' => 'getSrc',
-        'trim' => 'getTrim',
-        'volume' => 'getVolume',
-        'effect' => 'getEffect'
+        'id' => 'getId',
+        'owner' => 'getOwner',
+        'region' => 'getRegion',
+        'render_id' => 'getRenderId',
+        'filename' => 'getFilename',
+        'url' => 'getUrl',
+        'status' => 'getStatus',
+        'created' => 'getCreated',
+        'updated' => 'getUpdated'
     ];
 
     /**
@@ -184,9 +204,10 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
         return self::$openAPIModelName;
     }
 
-    const EFFECT_FADE_IN = 'fadeIn';
-    const EFFECT_FADE_OUT = 'fadeOut';
-    const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
+    const STATUS_IMPORTING = 'importing';
+    const STATUS_READY = 'ready';
+    const STATUS_FAILED = 'failed';
+    const STATUS_DELETED = 'deleted';
     
 
     
@@ -195,12 +216,13 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      *
      * @return string[]
      */
-    public function getEffectAllowableValues()
+    public function getStatusAllowableValues()
     {
         return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
+            self::STATUS_IMPORTING,
+            self::STATUS_READY,
+            self::STATUS_FAILED,
+            self::STATUS_DELETED,
         ];
     }
     
@@ -220,11 +242,15 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = $data['type'] ?? 'audio';
-        $this->container['src'] = $data['src'] ?? null;
-        $this->container['trim'] = $data['trim'] ?? null;
-        $this->container['volume'] = $data['volume'] ?? 1;
-        $this->container['effect'] = $data['effect'] ?? null;
+        $this->container['id'] = $data['id'] ?? null;
+        $this->container['owner'] = $data['owner'] ?? null;
+        $this->container['region'] = $data['region'] ?? null;
+        $this->container['render_id'] = $data['render_id'] ?? null;
+        $this->container['filename'] = $data['filename'] ?? null;
+        $this->container['url'] = $data['url'] ?? null;
+        $this->container['status'] = $data['status'] ?? null;
+        $this->container['created'] = $data['created'] ?? null;
+        $this->container['updated'] = $data['updated'] ?? null;
     }
 
     /**
@@ -236,17 +262,11 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
-        }
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
                 implode("', '", $allowedValues)
             );
         }
@@ -267,131 +287,227 @@ class AudioAsset extends Asset implements ModelInterface, ArrayAccess, \JsonSeri
 
 
     /**
-     * Gets type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->container['type'];
-    }
-
-    /**
-     * Sets type
-     *
-     * @param string $type The type of asset - set to `audio` for audio assets.
-     *
-     * @return self
-     */
-    public function setType($type)
-    {
-        $this->container['type'] = $type;
-
-        return $this;
-    }
-
-    /**
-     * Gets src
-     *
-     * @return string
-     */
-    public function getSrc()
-    {
-        return $this->container['src'];
-    }
-
-    /**
-     * Sets src
-     *
-     * @param string $src The audio source URL. The URL must be publicly accessible or include credentials.
-     *
-     * @return self
-     */
-    public function setSrc($src)
-    {
-        $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets trim
-     *
-     * @return float|null
-     */
-    public function getTrim()
-    {
-        return $this->container['trim'];
-    }
-
-    /**
-     * Sets trim
-     *
-     * @param float|null $trim The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
-     *
-     * @return self
-     */
-    public function setTrim($trim)
-    {
-        $this->container['trim'] = $trim;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
-     *
-     * @return float|null
-     */
-    public function getVolume()
-    {
-        return $this->container['volume'];
-    }
-
-    /**
-     * Sets volume
-     *
-     * @param float|null $volume Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     *
-     * @return self
-     */
-    public function setVolume($volume)
-    {
-        $this->container['volume'] = $volume;
-
-        return $this;
-    }
-
-    /**
-     * Gets effect
+     * Gets id
      *
      * @return string|null
      */
-    public function getEffect()
+    public function getId()
     {
-        return $this->container['effect'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets effect
+     * Sets id
      *
-     * @param string|null $effect The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @param string|null $id The unique id of the hosted asset in UUID format.
      *
      * @return self
      */
-    public function setEffect($effect)
+    public function setId($id)
     {
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($effect) && !in_array($effect, $allowedValues, true)) {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets owner
+     *
+     * @return string|null
+     */
+    public function getOwner()
+    {
+        return $this->container['owner'];
+    }
+
+    /**
+     * Sets owner
+     *
+     * @param string|null $owner The owner id of the render task.
+     *
+     * @return self
+     */
+    public function setOwner($owner)
+    {
+        $this->container['owner'] = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Gets region
+     *
+     * @return string|null
+     */
+    public function getRegion()
+    {
+        return $this->container['region'];
+    }
+
+    /**
+     * Sets region
+     *
+     * @param string|null $region The region the asset is hosted, currently only `au` (Australia).
+     *
+     * @return self
+     */
+    public function setRegion($region)
+    {
+        $this->container['region'] = $region;
+
+        return $this;
+    }
+
+    /**
+     * Gets render_id
+     *
+     * @return string|null
+     */
+    public function getRenderId()
+    {
+        return $this->container['render_id'];
+    }
+
+    /**
+     * Sets render_id
+     *
+     * @param string|null $render_id The original render id that created the asset in UUID format. Multiple assets can share the same render id.
+     *
+     * @return self
+     */
+    public function setRenderId($render_id)
+    {
+        $this->container['render_id'] = $render_id;
+
+        return $this;
+    }
+
+    /**
+     * Gets filename
+     *
+     * @return string|null
+     */
+    public function getFilename()
+    {
+        return $this->container['filename'];
+    }
+
+    /**
+     * Sets filename
+     *
+     * @param string|null $filename The asset file name.
+     *
+     * @return self
+     */
+    public function setFilename($filename)
+    {
+        $this->container['filename'] = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url The asset file name.
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string|null
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string|null $status The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($status) && !in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['effect'] = $effect;
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets created
+     *
+     * @return string|null
+     */
+    public function getCreated()
+    {
+        return $this->container['created'];
+    }
+
+    /**
+     * Sets created
+     *
+     * @param string|null $created The time the asset was created.
+     *
+     * @return self
+     */
+    public function setCreated($created)
+    {
+        $this->container['created'] = $created;
+
+        return $this;
+    }
+
+    /**
+     * Gets updated
+     *
+     * @return string|null
+     */
+    public function getUpdated()
+    {
+        return $this->container['updated'];
+    }
+
+    /**
+     * Sets updated
+     *
+     * @param string|null $updated The time the asset status was last updated.
+     *
+     * @return self
+     */
+    public function setUpdated($updated)
+    {
+        $this->container['updated'] = $updated;
 
         return $this;
     }

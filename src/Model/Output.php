@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * The Shotstack API is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the Shotstack API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation.
+ * <p>Shotstack is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. </p> <p> There are two main API's, one for editing videos and images (Edit API) and one for managing hosted assets (Serve API). </p> <p> The Edit API base URL is: <b>https://api.shotstack.io/{version}</b> </p> <p> The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> </p>
  *
  * The version of the OpenAPI document: v1
  * 
@@ -64,11 +64,14 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'string',
         'resolution' => 'string',
         'aspect_ratio' => 'string',
+        'size' => '\Shotstack\Client\Model\Size',
         'fps' => 'int',
         'scale_to' => 'string',
+        'quality' => 'string',
         'range' => '\Shotstack\Client\Model\Range',
         'poster' => '\Shotstack\Client\Model\Poster',
-        'thumbnail' => '\Shotstack\Client\Model\Thumbnail'
+        'thumbnail' => '\Shotstack\Client\Model\Thumbnail',
+        'destinations' => '\Shotstack\Client\Model\Destinations'
     ];
 
     /**
@@ -82,11 +85,14 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => null,
         'resolution' => null,
         'aspect_ratio' => null,
+        'size' => null,
         'fps' => null,
         'scale_to' => null,
+        'quality' => null,
         'range' => null,
         'poster' => null,
-        'thumbnail' => null
+        'thumbnail' => null,
+        'destinations' => null
     ];
 
     /**
@@ -119,11 +125,14 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'format',
         'resolution' => 'resolution',
         'aspect_ratio' => 'aspectRatio',
+        'size' => 'size',
         'fps' => 'fps',
         'scale_to' => 'scaleTo',
+        'quality' => 'quality',
         'range' => 'range',
         'poster' => 'poster',
-        'thumbnail' => 'thumbnail'
+        'thumbnail' => 'thumbnail',
+        'destinations' => 'destinations'
     ];
 
     /**
@@ -135,11 +144,14 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'setFormat',
         'resolution' => 'setResolution',
         'aspect_ratio' => 'setAspectRatio',
+        'size' => 'setSize',
         'fps' => 'setFps',
         'scale_to' => 'setScaleTo',
+        'quality' => 'setQuality',
         'range' => 'setRange',
         'poster' => 'setPoster',
-        'thumbnail' => 'setThumbnail'
+        'thumbnail' => 'setThumbnail',
+        'destinations' => 'setDestinations'
     ];
 
     /**
@@ -151,11 +163,14 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'getFormat',
         'resolution' => 'getResolution',
         'aspect_ratio' => 'getAspectRatio',
+        'size' => 'getSize',
         'fps' => 'getFps',
         'scale_to' => 'getScaleTo',
+        'quality' => 'getQuality',
         'range' => 'getRange',
         'poster' => 'getPoster',
-        'thumbnail' => 'getThumbnail'
+        'thumbnail' => 'getThumbnail',
+        'destinations' => 'getDestinations'
     ];
 
     /**
@@ -202,6 +217,9 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     const FORMAT_MP4 = 'mp4';
     const FORMAT_GIF = 'gif';
     const FORMAT_MP3 = 'mp3';
+    const FORMAT_JPG = 'jpg';
+    const FORMAT_PNG = 'png';
+    const FORMAT_BMP = 'bmp';
     const RESOLUTION_PREVIEW = 'preview';
     const RESOLUTION_MOBILE = 'mobile';
     const RESOLUTION_SD = 'sd';
@@ -211,6 +229,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     const ASPECT_RATIO__916 = '9:16';
     const ASPECT_RATIO__11 = '1:1';
     const ASPECT_RATIO__45 = '4:5';
+    const ASPECT_RATIO__43 = '4:3';
     const FPS_12 = 12;
     const FPS_15 = 15;
     const FPS_24 = 24;
@@ -221,6 +240,9 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     const SCALE_TO_SD = 'sd';
     const SCALE_TO_HD = 'hd';
     const SCALE_TO__1080 = '1080';
+    const QUALITY_LOW = 'low';
+    const QUALITY_MEDIUM = 'medium';
+    const QUALITY_HIGH = 'high';
     
 
     
@@ -235,6 +257,9 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
             self::FORMAT_MP4,
             self::FORMAT_GIF,
             self::FORMAT_MP3,
+            self::FORMAT_JPG,
+            self::FORMAT_PNG,
+            self::FORMAT_BMP,
         ];
     }
     
@@ -266,6 +291,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
             self::ASPECT_RATIO__916,
             self::ASPECT_RATIO__11,
             self::ASPECT_RATIO__45,
+            self::ASPECT_RATIO__43,
         ];
     }
     
@@ -301,6 +327,20 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         ];
     }
     
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getQualityAllowableValues()
+    {
+        return [
+            self::QUALITY_LOW,
+            self::QUALITY_MEDIUM,
+            self::QUALITY_HIGH,
+        ];
+    }
+    
 
     /**
      * Associative array for storing property values
@@ -320,11 +360,14 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['format'] = $data['format'] ?? null;
         $this->container['resolution'] = $data['resolution'] ?? null;
         $this->container['aspect_ratio'] = $data['aspect_ratio'] ?? null;
+        $this->container['size'] = $data['size'] ?? null;
         $this->container['fps'] = $data['fps'] ?? self::FPS_25;
         $this->container['scale_to'] = $data['scale_to'] ?? null;
+        $this->container['quality'] = $data['quality'] ?? 'medium';
         $this->container['range'] = $data['range'] ?? null;
         $this->container['poster'] = $data['poster'] ?? null;
         $this->container['thumbnail'] = $data['thumbnail'] ?? null;
+        $this->container['destinations'] = $data['destinations'] ?? null;
     }
 
     /**
@@ -348,9 +391,6 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['resolution'] === null) {
-            $invalidProperties[] = "'resolution' can't be null";
-        }
         $allowedValues = $this->getResolutionAllowableValues();
         if (!is_null($this->container['resolution']) && !in_array($this->container['resolution'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -387,6 +427,15 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        $allowedValues = $this->getQualityAllowableValues();
+        if (!is_null($this->container['quality']) && !in_array($this->container['quality'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'quality', must be one of '%s'",
+                $this->container['quality'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -415,7 +464,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets format
      *
-     * @param string $format The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`mp3` - mp3 audio file (no video)</li> </ul>
+     * @param string $format The output format and type of media file to generate. <ul>   <li>`mp4` - mp4 video file</li>   <li>`gif` - animated gif</li>   <li>`jpg` - jpg image file</li>   <li>`png` - png image file</li>   <li>`bmp` - bmp image file</li>   <li>`mp3` - mp3 audio file (audio only)</li> </ul>
      *
      * @return self
      */
@@ -439,7 +488,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets resolution
      *
-     * @return string
+     * @return string|null
      */
     public function getResolution()
     {
@@ -449,14 +498,14 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets resolution
      *
-     * @param string $resolution The output resolution of the video. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
+     * @param string|null $resolution The output resolution of the video or image. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li> </ul>
      *
      * @return self
      */
     public function setResolution($resolution)
     {
         $allowedValues = $this->getResolutionAllowableValues();
-        if (!in_array($resolution, $allowedValues, true)) {
+        if (!is_null($resolution) && !in_array($resolution, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'resolution', must be one of '%s'",
@@ -483,7 +532,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets aspect_ratio
      *
-     * @param string|null $aspect_ratio The aspect ratio (shape) of the video. Useful for social media video. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li> </ul>
+     * @param string|null $aspect_ratio The aspect ratio (shape) of the video. Useful for social media video. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
      *
      * @return self
      */
@@ -500,6 +549,30 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['aspect_ratio'] = $aspect_ratio;
+
+        return $this;
+    }
+
+    /**
+     * Gets size
+     *
+     * @return \Shotstack\Client\Model\Size|null
+     */
+    public function getSize()
+    {
+        return $this->container['size'];
+    }
+
+    /**
+     * Sets size
+     *
+     * @param \Shotstack\Client\Model\Size|null $size size
+     *
+     * @return self
+     */
+    public function setSize($size)
+    {
+        $this->container['size'] = $size;
 
         return $this;
     }
@@ -573,6 +646,40 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets quality
+     *
+     * @return string|null
+     */
+    public function getQuality()
+    {
+        return $this->container['quality'];
+    }
+
+    /**
+     * Sets quality
+     *
+     * @param string|null $quality Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+     *
+     * @return self
+     */
+    public function setQuality($quality)
+    {
+        $allowedValues = $this->getQualityAllowableValues();
+        if (!is_null($quality) && !in_array($quality, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'quality', must be one of '%s'",
+                    $quality,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['quality'] = $quality;
+
+        return $this;
+    }
+
+    /**
      * Gets range
      *
      * @return \Shotstack\Client\Model\Range|null
@@ -640,6 +747,30 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setThumbnail($thumbnail)
     {
         $this->container['thumbnail'] = $thumbnail;
+
+        return $this;
+    }
+
+    /**
+     * Gets destinations
+     *
+     * @return AnyOfShotstackDestination[]|null
+     */
+    public function getDestinations()
+    {
+        return $this->container['destinations'];
+    }
+
+    /**
+     * Sets destinations
+     *
+     * @param AnyOfShotstackDestination[]|null $destinations A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. [DestinationShotstack](/#tocs_shotstackdestination) is currently the only option with plans to add more in the future such as S3, YouTube, Vimeo and Mux. If you do not require hosting you can opt-out using the  `exclude` property.
+     *
+     * @return self
+     */
+    public function setDestinations($destinations)
+    {
+        $this->container['destinations'] = $destinations;
 
         return $this;
     }

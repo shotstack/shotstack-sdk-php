@@ -1,6 +1,6 @@
 <?php
 /**
- * Poster
+ * AssetResponse
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Poster Class Doc Comment
+ * AssetResponse Class Doc Comment
  *
  * @category Class
- * @description Generate a poster image for the video at a specific point from the timeline. The poster image size will match the size of the output video.
+ * @description The response returned by the Serve API [get asset](#get-asset) request. Includes details of a hosted video, image, audio file, thumbnail or poster image. The response follows the [json:api](https://jsonapi.org/) specification.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
+class AssetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Poster';
+    protected static $openAPIModelName = 'AssetResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'capture' => 'float'
+        'data' => '\Shotstack\Client\Model\AssetResponseData'
     ];
 
     /**
@@ -72,7 +72,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'capture' => null
+        'data' => null
     ];
 
     /**
@@ -102,7 +102,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'capture' => 'capture'
+        'data' => 'data'
     ];
 
     /**
@@ -111,7 +111,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'capture' => 'setCapture'
+        'data' => 'setData'
     ];
 
     /**
@@ -120,7 +120,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'capture' => 'getCapture'
+        'data' => 'getData'
     ];
 
     /**
@@ -183,7 +183,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['capture'] = $data['capture'] ?? null;
+        $this->container['data'] = $data['data'] ?? null;
     }
 
     /**
@@ -195,9 +195,6 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['capture'] === null) {
-            $invalidProperties[] = "'capture' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -214,25 +211,25 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets capture
+     * Gets data
      *
-     * @return float
+     * @return \Shotstack\Client\Model\AssetResponseData|null
      */
-    public function getCapture()
+    public function getData()
     {
-        return $this->container['capture'];
+        return $this->container['data'];
     }
 
     /**
-     * Sets capture
+     * Sets data
      *
-     * @param float $capture The point on the timeline in seconds to capture a single frame to use as the poster image.
+     * @param \Shotstack\Client\Model\AssetResponseData|null $data data
      *
      * @return self
      */
-    public function setCapture($capture)
+    public function setData($data)
     {
-        $this->container['capture'] = $capture;
+        $this->container['data'] = $data;
 
         return $this;
     }

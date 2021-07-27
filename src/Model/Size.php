@@ -1,6 +1,6 @@
 <?php
 /**
- * Poster
+ * Size
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Poster Class Doc Comment
+ * Size Class Doc Comment
  *
  * @category Class
- * @description Generate a poster image for the video at a specific point from the timeline. The poster image size will match the size of the output video.
+ * @description Set a custom size for a video or image. When using a custom size omit the &#x60;resolution&#x60; and &#x60;aspectRatio&#x60;. Custom sizes must be divisible by 2 based on the encoder specifications.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
+class Size implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Poster';
+    protected static $openAPIModelName = 'Size';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'capture' => 'float'
+        'width' => 'int',
+        'height' => 'int'
     ];
 
     /**
@@ -72,7 +73,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'capture' => null
+        'width' => null,
+        'height' => null
     ];
 
     /**
@@ -102,7 +104,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'capture' => 'capture'
+        'width' => 'width',
+        'height' => 'height'
     ];
 
     /**
@@ -111,7 +114,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'capture' => 'setCapture'
+        'width' => 'setWidth',
+        'height' => 'setHeight'
     ];
 
     /**
@@ -120,7 +124,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'capture' => 'getCapture'
+        'width' => 'getWidth',
+        'height' => 'getHeight'
     ];
 
     /**
@@ -183,7 +188,8 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['capture'] = $data['capture'] ?? null;
+        $this->container['width'] = $data['width'] ?? null;
+        $this->container['height'] = $data['height'] ?? null;
     }
 
     /**
@@ -195,9 +201,22 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['capture'] === null) {
-            $invalidProperties[] = "'capture' can't be null";
+        if (!is_null($this->container['width']) && ($this->container['width'] > 4096)) {
+            $invalidProperties[] = "invalid value for 'width', must be smaller than or equal to 4096.";
         }
+
+        if (!is_null($this->container['width']) && ($this->container['width'] < 0)) {
+            $invalidProperties[] = "invalid value for 'width', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['height']) && ($this->container['height'] > 4096)) {
+            $invalidProperties[] = "invalid value for 'height', must be smaller than or equal to 4096.";
+        }
+
+        if (!is_null($this->container['height']) && ($this->container['height'] < 0)) {
+            $invalidProperties[] = "invalid value for 'height', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -214,25 +233,65 @@ class Poster implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets capture
+     * Gets width
      *
-     * @return float
+     * @return int|null
      */
-    public function getCapture()
+    public function getWidth()
     {
-        return $this->container['capture'];
+        return $this->container['width'];
     }
 
     /**
-     * Sets capture
+     * Sets width
      *
-     * @param float $capture The point on the timeline in seconds to capture a single frame to use as the poster image.
+     * @param int|null $width Set a custom width for the video or image file. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
      *
      * @return self
      */
-    public function setCapture($capture)
+    public function setWidth($width)
     {
-        $this->container['capture'] = $capture;
+
+        if (!is_null($width) && ($width > 4096)) {
+            throw new \InvalidArgumentException('invalid value for $width when calling Size., must be smaller than or equal to 4096.');
+        }
+        if (!is_null($width) && ($width < 0)) {
+            throw new \InvalidArgumentException('invalid value for $width when calling Size., must be bigger than or equal to 0.');
+        }
+
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets height
+     *
+     * @return int|null
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /**
+     * Sets height
+     *
+     * @param int|null $height Set a custom height for the video or image file. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
+     *
+     * @return self
+     */
+    public function setHeight($height)
+    {
+
+        if (!is_null($height) && ($height > 4096)) {
+            throw new \InvalidArgumentException('invalid value for $height when calling Size., must be smaller than or equal to 4096.');
+        }
+        if (!is_null($height) && ($height < 0)) {
+            throw new \InvalidArgumentException('invalid value for $height when calling Size., must be bigger than or equal to 0.');
+        }
+
+        $this->container['height'] = $height;
 
         return $this;
     }
