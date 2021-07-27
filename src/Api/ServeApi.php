@@ -120,9 +120,6 @@ class ServeApi
      *
      * Delete Asset
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
-     *
      * @param  string $id The id of the asset in UUID format (required)
      *
      * @throws \Shotstack\Client\ApiException on non-2xx response
@@ -138,9 +135,6 @@ class ServeApi
      * Operation deleteAssetWithHttpInfo
      *
      * Delete Asset
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -194,9 +188,6 @@ class ServeApi
      *
      * Delete Asset
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
-     *
      * @param  string $id The id of the asset in UUID format (required)
      *
      * @throws \InvalidArgumentException
@@ -216,9 +207,6 @@ class ServeApi
      * Operation deleteAssetAsyncWithHttpInfo
      *
      * Delete Asset
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -255,9 +243,6 @@ class ServeApi
 
     /**
      * Create request for operation 'deleteAsset'
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -349,16 +334,10 @@ class ServeApi
             $headers
         );
 
-        $operationHosts = ["https://api.shotstack.io/serve/{version}"];
-        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
-            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
-        }
-        $operationHost = $operationHosts[$this->hostIndex];
-
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'DELETE',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -368,9 +347,6 @@ class ServeApi
      * Operation getAsset
      *
      * Get Asset
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -388,9 +364,6 @@ class ServeApi
      * Operation getAssetWithHttpInfo
      *
      * Get Asset
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -480,9 +453,6 @@ class ServeApi
      *
      * Get Asset
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
-     *
      * @param  string $id The id of the asset in UUID format (required)
      *
      * @throws \InvalidArgumentException
@@ -502,9 +472,6 @@ class ServeApi
      * Operation getAssetAsyncWithHttpInfo
      *
      * Get Asset
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -552,9 +519,6 @@ class ServeApi
 
     /**
      * Create request for operation 'getAsset'
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The id of the asset in UUID format (required)
      *
@@ -646,16 +610,10 @@ class ServeApi
             $headers
         );
 
-        $operationHosts = ["https://api.shotstack.io/serve/{version}"];
-        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
-            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
-        }
-        $operationHost = $operationHosts[$this->hostIndex];
-
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
@@ -665,9 +623,6 @@ class ServeApi
      * Operation getAssetByRenderId
      *
      * Get Asset by Render ID
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The render id associated with the asset in UUID format (required)
      *
@@ -685,9 +640,6 @@ class ServeApi
      * Operation getAssetByRenderIdWithHttpInfo
      *
      * Get Asset by Render ID
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The render id associated with the asset in UUID format (required)
      *
@@ -777,9 +729,6 @@ class ServeApi
      *
      * Get Asset by Render ID
      *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
-     *
      * @param  string $id The render id associated with the asset in UUID format (required)
      *
      * @throws \InvalidArgumentException
@@ -799,9 +748,6 @@ class ServeApi
      * Operation getAssetByRenderIdAsyncWithHttpInfo
      *
      * Get Asset by Render ID
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The render id associated with the asset in UUID format (required)
      *
@@ -849,9 +795,6 @@ class ServeApi
 
     /**
      * Create request for operation 'getAssetByRenderId'
-     *
-     * This oepration contains host(s) defined in the OpenAP spec. Use 'hostIndex' to select the host.
-     * URL: https://api.shotstack.io/serve/{version}
      *
      * @param  string $id The render id associated with the asset in UUID format (required)
      *
@@ -943,16 +886,10 @@ class ServeApi
             $headers
         );
 
-        $operationHosts = ["https://api.shotstack.io/serve/{version}"];
-        if ($this->hostIndex < 0 || $this->hostIndex >= sizeof($operationHosts)) {
-            throw new \InvalidArgumentException("Invalid index {$this->hostIndex} when selecting the host. Must be less than ".sizeof($operationHosts));
-        }
-        $operationHost = $operationHosts[$this->hostIndex];
-
         $query = \GuzzleHttp\Psr7\build_query($queryParams);
         return new Request(
             'GET',
-            $operationHost . $resourcePath . ($query ? "?{$query}" : ''),
+            $this->config->getHost() . $resourcePath . ($query ? "?{$query}" : ''),
             $headers,
             $httpBody
         );
