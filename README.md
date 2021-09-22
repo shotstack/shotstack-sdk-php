@@ -1,6 +1,6 @@
 # Shotstack PHP SDK
 
-PHP SDK for [Shotstack](http://shotstack.io), the cloud video editing API.
+PHP SDK for the Shotstack [PHP video editor](https://shotstack.io/product/sdk/php) and cloud video editing API.
 
 Shotstack is a cloud based video editing platform that enables the editing of videos using code.
 
@@ -22,9 +22,9 @@ composer require shotstack/shotstack-sdk-php
 
 ## Documentation
 
-- [Getting Started Guide](https://shotstack.gitbook.io/docs/guides/getting-started)
-- [API Reference](https://shotstack.restlet.io/)
+- [Getting Started Guide](https://shotstack.io/docs/guide/getting-started/core-concepts/)
+- [API Reference](https://shotstack.io/docs/api/)
 - [Examples](https://github.com/shotstack/php-demos)
-- [Shotstack Website](http://shotstack.io)
+- [Shotstack Website](https://shotstack.io)
 
 ###
