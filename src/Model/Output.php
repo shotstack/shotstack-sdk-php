@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * <p>Shotstack is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. </p> <p> There are two main API's, one for editing videos and images (Edit API) and one for managing hosted assets (Serve API). </p> <p> The Edit API base URL is: <b>https://api.shotstack.io/{version}</b> </p> <p> The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> </p>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  * 
@@ -68,6 +68,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => 'int',
         'scale_to' => 'string',
         'quality' => 'string',
+        'repeat' => 'bool',
         'range' => '\Shotstack\Client\Model\Range',
         'poster' => '\Shotstack\Client\Model\Poster',
         'thumbnail' => '\Shotstack\Client\Model\Thumbnail',
@@ -89,6 +90,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => null,
         'scale_to' => null,
         'quality' => null,
+        'repeat' => null,
         'range' => null,
         'poster' => null,
         'thumbnail' => null,
@@ -129,6 +131,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => 'fps',
         'scale_to' => 'scaleTo',
         'quality' => 'quality',
+        'repeat' => 'repeat',
         'range' => 'range',
         'poster' => 'poster',
         'thumbnail' => 'thumbnail',
@@ -148,6 +151,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => 'setFps',
         'scale_to' => 'setScaleTo',
         'quality' => 'setQuality',
+        'repeat' => 'setRepeat',
         'range' => 'setRange',
         'poster' => 'setPoster',
         'thumbnail' => 'setThumbnail',
@@ -167,6 +171,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => 'getFps',
         'scale_to' => 'getScaleTo',
         'quality' => 'getQuality',
+        'repeat' => 'getRepeat',
         'range' => 'getRange',
         'poster' => 'getPoster',
         'thumbnail' => 'getThumbnail',
@@ -364,6 +369,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['fps'] = $data['fps'] ?? self::FPS_25;
         $this->container['scale_to'] = $data['scale_to'] ?? null;
         $this->container['quality'] = $data['quality'] ?? 'medium';
+        $this->container['repeat'] = $data['repeat'] ?? true;
         $this->container['range'] = $data['range'] ?? null;
         $this->container['poster'] = $data['poster'] ?? null;
         $this->container['thumbnail'] = $data['thumbnail'] ?? null;
@@ -532,7 +538,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets aspect_ratio
      *
-     * @param string|null $aspect_ratio The aspect ratio (shape) of the video. Useful for social media video. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+     * @param string|null $aspect_ratio The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
      *
      * @return self
      */
@@ -624,7 +630,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets scale_to
      *
-     * @param string|null $scale_to Override the resolution and scale the video to render at a different size. When using scaleTo the video should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the video at SD and the text will be scaled to the correct size. This is useful if you want to create multiple video sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+     * @param string|null $scale_to Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
      *
      * @return self
      */
@@ -675,6 +681,30 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['quality'] = $quality;
+
+        return $this;
+    }
+
+    /**
+     * Gets repeat
+     *
+     * @return bool|null
+     */
+    public function getRepeat()
+    {
+        return $this->container['repeat'];
+    }
+
+    /**
+     * Sets repeat
+     *
+     * @param bool|null $repeat Loop settings for gif files. Set to `true` to loop, `false` to play only once.
+     *
+     * @return self
+     */
+    public function setRepeat($repeat)
+    {
+        $this->container['repeat'] = $repeat;
 
         return $this;
     }

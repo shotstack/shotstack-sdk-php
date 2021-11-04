@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * MergeField
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * MergeField Class Doc Comment
  *
  * @category Class
- * @description A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description A merge field consists of a key; &#x60;find&#x60;, and a value; &#x60;replace&#x60;. Merge fields can be used to replace placeholders within the JSON edit to create re-usable templates. Placeholders should be a string with double brace delimiters, i.e. &#x60;\&quot;{{NAME}}\&quot;&#x60;. A placeholder can be used for any value within the JSON edit.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
+class MergeField implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'MergeField';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +61,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'find' => 'string',
+        'replace' => 'mixed'
     ];
 
     /**
@@ -74,9 +73,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'find' => null,
+        'replace' => null
     ];
 
     /**
@@ -106,9 +104,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'find' => 'find',
+        'replace' => 'replace'
     ];
 
     /**
@@ -117,9 +114,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'find' => 'setFind',
+        'replace' => 'setReplace'
     ];
 
     /**
@@ -128,9 +124,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'find' => 'getFind',
+        'replace' => 'getReplace'
     ];
 
     /**
@@ -174,25 +169,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const EFFECT_FADE_IN = 'fadeIn';
-    const EFFECT_FADE_OUT = 'fadeOut';
-    const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
     
 
     /**
@@ -210,9 +188,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['src'] = $data['src'] ?? null;
-        $this->container['effect'] = $data['effect'] ?? null;
-        $this->container['volume'] = $data['volume'] ?? 1;
+        $this->container['find'] = $data['find'] ?? null;
+        $this->container['replace'] = $data['replace'] ?? null;
     }
 
     /**
@@ -224,18 +201,12 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['find'] === null) {
+            $invalidProperties[] = "'find' can't be null";
         }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['replace'] === null) {
+            $invalidProperties[] = "'replace' can't be null";
         }
-
         return $invalidProperties;
     }
 
@@ -252,83 +223,49 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets src
+     * Gets find
      *
      * @return string
      */
-    public function getSrc()
+    public function getFind()
     {
-        return $this->container['src'];
+        return $this->container['find'];
     }
 
     /**
-     * Sets src
+     * Sets find
      *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param string $find The string to find <u>without</u> delimiters.
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setFind($find)
     {
-        $this->container['src'] = $src;
+        $this->container['find'] = $find;
 
         return $this;
     }
 
     /**
-     * Gets effect
+     * Gets replace
      *
-     * @return string|null
+     * @return mixed
      */
-    public function getEffect()
+    public function getReplace()
     {
-        return $this->container['effect'];
+        return $this->container['replace'];
     }
 
     /**
-     * Sets effect
+     * Sets replace
      *
-     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @param mixed $replace The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc...
      *
      * @return self
      */
-    public function setEffect($effect)
+    public function setReplace($replace)
     {
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($effect) && !in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['effect'] = $effect;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
-     *
-     * @return float|null
-     */
-    public function getVolume()
-    {
-        return $this->container['volume'];
-    }
-
-    /**
-     * Sets volume
-     *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     *
-     * @return self
-     */
-    public function setVolume($volume)
-    {
-        $this->container['volume'] = $volume;
+        $this->container['replace'] = $replace;
 
         return $this;
     }

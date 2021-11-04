@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * ProbeResponse
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * ProbeResponse Class Doc Comment
  *
  * @category Class
- * @description A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description The response received after a [probe request](#probe) is submitted. The probe requests returns data from FFprobe formatted as JSON.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
+class ProbeResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'ProbeResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +61,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'success' => 'bool',
+        'message' => 'string',
+        'response' => 'object'
     ];
 
     /**
@@ -74,9 +74,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'success' => null,
+        'message' => null,
+        'response' => null
     ];
 
     /**
@@ -106,9 +106,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'success' => 'success',
+        'message' => 'message',
+        'response' => 'response'
     ];
 
     /**
@@ -117,9 +117,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'success' => 'setSuccess',
+        'message' => 'setMessage',
+        'response' => 'setResponse'
     ];
 
     /**
@@ -128,9 +128,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'success' => 'getSuccess',
+        'message' => 'getMessage',
+        'response' => 'getResponse'
     ];
 
     /**
@@ -174,25 +174,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const EFFECT_FADE_IN = 'fadeIn';
-    const EFFECT_FADE_OUT = 'fadeOut';
-    const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
     
 
     /**
@@ -210,9 +193,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['src'] = $data['src'] ?? null;
-        $this->container['effect'] = $data['effect'] ?? null;
-        $this->container['volume'] = $data['volume'] ?? 1;
+        $this->container['success'] = $data['success'] ?? null;
+        $this->container['message'] = $data['message'] ?? null;
+        $this->container['response'] = $data['response'] ?? null;
     }
 
     /**
@@ -224,18 +207,15 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['success'] === null) {
+            $invalidProperties[] = "'success' can't be null";
         }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
-                implode("', '", $allowedValues)
-            );
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
         }
-
+        if ($this->container['response'] === null) {
+            $invalidProperties[] = "'response' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -252,83 +232,73 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets src
+     * Gets success
+     *
+     * @return bool
+     */
+    public function getSuccess()
+    {
+        return $this->container['success'];
+    }
+
+    /**
+     * Sets success
+     *
+     * @param bool $success `true` if media successfully read, else `false`.
+     *
+     * @return self
+     */
+    public function setSuccess($success)
+    {
+        $this->container['success'] = $success;
+
+        return $this;
+    }
+
+    /**
+     * Gets message
      *
      * @return string
      */
-    public function getSrc()
+    public function getMessage()
     {
-        return $this->container['src'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets src
+     * Sets message
      *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param string $message `Created`, `Bad Request` or an error message.
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setMessage($message)
     {
-        $this->container['src'] = $src;
+        $this->container['message'] = $message;
 
         return $this;
     }
 
     /**
-     * Gets effect
+     * Gets response
      *
-     * @return string|null
+     * @return object
      */
-    public function getEffect()
+    public function getResponse()
     {
-        return $this->container['effect'];
+        return $this->container['response'];
     }
 
     /**
-     * Sets effect
+     * Sets response
      *
-     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @param object $response The response from FFmpeg in JSON format
      *
      * @return self
      */
-    public function setEffect($effect)
+    public function setResponse($response)
     {
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($effect) && !in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['effect'] = $effect;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
-     *
-     * @return float|null
-     */
-    public function getVolume()
-    {
-        return $this->container['volume'];
-    }
-
-    /**
-     * Sets volume
-     *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     *
-     * @return self
-     */
-    public function setVolume($volume)
-    {
-        $this->container['volume'] = $volume;
+        $this->container['response'] = $response;
 
         return $this;
     }

@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * <p>Shotstack is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. </p> <p> There are two main API's, one for editing videos and images (Edit API) and one for managing hosted assets (Serve API). </p> <p> The Edit API base URL is: <b>https://api.shotstack.io/{version}</b> </p> <p> The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> </p>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  * 
@@ -417,7 +417,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      *
-     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the video is being rendered</li>   <li>`saving` - the final video is being saved to storage</li>   <li>`done` - the video is ready to be downloaded</li>   <li>`failed` - there was an error rendering the video</li> </ul>
+     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
      *
      * @return self
      */
@@ -475,7 +475,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets duration
      *
-     * @param float|null $duration The output video length in seconds.
+     * @param float|null $duration The output video or audio length in seconds.
      *
      * @return self
      */
@@ -499,7 +499,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets render_time
      *
-     * @param float|null $render_time The time taken to render the video in milliseconds.
+     * @param float|null $render_time The time taken to render the asset in milliseconds.
      *
      * @return self
      */
@@ -523,7 +523,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets url
      *
-     * @param string|null $url The URL of the final video. This will only be available if status is done.
+     * @param string|null $url The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
      *
      * @return self
      */
