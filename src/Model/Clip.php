@@ -72,7 +72,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'effect' => 'string',
         'filter' => 'string',
         'opacity' => 'float',
-        'transformation' => '\Shotstack\Client\Model\Transformation'
+        'transform' => '\Shotstack\Client\Model\Transformation'
     ];
 
     /**
@@ -94,7 +94,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'effect' => null,
         'filter' => null,
         'opacity' => null,
-        'transformation' => null
+        'transform' => null
     ];
 
     /**
@@ -135,7 +135,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'effect' => 'effect',
         'filter' => 'filter',
         'opacity' => 'opacity',
-        'transformation' => 'transformation'
+        'transform' => 'transform'
     ];
 
     /**
@@ -155,7 +155,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'effect' => 'setEffect',
         'filter' => 'setFilter',
         'opacity' => 'setOpacity',
-        'transformation' => 'setTransformation'
+        'transform' => 'setTransform'
     ];
 
     /**
@@ -175,7 +175,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'effect' => 'getEffect',
         'filter' => 'getFilter',
         'opacity' => 'getOpacity',
-        'transformation' => 'getTransformation'
+        'transform' => 'getTransform'
     ];
 
     /**
@@ -345,7 +345,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['effect'] = $data['effect'] ?? null;
         $this->container['filter'] = $data['filter'] ?? null;
         $this->container['opacity'] = $data['opacity'] ?? 1;
-        $this->container['transformation'] = $data['transformation'] ?? null;
+        $this->container['transform'] = $data['transform'] ?? null;
     }
 
     /**
@@ -722,25 +722,25 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets transformation
+     * Gets transform
      *
      * @return \Shotstack\Client\Model\Transformation|null
      */
-    public function getTransformation()
+    public function getTransform()
     {
-        return $this->container['transformation'];
+        return $this->container['transform'];
     }
 
     /**
-     * Sets transformation
+     * Sets transform
      *
-     * @param \Shotstack\Client\Model\Transformation|null $transformation transformation
+     * @param \Shotstack\Client\Model\Transformation|null $transform transform
      *
      * @return self
      */
-    public function setTransformation($transformation)
+    public function setTransform($transform)
     {
-        $this->container['transformation'] = $transformation;
+        $this->container['transform'] = $transform;
 
         return $this;
     }
