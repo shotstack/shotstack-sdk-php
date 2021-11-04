@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * <p>Shotstack is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. </p> <p> There are two main API's, one for editing videos and images (Edit API) and one for managing hosted assets (Serve API). </p> <p> The Edit API base URL is: <b>https://api.shotstack.io/{version}</b> </p> <p> The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> </p>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  * 
@@ -36,7 +36,7 @@ use \Shotstack\Client\ObjectSerializer;
  * Edit Class Doc Comment
  *
  * @category Class
- * @description An edit defines the content of the video in a timeline and the output format.
+ * @description An edit defines the arrangement of a video on a timeline, an audio edit or an image design and the output format.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -63,6 +63,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'timeline' => '\Shotstack\Client\Model\Timeline',
         'output' => '\Shotstack\Client\Model\Output',
+        'merge' => '\Shotstack\Client\Model\MergeField[]',
         'callback' => 'string',
         'disk' => 'string'
     ];
@@ -77,6 +78,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'timeline' => null,
         'output' => null,
+        'merge' => null,
         'callback' => null,
         'disk' => null
     ];
@@ -110,6 +112,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'timeline' => 'timeline',
         'output' => 'output',
+        'merge' => 'merge',
         'callback' => 'callback',
         'disk' => 'disk'
     ];
@@ -122,6 +125,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'timeline' => 'setTimeline',
         'output' => 'setOutput',
+        'merge' => 'setMerge',
         'callback' => 'setCallback',
         'disk' => 'setDisk'
     ];
@@ -134,6 +138,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'timeline' => 'getTimeline',
         'output' => 'getOutput',
+        'merge' => 'getMerge',
         'callback' => 'getCallback',
         'disk' => 'getDisk'
     ];
@@ -215,6 +220,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['timeline'] = $data['timeline'] ?? null;
         $this->container['output'] = $data['output'] ?? null;
+        $this->container['merge'] = $data['merge'] ?? null;
         $this->container['callback'] = $data['callback'] ?? null;
         $this->container['disk'] = $data['disk'] ?? 'local';
     }
@@ -307,6 +313,30 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets merge
+     *
+     * @return \Shotstack\Client\Model\MergeField[]|null
+     */
+    public function getMerge()
+    {
+        return $this->container['merge'];
+    }
+
+    /**
+     * Sets merge
+     *
+     * @param \Shotstack\Client\Model\MergeField[]|null $merge An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`.
+     *
+     * @return self
+     */
+    public function setMerge($merge)
+    {
+        $this->container['merge'] = $merge;
+
+        return $this;
+    }
+
+    /**
      * Gets callback
      *
      * @return string|null
@@ -343,7 +373,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets disk
      *
-     * @param string|null $disk The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.gitbook.io/docs/guides/architecting-an-application/disk-types) for more details. <ul>   <li>`local` - optimised for high speed rendering with up to 512MB storage</li>   <li>`mount` - optimised for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li> </ul>
+     * @param string|null $disk The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.gitbook.io/docs/guides/architecting-an-application/disk-types) for more details. <ul>   <li>`local` - optimized for high speed rendering with up to 512MB storage</li>   <li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li> </ul>
      *
      * @return self
      */

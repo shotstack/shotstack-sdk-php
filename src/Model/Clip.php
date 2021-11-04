@@ -13,7 +13,7 @@
 /**
  * Shotstack
  *
- * <p>Shotstack is a video editing service that allows for the automated creation of videos using JSON. You can configure an edit and POST it to the API which will render your video and provide a file location when complete. For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. </p> <p> There are two main API's, one for editing videos and images (Edit API) and one for managing hosted assets (Serve API). </p> <p> The Edit API base URL is: <b>https://api.shotstack.io/{version}</b> </p> <p> The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b> </p>
+ * Shotstack is a video, image and audio editing service that allows for the automated generation of videos, images and audio using JSON and a RESTful API.  You arrange and configure an edit and POST it to the API which will render your media and provide a file  location when complete.  For more details visit [shotstack.io](https://shotstack.io) or checkout our [getting started](https://shotstack.gitbook.io/docs/guides/getting-started) documentation. There are two main API's, one for editing and generating assets (Edit API) and one for managing hosted assets (Serve API).  The Edit API base URL is: <b>https://api.shotstack.io/{version}</b>  The Serve API base URL is: <b>https://api.shotstack.io/serve/{version}</b>
  *
  * The version of the OpenAPI document: v1
  * 
@@ -71,7 +71,8 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => '\Shotstack\Client\Model\Transition',
         'effect' => 'string',
         'filter' => 'string',
-        'opacity' => 'float'
+        'opacity' => 'float',
+        'transformation' => '\Shotstack\Client\Model\Transformation'
     ];
 
     /**
@@ -92,7 +93,8 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => null,
         'effect' => null,
         'filter' => null,
-        'opacity' => null
+        'opacity' => null,
+        'transformation' => null
     ];
 
     /**
@@ -132,7 +134,8 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => 'transition',
         'effect' => 'effect',
         'filter' => 'filter',
-        'opacity' => 'opacity'
+        'opacity' => 'opacity',
+        'transformation' => 'transformation'
     ];
 
     /**
@@ -151,7 +154,8 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => 'setTransition',
         'effect' => 'setEffect',
         'filter' => 'setFilter',
-        'opacity' => 'setOpacity'
+        'opacity' => 'setOpacity',
+        'transformation' => 'setTransformation'
     ];
 
     /**
@@ -170,7 +174,8 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => 'getTransition',
         'effect' => 'getEffect',
         'filter' => 'getFilter',
-        'opacity' => 'getOpacity'
+        'opacity' => 'getOpacity',
+        'transformation' => 'getTransformation'
     ];
 
     /**
@@ -340,6 +345,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['effect'] = $data['effect'] ?? null;
         $this->container['filter'] = $data['filter'] ?? null;
         $this->container['opacity'] = $data['opacity'] ?? 1;
+        $this->container['transformation'] = $data['transformation'] ?? null;
     }
 
     /**
@@ -711,6 +717,30 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setOpacity($opacity)
     {
         $this->container['opacity'] = $opacity;
+
+        return $this;
+    }
+
+    /**
+     * Gets transformation
+     *
+     * @return \Shotstack\Client\Model\Transformation|null
+     */
+    public function getTransformation()
+    {
+        return $this->container['transformation'];
+    }
+
+    /**
+     * Sets transformation
+     *
+     * @param \Shotstack\Client\Model\Transformation|null $transformation transformation
+     *
+     * @return self
+     */
+    public function setTransformation($transformation)
+    {
+        $this->container['transformation'] = $transformation;
 
         return $this;
     }

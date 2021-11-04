@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * Transformation
  *
  * PHP version 7.2
  *
@@ -33,10 +33,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * Transformation Class Doc Comment
  *
  * @category Class
- * @description A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description Apply one or more transformations to a clip. Transformations alter the visual properties of a clip and can be combined to create new shapes and effects.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -44,7 +44,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null  
  */
-class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
+class Transformation implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -53,7 +53,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'Transformation';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,9 +61,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'rotate' => '\Shotstack\Client\Model\RotateTransformation',
+        'skew' => '\Shotstack\Client\Model\SkewTransformation',
+        'flip' => '\Shotstack\Client\Model\FlipTransformation'
     ];
 
     /**
@@ -74,9 +74,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'rotate' => null,
+        'skew' => null,
+        'flip' => null
     ];
 
     /**
@@ -106,9 +106,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'rotate' => 'rotate',
+        'skew' => 'skew',
+        'flip' => 'flip'
     ];
 
     /**
@@ -117,9 +117,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'rotate' => 'setRotate',
+        'skew' => 'setSkew',
+        'flip' => 'setFlip'
     ];
 
     /**
@@ -128,9 +128,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'rotate' => 'getRotate',
+        'skew' => 'getSkew',
+        'flip' => 'getFlip'
     ];
 
     /**
@@ -174,25 +174,8 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const EFFECT_FADE_IN = 'fadeIn';
-    const EFFECT_FADE_OUT = 'fadeOut';
-    const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     
 
-    
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
     
 
     /**
@@ -210,9 +193,9 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['src'] = $data['src'] ?? null;
-        $this->container['effect'] = $data['effect'] ?? null;
-        $this->container['volume'] = $data['volume'] ?? 1;
+        $this->container['rotate'] = $data['rotate'] ?? null;
+        $this->container['skew'] = $data['skew'] ?? null;
+        $this->container['flip'] = $data['flip'] ?? null;
     }
 
     /**
@@ -223,18 +206,6 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     public function listInvalidProperties()
     {
         $invalidProperties = [];
-
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
-                implode("', '", $allowedValues)
-            );
-        }
 
         return $invalidProperties;
     }
@@ -252,83 +223,73 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets src
+     * Gets rotate
      *
-     * @return string
+     * @return \Shotstack\Client\Model\RotateTransformation|null
      */
-    public function getSrc()
+    public function getRotate()
     {
-        return $this->container['src'];
+        return $this->container['rotate'];
     }
 
     /**
-     * Sets src
+     * Sets rotate
      *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param \Shotstack\Client\Model\RotateTransformation|null $rotate rotate
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setRotate($rotate)
     {
-        $this->container['src'] = $src;
+        $this->container['rotate'] = $rotate;
 
         return $this;
     }
 
     /**
-     * Gets effect
+     * Gets skew
      *
-     * @return string|null
+     * @return \Shotstack\Client\Model\SkewTransformation|null
      */
-    public function getEffect()
+    public function getSkew()
     {
-        return $this->container['effect'];
+        return $this->container['skew'];
     }
 
     /**
-     * Sets effect
+     * Sets skew
      *
-     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @param \Shotstack\Client\Model\SkewTransformation|null $skew skew
      *
      * @return self
      */
-    public function setEffect($effect)
+    public function setSkew($skew)
     {
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($effect) && !in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['effect'] = $effect;
+        $this->container['skew'] = $skew;
 
         return $this;
     }
 
     /**
-     * Gets volume
+     * Gets flip
      *
-     * @return float|null
+     * @return \Shotstack\Client\Model\FlipTransformation|null
      */
-    public function getVolume()
+    public function getFlip()
     {
-        return $this->container['volume'];
+        return $this->container['flip'];
     }
 
     /**
-     * Sets volume
+     * Sets flip
      *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param \Shotstack\Client\Model\FlipTransformation|null $flip flip
      *
      * @return self
      */
-    public function setVolume($volume)
+    public function setFlip($flip)
     {
-        $this->container['volume'] = $volume;
+        $this->container['flip'] = $flip;
 
         return $this;
     }
