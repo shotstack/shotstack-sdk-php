@@ -1,4 +1,4 @@
-# # Effect
+# # AudioEffect
 
 The effect to apply to the audio asset
 
