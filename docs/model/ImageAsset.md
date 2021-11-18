@@ -9,7 +9,6 @@ use Shotstack\Client\Model\ImageAsset;
 
 $imageAsset = new ImageAsset();
 $imageAsset
-  ->setType('image')
   ->setSrc('https://shotstack-assets.s3-ap-southeast-2.amazonaws.com/images/earth.jpg')
   ->setCrop($crop);
 ```
@@ -18,7 +17,6 @@ $imageAsset
 
 Method | Description | Required
 :--- | :--- | :---: 
-setType(string $type) | The type of asset - set to `image` for images. | Y
 setSrc(string $url) | The image source URL. The URL must be publicly accessible or include credentials. | Y
 setCrop([\Shotstack\Client\Model\Crop](Crop.md) $crop) | Crop the sides of an asset by a relative amount. The size of the crop is specified using a scale between 0 and 1, relative to the screen width - i.e. a left crop of 0.5 will crop half of the asset from the left, a top crop of 0.25 will crop the top by quarter of the asset. | -
 
