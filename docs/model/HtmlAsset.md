@@ -4,7 +4,7 @@ The **HtmlAsset** clip type lets you create text based layout and formatting usi
 
 ### Example:
 
-```
+```php
 use Shotstack\Client\Model\HtmlAsset;
 
 $htmlAsset = new HtmlAsset();

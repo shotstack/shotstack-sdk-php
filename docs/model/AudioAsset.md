@@ -4,7 +4,7 @@ The **AudioAsset** is used to create video from images to compose an image. The 
 
 ### Example:
 
-```
+```php
 use Shotstack\Client\Model\AudioAsset;
 
 $audioAsset = new AudioAsset();

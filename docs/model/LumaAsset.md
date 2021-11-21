@@ -4,7 +4,7 @@ The **LumaAsset** is used to create luma matte masks, transitions and effects be
 
 ### Example:
 
-```
+```php
 use Shotstack\Client\Model\LumaAsset;
 
 $lumaAsset = new LumaAsset();

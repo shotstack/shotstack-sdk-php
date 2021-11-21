@@ -4,7 +4,7 @@ The **TitleAsset** clip type lets you create video titles from a text string and
 
 ### Example:
 
-```
+```php
 use Shotstack\Client\Model\TitleAsset;
 
 $titleAsset = new TitleAsset();
