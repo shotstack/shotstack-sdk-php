@@ -4,7 +4,7 @@ The **ImageAsset** is used to create video from images to compose an image. The 
 
 ### Example:
 
-```
+```php
 use Shotstack\Client\Model\ImageAsset;
 
 $imageAsset = new ImageAsset();
