@@ -1,9 +1,19 @@
-# # RotateTransformation
+# RotateTransformation()
 
-## Properties
+Rotate a clip by the specified angle in degrees. Rotation origin is set based on the clips `position`.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**angle** | **int** | The angle to rotate the clip. Can be 0 to 360, or 0 to -360. Using a positive number rotates the clip clockwise, negative numbers counter-clockwise. | [optional] [default to 0]
+### Example:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+```php
+use Shotstack\Client\Model\RotateTransformation;
+
+$rotateTransformation = new RotateTransformation();
+$rotateTransformation
+  ->setAngle(45);
+```
+
+### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setAngle(int $angle) | The angle to rotate the clip. Can be 0 to 360, or 0 to -360. Using a positive number rotates the clip clockwise, negative numbers counter-clockwise. | -
