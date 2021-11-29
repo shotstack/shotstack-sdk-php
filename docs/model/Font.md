@@ -1,9 +1,19 @@
-# # Font
+# Font()
 
-## Properties
+Download a custom font to use with the HTML asset type, using the font name in the CSS or font tag. See our [custom fonts](https://shotstack.io/learn/html-custom-fonts/) getting started guide for more details.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**src** | **string** | The URL of the font file. The URL must be publicly accessible or include credentials. |
+### Example:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+```php
+use Shotstack\Client\Model\Font;
+
+$font = new Font();
+$font
+  ->setSrc('https://shotstack-assets.s3-ap-southeast-2.amazonaws.com/fonts/OpenSans-Regular.ttf');
+```
+
+### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setSrc(string $sring) | The URL of the font file. The URL must be publicly accessible or include credentials. | Y
