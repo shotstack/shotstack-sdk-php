@@ -16,4 +16,4 @@ $font
 
 Method | Description | Required
 :--- | :--- | :---: 
-setSrc(string $sring) | The URL of the font file. The URL must be publicly accessible or include credentials. | Y
+setSrc(string $src) | The URL of the font file. The URL must be publicly accessible or include credentials. | Y
