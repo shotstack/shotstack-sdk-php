@@ -16,4 +16,4 @@ $poster
 
 Method | Description | Required
 :--- | :--- | :---: 
-setCapture(float $capture) | The point on the timeline in seconds to capture a single frame to use as the poster image. | -
+setCapture(float $capture) | The point on the timeline in seconds to capture a single frame to use as the poster image. | Y

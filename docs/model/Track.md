@@ -16,4 +16,4 @@ $track
 
 Method | Description | Required
 :--- | :--- | :---: 
-setClips([\Shotstack\Client\Model\Clip[]](Clip.md) $clips) | An array of Clips comprising of TitleClip, ImageClip or VideoClip. | -
+setClips([\Shotstack\Client\Model\Clip[]](Clip.md) $clips) | An array of Clips comprising of TitleClip, ImageClip or VideoClip. | Y
