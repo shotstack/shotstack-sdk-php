@@ -6,5 +6,5 @@ The **AssetRenderResponse** is the response returned by the Serve API [get asset
 
 Method | Description | Required
 :--- | :--- | :---: 
-setData([\Shotstack\Client\Model\AssetResponseData[]](AssetResponseData.md) $assetResponseData) | An array of asset resources grouped by render id. | -
+getData() | An array of asset resources grouped by render id. | -
 
