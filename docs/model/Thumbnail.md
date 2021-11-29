@@ -1,10 +1,21 @@
-# # Thumbnail
+# Thumbnail()
 
-## Properties
+Generate a thumbnail image for the video or image at a specific point from the timeline.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**capture** | **float** | The point on the timeline in seconds to capture a single frame to use as the thumbnail image. |
-**scale** | **float** | Scale the thumbnail size to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale  the thumbnail to half the size of the viewport. |
+### Example:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+```php
+use Shotstack\Client\Model\Thumbnail;
+
+$thumbnail = new Thumbnail();
+$thumbnail
+  ->setCapture(1)
+  ->setScale(0.3);
+```
+
+### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setCapture(float $capture) | The point on the timeline in seconds to capture a single frame to use as the thumbnail image. | Y
+setScale(float $scale) | Scale the thumbnail size to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale  the thumbnail to half the size of the viewport. | Y
