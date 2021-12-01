@@ -1,11 +1,11 @@
-# # RenderResponse
+# RenderResponse()
 
-## Properties
+The **RenderResponse** is the response received after a [render status request](https://shotstack.io/docs/api/#get-render-status) is submitted. The response includes details about status of a render and the output URL.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**success** | **bool** | &#x60;true&#x60; if status available, else &#x60;false&#x60;. |
-**message** | **string** | &#x60;OK&#x60; or an error message. |
-**response** | [**\Shotstack\Client\Model\RenderResponseData**](RenderResponseData.md) |  |
+### Methods:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if status available, else `false`. | Y
+getMessage(): string | `OK` or an error message. | Y
+getResponse(): [\Shotstack\Client\Model\RenderResponseData](RenderResponseData.md) | `RenderResponse` or an error message. | Y
