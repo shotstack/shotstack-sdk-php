@@ -24,4 +24,3 @@ setSrc(string $url) | The audio source URL. The URL must be publicly accessible 
 setTrim(float $seconds) | The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the trim point. The audio will play until the file ends or the Clip length is reached. | -
 setVolume(float $level) | Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1). | -
 setEffect(string $crop) | The effect to apply to the audio asset: <ul><li>`fadeIn` - fade volume in only</li><li>`fadeOut` - fade volume out only</li><li>`fadeInFadeOut` - fade volume in and out</li></ul> | -
-
