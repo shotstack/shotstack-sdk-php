@@ -1,11 +1,23 @@
-# # Soundtrack
+# Soundtrack()
 
-## Properties
+A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**src** | **string** | The URL of the mp3 audio file. The URL must be publicly accessible or include credentials. |
-**effect** | **string** | The effect to apply to the audio file &lt;ul&gt;   &lt;li&gt;&#x60;fadeIn&#x60; - fade volume in only&lt;/li&gt;   &lt;li&gt;&#x60;fadeOut&#x60; - fade volume out only&lt;/li&gt;   &lt;li&gt;&#x60;fadeInFadeOut&#x60; - fade volume in and out&lt;/li&gt; &lt;/ul&gt; | [optional]
-**volume** | **float** | Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1). | [optional] [default to 1]
+### Example:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+```php
+use Shotstack\Client\Model\Soundtrack;
+
+$soundtrack = new Soundtrack();
+$soundtrack
+  ->setSrc('https://s3-ap-southeast-2.amazonaws.com/shotstack-assets/music/disco.mp3')
+  ->setEffect('fadeIn')
+  ->setVolume(1);
+```
+
+### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setSrc(string $src) | The URL of the mp3 audio file. The URL must be publicly accessible or include credentials. | Y
+setEffect(string $effect) | The effect to apply to the audio file <ul><li>`fadeIn` - fade volume in only</li><li>`fadeOut` - fade volume out only</li><li>`fadeInFadeOut` - fade volume in and out</li></ul> | -
+setVolume(float $volume) | Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to `1`). | -

@@ -1,11 +1,11 @@
-# # ProbeResponse
+# ProbeResponse()
 
-## Properties
+The **ProbeResponse** is the response returned after a [probe request](https://shotstack.io/docs/api/#inspect-media) is submitted. The probe requests returns data from FFprobe formatted as JSON.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**success** | **bool** | &#x60;true&#x60; if media successfully read, else &#x60;false&#x60;. |
-**message** | **string** | &#x60;Created&#x60;, &#x60;Bad Request&#x60; or an error message. |
-**response** | **object** | The response from FFprobe in JSON format |
+### Methods:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if media successfully read, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): object | The response from FFprobe in JSON format | Y

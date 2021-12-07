@@ -1,10 +1,21 @@
-# # SkewTransformation
+# SkewTransformation()
 
-## Properties
+Skew a clip so its edges are sheared at an angle. Use values between 0 and 3. Over 3 the clip will be skewed almost flat.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**x** | **float** | Skew the clip along it&#39;s x axis. | [optional] [default to 0]
-**y** | **float** | Skew the clip along it&#39;s y axis. | [optional] [default to 0]
+### Example:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+```php
+use Shotstack\Client\Model\SkewTransformation;
+
+$skewTransformation = new SkewTransformation();
+$skewTransformation
+  ->setX(0.5)
+  ->setY(0.5);
+```
+
+### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setX(float $x) | Skew the clip along it&#39;s x axis. [default to `0`] | -
+setY(float $y) | Skew the clip along it&#39;s y axis. [default to `0`] | -

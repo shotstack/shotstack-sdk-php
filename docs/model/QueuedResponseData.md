@@ -1,10 +1,10 @@
-# # QueuedResponseData
+# QueuedResponseData()
 
-## Properties
+The **QueuedResponseData** is the response data returned with the [QueuedResponse](QueuedResponse.md).
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**message** | **string** | Success response message or error details. |
-**id** | **string** | The id of the render task in UUID format. |
+### Methods:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+Method | Description | Required
+:--- | :--- | :---: 
+getMessage(): string | Success response message or error details. | Y
+getId(): string | The id of the render task in UUID format. | Y

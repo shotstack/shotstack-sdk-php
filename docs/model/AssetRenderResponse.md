@@ -1,9 +1,9 @@
-# # AssetRenderResponse
+# AssetRenderResponse()
 
-## Properties
+The **AssetRenderResponse** is the response returned by the Serve API [get asset by render id](https://shotstack.io/docs/api/#get-asset-by-render-id) request. The response is an array of asset resources, including video, image, audio, thumbnail and poster image. The response follows  the [json:api](https://jsonapi.org/) specification.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**data** | [**\Shotstack\Client\Model\AssetResponseData[]**](AssetResponseData.md) | An array of asset resources grouped by render id. | [optional]
+### Methods:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+Method | Description | Required
+:--- | :--- | :---: 
+getData(): [\Shotstack\Client\Model\AssetResponseData[]](AssetResponseData.md) | Returns an array of asset resources grouped by render id. | -

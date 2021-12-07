@@ -1,10 +1,21 @@
-# # ShotstackDestination
+# ShotstackDestination()
 
-## Properties
+Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
 
-Name | Type | Description | Notes
------------- | ------------- | ------------- | -------------
-**provider** | **string** | The destination to send rendered assets to - set to &#x60;shotstack&#x60; for Shotstack hosting and CDN. | [default to 'shotstack']
-**exclude** | **bool** | Set to &#x60;true&#x60; to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering. | [optional] [default to false]
+### Example:
 
-[[Back to Model list]](../../README.md#models) [[Back to API list]](../../README.md#endpoints) [[Back to README]](../../README.md)
+```php
+use Shotstack\Client\Model\ShotstackDestination;
+
+$shotstackDestination = new ShotstackDestination();
+$shotstackDestination
+  ->setProvider('shotstack')
+  ->setExclude(false);
+```
+
+### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setProvider(string $provider) | The destination to send rendered assets to - set to `shotstack` for Shotstack hosting and CDN. [default to `shotstack`] | Y
+setExclude(bool $exclude) | Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering. [default to `false`] | -
