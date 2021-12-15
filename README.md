@@ -1,4 +1,4 @@
-# Shotstack PHP SDK
+# Shotstack PHP SDK <!-- omit in toc -->
 
 PHP SDK for the Shotstack [PHP video editor](https://shotstack.io/product/sdk/php) and cloud video editing API.
 
@@ -10,12 +10,59 @@ A server based render farm takes care of rendering the videos allowing multiple 
 
 For examples of how to use the SDK to create videos using code checkout the PHP demo repo: https://github.com/shotstack/php-demos
 
-## Documentation and Guides
-
-- [Getting Started Guide](https://shotstack.io/docs/guide/getting-started/core-concepts/)
-- [API Reference](https://shotstack.io/docs/api/)
-- [Examples](https://github.com/shotstack/php-demos)
-- [Shotstack Website](https://shotstack.io)
+## Contents <!-- omit in toc -->
+- [Using the PHP SDK](#using-the-php-sdk)
+    - [Installation](#installation)
+  - [Video Editing](#video-editing)
+    - [Video Editing Example](#video-editing-example)
+    - [Status Check Example](#status-check-example)
+  - [Video Editing Schemas](#video-editing-schemas)
+    - [Edit()](#edit)
+    - [Timeline()](#timeline)
+    - [Soundtrack()](#soundtrack)
+    - [Font()](#font)
+    - [Track()](#track)
+    - [Clip()](#clip)
+    - [VideoAsset()](#videoasset)
+    - [ImageAsset()](#imageasset)
+    - [TitleAsset()](#titleasset)
+    - [HtmlAsset()](#htmlasset)
+    - [AudioAsset()](#audioasset)
+    - [LumaAsset()](#lumaasset)
+    - [Transition()](#transition)
+    - [Offset()](#offset)
+    - [Crop()](#crop)
+    - [Transformation()](#transformation)
+    - [RotateTransformation()](#rotatetransformation)
+    - [SkewTransformation()](#skewtransformation)
+    - [FlipTransformation()](#fliptransformation)
+    - [MergeField()](#mergefield)
+  - [Output Schemas](#output-schemas)
+    - [Output()](#output)
+    - [Size()](#size)
+    - [Range()](#range)
+    - [Poster()](#poster)
+    - [Thumbnail()](#thumbnail)
+    - [ShotstackDestination()](#shotstackdestination)
+  - [Render Response Schemas](#render-response-schemas)
+    - [QueuedResponse()](#queuedresponse)
+    - [QueuedResponseData()](#queuedresponsedata)
+    - [RenderResponse()](#renderresponse)
+    - [RenderResponseData()](#renderresponsedata)
+    - [Status Check Example](#status-check-example-1)
+  - [Inspecting Media](#inspecting-media)
+    - [Probe Example](#probe-example)
+  - [Probe Schemas](#probe-schemas)
+    - [ProbeResponse()](#proberesponse)
+  - [Managing Assets](#managing-assets)
+    - [Assets by Render ID Example](#assets-by-render-id-example)
+    - [Assets by Asset ID Example](#assets-by-asset-id-example)
+  - [Asset Schemas](#asset-schemas)
+    - [AssetResponse()](#assetresponse)
+    - [AssetRenderResponse()](#assetrenderresponse)
+    - [AssetResponseData()](#assetresponsedata)
+    - [AssetResponseAttributes()](#assetresponseattributes)
+- [API Documentation and Guides](#api-documentation-and-guides)
 
 # Using the PHP SDK
 ### Installation
@@ -1073,3 +1120,10 @@ getUrl(): string | The asset file name. | -
 getStatus(): string | The status of the asset. <ul><li>`importing` - the asset is being copied to the hosting service</li><li>`ready` - the asset is ready to be served to users</li><li>`failed` - the asset failed to copy or delete</li><li>`deleted` - the asset has been deleted</li></ul> | -
 getCreated(): string | The time the asset was created. | -
 getUpdated(): string | The time the asset status was last updated. | -
+
+# API Documentation and Guides
+
+- [Getting Started Guide](https://shotstack.io/docs/guide/getting-started/core-concepts/)
+- [API Reference](https://shotstack.io/docs/api/)
+- [Examples](https://github.com/shotstack/php-demos)
+- [Shotstack Website](https://shotstack.io)
