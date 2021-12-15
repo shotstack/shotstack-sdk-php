@@ -17,7 +17,7 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
 - [Examples](https://github.com/shotstack/php-demos)
 - [Shotstack Website](https://shotstack.io)
 
-## Using the PHP SDK
+# Using the PHP SDK
 ### Installation
 
 The recommended way to use the SDK is as a composer package. Install using the command:
@@ -26,7 +26,11 @@ The recommended way to use the SDK is as a composer package. Install using the c
 composer require shotstack/shotstack-sdk-php
 ```
 
-### Editing Example
+## Video Editing
+
+The Shotstack SDK enables programmatic video editing via the Edit API `render` endpoint. Prepare JSON edits using the
+provided schema classes and `POST` to the API for rendering.
+### Video Editing Example
 
 The example below trims the start of a video clip and plays it for 8 seconds. The edit is prepared using the SDK models
 and then sent to the API for rendering.
@@ -80,6 +84,8 @@ $edit
 $render = $client->postRender($edit)->getResponse();
 ```
 
+### Status Check Example
+
 The example request below can be called a few seconds after the render above is posted. It will return the status of 
 the render, which can take several seconds to process.
 
@@ -100,7 +106,9 @@ if ($video->getStatus() === 'done') {
 }
 ```
 
-## Schemas
+## Video Editing Schemas
+
+The following schemas are used to prepare a video edit.
 
 ### Edit()
 
@@ -185,6 +193,28 @@ Method | Description | Required
 setSrc(string $src) | The URL of the mp3 audio file. The URL must be publicly accessible or include credentials. | Y
 setEffect(string $effect) | The effect to apply to the audio file <ul><li>`fadeIn` - fade volume in only</li><li>`fadeOut` - fade volume out only</li><li>`fadeInFadeOut` - fade volume in and out</li></ul> | -
 setVolume(float $volume) | Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to `1`). | -
+
+---
+
+### Font()
+
+Download a custom font to use with the HTML asset type, using the font name in the CSS or font tag. See our [custom fonts](https://shotstack.io/learn/html-custom-fonts/) getting started guide for more details.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\Font;
+
+$font = new Font();
+$font
+  ->setSrc('https://shotstack-assets.s3-ap-southeast-2.amazonaws.com/fonts/OpenSans-Regular.ttf');
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setSrc(string $src) | The URL of the font file. The URL must be publicly accessible or include credentials. | Y
 
 ---
 
@@ -450,28 +480,6 @@ setOut(string $out) | The transition out. Available transitions are:   <ul><li>`
 
 ---
 
-### Font()
-
-Download a custom font to use with the HTML asset type, using the font name in the CSS or font tag. See our [custom fonts](https://shotstack.io/learn/html-custom-fonts/) getting started guide for more details.
-
-#### Example:
-
-```php
-use Shotstack\Client\Model\Font;
-
-$font = new Font();
-$font
-  ->setSrc('https://shotstack-assets.s3-ap-southeast-2.amazonaws.com/fonts/OpenSans-Regular.ttf');
-```
-
-#### Methods:
-
-Method | Description | Required
-:--- | :--- | :---: 
-setSrc(string $src) | The URL of the font file. The URL must be publicly accessible or include credentials. | Y
-
----
-
 ### Offset()
 
 Offsets the position of an asset horizontally or vertically by a relative distance.
@@ -524,6 +532,128 @@ setRight(float $right) | Crop from the right of the asset | -
 
 ---
 
+### Transformation()
+
+Apply one or more transformations to a clip. **Transformations** alter the visual properties of a clip and can be combined to create new shapes and effects.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\Transformation;
+
+$transformation = new Transformation();
+$transformation
+  ->setX(0.5)
+  ->setY(0.5);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setRotate([\Shotstack\Client\Model\RotateTransformation](#rotatetransformation) $rotate) | Rotate a clip by the specified angle in degrees. Rotation origin is set based on the clips `position`. | -
+setSkew([\Shotstack\Client\Model\SkewTransformation](#skewtransformation) $skew) | Skew a clip so its edges are sheared at an angle. Use values between 0 and 3. Over 3 the clip will be skewed almost flat. | -
+setFlip([\Shotstack\Client\Model\FlipTransformation](#fliptransformation) $flip) | Flip a clip vertically or horizontally. Acts as a mirror effect of the clip along the selected plane. | -
+
+---
+
+### RotateTransformation()
+
+Rotate a clip by the specified angle in degrees. Rotation origin is set based on the clips `position`.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\RotateTransformation;
+
+$rotateTransformation = new RotateTransformation();
+$rotateTransformation
+  ->setAngle(45);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setAngle(int $angle) | The angle to rotate the clip. Can be 0 to 360, or 0 to -360. Using a positive number rotates the clip clockwise, negative numbers counter-clockwise. | -
+
+---
+
+### SkewTransformation()
+
+Skew a clip so its edges are sheared at an angle. Use values between 0 and 3. Over 3 the clip will be skewed almost flat.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\SkewTransformation;
+
+$skewTransformation = new SkewTransformation();
+$skewTransformation
+  ->setX(0.5)
+  ->setY(0.5);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setX(float $x) | Skew the clip along it&#39;s x axis. [default to `0`] | -
+setY(float $y) | Skew the clip along it&#39;s y axis. [default to `0`] | -
+
+---
+
+### FlipTransformation()
+
+Flip a clip vertically or horizontally. Acts as a mirror effect of the clip along the selected plane.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\FlipTransformation;
+
+$flipTransformation = new FlipTransformation();
+$flipTransformation
+  ->setHorizontal(true)
+  ->setVertical(true);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setHorizontal(bool $horizontal) | Flip a clip horizontally. [default to `false`] | - 
+setVertical(bool $vertical) | Flip a clip vertically. [default to `false`] | -
+
+---
+
+### MergeField()
+
+A merge field consists of a key; `find`, and a `value`; replace. Merge fields can be used to replace placeholders within the JSON edit to create re-usable templates. Placeholders should be a string with double brace delimiters, i.e. `"{{NAME}}"`. A placeholder can be used for any value within the JSON edit.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\MergeField;
+
+$mergeField = new MergeField();
+$mergeField
+  ->setFind('NAME')
+  ->setReplace('Jane');
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setFind(string $find) | The string to find <u>without</u> delimiters. | Y
+setReplace($replace) | The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc... | Y
+
+---
+
+## Output Schemas
+
+The following schemas specify the output format and settings.
 ### Output()
 
 The output format, render range and type of media to generate.
@@ -662,101 +792,6 @@ setScale(float $scale) | Scale the thumbnail size to a fraction of the viewport 
 
 ---
 
-### Transformation()
-
-Apply one or more transformations to a clip. **Transformations** alter the visual properties of a clip and can be combined to create new shapes and effects.
-
-#### Example:
-
-```php
-use Shotstack\Client\Model\Transformation;
-
-$transformation = new Transformation();
-$transformation
-  ->setX(0.5)
-  ->setY(0.5);
-```
-
-#### Methods:
-
-Method | Description | Required
-:--- | :--- | :---: 
-setRotate([\Shotstack\Client\Model\RotateTransformation](#rotatetransformation) $rotate) | Rotate a clip by the specified angle in degrees. Rotation origin is set based on the clips `position`. | -
-setSkew([\Shotstack\Client\Model\SkewTransformation](#skewtransformation) $skew) | Skew a clip so its edges are sheared at an angle. Use values between 0 and 3. Over 3 the clip will be skewed almost flat. | -
-setFlip([\Shotstack\Client\Model\FlipTransformation](#fliptransformation) $flip) | Flip a clip vertically or horizontally. Acts as a mirror effect of the clip along the selected plane. | -
-
----
-
-### RotateTransformation()
-
-Rotate a clip by the specified angle in degrees. Rotation origin is set based on the clips `position`.
-
-#### Example:
-
-```php
-use Shotstack\Client\Model\RotateTransformation;
-
-$rotateTransformation = new RotateTransformation();
-$rotateTransformation
-  ->setAngle(45);
-```
-
-#### Methods:
-
-Method | Description | Required
-:--- | :--- | :---: 
-setAngle(int $angle) | The angle to rotate the clip. Can be 0 to 360, or 0 to -360. Using a positive number rotates the clip clockwise, negative numbers counter-clockwise. | -
-
----
-
-### SkewTransformation()
-
-Skew a clip so its edges are sheared at an angle. Use values between 0 and 3. Over 3 the clip will be skewed almost flat.
-
-#### Example:
-
-```php
-use Shotstack\Client\Model\SkewTransformation;
-
-$skewTransformation = new SkewTransformation();
-$skewTransformation
-  ->setX(0.5)
-  ->setY(0.5);
-```
-
-#### Methods:
-
-Method | Description | Required
-:--- | :--- | :---: 
-setX(float $x) | Skew the clip along it&#39;s x axis. [default to `0`] | -
-setY(float $y) | Skew the clip along it&#39;s y axis. [default to `0`] | -
-
----
-
-### FlipTransformation()
-
-Flip a clip vertically or horizontally. Acts as a mirror effect of the clip along the selected plane.
-
-#### Example:
-
-```php
-use Shotstack\Client\Model\FlipTransformation;
-
-$flipTransformation = new FlipTransformation();
-$flipTransformation
-  ->setHorizontal(true)
-  ->setVertical(true);
-```
-
-#### Methods:
-
-Method | Description | Required
-:--- | :--- | :---: 
-setHorizontal(bool $horizontal) | Flip a clip horizontally. [default to `false`] | - 
-setVertical(bool $vertical) | Flip a clip vertically. [default to `false`] | -
-
----
-
 ### ShotstackDestination()
 
 Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
@@ -781,29 +816,9 @@ setExclude(bool $exclude) | Set to `true` to opt-out from the Shotstack hosting 
 
 ---
 
-### MergeField()
+## Render Response Schemas
 
-A merge field consists of a key; `find`, and a `value`; replace. Merge fields can be used to replace placeholders within the JSON edit to create re-usable templates. Placeholders should be a string with double brace delimiters, i.e. `"{{NAME}}"`. A placeholder can be used for any value within the JSON edit.
-
-#### Example:
-
-```php
-use Shotstack\Client\Model\MergeField;
-
-$mergeField = new MergeField();
-$mergeField
-  ->setFind('NAME')
-  ->setReplace('Jane');
-```
-
-#### Methods:
-
-Method | Description | Required
-:--- | :--- | :---: 
-setFind(string $find) | The string to find <u>without</u> delimiters. | Y
-setReplace($replace) | The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc... | Y
-
----
+The following schemas are returned by the render request and status request.
 
 ### QueuedResponse()
 
@@ -870,6 +885,61 @@ getUpdated(): string | The time the render status was last updated. | Y
 
 ---
 
+### Status Check Example
+
+The example request below can be called a few seconds after the render above is posted. It will return the status of 
+the render, which can take several seconds to process.
+
+```php
+use Shotstack\Client\Api\EditApi;
+use Shotstack\Client\Configuration;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setHost('https://api.shotstack.io/stage')
+    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
+
+$client = new EditApi(null, $config);
+
+$video = $client->getRender($render->getId())->getResponse();
+
+if ($video->getStatus() === 'done') {
+    echo $video->getUrl();
+}
+```
+## Inspecting Media
+
+The SDK `probe` endpoint can be used to inspect media hosted online. Simply pass the URL an asset to inspect.
+### Probe Example
+
+The example below inspects (probes) a video hosted on GitHub and returns metadata about the file.
+
+```php
+use Shotstack\Client\Api\EditApi;
+use Shotstack\Client\Configuration;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setHost('https://api.shotstack.io/stage')
+    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
+
+$client = new EditApi(null, $config);
+
+$url = 'https://github.com/shotstack/test-media/raw/main/captioning/scott-ko.mp4';
+
+$response = $client->probe($url)->getResponse();
+
+foreach ($response['metadata']->streams as $stream) {
+    if ($stream->codec_type === 'video') {
+        echo 'Example settings for: ' . $response['metadata']->format->filename, PHP_EOL, PHP_EOL;
+        echo 'Width: ' . $stream->width . 'px', PHP_EOL;
+        echo 'Height: ' . $stream->height . 'px', PHP_EOL;
+        echo 'Framerate: ' . $stream->r_frame_rate . ' fps', PHP_EOL;
+        echo 'Duration: ' . $stream->duration . ' secs', PHP_EOL;
+    }
+}
+```
+## Probe Schemas
+
+The following schemas are returned by the probe request.
 ### ProbeResponse()
 
 The **ProbeResponse** is the response returned after a [probe request](https://shotstack.io/docs/api/#inspect-media) is submitted. The probe requests returns data from FFprobe formatted as JSON.
@@ -884,6 +954,71 @@ getResponse(): object | The response from FFprobe in JSON format | Y
 
 ---
 
+## Managing Assets
+
+By default, all assets generated by the editing API are hosted by Shotstack and served via our CDN. The SDK provides
+access to the Serve API to retrieve information about hosted files. Files can also be deleted.
+
+### Assets by Render ID Example
+
+The example below uses a render ID to look up hosted assets associated with the render. Note that multiple assets can be
+created for a render, i.e. video, thumb and poster. Each asset has a unique asset ID different to the render ID.
+
+```php
+use Shotstack\Client\Api\ServeApi;
+use Shotstack\Client\Configuration;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setHost('https://api.shotstack.io/stage')
+    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
+
+$client = new ServeApi(null, $config);
+
+$renderId = '140924c6-077d-4334-a89f-94befcfc0155'; // Use a valid render ID
+
+$response = $client->getAssetByRenderId($renderId)->getData();
+
+foreach ($response as $asset) {
+    if ($asset->getAttributes()->getStatus() === 'ready') {
+        echo "Status: " . strtoupper($asset->getAttributes()->getStatus()), PHP_EOL, PHP_EOL;
+        echo ">> Asset CDN URL: " . $asset->getAttributes()->getUrl(), PHP_EOL, PHP_EOL;
+        echo ">> Asset ID: " . $asset->getAttributes()->getId(), PHP_EOL, PHP_EOL;
+        echo ">> Render ID: " . $asset->getAttributes()->getRenderId(), PHP_EOL, PHP_EOL;
+    }
+}
+```
+
+### Assets by Asset ID Example
+
+Every asset has a unique asset ID, the example below looks up an asset by its asset ID.
+
+```php
+use Shotstack\Client\Api\ServeApi;
+use Shotstack\Client\Configuration;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setHost('https://api.shotstack.io/stage')
+    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
+
+$client = new ServeApi(null, $config);
+
+$renderId = 'ed43eae3-4825-4c03-979d-f7dc47b9997c'; // Use a valid asset ID
+
+$response = $client->getAsset($renderId)->getData();
+
+foreach ($response as $asset) {
+    if ($asset->getAttributes()->getStatus() === 'ready') {
+        echo "Status: " . strtoupper($asset->getAttributes()->getStatus()), PHP_EOL, PHP_EOL;
+        echo ">> Asset CDN URL: " . $asset->getAttributes()->getUrl(), PHP_EOL, PHP_EOL;
+        echo ">> Asset ID: " . $asset->getAttributes()->getId(), PHP_EOL, PHP_EOL;
+        echo ">> Render ID: " . $asset->getAttributes()->getRenderId(), PHP_EOL, PHP_EOL;
+    }
+}
+```
+
+## Asset Schemas
+
+The following schemas are returned by requests to the Serve API.
 ### AssetResponse()
 
 The **AssetResponse** is the response returned by the Serve API [get asset](https://shotstack.io/docs/api/#get-asset) request. Includes details of a hosted video, image, audio file, thumbnail or poster image. The response follows  the [json:api](https://jsonapi.org/) specification.
