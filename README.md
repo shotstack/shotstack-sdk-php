@@ -590,8 +590,9 @@ use Shotstack\Client\Model\Transformation;
 
 $transformation = new Transformation();
 $transformation
-  ->setX(0.5)
-  ->setY(0.5);
+  ->setRotate($rotate)
+  ->setSkew($skew)
+  ->setFlip($flip);
 ```
 
 #### Methods:
