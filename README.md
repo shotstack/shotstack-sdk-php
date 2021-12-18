@@ -322,7 +322,7 @@ setLength(float $length) | The length, in seconds, the Clip should play for. | Y
 setFit(string $fit) | Set how the asset should be scaled to fit the viewport using one of the following options [default to `crop`]: <ul><li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li><li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li><li>`crop` - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li><li>`none` - preserves the original asset dimensions and does not apply any scaling.</li></ul>| -
 setScale(float $scale) | Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks. | -
 setPosition(string $position) | Place the asset in one of nine predefined positions of the viewport. This is most effective for when the asset is scaled and you want to position the element to a specific position [default to `center`].<ul><li>`top` - top (center)</li><li>`topRight` - top right</li><li>`right` - right (center)</li><li>`bottomRight` - bottom right</li><li>`bottom` - bottom (center)</li><li>`bottomLeft` - bottom left</li><li>`left` - left (center)</li><li>`topLeft` - top left</li><li>`center` - center</li></ul> | -
-stOffset([\Shotstack\Client\Model\Offset](#offset) $offset) | Offset the location of the asset relative to its position on the viewport. The offset distance is relative to the width of the viewport - for example an x offset of 0.5 will move the asset half the viewport width to the right. | -
+setOffset([\Shotstack\Client\Model\Offset](#offset) $offset) | Offset the location of the asset relative to its position on the viewport. The offset distance is relative to the width of the viewport - for example an x offset of 0.5 will move the asset half the viewport width to the right. | -
 setTransition([\Shotstack\Client\Model\Transition](#transition) $transition) | In and out transitions for a clip - i.e. fade in and fade out | -
 setEffect(string $effect) | A motion effect to apply to the Clip. <ul><li>`zoomIn` - slow zoom in</li><li>`zoomOut` - slow zoom out</li><li>`slideLeft` - slow slide (pan) left</li><li>`slideRight` - slow slide (pan) right</li><li>`slideUp` - slow slide (pan) up</li><li>`slideDown` - slow slide (pan) down</li></ul>| -
 setFilter(string $filter) | A filter effect to apply to the Clip. <ul><li>`boost` - boost contrast and saturation</li><li>`contrast` - increase contrast</li><li>`darken` - darken the scene</li><li>`greyscale` - remove colour</li><li>`lighten` - lighten the scene</li><li>`muted` - reduce saturation and contrast</li><li>`invert` - invert colors</li></ul> | -
@@ -956,7 +956,7 @@ if ($video->getStatus() === 'done') {
 ```
 ## Inspecting Media
 
-The SDK `probe` endpoint can be used to inspect media hosted online. Simply pass the URL an asset to inspect.
+The SDK `probe` endpoint can be used to inspect media hosted online. Simply pass the URL of an asset to inspect.
 ### Probe Example
 
 The example below inspects (probes) a video hosted on GitHub and returns metadata about the file.
