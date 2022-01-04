@@ -49,7 +49,6 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
     - [QueuedResponseData()](#queuedresponsedata)
     - [RenderResponse()](#renderresponse)
     - [RenderResponseData()](#renderresponsedata)
-    - [Status Check Example](#status-check-example-1)
   - [Inspecting Media](#inspecting-media)
     - [Probe Example](#probe-example)
   - [Probe Schemas](#probe-schemas)
@@ -932,28 +931,6 @@ getCreated(): string | The time the render task was initially queued. | Y
 getUpdated(): string | The time the render status was last updated. | Y
 
 ---
-
-### Status Check Example
-
-The example request below can be called a few seconds after the render above is posted. It will return the status of 
-the render, which can take several seconds to process.
-
-```php
-use Shotstack\Client\Api\EditApi;
-use Shotstack\Client\Configuration;
-
-$config = Configuration::getDefaultConfiguration()
-    ->setHost('https://api.shotstack.io/stage')
-    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
-
-$client = new EditApi(null, $config);
-
-$video = $client->getRender($render->getId())->getResponse();
-
-if ($video->getStatus() === 'done') {
-    echo $video->getUrl();
-}
-```
 ## Inspecting Media
 
 The SDK `probe` endpoint can be used to inspect media hosted online. Simply pass the URL an asset to inspect.
