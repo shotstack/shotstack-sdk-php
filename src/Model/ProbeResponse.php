@@ -35,13 +35,13 @@ use \Shotstack\Client\ObjectSerializer;
  * ProbeResponse Class Doc Comment
  *
  * @category Class
- * @description The response received after a [probe request](#probe) is submitted. The probe requests returns data from FFprobe formatted as JSON.
+ * @description The response received after a [probe request](#inspect-media) is submitted. The probe requests returns data from FFprobe formatted as JSON.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
- * @template TValue mixed|null  
+ * @template TValue mixed|null
  */
 class ProbeResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {

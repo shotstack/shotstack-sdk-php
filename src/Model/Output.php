@@ -41,7 +41,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<TKey, TValue>
  * @template TKey int|null
- * @template TValue mixed|null  
+ * @template TValue mixed|null
  */
 class Output implements ModelInterface, ArrayAccess, \JsonSerializable
 {
