@@ -64,7 +64,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'resolution' => 'string',
         'aspect_ratio' => 'string',
         'size' => '\Shotstack\Client\Model\Size',
-        'fps' => 'int',
+        'fps' => 'float',
         'scale_to' => 'string',
         'quality' => 'string',
         'repeat' => 'bool',
@@ -236,8 +236,10 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     const ASPECT_RATIO__43 = '4:3';
     const FPS_12 = 12;
     const FPS_15 = 15;
+    const FPS_23_DOT_976 = 23.976;
     const FPS_24 = 24;
     const FPS_25 = 25;
+    const FPS_29_DOT_97 = 29.97;
     const FPS_30 = 30;
     const SCALE_TO_PREVIEW = 'preview';
     const SCALE_TO_MOBILE = 'mobile';
@@ -584,7 +586,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets fps
      *
-     * @return int|null
+     * @return float|null
      */
     public function getFps()
     {
@@ -594,7 +596,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fps
      *
-     * @param int|null $fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`25` - 25fps</li>   <li>`30` - 30fps</li> </ul>
+     * @param float|null $fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
      *
      * @return self
      */

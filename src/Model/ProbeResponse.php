@@ -288,7 +288,7 @@ class ProbeResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets response
      *
-     * @param object $response The response from FFmpeg in JSON format
+     * @param object $response The response from FFprobe in JSON format
      *
      * @return self
      */
