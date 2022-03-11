@@ -366,7 +366,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['resolution'] = $data['resolution'] ?? null;
         $this->container['aspect_ratio'] = $data['aspect_ratio'] ?? null;
         $this->container['size'] = $data['size'] ?? null;
-        $this->container['fps'] = $data['fps'] ?? self::FPS_25;
+        $this->container['fps'] = $data['fps'] ?? null;
         $this->container['scale_to'] = $data['scale_to'] ?? null;
         $this->container['quality'] = $data['quality'] ?? 'medium';
         $this->container['repeat'] = $data['repeat'] ?? true;
