@@ -27,6 +27,8 @@
 
 namespace Shotstack\Client;
 
+error_reporting(E_ALL & ~E_DEPRECATED);
+
 /**
  * Configuration Class Doc Comment
  * PHP version 7.3
