@@ -28,6 +28,8 @@
 
 namespace Shotstack\Client\Api;
 
+error_reporting(E_ALL & ~E_DEPRECATED);
+
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\RequestException;

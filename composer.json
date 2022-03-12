@@ -6,11 +6,16 @@
     "minimum-stability": "dev",
     "keywords": ["shotstack", "video", "video editing", "api"],
     "require": {
-        "php": ">=7.2",
+        "php": "^7.3 || ^8.0",
         "ext-curl": "*",
         "ext-json": "*",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "7.2.0"
+        "guzzlehttp/guzzle": "^7.3",
+        "guzzlehttp/psr7": "^1.7 || ^2.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.0 || ^9.0",
+        "friendsofphp/php-cs-fixer": "^2.12"
     },
     "autoload": {
         "psr-4": { "Shotstack\\Client\\" : "src/" }
