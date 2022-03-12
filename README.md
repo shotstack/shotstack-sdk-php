@@ -12,6 +12,7 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
 
 ## Contents <!-- omit in toc -->
 - [Using the PHP SDK](#using-the-php-sdk)
+    - [Requirements](#requirements)
     - [Installation](#installation)
   - [Video Editing](#video-editing)
     - [Video Editing Example](#video-editing-example)
@@ -64,6 +65,10 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
 - [API Documentation and Guides](#api-documentation-and-guides)
 
 # Using the PHP SDK
+### Requirements
+
+Requires PHP7.3+ and uses Guzzle7.3+.
+
 ### Installation
 
 The recommended way to use the SDK is as a composer package. Install using the command:
