@@ -1,6 +1,6 @@
 <?php
 /**
- * AudioAsset
+ * MuxDestination
  *
  * PHP version 7.3
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * AudioAsset Class Doc Comment
+ * MuxDestination Class Doc Comment
  *
  * @category Class
- * @description The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
+ * @description Send rendered videos to the [Mux](https://www.mux.com/) video hosting and streaming service. Add the &#x60;mux&#x60; destination provider to send the output video to Mux. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,7 +43,7 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
+class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -52,7 +52,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AudioAsset';
+    protected static $openAPIModelName = 'MuxDestination';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,11 +60,8 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'src' => 'string',
-        'trim' => 'float',
-        'volume' => 'float',
-        'effect' => 'string'
+        'provider' => 'string',
+        'options' => '\Shotstack\Client\Model\MuxDestinationOptions'
     ];
 
     /**
@@ -75,11 +72,8 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'src' => null,
-        'trim' => null,
-        'volume' => null,
-        'effect' => null
+        'provider' => null,
+        'options' => null
     ];
 
     /**
@@ -109,11 +103,8 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'src' => 'src',
-        'trim' => 'trim',
-        'volume' => 'volume',
-        'effect' => 'effect'
+        'provider' => 'provider',
+        'options' => 'options'
     ];
 
     /**
@@ -122,11 +113,8 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'src' => 'setSrc',
-        'trim' => 'setTrim',
-        'volume' => 'setVolume',
-        'effect' => 'setEffect'
+        'provider' => 'setProvider',
+        'options' => 'setOptions'
     ];
 
     /**
@@ -135,11 +123,8 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'src' => 'getSrc',
-        'trim' => 'getTrim',
-        'volume' => 'getVolume',
-        'effect' => 'getEffect'
+        'provider' => 'getProvider',
+        'options' => 'getOptions'
     ];
 
     /**
@@ -183,23 +168,6 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    const EFFECT_FADE_IN = 'fadeIn';
-    const EFFECT_FADE_OUT = 'fadeOut';
-    const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -216,11 +184,8 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['type'] = $data['type'] ?? 'audio';
-        $this->container['src'] = $data['src'] ?? null;
-        $this->container['trim'] = $data['trim'] ?? null;
-        $this->container['volume'] = $data['volume'] ?? 1;
-        $this->container['effect'] = $data['effect'] ?? null;
+        $this->container['provider'] = $data['provider'] ?? 'mux';
+        $this->container['options'] = $data['options'] ?? null;
     }
 
     /**
@@ -232,21 +197,9 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['provider'] === null) {
+            $invalidProperties[] = "'provider' can't be null";
         }
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
-                implode("', '", $allowedValues)
-            );
-        }
-
         return $invalidProperties;
     }
 
@@ -263,131 +216,49 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets type
+     * Gets provider
      *
      * @return string
      */
-    public function getType()
+    public function getProvider()
     {
-        return $this->container['type'];
+        return $this->container['provider'];
     }
 
     /**
-     * Sets type
+     * Sets provider
      *
-     * @param string $type The type of asset - set to `audio` for audio assets.
+     * @param string $provider The destination to send rendered assets to - set to `mux` for Mux.
      *
      * @return self
      */
-    public function setType($type)
+    public function setProvider($provider)
     {
-        $this->container['type'] = $type;
+        $this->container['provider'] = $provider;
 
         return $this;
     }
 
     /**
-     * Gets src
+     * Gets options
      *
-     * @return string
+     * @return \Shotstack\Client\Model\MuxDestinationOptions|null
      */
-    public function getSrc()
+    public function getOptions()
     {
-        return $this->container['src'];
+        return $this->container['options'];
     }
 
     /**
-     * Sets src
+     * Sets options
      *
-     * @param string $src The audio source URL. The URL must be publicly accessible or include credentials.
+     * @param \Shotstack\Client\Model\MuxDestinationOptions|null $options options
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setOptions($options)
     {
-        $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets trim
-     *
-     * @return float|null
-     */
-    public function getTrim()
-    {
-        return $this->container['trim'];
-    }
-
-    /**
-     * Sets trim
-     *
-     * @param float|null $trim The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
-     *
-     * @return self
-     */
-    public function setTrim($trim)
-    {
-        $this->container['trim'] = $trim;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
-     *
-     * @return float|null
-     */
-    public function getVolume()
-    {
-        return $this->container['volume'];
-    }
-
-    /**
-     * Sets volume
-     *
-     * @param float|null $volume Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
-     *
-     * @return self
-     */
-    public function setVolume($volume)
-    {
-        $this->container['volume'] = $volume;
-
-        return $this;
-    }
-
-    /**
-     * Gets effect
-     *
-     * @return string|null
-     */
-    public function getEffect()
-    {
-        return $this->container['effect'];
-    }
-
-    /**
-     * Sets effect
-     *
-     * @param string|null $effect The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     *
-     * @return self
-     */
-    public function setEffect($effect)
-    {
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($effect) && !in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['effect'] = $effect;
+        $this->container['options'] = $options;
 
         return $this;
     }
