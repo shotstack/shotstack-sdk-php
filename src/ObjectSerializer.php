@@ -402,9 +402,17 @@ class ObjectSerializer
                 }
 
                 if (isset($data->{$instance::attributeMap()[$property]})) {
-                    $propertyValue = $data->{$instance::attributeMap()[$property]};
-                    $instance->$propertySetter(self::deserialize($propertyValue, $type, null));
-                }
+					$propertyValue = $data->{$instance::attributeMap()[$property]};
+
+					if ($type == '\Shotstack\Client\Model\Asset' && isset($propertyValue->type)) {
+						$_class = sprintf('\Shotstack\Client\Model\%sAsset', ucfirst($propertyValue->type));
+						if (class_exists($_class)) {
+							$type = $_class;
+						}
+					}
+
+					$instance->$propertySetter(self::deserialize($propertyValue, $type, null));
+				}
             }
             return $instance;
         }
