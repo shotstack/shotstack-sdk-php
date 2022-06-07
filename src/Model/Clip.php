@@ -333,14 +333,14 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['asset'] = $data['asset'] ?? null;
         $this->container['start'] = $data['start'] ?? null;
         $this->container['length'] = $data['length'] ?? null;
-        $this->container['fit'] = $data['fit'] ?? 'crop';
+        $this->container['fit'] = $data['fit'] ?? null;
         $this->container['scale'] = $data['scale'] ?? null;
-        $this->container['position'] = $data['position'] ?? 'center';
+        $this->container['position'] = $data['position'] ?? null;
         $this->container['offset'] = $data['offset'] ?? null;
         $this->container['transition'] = $data['transition'] ?? null;
         $this->container['effect'] = $data['effect'] ?? null;
         $this->container['filter'] = $data['filter'] ?? null;
-        $this->container['opacity'] = $data['opacity'] ?? 1;
+        $this->container['opacity'] = $data['opacity'] ?? null;
         $this->container['transform'] = $data['transform'] ?? null;
     }
 

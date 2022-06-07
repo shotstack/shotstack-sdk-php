@@ -243,8 +243,8 @@ class HtmlAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['css'] = $data['css'] ?? null;
         $this->container['width'] = $data['width'] ?? null;
         $this->container['height'] = $data['height'] ?? null;
-        $this->container['background'] = $data['background'] ?? 'transparent';
-        $this->container['position'] = $data['position'] ?? 'center';
+        $this->container['background'] = $data['background'] ?? null;
+        $this->container['position'] = $data['position'] ?? null;
     }
 
     /**

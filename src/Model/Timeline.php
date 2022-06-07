@@ -200,7 +200,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['soundtrack'] = $data['soundtrack'] ?? null;
-        $this->container['background'] = $data['background'] ?? '#000000';
+        $this->container['background'] = $data['background'] ?? null;
         $this->container['fonts'] = $data['fonts'] ?? null;
         $this->container['tracks'] = $data['tracks'] ?? null;
         $this->container['cache'] = $data['cache'] ?? true;
