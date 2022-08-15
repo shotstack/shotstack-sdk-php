@@ -304,15 +304,6 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
             );
         }
 
-        if ($this->container['data'] === null) {
-            $invalidProperties[] = "'data' can't be null";
-        }
-        if ($this->container['created'] === null) {
-            $invalidProperties[] = "'created' can't be null";
-        }
-        if ($this->container['updated'] === null) {
-            $invalidProperties[] = "'updated' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -581,7 +572,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets data
      *
-     * @return \Shotstack\Client\Model\Edit
+     * @return \Shotstack\Client\Model\Edit|null
      */
     public function getData()
     {
@@ -591,7 +582,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets data
      *
-     * @param \Shotstack\Client\Model\Edit $data data
+     * @param \Shotstack\Client\Model\Edit|null $data data
      *
      * @return self
      */
@@ -605,7 +596,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets created
      *
-     * @return string
+     * @return string|null
      */
     public function getCreated()
     {
@@ -615,7 +606,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets created
      *
-     * @param string $created The time the render task was initially queued.
+     * @param string|null $created The time the render task was initially queued.
      *
      * @return self
      */
@@ -629,7 +620,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets updated
      *
-     * @return string
+     * @return string|null
      */
     public function getUpdated()
     {
@@ -639,7 +630,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets updated
      *
-     * @param string $updated The time the render status was last updated.
+     * @param string|null $updated The time the render status was last updated.
      *
      * @return self
      */

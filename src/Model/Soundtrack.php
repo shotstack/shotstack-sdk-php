@@ -208,7 +208,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->container['src'] = $data['src'] ?? null;
         $this->container['effect'] = $data['effect'] ?? null;
-        $this->container['volume'] = $data['volume'] ?? 1;
+        $this->container['volume'] = $data['volume'] ?? null;
     }
 
     /**

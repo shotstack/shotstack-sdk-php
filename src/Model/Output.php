@@ -368,8 +368,8 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['size'] = $data['size'] ?? null;
         $this->container['fps'] = $data['fps'] ?? null;
         $this->container['scale_to'] = $data['scale_to'] ?? null;
-        $this->container['quality'] = $data['quality'] ?? 'medium';
-        $this->container['repeat'] = $data['repeat'] ?? true;
+        $this->container['quality'] = $data['quality'] ?? null;
+        $this->container['repeat'] = $data['repeat'] ?? null;
         $this->container['range'] = $data['range'] ?? null;
         $this->container['poster'] = $data['poster'] ?? null;
         $this->container['thumbnail'] = $data['thumbnail'] ?? null;
@@ -538,7 +538,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets aspect_ratio
      *
-     * @param string|null $aspect_ratio The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` - regular landscape/horizontal aspect ratio (default)</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
+     * @param string|null $aspect_ratio The aspect ratio (shape) of the video or image. Useful for social media output formats. Options are: <ul>   <li>`16:9` (default) - regular landscape/horizontal aspect ratio</li>   <li>`9:16` - vertical/portrait aspect ratio</li>   <li>`1:1` - square aspect ratio</li>   <li>`4:5` - short vertical/portrait aspect ratio</li>   <li>`4:3` - legacy TV aspect ratio</li> </ul>
      *
      * @return self
      */
@@ -596,7 +596,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fps
      *
-     * @param float|null $fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
+     * @param float|null $fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li> </ul>
      *
      * @return self
      */
@@ -664,7 +664,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets quality
      *
-     * @param string|null $quality Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
+     * @param string|null $quality Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul>   <li>`low` - slightly reduced quality, smaller file size</li>   <li>`medium` (default) - optimized quality, render speeds and file size</li>   <li>`high` - slightly increased quality, larger file size</li> </ul>
      *
      * @return self
      */

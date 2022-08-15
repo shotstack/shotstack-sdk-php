@@ -35,7 +35,7 @@ use \Shotstack\Client\ObjectSerializer;
  * QueuedResponse Class Doc Comment
  *
  * @category Class
- * @description The response received after a [render request](#render-asset) is submitted. The render task is queued for rendering and a unique render id is returned.
+ * @description The response received after a [render request](#render-asset) or [template render](#render-template) is submitted. The render task is queued for rendering and a unique render id is returned.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

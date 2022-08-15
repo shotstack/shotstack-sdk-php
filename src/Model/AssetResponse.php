@@ -212,7 +212,7 @@ class AssetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets data
      *
-     * @return \Shotstack\Client\Model\AssetResponseData|null
+     * @return \Shotstack\Client\Model\AssetResponseData
      */
     public function getData()
     {
@@ -222,7 +222,7 @@ class AssetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets data
      *
-     * @param \Shotstack\Client\Model\AssetResponseData|null $data data
+     * @param \Shotstack\Client\Model\AssetResponseData $data data
      *
      * @return self
      */

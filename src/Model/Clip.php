@@ -333,14 +333,14 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['asset'] = $data['asset'] ?? null;
         $this->container['start'] = $data['start'] ?? null;
         $this->container['length'] = $data['length'] ?? null;
-        $this->container['fit'] = $data['fit'] ?? 'crop';
+        $this->container['fit'] = $data['fit'] ?? null;
         $this->container['scale'] = $data['scale'] ?? null;
-        $this->container['position'] = $data['position'] ?? 'center';
+        $this->container['position'] = $data['position'] ?? null;
         $this->container['offset'] = $data['offset'] ?? null;
         $this->container['transition'] = $data['transition'] ?? null;
         $this->container['effect'] = $data['effect'] ?? null;
         $this->container['filter'] = $data['filter'] ?? null;
-        $this->container['opacity'] = $data['opacity'] ?? 1;
+        $this->container['opacity'] = $data['opacity'] ?? null;
         $this->container['transform'] = $data['transform'] ?? null;
     }
 
@@ -498,7 +498,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fit
      *
-     * @param string|null $fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+     * @param string|null $fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` (default) - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
      *
      * @return self
      */

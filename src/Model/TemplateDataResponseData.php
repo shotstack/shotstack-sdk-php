@@ -63,7 +63,7 @@ class TemplateDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'id' => 'string',
         'name' => 'string',
         'owner' => 'string',
-        'template' => 'string'
+        'template' => '\Shotstack\Client\Model\Edit'
     ];
 
     /**
@@ -311,7 +311,7 @@ class TemplateDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets template
      *
-     * @return string
+     * @return \Shotstack\Client\Model\Edit
      */
     public function getTemplate()
     {
@@ -321,7 +321,7 @@ class TemplateDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets template
      *
-     * @param string $template The [Edit](#tocs_edit) template.
+     * @param \Shotstack\Client\Model\Edit $template template
      *
      * @return self
      */

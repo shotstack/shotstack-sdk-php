@@ -179,7 +179,7 @@ class RotateTransformation implements ModelInterface, ArrayAccess, \JsonSerializ
      */
     public function __construct(array $data = null)
     {
-        $this->container['angle'] = $data['angle'] ?? 0;
+        $this->container['angle'] = $data['angle'] ?? null;
     }
 
     /**
