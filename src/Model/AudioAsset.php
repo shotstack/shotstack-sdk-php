@@ -219,7 +219,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['type'] = $data['type'] ?? 'audio';
         $this->container['src'] = $data['src'] ?? null;
         $this->container['trim'] = $data['trim'] ?? null;
-        $this->container['volume'] = $data['volume'] ?? 1;
+        $this->container['volume'] = $data['volume'] ?? null;
         $this->container['effect'] = $data['effect'] ?? null;
     }
 

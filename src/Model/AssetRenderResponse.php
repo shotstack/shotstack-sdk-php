@@ -212,7 +212,7 @@ class AssetRenderResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets data
      *
-     * @return \Shotstack\Client\Model\AssetResponseData[]|null
+     * @return \Shotstack\Client\Model\AssetResponseData[]
      */
     public function getData()
     {
@@ -222,7 +222,7 @@ class AssetRenderResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets data
      *
-     * @param \Shotstack\Client\Model\AssetResponseData[]|null $data An array of asset resources grouped by render id.
+     * @param \Shotstack\Client\Model\AssetResponseData[] $data An array of asset resources grouped by render id.
      *
      * @return self
      */

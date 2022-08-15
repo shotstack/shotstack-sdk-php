@@ -215,12 +215,6 @@ class TemplateListResponseItem implements ModelInterface, ArrayAccess, \JsonSeri
         if ($this->container['name'] === null) {
             $invalidProperties[] = "'name' can't be null";
         }
-        if ($this->container['created'] === null) {
-            $invalidProperties[] = "'created' can't be null";
-        }
-        if ($this->container['updated'] === null) {
-            $invalidProperties[] = "'updated' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -287,7 +281,7 @@ class TemplateListResponseItem implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets created
      *
-     * @return string
+     * @return string|null
      */
     public function getCreated()
     {
@@ -297,7 +291,7 @@ class TemplateListResponseItem implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets created
      *
-     * @param string $created The time the template was created.
+     * @param string|null $created The time the template was created.
      *
      * @return self
      */
@@ -311,7 +305,7 @@ class TemplateListResponseItem implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets updated
      *
-     * @return string
+     * @return string|null
      */
     public function getUpdated()
     {
@@ -321,7 +315,7 @@ class TemplateListResponseItem implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets updated
      *
-     * @param string $updated The time the template was last updated.
+     * @param string|null $updated The time the template was last updated.
      *
      * @return self
      */

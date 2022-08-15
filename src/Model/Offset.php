@@ -184,8 +184,8 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['x'] = $data['x'] ?? 0;
-        $this->container['y'] = $data['y'] ?? 0;
+        $this->container['x'] = $data['x'] ?? null;
+        $this->container['y'] = $data['y'] ?? null;
     }
 
     /**

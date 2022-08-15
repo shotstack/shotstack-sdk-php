@@ -221,7 +221,7 @@ class AssetResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets type
      *
-     * @return string|null
+     * @return string
      */
     public function getType()
     {
@@ -245,7 +245,7 @@ class AssetResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets attributes
      *
-     * @return \Shotstack\Client\Model\AssetResponseAttributes|null
+     * @return \Shotstack\Client\Model\AssetResponseAttributes
      */
     public function getAttributes()
     {
@@ -255,7 +255,7 @@ class AssetResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets attributes
      *
-     * @param \Shotstack\Client\Model\AssetResponseAttributes|null $attributes attributes
+     * @param \Shotstack\Client\Model\AssetResponseAttributes $attributes attributes
      *
      * @return self
      */

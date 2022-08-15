@@ -184,8 +184,8 @@ class FlipTransformation implements ModelInterface, ArrayAccess, \JsonSerializab
      */
     public function __construct(array $data = null)
     {
-        $this->container['horizontal'] = $data['horizontal'] ?? false;
-        $this->container['vertical'] = $data['vertical'] ?? false;
+        $this->container['horizontal'] = $data['horizontal'] ?? null;
+        $this->container['vertical'] = $data['vertical'] ?? null;
     }
 
     /**

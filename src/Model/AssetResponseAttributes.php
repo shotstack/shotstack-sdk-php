@@ -270,9 +270,6 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
         if ($this->container['owner'] === null) {
             $invalidProperties[] = "'owner' can't be null";
         }
-        if ($this->container['filename'] === null) {
-            $invalidProperties[] = "'filename' can't be null";
-        }
         if ($this->container['status'] === null) {
             $invalidProperties[] = "'status' can't be null";
         }
@@ -285,12 +282,6 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
             );
         }
 
-        if ($this->container['created'] === null) {
-            $invalidProperties[] = "'created' can't be null";
-        }
-        if ($this->container['updated'] === null) {
-            $invalidProperties[] = "'updated' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -429,7 +420,7 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets filename
      *
-     * @return string
+     * @return string|null
      */
     public function getFilename()
     {
@@ -439,7 +430,7 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets filename
      *
-     * @param string $filename The asset file name.
+     * @param string|null $filename The asset file name.
      *
      * @return self
      */
@@ -511,7 +502,7 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets created
      *
-     * @return string
+     * @return string|null
      */
     public function getCreated()
     {
@@ -521,7 +512,7 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets created
      *
-     * @param string $created The time the asset was created.
+     * @param string|null $created The time the asset was created.
      *
      * @return self
      */
@@ -535,7 +526,7 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Gets updated
      *
-     * @return string
+     * @return string|null
      */
     public function getUpdated()
     {
@@ -545,7 +536,7 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets updated
      *
-     * @param string $updated The time the asset status was last updated.
+     * @param string|null $updated The time the asset status was last updated.
      *
      * @return self
      */

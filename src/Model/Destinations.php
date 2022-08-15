@@ -190,7 +190,7 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['provider'] = $data['provider'] ?? 'mux';
-        $this->container['exclude'] = $data['exclude'] ?? false;
+        $this->container['exclude'] = $data['exclude'] ?? null;
         $this->container['options'] = $data['options'] ?? null;
 
         // Initialize discriminator property with the model name.

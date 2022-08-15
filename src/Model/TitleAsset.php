@@ -302,10 +302,10 @@ class TitleAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['type'] = $data['type'] ?? 'title';
         $this->container['text'] = $data['text'] ?? null;
         $this->container['style'] = $data['style'] ?? null;
-        $this->container['color'] = $data['color'] ?? '#ffffff';
-        $this->container['size'] = $data['size'] ?? 'medium';
+        $this->container['color'] = $data['color'] ?? null;
+        $this->container['size'] = $data['size'] ?? null;
         $this->container['background'] = $data['background'] ?? null;
-        $this->container['position'] = $data['position'] ?? 'center';
+        $this->container['position'] = $data['position'] ?? null;
         $this->container['offset'] = $data['offset'] ?? null;
     }
 

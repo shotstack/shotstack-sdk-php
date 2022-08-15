@@ -185,7 +185,7 @@ class ShotstackDestination implements ModelInterface, ArrayAccess, \JsonSerializ
     public function __construct(array $data = null)
     {
         $this->container['provider'] = $data['provider'] ?? 'shotstack';
-        $this->container['exclude'] = $data['exclude'] ?? false;
+        $this->container['exclude'] = $data['exclude'] ?? null;
     }
 
     /**
