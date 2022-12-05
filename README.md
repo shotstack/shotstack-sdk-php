@@ -60,6 +60,14 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
     - [QueuedResponseData()](#queuedresponsedata)
     - [RenderResponse()](#renderresponse)
     - [RenderResponseData()](#renderresponsedata)
+  - [Template Response Schemas](#template-response-schemas)
+    - [TemplateResponse()](#templateresponse)
+    - [TemplateResponseData()](#templateresponsedata)
+    - [TemplateDataResponse()](#templatedataresponse)
+    - [TemplateDataResponseData()](#templatedataresponsedata)
+    - [TemplateListResponse()](#templatelistresponse)
+    - [TemplateListResponseData()](#templatelistresponsedata)
+    - [TemplateListResponseItem()](#templatelistresponseitem)
   - [Inspecting Media](#inspecting-media)
     - [Probe Example](#probe-example)
   - [Probe Schemas](#probe-schemas)
@@ -1212,6 +1220,98 @@ getThumbnail(): string | The URL of the thumbnail image if requested. This will 
 getData(): [\Shotstack\Client\Model\Edit](#edit) | The timeline and output data to be rendered. | Y
 getCreated(): string | The time the render task was initially queued. | Y
 getUpdated(): string | The time the render status was last updated. | Y
+
+---
+
+## Template Response Schemas
+
+The following schemas are returned by the templates endpoint, including create, update and rendering a template.
+
+### TemplateResponse()
+
+The response received after a [template](#create-template) is submitted. The template is saved and a unique
+template id is returned.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [\Shotstack\Client\Model\TemplateResponseData](#templateresponsedata) | `TemplateResponseData` or an error message. | Y
+
+### TemplateResponseData()
+
+The response data returned with the [TemplateResponse](#templateresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getMessage(): string | Success response message or error details. | Y
+getId(): string | The unique id of the template in UUID format. | Y
+
+### TemplateDataResponse()
+
+The template data including the template name and [Edit](#edit).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [\Shotstack\Client\Model\TemplateDataResponseData](#templatedataresponsedata) | `TemplateDataResponseData` or an error message. | Y
+
+### TemplateDataResponseData()
+
+The response data returned with the [TemplateDataResponse](#templatedataresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getId(): string | The unique id of the template in UUID format. | Y
+getName(): string | The template name. | Y
+getOwner(): string | The owner id of the templates. | Y
+getTemplate(): [\Shotstack\Client\Model\Edit](#edit) | `Edit` or an error message. | Y
+
+### TemplateListResponse()
+
+A list of previously saved templates.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [\Shotstack\Client\Model\TemplateListResponseData](#templatelistresponsedata) | `TemplateListResponseData` or an error message. | Y
+
+### TemplateListResponseData()
+
+The response data returned with the [TemplateListResponse](#templatelistresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getOwner(): bool | The owner id of the templates. | Y
+getTemplates(): [\Shotstack\Client\Model\TemplateListResponseItem[]](#templatelistresponseitem) | The list of templates. | Y
+
+### TemplateListResponseItem()
+
+The individual template item returned with the [TemplateListResponseData](#templatelistresponsedata) templates
+list.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getId(): string | The unique id of the template in UUID format. | Y
+getName(): string | The template name | Y
+getCreated(): string | The time the template was created. | -
+getUpdated(): string | The time the template was last updated. | -
 
 ---
 ## Inspecting Media
