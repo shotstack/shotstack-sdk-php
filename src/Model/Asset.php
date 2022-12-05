@@ -35,7 +35,7 @@ use \Shotstack\Client\ObjectSerializer;
  * Asset Class Doc Comment
  *
  * @category Class
- * @description The type of asset to display for the duration of this Clip. Value     must be one of:       &lt;ul&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_videoasset\&quot;&gt;VideoAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_imageasset\&quot;&gt;ImageAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_titleasset\&quot;&gt;TitleAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_htmlasset\&quot;&gt;HtmlAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_audioasset\&quot;&gt;AudioAsset&lt;/a&gt;&lt;/li&gt;         &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_lumaasset\&quot;&gt;LumaAsset&lt;/a&gt;&lt;/li&gt;       &lt;/ul&gt;
+ * @description The type of asset to display for the duration of the Clip. Value must be one of: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_videoasset\&quot;&gt;VideoAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_imageasset\&quot;&gt;ImageAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_titleasset\&quot;&gt;TitleAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_htmlasset\&quot;&gt;HtmlAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_audioasset\&quot;&gt;AudioAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_lumaasset\&quot;&gt;LumaAsset&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -64,6 +64,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'src' => 'string',
         'trim' => 'float',
         'volume' => 'float',
+        'volume_effect' => 'string',
         'crop' => '\Shotstack\Client\Model\Crop',
         'text' => 'string',
         'style' => 'string',
@@ -91,6 +92,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'src' => null,
         'trim' => null,
         'volume' => null,
+        'volume_effect' => null,
         'crop' => null,
         'text' => null,
         'style' => null,
@@ -137,6 +139,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'src' => 'src',
         'trim' => 'trim',
         'volume' => 'volume',
+        'volume_effect' => 'volumeEffect',
         'crop' => 'crop',
         'text' => 'text',
         'style' => 'style',
@@ -162,6 +165,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'src' => 'setSrc',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
+        'volume_effect' => 'setVolumeEffect',
         'crop' => 'setCrop',
         'text' => 'setText',
         'style' => 'setStyle',
@@ -187,6 +191,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'src' => 'getSrc',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
+        'volume_effect' => 'getVolumeEffect',
         'crop' => 'getCrop',
         'text' => 'getText',
         'style' => 'getStyle',
@@ -243,6 +248,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    const VOLUME_EFFECT_FADE_IN = 'fadeIn';
+    const VOLUME_EFFECT_FADE_OUT = 'fadeOut';
+    const VOLUME_EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     const STYLE_MINIMAL = 'minimal';
     const STYLE_BLOCKBUSTER = 'blockbuster';
     const STYLE_VOGUE = 'vogue';
@@ -272,6 +280,20 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     const EFFECT_FADE_IN = 'fadeIn';
     const EFFECT_FADE_OUT = 'fadeOut';
     const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVolumeEffectAllowableValues()
+    {
+        return [
+            self::VOLUME_EFFECT_FADE_IN,
+            self::VOLUME_EFFECT_FADE_OUT,
+            self::VOLUME_EFFECT_FADE_IN_FADE_OUT,
+        ];
+    }
 
     /**
      * Gets allowable values of the enum
@@ -365,6 +387,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['src'] = $data['src'] ?? null;
         $this->container['trim'] = $data['trim'] ?? null;
         $this->container['volume'] = $data['volume'] ?? null;
+        $this->container['volume_effect'] = $data['volume_effect'] ?? null;
         $this->container['crop'] = $data['crop'] ?? null;
         $this->container['text'] = $data['text'] ?? null;
         $this->container['style'] = $data['style'] ?? null;
@@ -398,6 +421,15 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['src'] === null) {
             $invalidProperties[] = "'src' can't be null";
         }
+        $allowedValues = $this->getVolumeEffectAllowableValues();
+        if (!is_null($this->container['volume_effect']) && !in_array($this->container['volume_effect'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'volume_effect', must be one of '%s'",
+                $this->container['volume_effect'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['text'] === null) {
             $invalidProperties[] = "'text' can't be null";
         }
@@ -547,6 +579,40 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setVolume($volume)
     {
         $this->container['volume'] = $volume;
+
+        return $this;
+    }
+
+    /**
+     * Gets volume_effect
+     *
+     * @return string|null
+     */
+    public function getVolumeEffect()
+    {
+        return $this->container['volume_effect'];
+    }
+
+    /**
+     * Sets volume_effect
+     *
+     * @param string|null $volume_effect The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     *
+     * @return self
+     */
+    public function setVolumeEffect($volume_effect)
+    {
+        $allowedValues = $this->getVolumeEffectAllowableValues();
+        if (!is_null($volume_effect) && !in_array($volume_effect, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'volume_effect', must be one of '%s'",
+                    $volume_effect,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['volume_effect'] = $volume_effect;
 
         return $this;
     }

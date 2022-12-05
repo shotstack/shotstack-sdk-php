@@ -232,11 +232,23 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     const POSITION_TOP_LEFT = 'topLeft';
     const POSITION_CENTER = 'center';
     const EFFECT_ZOOM_IN = 'zoomIn';
+    const EFFECT_ZOOM_IN_SLOW = 'zoomInSlow';
+    const EFFECT_ZOOM_IN_FAST = 'zoomInFast';
     const EFFECT_ZOOM_OUT = 'zoomOut';
+    const EFFECT_ZOOM_OUT_SLOW = 'zoomOutSlow';
+    const EFFECT_ZOOM_OUT_FAST = 'zoomOutFast';
     const EFFECT_SLIDE_LEFT = 'slideLeft';
+    const EFFECT_SLIDE_LEFT_S_LOW = 'slideLeftSLow';
+    const EFFECT_SLIDE_LEFT_FAST = 'slideLeftFast';
     const EFFECT_SLIDE_RIGHT = 'slideRight';
+    const EFFECT_SLIDE_RIGHT_SLOW = 'slideRightSlow';
+    const EFFECT_SLIDE_RIGHT_FAST = 'slideRightFast';
     const EFFECT_SLIDE_UP = 'slideUp';
+    const EFFECT_SLIDE_UP_SLOW = 'slideUpSlow';
+    const EFFECT_SLIDE_UP_FAST = 'slideUpFast';
     const EFFECT_SLIDE_DOWN = 'slideDown';
+    const EFFECT_SLIDE_DOWN_SLOW = 'slideDownSlow';
+    const EFFECT_SLIDE_DOWN_FAST = 'slideDownFast';
     const FILTER_BOOST = 'boost';
     const FILTER_CONTRAST = 'contrast';
     const FILTER_DARKEN = 'darken';
@@ -289,11 +301,23 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::EFFECT_ZOOM_IN,
+            self::EFFECT_ZOOM_IN_SLOW,
+            self::EFFECT_ZOOM_IN_FAST,
             self::EFFECT_ZOOM_OUT,
+            self::EFFECT_ZOOM_OUT_SLOW,
+            self::EFFECT_ZOOM_OUT_FAST,
             self::EFFECT_SLIDE_LEFT,
+            self::EFFECT_SLIDE_LEFT_S_LOW,
+            self::EFFECT_SLIDE_LEFT_FAST,
             self::EFFECT_SLIDE_RIGHT,
+            self::EFFECT_SLIDE_RIGHT_SLOW,
+            self::EFFECT_SLIDE_RIGHT_FAST,
             self::EFFECT_SLIDE_UP,
+            self::EFFECT_SLIDE_UP_SLOW,
+            self::EFFECT_SLIDE_UP_FAST,
             self::EFFECT_SLIDE_DOWN,
+            self::EFFECT_SLIDE_DOWN_SLOW,
+            self::EFFECT_SLIDE_DOWN_FAST,
         ];
     }
 
@@ -498,7 +522,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fit
      *
-     * @param string|null $fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`crop` (default) - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
+     * @param string|null $fit Set how the asset should be scaled to fit the viewport using one of the following options:    <ul>     <li>`crop` <b>(default)</b> - scale the asset to fill the viewport while maintaining the aspect ratio. The asset will be cropped if it exceeds the bounds of the viewport.</li>     <li>`cover` - stretch the asset to fill the viewport without maintaining the aspect ratio.</li>     <li>`contain` - fit the entire asset within the viewport while maintaining the original aspect ratio.</li>     <li>`none` - preserves the original asset dimensions and does not apply any scaling.</li>   </ul>
      *
      * @return self
      */
@@ -638,7 +662,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets effect
      *
-     * @param string|null $effect A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul>
+     * @param string|null $effect A motion effect to apply to the Clip. <ul>   <li>`zoomIn` - slow zoom in</li>   <li>`zoomOut` - slow zoom out</li>   <li>`slideLeft` - slow slide (pan) left</li>   <li>`slideRight` - slow slide (pan) right</li>   <li>`slideUp` - slow slide (pan) up</li>   <li>`slideDown` - slow slide (pan) down</li> </ul> The motion effect speed can also be controlled by appending `Fast` or `Slow` to the effect, e.g. `zoomInFast` or `slideRightSlow`.
      *
      * @return self
      */
@@ -672,7 +696,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets filter
      *
-     * @param string|null $filter A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`invert` - invert colors</li> </ul>
+     * @param string|null $filter A filter effect to apply to the Clip. <ul>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
      *
      * @return self
      */

@@ -35,7 +35,7 @@ use \Shotstack\Client\ObjectSerializer;
  * TemplateDataResponse Class Doc Comment
  *
  * @category Class
- * @description The template data including the template name and Edit.
+ * @description The template data including the template name and [Edit](#tocs_edit).
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

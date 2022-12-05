@@ -35,7 +35,7 @@ use \Shotstack\Client\ObjectSerializer;
  * TemplateRender Class Doc Comment
  *
  * @category Class
- * @description Render a template by it&#39;s id and optional merge fields.
+ * @description Configure the id and optional merge fields to render a template by id.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
