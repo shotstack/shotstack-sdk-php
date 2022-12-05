@@ -17,6 +17,8 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
   - [Video Editing](#video-editing)
     - [Video Editing Example](#video-editing-example)
     - [Status Check Example](#status-check-example)
+    - [Save a Template Example](#save-a-template-example)
+    - [Render a Template Example](#render-a-template-example)
   - [Video Editing Schemas](#video-editing-schemas)
     - [Edit()](#edit)
     - [Timeline()](#timeline)
@@ -138,7 +140,8 @@ $render = $client->postRender($edit)->getResponse();
 ### Status Check Example
 
 The example request below can be called a few seconds after the render above is posted. It will return the status of 
-the render, which can take several seconds to process.
+the render, which can take several seconds to process. It uses the `render->getId()` method returned by the `postRender`
+request.
 
 ```php
 use Shotstack\Client\Api\EditApi;
@@ -151,6 +154,120 @@ $config = Configuration::getDefaultConfiguration()
 $client = new EditApi(null, $config);
 
 $video = $client->getRender($render->getId())->getResponse();
+
+if ($video->getStatus() === 'done') {
+    echo $video->getUrl();
+}
+```
+
+### Save a Template Example
+
+The example below uses the Edit we create in the [Video Editing Example](#video-editing-example) and saves it as a
+template. The template can be rendered at a later date and can include placeholders. Placeholders can be replaced 
+when rendered using [merge fields](#mergefield).
+
+This example uses a placeholder for the video src (URL), trim (TRIM), and length (LENGTH) to allow you to trim any video
+using a template.
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Shotstack\Client\Api\EditApi;
+use Shotstack\Client\ApiException;
+use Shotstack\Client\Configuration;
+use Shotstack\Client\Model\Edit;
+use Shotstack\Client\Model\Output;
+use Shotstack\Client\Model\Timeline;
+use Shotstack\Client\Model\Track;
+use Shotstack\Client\Model\Clip;
+use Shotstack\Client\Model\VideoAsset;
+use Shotstack\Client\Model\Template;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setHost('https://api.shotstack.io/stage')
+    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
+
+$client = new EditApi(null, $config);
+
+$videoAsset = new videoAsset();
+$videoAsset
+    ->setSrc('{{ URL }}')
+    ->setTrim('{{ TRIM }}');
+
+$videoClip = new Clip();
+$videoClip
+    ->setAsset($videoAsset)
+    ->setStart(0)
+    ->setLength('{{ LENGTH }}');
+
+$track = new Track();
+$track
+    ->setClips([$videoClip]);
+
+$timeline = new Timeline();
+$timeline
+    ->setTracks([$track]);
+
+$output = new Output();
+$output
+    ->setFormat('mp4')
+    ->setResolution('sd');
+
+$edit = new Edit();
+$edit
+    ->setTimeline($timeline)
+    ->setOutput($output);
+
+$template = new Template();
+$template
+    ->setName('Trim Template')
+    ->setTemplate($edit);
+
+$response = $client->postTemplate($template)->getResponse();
+```
+
+### Render a Template Example
+
+The example below renders the template we created in the previous example and includes merge fields that will replace
+the placeholders. Once submitted use the returned render ID and call the [Status Check Example](#status-check-example)
+to get the render progress.  It uses the `response->getId()` method returned by the `postTemplate` request.
+
+```php
+use Shotstack\Client\Api\EditApi;
+use Shotstack\Client\Configuration;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setHost('https://api.shotstack.io/stage')
+    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
+
+$client = new EditApi(null, $config);
+
+$mergeFieldUrl = new MergeField();
+$mergeFieldUrl
+    ->setFind('URL')
+    ->setReplace('https://s3-ap-southeast-2.amazonaws.com/shotstack-assets/footage/skater.hd.mp4');
+
+$mergeFieldTrim = new MergeField();
+$mergeFieldTrim
+    ->setFind('TRIM')
+    ->setReplace(3);
+
+$mergeFieldLength = new MergeField();
+$mergeFieldLength
+    ->setFind('LENGTH')
+    ->setReplace(6);
+
+$template = new TemplateRender();
+$template
+    ->setId($response->id)
+    ->setMerge([
+        $mergeFieldUrl,
+        $mergeFieldTrim,
+        $mergeFieldLength,
+    ]);
+
+$video = $client->postTemplateRender($template)->getResponse();
 
 if ($video->getStatus() === 'done') {
     echo $video->getUrl();
