@@ -197,20 +197,20 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['x']) && ($this->container['x'] > 1)) {
-            $invalidProperties[] = "invalid value for 'x', must be smaller than or equal to 1.";
+        if (!is_null($this->container['x']) && ($this->container['x'] > 10)) {
+            $invalidProperties[] = "invalid value for 'x', must be smaller than or equal to 10.";
         }
 
-        if (!is_null($this->container['x']) && ($this->container['x'] < -1)) {
-            $invalidProperties[] = "invalid value for 'x', must be bigger than or equal to -1.";
+        if (!is_null($this->container['x']) && ($this->container['x'] < -10)) {
+            $invalidProperties[] = "invalid value for 'x', must be bigger than or equal to -10.";
         }
 
-        if (!is_null($this->container['y']) && ($this->container['y'] > 1)) {
-            $invalidProperties[] = "invalid value for 'y', must be smaller than or equal to 1.";
+        if (!is_null($this->container['y']) && ($this->container['y'] > 10)) {
+            $invalidProperties[] = "invalid value for 'y', must be smaller than or equal to 10.";
         }
 
-        if (!is_null($this->container['y']) && ($this->container['y'] < -1)) {
-            $invalidProperties[] = "invalid value for 'y', must be bigger than or equal to -1.";
+        if (!is_null($this->container['y']) && ($this->container['y'] < -10)) {
+            $invalidProperties[] = "invalid value for 'y', must be bigger than or equal to -10.";
         }
 
         return $invalidProperties;
@@ -241,18 +241,18 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets x
      *
-     * @param float|null $x Offset an asset on the horizontal axis (left or right), range varies from -1 to 1. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
+     * @param float|null $x Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
      *
      * @return self
      */
     public function setX($x)
     {
 
-        if (!is_null($x) && ($x > 1)) {
-            throw new \InvalidArgumentException('invalid value for $x when calling Offset., must be smaller than or equal to 1.');
+        if (!is_null($x) && ($x > 10)) {
+            throw new \InvalidArgumentException('invalid value for $x when calling Offset., must be smaller than or equal to 10.');
         }
-        if (!is_null($x) && ($x < -1)) {
-            throw new \InvalidArgumentException('invalid value for $x when calling Offset., must be bigger than or equal to -1.');
+        if (!is_null($x) && ($x < -10)) {
+            throw new \InvalidArgumentException('invalid value for $x when calling Offset., must be bigger than or equal to -10.');
         }
 
         $this->container['x'] = $x;
@@ -273,18 +273,18 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets y
      *
-     * @param float|null $y Offset an asset on the vertical axis (up or down), range varies from -1 to 1. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
+     * @param float|null $y Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
      *
      * @return self
      */
     public function setY($y)
     {
 
-        if (!is_null($y) && ($y > 1)) {
-            throw new \InvalidArgumentException('invalid value for $y when calling Offset., must be smaller than or equal to 1.');
+        if (!is_null($y) && ($y > 10)) {
+            throw new \InvalidArgumentException('invalid value for $y when calling Offset., must be smaller than or equal to 10.');
         }
-        if (!is_null($y) && ($y < -1)) {
-            throw new \InvalidArgumentException('invalid value for $y when calling Offset., must be bigger than or equal to -1.');
+        if (!is_null($y) && ($y < -10)) {
+            throw new \InvalidArgumentException('invalid value for $y when calling Offset., must be bigger than or equal to -10.');
         }
 
         $this->container['y'] = $y;

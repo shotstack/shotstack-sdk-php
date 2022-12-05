@@ -17,6 +17,8 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
   - [Video Editing](#video-editing)
     - [Video Editing Example](#video-editing-example)
     - [Status Check Example](#status-check-example)
+    - [Save a Template Example](#save-a-template-example)
+    - [Render a Template Example](#render-a-template-example)
   - [Video Editing Schemas](#video-editing-schemas)
     - [Edit()](#edit)
     - [Timeline()](#timeline)
@@ -38,18 +40,34 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
     - [SkewTransformation()](#skewtransformation)
     - [FlipTransformation()](#fliptransformation)
     - [MergeField()](#mergefield)
+  - [Template Schemas](#template-schemas)
+    - [Template()](#template)
+    - [TemplateRender()](#templaterender)
   - [Output Schemas](#output-schemas)
     - [Output()](#output)
     - [Size()](#size)
     - [Range()](#range)
     - [Poster()](#poster)
     - [Thumbnail()](#thumbnail)
+  - [Destinations](#destinations)
     - [ShotstackDestination()](#shotstackdestination)
+    - [MuxDestination()](#muxdestination)
+    - [MuxDestinationOptions()](#muxdestinationoptions)
+    - [S3Destination()](#s3destination)
+    - [S3DestinationOptions()](#s3destinationoptions)
   - [Render Response Schemas](#render-response-schemas)
     - [QueuedResponse()](#queuedresponse)
     - [QueuedResponseData()](#queuedresponsedata)
     - [RenderResponse()](#renderresponse)
     - [RenderResponseData()](#renderresponsedata)
+  - [Template Response Schemas](#template-response-schemas)
+    - [TemplateResponse()](#templateresponse)
+    - [TemplateResponseData()](#templateresponsedata)
+    - [TemplateDataResponse()](#templatedataresponse)
+    - [TemplateDataResponseData()](#templatedataresponsedata)
+    - [TemplateListResponse()](#templatelistresponse)
+    - [TemplateListResponseData()](#templatelistresponsedata)
+    - [TemplateListResponseItem()](#templatelistresponseitem)
   - [Inspecting Media](#inspecting-media)
     - [Probe Example](#probe-example)
   - [Probe Schemas](#probe-schemas)
@@ -138,7 +156,8 @@ $render = $client->postRender($edit)->getResponse();
 ### Status Check Example
 
 The example request below can be called a few seconds after the render above is posted. It will return the status of 
-the render, which can take several seconds to process.
+the render, which can take several seconds to process. It uses the `render->getId()` method returned by the `postRender`
+request.
 
 ```php
 use Shotstack\Client\Api\EditApi;
@@ -151,6 +170,120 @@ $config = Configuration::getDefaultConfiguration()
 $client = new EditApi(null, $config);
 
 $video = $client->getRender($render->getId())->getResponse();
+
+if ($video->getStatus() === 'done') {
+    echo $video->getUrl();
+}
+```
+
+### Save a Template Example
+
+The example below uses the Edit we create in the [Video Editing Example](#video-editing-example) and saves it as a
+template. The template can be rendered at a later date and can include placeholders. Placeholders can be replaced 
+when rendered using [merge fields](#mergefield).
+
+This example uses a placeholder for the video src (URL), trim (TRIM), and length (LENGTH) to allow you to trim any video
+using a template.
+
+```php
+<?php
+require 'vendor/autoload.php';
+
+use Shotstack\Client\Api\EditApi;
+use Shotstack\Client\ApiException;
+use Shotstack\Client\Configuration;
+use Shotstack\Client\Model\Edit;
+use Shotstack\Client\Model\Output;
+use Shotstack\Client\Model\Timeline;
+use Shotstack\Client\Model\Track;
+use Shotstack\Client\Model\Clip;
+use Shotstack\Client\Model\VideoAsset;
+use Shotstack\Client\Model\Template;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setHost('https://api.shotstack.io/stage')
+    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
+
+$client = new EditApi(null, $config);
+
+$videoAsset = new videoAsset();
+$videoAsset
+    ->setSrc('{{ URL }}')
+    ->setTrim('{{ TRIM }}');
+
+$videoClip = new Clip();
+$videoClip
+    ->setAsset($videoAsset)
+    ->setStart(0)
+    ->setLength('{{ LENGTH }}');
+
+$track = new Track();
+$track
+    ->setClips([$videoClip]);
+
+$timeline = new Timeline();
+$timeline
+    ->setTracks([$track]);
+
+$output = new Output();
+$output
+    ->setFormat('mp4')
+    ->setResolution('sd');
+
+$edit = new Edit();
+$edit
+    ->setTimeline($timeline)
+    ->setOutput($output);
+
+$template = new Template();
+$template
+    ->setName('Trim Template')
+    ->setTemplate($edit);
+
+$response = $client->postTemplate($template)->getResponse();
+```
+
+### Render a Template Example
+
+The example below renders the template we created in the previous example and includes merge fields that will replace
+the placeholders. Once submitted use the returned render ID and call the [Status Check Example](#status-check-example)
+to get the render progress.  It uses the `response->getId()` method returned by the `postTemplate` request.
+
+```php
+use Shotstack\Client\Api\EditApi;
+use Shotstack\Client\Configuration;
+
+$config = Configuration::getDefaultConfiguration()
+    ->setHost('https://api.shotstack.io/stage')
+    ->setApiKey('x-api-key', 'H7jKyj90kd09lbLOF7J900jNbSWS67X87xs9j0cD'); // use the correct API key
+
+$client = new EditApi(null, $config);
+
+$mergeFieldUrl = new MergeField();
+$mergeFieldUrl
+    ->setFind('URL')
+    ->setReplace('https://s3-ap-southeast-2.amazonaws.com/shotstack-assets/footage/skater.hd.mp4');
+
+$mergeFieldTrim = new MergeField();
+$mergeFieldTrim
+    ->setFind('TRIM')
+    ->setReplace(3);
+
+$mergeFieldLength = new MergeField();
+$mergeFieldLength
+    ->setFind('LENGTH')
+    ->setReplace(6);
+
+$template = new TemplateRender();
+$template
+    ->setId($response->id)
+    ->setMerge([
+        $mergeFieldUrl,
+        $mergeFieldTrim,
+        $mergeFieldLength,
+    ]);
+
+$video = $client->postTemplateRender($template)->getResponse();
 
 if ($video->getStatus() === 'done') {
     echo $video->getUrl();
@@ -175,8 +308,8 @@ $edit
   ->setTimeline($timeline)
   ->setOutput($output)
   ->setMerge($merge)
-  ->setCallback("https://my-server.com/callback.php")
-  ->setDisk("local");
+  ->setCallback('https://my-server.com/callback.php')
+  ->setDisk('local');
 ```
 
 #### Methods:
@@ -187,7 +320,7 @@ setTimeline([\Shotstack\Client\Model\Timeline](#timeline)) | A timeline represen
 setOutput([\Shotstack\Client\Model\Output](#output)) | The output format, render range and type of media to generate. | Y
 setMerge([\Shotstack\Client\Model\MergeField[]](#mergefield) $mergeField) | An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. | -
 setCallback(string $callback) | An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.io/docs/guide/architecting-an-application/webhooks/) for  more details. | -
-setDisk(string $disk) | The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.io/docs/guide/architecting-an-application/disk-types/) for more details. [default to `local`] <ul><li>`local` - optimized for high speed rendering with up to 512MB storage</li><li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li></ul> | -
+setDisk(string $disk) | **(Deprecated)** The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.io/docs/guide/architecting-an-application/disk-types/) for more details. [default to `local`] <ul><li>`local` - optimized for high speed rendering with up to 512MB storage</li><li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li></ul> | -
 
 -----
 
@@ -350,6 +483,7 @@ $videoAsset
   ->setSrc('https://shotstack-assets.s3.aws.com/mountain.mp4')
   ->setTrim(5)
   ->setVolume(0.5)
+  ->setVolumeEffect('fadeIn')
   ->setCrop($crop);
 ```
 
@@ -360,6 +494,7 @@ Method | Description | Required
 setSrc(string $url) | The video source URL. The URL must be publicly accessible or include credentials. | Y
 setTrim(float $seconds) | The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached. | -
 setVolume(float $level) | Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0). | -
+setVolumeEffect(string $effect) | The volume effect to apply to the video asset.<ul><li>`fadeIn` - fade volume in only</li><li>`fadeOut` - fade volume out only</li><li>`fadeInFadeOut` - fade volume in and out</li></ul> | -
 setCrop([\Shotstack\Client\Model\Crop](#crop) $crop) | Crop the sides of an asset by a relative amount. The size of the crop is specified using a scale between 0 and 1, relative to the screen width - i.e. a left crop of 0.5 will crop half of the asset from the left, a top crop of 0.25 will crop the top by quarter of the asset. | -
 
 ---
@@ -550,8 +685,8 @@ $offset
 
 Method | Description | Required
 :--- | :--- | :---: 
-setX(float $x) | Offset an asset on the horizontal axis (left or right), range varies from -1 to 1. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right. [default to `0`] | -
-setY(float $y) | Offset an asset on the vertical axis (up or down), range varies from -1 to 1. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height of the viewport - i.e. an Y offset of 0.5 will move the asset up half the screen height. [default to `0`] | -
+setX(float $x) | Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right. [default to `0`] | -
+setY(float $y) | Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height of the viewport - i.e. a Y offset of 0.5 will move the asset up half the screen height. [default to `0`] | -
 
 ---
 
@@ -703,6 +838,58 @@ setReplace($replace) | The replacement value. The replacement can be any valid J
 
 ---
 
+## Template Schemas
+
+The following schemas specify how to use templates to store and render templates. A template lets you save an
+[Edit](#edit) that can be rendered by its template ID and optionally include merge fields that are merged with the
+template when rendered.
+
+### Template()
+
+A template is a saved [Edit](#edit) than can be loaded and re-used.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\Template;
+
+$template = new Template();
+$template
+  ->setName('My Template')
+  ->setTemplate($edit);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setName(string $name) | The template name. | Y
+setTemplate([\Shotstack\Client\Model\Edit](#edit) $edit)) | An edit defines the arrangement of a video on a timeline, an audio edit or an image design and the output format. | Y
+
+### TemplateRender()
+
+Configure the id and optional merge fields to render a template by id.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\TemplateRender;
+
+$render = new TemplateRender();
+$render
+  ->setId('21e781c0-8232-4418-fec1-cc99f0280c21')
+  ->setMerge($merge);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setId(string $id) | The id of the template to render in UUID format. | Y
+setMerge([\Shotstack\Client\Model\MergeField[]](#mergefield) $mergeFields) | An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. | -
+
+---
+
 ## Output Schemas
 
 The following schemas specify the output format and settings.
@@ -725,6 +912,7 @@ $output
   ->setScaleTo('preview')
   ->setQuality('mediue')
   ->setRepeat(true)
+  ->setMute(false)
   ->setRange($range)
   ->setPoster($poster)
   ->setThumbnail($thumbnail)
@@ -743,10 +931,11 @@ setFps(float $fps) | Override the default frames per second. Useful for when the
 setScaleTo(string $scaleTo) | Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul><li>`preview` - 512px x 288px @ 15fps</li><li>`mobile` - 640px x 360px @ 25fps</li><li>`sd` - 1024px x 576px @25fps</li><li>`hd` - 1280px x 720px @25fps</li><li>`1080` - 1920px x 1080px @25fps</li></ul> | -
 setQuality(string $quality) | Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul><li>`low` - slightly reduced quality, smaller file size</li><li>`medium` - optimized quality, render speeds and file size</li><li>`high` - slightly increased quality, larger file size</li></ul> | -
 setRepeat(bool $repeat) | Loop settings for gif files. Set to `true` to loop, `false` to play only once. [default to `true`] | -
+setMute(bool $mute) | Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute. | -
 setRange([\Shotstack\Client\Model\Range](#range) $range) | Specify a time range to render, i.e. to render only a portion of a video or audio file. Omit this setting to export the entire video. Range can also be used to render a frame at a specific time point - setting a range and output format as `jpg` will output a single frame image at the range `start` point. | -
 setPoster([\Shotstack\Client\Model\Poster](#poster) $poster) | Generate a poster image from a specific point on the timeline. | -
 setThumbnail([\Shotstack\Client\Model\Thumbnail](#thumbnail) $thumbnail) | Generate a thumbnail image from a specific point on the timeline. | -
-setDestinations([AnyOfShotstackDestination[]](#shotstackdestination) $destinations) | A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. [ShotstackDestination](#shotstackdestination) is currently the only option with plans to add more in the future such as S3, YouTube, Vimeo and Mux. If you do not require hosting you can opt-out using the  `exclude` property. | -
+setDestinations([\Shotstack\Client\Model\Destinations[]](#destinations) $destinations) | A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. | -
 
 ---
 
@@ -844,6 +1033,7 @@ setScale(float $scale) | Scale the thumbnail size to a fraction of the viewport 
 
 ---
 
+## Destinations
 ### ShotstackDestination()
 
 Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
@@ -865,6 +1055,102 @@ Method | Description | Required
 :--- | :--- | :---: 
 setProvider(string $provider) | The destination to send rendered assets to - set to `shotstack` for Shotstack hosting and CDN. [default to `shotstack`] | Y
 setExclude(bool $exclude) | Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering. [default to `false`] | -
+
+### MuxDestination()
+
+Send rendered videos to the [Mux](https://shotstack.io/docs/guide/serving-assets/destinations/mux) video hosting and
+streaming service. Mux credentials are required and added via the 
+[dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\MuxDestination;
+
+$muxDestination = new MuxDestination();
+$muxDestination
+  ->setProvider('mux')
+  ->setOptions($muxDestinationOptions);
+```
+
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setProvider(string $provider) | The destination to send rendered assets to - set to `mux` for Mux. | Y
+setOptions([Shotstack\Client\Model\MuxDestinationOptions](#muxdestinationoptions) options) | Additional Mux configuration and features. | - 
+
+### MuxDestinationOptions()
+
+Pass additional options to control how Mux processes video. Currently supports playback policy option.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\MuxDestinationOptions;
+
+$muxDestinationOptions = new MuxDestinationOptions();
+$muxDestinationOptions
+  ->setPlaybackPolicy(['public']);
+```
+
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setPlaybackPolicy([string] $policy) | Sets the Mux `playback_policy` option. Value is an array of strings - use **public**, **signed**, or both. | -  
+
+### S3Destination()
+
+Send rendered videos to an [Amazon S3](https://shotstack.io/docs/guide/serving-assets/destinations/s3) bucket. Send 
+files to any region with your own prefix and filename. AWS credentials are required and added via the 
+[dashboard](https://dashboard.shotstack.io/integrations/s3), not in the request.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\S3Destination;
+
+$s3Destination = new S3Destination();
+$s3Destination
+  ->setProvider('s3')
+  ->setOptions($s3DestinationOptions);
+```
+
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setProvider(string provider) | The destination to send rendered assets to - set to `s3` for S3. | Y
+setOptions([Shotstack\Client\Model\S3DestinationOptions](#s3destinationoptions) options) | Additional S3 configuration options. | - 
+
+### S3DestinationOptions()
+
+Pass additional options to control how files are stored in S3.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\S3DestinationOptions;
+
+$s3DestinationOptions = new S3DestinationOptions();
+$s3DestinationOptions
+  ->setRegion('us-east-1');
+  ->setBucket('my-bucket');
+  ->setPrefix('my-renders');
+  ->setFilename('my-file');
+  ->setAcl('public-read');
+```
+
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setRegion(string $region) | Choose the region to send the file to. Must be a valid [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2` | Y
+setBucket(string $bucket) | The bucket name to send files to. The bucket must exist in the AWS account before files can be sent. | Y
+setPrefix(string $prefix) | A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`. | -
+setFilename(string $filename) | Use your own filename instead of the default render ID filename. Note: omit the file extension as this will be appended depending n the output format. Also `poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images. | -
+setAcl(string $acl) | Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl). | -
 
 ---
 
@@ -934,6 +1220,98 @@ getThumbnail(): string | The URL of the thumbnail image if requested. This will 
 getData(): [\Shotstack\Client\Model\Edit](#edit) | The timeline and output data to be rendered. | Y
 getCreated(): string | The time the render task was initially queued. | Y
 getUpdated(): string | The time the render status was last updated. | Y
+
+---
+
+## Template Response Schemas
+
+The following schemas are returned by the templates endpoint, including create, update and rendering a template.
+
+### TemplateResponse()
+
+The response received after a [template](#create-template) is submitted. The template is saved and a unique
+template id is returned.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [\Shotstack\Client\Model\TemplateResponseData](#templateresponsedata) | `TemplateResponseData` or an error message. | Y
+
+### TemplateResponseData()
+
+The response data returned with the [TemplateResponse](#templateresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getMessage(): string | Success response message or error details. | Y
+getId(): string | The unique id of the template in UUID format. | Y
+
+### TemplateDataResponse()
+
+The template data including the template name and [Edit](#edit).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [\Shotstack\Client\Model\TemplateDataResponseData](#templatedataresponsedata) | `TemplateDataResponseData` or an error message. | Y
+
+### TemplateDataResponseData()
+
+The response data returned with the [TemplateDataResponse](#templatedataresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getId(): string | The unique id of the template in UUID format. | Y
+getName(): string | The template name. | Y
+getOwner(): string | The owner id of the templates. | Y
+getTemplate(): [\Shotstack\Client\Model\Edit](#edit) | `Edit` or an error message. | Y
+
+### TemplateListResponse()
+
+A list of previously saved templates.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getSuccess(): bool | `true` if successfully queued, else `false`. | Y
+getMessage(): string | `Created`, `Bad Request` or an error message. | Y
+getResponse(): [\Shotstack\Client\Model\TemplateListResponseData](#templatelistresponsedata) | `TemplateListResponseData` or an error message. | Y
+
+### TemplateListResponseData()
+
+The response data returned with the [TemplateListResponse](#templatelistresponse).
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getOwner(): bool | The owner id of the templates. | Y
+getTemplates(): [\Shotstack\Client\Model\TemplateListResponseItem[]](#templatelistresponseitem) | The list of templates. | Y
+
+### TemplateListResponseItem()
+
+The individual template item returned with the [TemplateListResponseData](#templatelistresponsedata) templates
+list.
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+getId(): string | The unique id of the template in UUID format. | Y
+getName(): string | The template name | Y
+getCreated(): string | The time the template was created. | -
+getUpdated(): string | The time the template was last updated. | -
 
 ---
 ## Inspecting Media

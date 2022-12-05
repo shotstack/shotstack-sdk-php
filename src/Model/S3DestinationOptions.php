@@ -1,6 +1,6 @@
 <?php
 /**
- * Destinations
+ * S3DestinationOptions
  *
  * PHP version 7.3
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Destinations Class Doc Comment
+ * S3DestinationOptions Class Doc Comment
  *
  * @category Class
- * @description A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the  [Shotstack hosting destination](https://shotstack.io/docs/guide/serving-assets/hosting). You can add other destinations to send assets to. The following destinations are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_shotstackdestination\&quot;&gt;ShotstackDestination&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_muxdestination\&quot;&gt;MuxDestination&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_s3destination\&quot;&gt;S3Destination&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
+ * @description Pass additional options to control how files are stored in S3.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,16 +43,16 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
+class S3DestinationOptions implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = 'destinations';
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Destinations';
+    protected static $openAPIModelName = 'S3DestinationOptions';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -60,9 +60,11 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'exclude' => 'bool',
-        'options' => '\Shotstack\Client\Model\S3DestinationOptions'
+        'region' => 'string',
+        'bucket' => 'string',
+        'prefix' => 'string',
+        'filename' => 'string',
+        'acl' => 'string'
     ];
 
     /**
@@ -73,9 +75,11 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'exclude' => null,
-        'options' => null
+        'region' => null,
+        'bucket' => null,
+        'prefix' => null,
+        'filename' => null,
+        'acl' => null
     ];
 
     /**
@@ -105,9 +109,11 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'exclude' => 'exclude',
-        'options' => 'options'
+        'region' => 'region',
+        'bucket' => 'bucket',
+        'prefix' => 'prefix',
+        'filename' => 'filename',
+        'acl' => 'acl'
     ];
 
     /**
@@ -116,9 +122,11 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'exclude' => 'setExclude',
-        'options' => 'setOptions'
+        'region' => 'setRegion',
+        'bucket' => 'setBucket',
+        'prefix' => 'setPrefix',
+        'filename' => 'setFilename',
+        'acl' => 'setAcl'
     ];
 
     /**
@@ -127,9 +135,11 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'exclude' => 'getExclude',
-        'options' => 'getOptions'
+        'region' => 'getRegion',
+        'bucket' => 'getBucket',
+        'prefix' => 'getPrefix',
+        'filename' => 'getFilename',
+        'acl' => 'getAcl'
     ];
 
     /**
@@ -189,12 +199,11 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->container['provider'] = $data['provider'] ?? 's3';
-        $this->container['exclude'] = $data['exclude'] ?? null;
-        $this->container['options'] = $data['options'] ?? null;
-
-        // Initialize discriminator property with the model name.
-        $this->container['destinations'] = static::$openAPIModelName;
+        $this->container['region'] = $data['region'] ?? null;
+        $this->container['bucket'] = $data['bucket'] ?? null;
+        $this->container['prefix'] = $data['prefix'] ?? null;
+        $this->container['filename'] = $data['filename'] ?? null;
+        $this->container['acl'] = $data['acl'] ?? null;
     }
 
     /**
@@ -206,8 +215,11 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['region'] === null) {
+            $invalidProperties[] = "'region' can't be null";
+        }
+        if ($this->container['bucket'] === null) {
+            $invalidProperties[] = "'bucket' can't be null";
         }
         return $invalidProperties;
     }
@@ -225,73 +237,121 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets region
      *
      * @return string
      */
-    public function getProvider()
+    public function getRegion()
     {
-        return $this->container['provider'];
+        return $this->container['region'];
     }
 
     /**
-     * Sets provider
+     * Sets region
      *
-     * @param string $provider The destination to send rendered assets to - set to `s3` for S3.
+     * @param string $region Choose the region to send the file to. Must be a valid  [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2`.
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setRegion($region)
     {
-        $this->container['provider'] = $provider;
+        $this->container['region'] = $region;
 
         return $this;
     }
 
     /**
-     * Gets exclude
+     * Gets bucket
      *
-     * @return bool|null
+     * @return string
      */
-    public function getExclude()
+    public function getBucket()
     {
-        return $this->container['exclude'];
+        return $this->container['bucket'];
     }
 
     /**
-     * Sets exclude
+     * Sets bucket
      *
-     * @param bool|null $exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+     * @param string $bucket The bucket name to send files to. The bucket must exist in the AWS account before files can be sent.
      *
      * @return self
      */
-    public function setExclude($exclude)
+    public function setBucket($bucket)
     {
-        $this->container['exclude'] = $exclude;
+        $this->container['bucket'] = $bucket;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets prefix
      *
-     * @return \Shotstack\Client\Model\S3DestinationOptions|null
+     * @return string|null
      */
-    public function getOptions()
+    public function getPrefix()
     {
-        return $this->container['options'];
+        return $this->container['prefix'];
     }
 
     /**
-     * Sets options
+     * Sets prefix
      *
-     * @param \Shotstack\Client\Model\S3DestinationOptions|null $options options
+     * @param string|null $prefix A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`.
      *
      * @return self
      */
-    public function setOptions($options)
+    public function setPrefix($prefix)
     {
-        $this->container['options'] = $options;
+        $this->container['prefix'] = $prefix;
+
+        return $this;
+    }
+
+    /**
+     * Gets filename
+     *
+     * @return string|null
+     */
+    public function getFilename()
+    {
+        return $this->container['filename'];
+    }
+
+    /**
+     * Sets filename
+     *
+     * @param string|null $filename Use your own filename instead of the default render ID filename. Note: omit the file extension as this will be appended depending n the output format. Also `poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
+     *
+     * @return self
+     */
+    public function setFilename($filename)
+    {
+        $this->container['filename'] = $filename;
+
+        return $this;
+    }
+
+    /**
+     * Gets acl
+     *
+     * @return string|null
+     */
+    public function getAcl()
+    {
+        return $this->container['acl'];
+    }
+
+    /**
+     * Sets acl
+     *
+     * @param string|null $acl Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl).
+     *
+     * @return self
+     */
+    public function setAcl($acl)
+    {
+        $this->container['acl'] = $acl;
 
         return $this;
     }

@@ -35,7 +35,7 @@ use \Shotstack\Client\ObjectSerializer;
  * Size Class Doc Comment
  *
  * @category Class
- * @description Set a custom size for a video or image. When using a custom size omit the &#x60;resolution&#x60; and &#x60;aspectRatio&#x60;. Custom sizes must be divisible by 2 based on the encoder specifications.
+ * @description Set a custom size for a video or image in pixels. When using a custom size omit the &#x60;resolution&#x60; and &#x60;aspectRatio&#x60;. Custom sizes must be divisible by 2 based on the encoder specifications.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -241,7 +241,7 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets width
      *
-     * @param int|null $width Set a custom width for the video or image file. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
+     * @param int|null $width Set a custom width for the video or image file in pixels. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
      *
      * @return self
      */
@@ -273,7 +273,7 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets height
      *
-     * @param int|null $height Set a custom height for the video or image file. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
+     * @param int|null $height Set a custom height for the video or image file in pixels. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
      *
      * @return self
      */

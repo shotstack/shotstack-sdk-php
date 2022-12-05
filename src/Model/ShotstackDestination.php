@@ -35,7 +35,7 @@ use \Shotstack\Client\ObjectSerializer;
  * ShotstackDestination Class Doc Comment
  *
  * @category Class
- * @description Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
+ * @description Send rendered assets to the  [Shotstack hosting and CDN](https://shotstack.io/docs/guide/serving-assets/destinations/shotstack) service.  This destination is enabled by default.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -252,7 +252,7 @@ class ShotstackDestination implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets exclude
      *
-     * @param bool|null $exclude Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+     * @param bool|null $exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
      *
      * @return self
      */

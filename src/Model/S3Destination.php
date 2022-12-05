@@ -1,6 +1,6 @@
 <?php
 /**
- * Destinations
+ * S3Destination
  *
  * PHP version 7.3
  *
@@ -32,10 +32,10 @@ use \ArrayAccess;
 use \Shotstack\Client\ObjectSerializer;
 
 /**
- * Destinations Class Doc Comment
+ * S3Destination Class Doc Comment
  *
  * @category Class
- * @description A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the  [Shotstack hosting destination](https://shotstack.io/docs/guide/serving-assets/hosting). You can add other destinations to send assets to. The following destinations are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_shotstackdestination\&quot;&gt;ShotstackDestination&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_muxdestination\&quot;&gt;MuxDestination&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_s3destination\&quot;&gt;S3Destination&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
+ * @description Send rendered videos to an [Amazon S3](https://shotstack.io/docs/guide/serving-assets/destinations/s3) bucket. Send files to any region with your own prefix and filename. AWS credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/s3), not in the request.
  * @package  Shotstack\Client
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -43,16 +43,16 @@ use \Shotstack\Client\ObjectSerializer;
  * @template TKey int|null
  * @template TValue mixed|null
  */
-class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
+class S3Destination implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = 'destinations';
+    public const DISCRIMINATOR = null;
 
     /**
       * The original name of the model.
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Destinations';
+    protected static $openAPIModelName = 'S3Destination';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -61,7 +61,6 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'provider' => 'string',
-        'exclude' => 'bool',
         'options' => '\Shotstack\Client\Model\S3DestinationOptions'
     ];
 
@@ -74,7 +73,6 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'provider' => null,
-        'exclude' => null,
         'options' => null
     ];
 
@@ -106,7 +104,6 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'provider' => 'provider',
-        'exclude' => 'exclude',
         'options' => 'options'
     ];
 
@@ -117,7 +114,6 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'provider' => 'setProvider',
-        'exclude' => 'setExclude',
         'options' => 'setOptions'
     ];
 
@@ -128,7 +124,6 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'provider' => 'getProvider',
-        'exclude' => 'getExclude',
         'options' => 'getOptions'
     ];
 
@@ -190,11 +185,7 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     public function __construct(array $data = null)
     {
         $this->container['provider'] = $data['provider'] ?? 's3';
-        $this->container['exclude'] = $data['exclude'] ?? null;
         $this->container['options'] = $data['options'] ?? null;
-
-        // Initialize discriminator property with the model name.
-        $this->container['destinations'] = static::$openAPIModelName;
     }
 
     /**
@@ -244,30 +235,6 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setProvider($provider)
     {
         $this->container['provider'] = $provider;
-
-        return $this;
-    }
-
-    /**
-     * Gets exclude
-     *
-     * @return bool|null
-     */
-    public function getExclude()
-    {
-        return $this->container['exclude'];
-    }
-
-    /**
-     * Sets exclude
-     *
-     * @param bool|null $exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
-     *
-     * @return self
-     */
-    public function setExclude($exclude)
-    {
-        $this->container['exclude'] = $exclude;
 
         return $this;
     }

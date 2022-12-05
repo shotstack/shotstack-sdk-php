@@ -68,6 +68,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'scale_to' => 'string',
         'quality' => 'string',
         'repeat' => 'bool',
+        'mute' => 'bool',
         'range' => '\Shotstack\Client\Model\Range',
         'poster' => '\Shotstack\Client\Model\Poster',
         'thumbnail' => '\Shotstack\Client\Model\Thumbnail',
@@ -90,6 +91,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'scale_to' => null,
         'quality' => null,
         'repeat' => null,
+        'mute' => null,
         'range' => null,
         'poster' => null,
         'thumbnail' => null,
@@ -131,6 +133,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'scale_to' => 'scaleTo',
         'quality' => 'quality',
         'repeat' => 'repeat',
+        'mute' => 'mute',
         'range' => 'range',
         'poster' => 'poster',
         'thumbnail' => 'thumbnail',
@@ -151,6 +154,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'scale_to' => 'setScaleTo',
         'quality' => 'setQuality',
         'repeat' => 'setRepeat',
+        'mute' => 'setMute',
         'range' => 'setRange',
         'poster' => 'setPoster',
         'thumbnail' => 'setThumbnail',
@@ -171,6 +175,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'scale_to' => 'getScaleTo',
         'quality' => 'getQuality',
         'repeat' => 'getRepeat',
+        'mute' => 'getMute',
         'range' => 'getRange',
         'poster' => 'getPoster',
         'thumbnail' => 'getThumbnail',
@@ -370,6 +375,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->container['scale_to'] = $data['scale_to'] ?? null;
         $this->container['quality'] = $data['quality'] ?? null;
         $this->container['repeat'] = $data['repeat'] ?? null;
+        $this->container['mute'] = $data['mute'] ?? null;
         $this->container['range'] = $data['range'] ?? null;
         $this->container['poster'] = $data['poster'] ?? null;
         $this->container['thumbnail'] = $data['thumbnail'] ?? null;
@@ -710,6 +716,30 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets mute
+     *
+     * @return bool|null
+     */
+    public function getMute()
+    {
+        return $this->container['mute'];
+    }
+
+    /**
+     * Sets mute
+     *
+     * @param bool|null $mute Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute.
+     *
+     * @return self
+     */
+    public function setMute($mute)
+    {
+        $this->container['mute'] = $mute;
+
+        return $this;
+    }
+
+    /**
      * Gets range
      *
      * @return \Shotstack\Client\Model\Range|null
@@ -794,7 +824,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets destinations
      *
-     * @param \Shotstack\Client\Model\Destinations[]|null $destinations destinations
+     * @param \Shotstack\Client\Model\Destinations[]|null $destinations Specify the storage locations and hosting services to send rendered videos to.
      *
      * @return self
      */
