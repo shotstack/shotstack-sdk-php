@@ -41,15 +41,20 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
     - [FlipTransformation()](#fliptransformation)
     - [MergeField()](#mergefield)
   - [Template Schemas](#template-schemas)
-    - [Template](#template)
-    - [TemplateRender](#templaterender)
+    - [Template()](#template)
+    - [TemplateRender()](#templaterender)
   - [Output Schemas](#output-schemas)
     - [Output()](#output)
     - [Size()](#size)
     - [Range()](#range)
     - [Poster()](#poster)
     - [Thumbnail()](#thumbnail)
+  - [Destinations](#destinations)
     - [ShotstackDestination()](#shotstackdestination)
+    - [MuxDestination()](#muxdestination)
+    - [MuxDestinationOptions()](#muxdestinationoptions)
+    - [S3Destination()](#s3destination)
+    - [S3DestinationOptions()](#s3destinationoptions)
   - [Render Response Schemas](#render-response-schemas)
     - [QueuedResponse()](#queuedresponse)
     - [QueuedResponseData()](#queuedresponsedata)
@@ -831,7 +836,7 @@ The following schemas specify how to use templates to store and render templates
 [Edit](#edit) that can be rendered by its template ID and optionally include merge fields that are merged with the
 template when rendered.
 
-### Template
+### Template()
 
 A template is a saved [Edit](#edit) than can be loaded and re-used.
 
@@ -853,7 +858,7 @@ Method | Description | Required
 setName(string $name) | The template name. | Y
 setTemplate([\Shotstack\Client\Model\Edit](#edit) $edit)) | An edit defines the arrangement of a video on a timeline, an audio edit or an image design and the output format. | Y
 
-### TemplateRender
+### TemplateRender()
 
 Configure the id and optional merge fields to render a template by id.
 
@@ -899,6 +904,7 @@ $output
   ->setScaleTo('preview')
   ->setQuality('mediue')
   ->setRepeat(true)
+  ->setMute(false)
   ->setRange($range)
   ->setPoster($poster)
   ->setThumbnail($thumbnail)
@@ -917,10 +923,11 @@ setFps(float $fps) | Override the default frames per second. Useful for when the
 setScaleTo(string $scaleTo) | Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul><li>`preview` - 512px x 288px @ 15fps</li><li>`mobile` - 640px x 360px @ 25fps</li><li>`sd` - 1024px x 576px @25fps</li><li>`hd` - 1280px x 720px @25fps</li><li>`1080` - 1920px x 1080px @25fps</li></ul> | -
 setQuality(string $quality) | Adjust the output quality of the video, image or audio. Adjusting quality affects  render speed, download speeds and storage requirements due to file size. The default `medium` provides the most optimized choice for all three  factors. <ul><li>`low` - slightly reduced quality, smaller file size</li><li>`medium` - optimized quality, render speeds and file size</li><li>`high` - slightly increased quality, larger file size</li></ul> | -
 setRepeat(bool $repeat) | Loop settings for gif files. Set to `true` to loop, `false` to play only once. [default to `true`] | -
+setMute(bool $mute) | Mute the audio track of the output video. Set to `true` to mute, `false` to un-mute. | -
 setRange([\Shotstack\Client\Model\Range](#range) $range) | Specify a time range to render, i.e. to render only a portion of a video or audio file. Omit this setting to export the entire video. Range can also be used to render a frame at a specific time point - setting a range and output format as `jpg` will output a single frame image at the range `start` point. | -
 setPoster([\Shotstack\Client\Model\Poster](#poster) $poster) | Generate a poster image from a specific point on the timeline. | -
 setThumbnail([\Shotstack\Client\Model\Thumbnail](#thumbnail) $thumbnail) | Generate a thumbnail image from a specific point on the timeline. | -
-setDestinations([AnyOfShotstackDestination[]](#shotstackdestination) $destinations) | A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. [ShotstackDestination](#shotstackdestination) is currently the only option with plans to add more in the future such as S3, YouTube, Vimeo and Mux. If you do not require hosting you can opt-out using the  `exclude` property. | -
+setDestinations([\Shotstack\Client\Model\Destinations[]](#destinations) $destinations) | A destination is a location where output files can be sent to for serving or hosting. By default all rendered assets are automatically sent to the Shotstack hosting destination. | -
 
 ---
 
@@ -1018,6 +1025,7 @@ setScale(float $scale) | Scale the thumbnail size to a fraction of the viewport 
 
 ---
 
+## Destinations
 ### ShotstackDestination()
 
 Send rendered assets to the Shotstack hosting and CDN service. This destination is enabled by default.
@@ -1039,6 +1047,102 @@ Method | Description | Required
 :--- | :--- | :---: 
 setProvider(string $provider) | The destination to send rendered assets to - set to `shotstack` for Shotstack hosting and CDN. [default to `shotstack`] | Y
 setExclude(bool $exclude) | Set to `true` to opt-out from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering. [default to `false`] | -
+
+### MuxDestination()
+
+Send rendered videos to the [Mux](https://shotstack.io/docs/guide/serving-assets/destinations/mux) video hosting and
+streaming service. Mux credentials are required and added via the 
+[dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\MuxDestination;
+
+$muxDestination = new MuxDestination();
+$muxDestination
+  ->setProvider('mux')
+  ->setOptions($muxDestinationOptions);
+```
+
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setProvider(string $provider) | The destination to send rendered assets to - set to `mux` for Mux. | Y
+setOptions([Shotstack\Client\Model\MuxDestinationOptions](#muxdestinationoptions) options) | Additional Mux configuration and features. | - 
+
+### MuxDestinationOptions()
+
+Pass additional options to control how Mux processes video. Currently supports playback policy option.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\MuxDestinationOptions;
+
+$muxDestinationOptions = new MuxDestinationOptions();
+$muxDestinationOptions
+  ->setPlaybackPolicy(['public']);
+```
+
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setPlaybackPolicy([string] $policy) | Sets the Mux `playback_policy` option. Value is an array of strings - use **public**, **signed**, or both. | -  
+
+### S3Destination()
+
+Send rendered videos to an [Amazon S3](https://shotstack.io/docs/guide/serving-assets/destinations/s3) bucket. Send 
+files to any region with your own prefix and filename. AWS credentials are required and added via the 
+[dashboard](https://dashboard.shotstack.io/integrations/s3), not in the request.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\S3Destination;
+
+$s3Destination = new S3Destination();
+$s3Destination
+  ->setProvider('s3')
+  ->setOptions($s3DestinationOptions);
+```
+
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setProvider(string provider) | The destination to send rendered assets to - set to `s3` for S3. | Y
+setOptions([Shotstack\Client\Model\S3DestinationOptions](#s3destinationoptions) options) | Additional S3 configuration options. | - 
+
+### S3DestinationOptions()
+
+Pass additional options to control how files are stored in S3.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\S3DestinationOptions;
+
+$s3DestinationOptions = new S3DestinationOptions();
+$s3DestinationOptions
+  ->setRegion('us-east-1');
+  ->setBucket('my-bucket');
+  ->setPrefix('my-renders');
+  ->setFilename('my-file');
+  ->setAcl('public-read');
+```
+
+#### Methods:
+
+Name | Description | Required
+:--- | :--- | :---: 
+setRegion(string $region) | Choose the region to send the file to. Must be a valid [AWS region](https://docs.aws.amazon.com/general/latest/gr/s3.html#s3_region) string like `us-east-1` or `ap-southeast-2` | Y
+setBucket(string $bucket) | The bucket name to send files to. The bucket must exist in the AWS account before files can be sent. | Y
+setPrefix(string $prefix) | A prefix for the file being sent. This is typically a folder name, i.e. `videos` or `customerId/videos`. | -
+setFilename(string $filename) | Use your own filename instead of the default render ID filename. Note: omit the file extension as this will be appended depending n the output format. Also `poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images. | -
+setAcl(string $acl) | Sets the S3 Access Control List (acl) permissions. Default is `private`. Must use a valid  S3 [Canned ACL](https://docs.aws.amazon.com/AmazonS3/latest/userguide/acl-overview.html#canned-acl). | -
 
 ---
 
