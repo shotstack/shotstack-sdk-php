@@ -40,6 +40,9 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
     - [SkewTransformation()](#skewtransformation)
     - [FlipTransformation()](#fliptransformation)
     - [MergeField()](#mergefield)
+  - [Template Schemas](#template-schemas)
+    - [Template](#template)
+    - [TemplateRender](#templaterender)
   - [Output Schemas](#output-schemas)
     - [Output()](#output)
     - [Size()](#size)
@@ -292,8 +295,8 @@ $edit
   ->setTimeline($timeline)
   ->setOutput($output)
   ->setMerge($merge)
-  ->setCallback("https://my-server.com/callback.php")
-  ->setDisk("local");
+  ->setCallback('https://my-server.com/callback.php')
+  ->setDisk('local');
 ```
 
 #### Methods:
@@ -304,7 +307,7 @@ setTimeline([\Shotstack\Client\Model\Timeline](#timeline)) | A timeline represen
 setOutput([\Shotstack\Client\Model\Output](#output)) | The output format, render range and type of media to generate. | Y
 setMerge([\Shotstack\Client\Model\MergeField[]](#mergefield) $mergeField) | An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. | -
 setCallback(string $callback) | An optional webhook callback URL used to receive status notifications when a render completes or fails. See [webhooks](https://shotstack.io/docs/guide/architecting-an-application/webhooks/) for  more details. | -
-setDisk(string $disk) | The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.io/docs/guide/architecting-an-application/disk-types/) for more details. [default to `local`] <ul><li>`local` - optimized for high speed rendering with up to 512MB storage</li><li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li></ul> | -
+setDisk(string $disk) | **(Deprecated)** The disk type to use for storing footage and assets for each render. See [disk types](https://shotstack.io/docs/guide/architecting-an-application/disk-types/) for more details. [default to `local`] <ul><li>`local` - optimized for high speed rendering with up to 512MB storage</li><li>`mount` - optimized for larger file sizes and longer videos with 5GB for source footage and 512MB for output render</li></ul> | -
 
 -----
 
@@ -467,6 +470,7 @@ $videoAsset
   ->setSrc('https://shotstack-assets.s3.aws.com/mountain.mp4')
   ->setTrim(5)
   ->setVolume(0.5)
+  ->setVolumeEffect('fadeIn')
   ->setCrop($crop);
 ```
 
@@ -477,6 +481,7 @@ Method | Description | Required
 setSrc(string $url) | The video source URL. The URL must be publicly accessible or include credentials. | Y
 setTrim(float $seconds) | The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached. | -
 setVolume(float $level) | Set the volume for the video clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 0). | -
+setVolumeEffect(string $effect) | The volume effect to apply to the video asset.<ul><li>`fadeIn` - fade volume in only</li><li>`fadeOut` - fade volume out only</li><li>`fadeInFadeOut` - fade volume in and out</li></ul> | -
 setCrop([\Shotstack\Client\Model\Crop](#crop) $crop) | Crop the sides of an asset by a relative amount. The size of the crop is specified using a scale between 0 and 1, relative to the screen width - i.e. a left crop of 0.5 will crop half of the asset from the left, a top crop of 0.25 will crop the top by quarter of the asset. | -
 
 ---
@@ -667,8 +672,8 @@ $offset
 
 Method | Description | Required
 :--- | :--- | :---: 
-setX(float $x) | Offset an asset on the horizontal axis (left or right), range varies from -1 to 1. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right. [default to `0`] | -
-setY(float $y) | Offset an asset on the vertical axis (up or down), range varies from -1 to 1. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height of the viewport - i.e. an Y offset of 0.5 will move the asset up half the screen height. [default to `0`] | -
+setX(float $x) | Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right. [default to `0`] | -
+setY(float $y) | Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height of the viewport - i.e. a Y offset of 0.5 will move the asset up half the screen height. [default to `0`] | -
 
 ---
 
@@ -817,6 +822,58 @@ Method | Description | Required
 :--- | :--- | :---: 
 setFind(string $find) | The string to find <u>without</u> delimiters. | Y
 setReplace($replace) | The replacement value. The replacement can be any valid JSON type - string, boolean, number, etc... | Y
+
+---
+
+## Template Schemas
+
+The following schemas specify how to use templates to store and render templates. A template lets you save an
+[Edit](#edit) that can be rendered by its template ID and optionally include merge fields that are merged with the
+template when rendered.
+
+### Template
+
+A template is a saved [Edit](#edit) than can be loaded and re-used.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\Template;
+
+$template = new Template();
+$template
+  ->setName('My Template')
+  ->setTemplate($edit);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setName(string $name) | The template name. | Y
+setTemplate([\Shotstack\Client\Model\Edit](#edit) $edit)) | An edit defines the arrangement of a video on a timeline, an audio edit or an image design and the output format. | Y
+
+### TemplateRender
+
+Configure the id and optional merge fields to render a template by id.
+
+#### Example:
+
+```php
+use Shotstack\Client\Model\TemplateRender;
+
+$render = new TemplateRender();
+$render
+  ->setId('21e781c0-8232-4418-fec1-cc99f0280c21')
+  ->setMerge($merge);
+```
+
+#### Methods:
+
+Method | Description | Required
+:--- | :--- | :---: 
+setId(string $id) | The id of the template to render in UUID format. | Y
+setMerge([\Shotstack\Client\Model\MergeField[]](#mergefield) $mergeFields) | An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`. | -
 
 ---
 
