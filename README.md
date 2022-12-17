@@ -916,7 +916,7 @@ $output
   ->setRange($range)
   ->setPoster($poster)
   ->setThumbnail($thumbnail)
-  ->setDestination($destination);
+  ->setDestinations($destinations);
 ```
 
 #### Methods:
