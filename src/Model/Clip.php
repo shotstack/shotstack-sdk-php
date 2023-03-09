@@ -238,7 +238,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     const EFFECT_ZOOM_OUT_SLOW = 'zoomOutSlow';
     const EFFECT_ZOOM_OUT_FAST = 'zoomOutFast';
     const EFFECT_SLIDE_LEFT = 'slideLeft';
-    const EFFECT_SLIDE_LEFT_S_LOW = 'slideLeftSLow';
+    const EFFECT_SLIDE_LEFT_SLOW = 'slideLeftSlow';
     const EFFECT_SLIDE_LEFT_FAST = 'slideLeftFast';
     const EFFECT_SLIDE_RIGHT = 'slideRight';
     const EFFECT_SLIDE_RIGHT_SLOW = 'slideRightSlow';
@@ -307,7 +307,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
             self::EFFECT_ZOOM_OUT_SLOW,
             self::EFFECT_ZOOM_OUT_FAST,
             self::EFFECT_SLIDE_LEFT,
-            self::EFFECT_SLIDE_LEFT_S_LOW,
+            self::EFFECT_SLIDE_LEFT_SLOW,
             self::EFFECT_SLIDE_LEFT_FAST,
             self::EFFECT_SLIDE_RIGHT,
             self::EFFECT_SLIDE_RIGHT_SLOW,
