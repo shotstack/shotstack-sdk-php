@@ -609,7 +609,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     public function setFps($fps)
     {
         $allowedValues = $this->getFpsAllowableValues();
-        if (!is_null($fps) && !in_array($fps, $allowedValues, true)) {
+        if (!is_null($fps) && !in_array($fps, $allowedValues, false)) {
             throw new \InvalidArgumentException(
                 sprintf(
                     "Invalid value '%s' for 'fps', must be one of '%s'",
