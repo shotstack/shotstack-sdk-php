@@ -363,7 +363,7 @@ class CreateApi
         }
         
 
-        $resourcePath = '/path_alias_createassets/{id}';
+        $resourcePath = '/assets/{id}';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
@@ -710,7 +710,7 @@ class CreateApi
         }
 
 
-        $resourcePath = '/path_alias_createassets';
+        $resourcePath = '/assets';
         $formParams = [];
         $queryParams = [];
         $headerParams = [];
