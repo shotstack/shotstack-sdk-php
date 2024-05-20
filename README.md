@@ -85,7 +85,7 @@ For examples of how to use the SDK to create videos using code checkout the PHP 
 # Using the PHP SDK
 ### Requirements
 
-Requires PHP7.3+ and uses Guzzle7.3+.
+Requires PHP7.4+ and uses Guzzle7.3+.
 
 ### Installation
 
