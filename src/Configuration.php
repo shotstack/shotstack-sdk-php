@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,14 +25,14 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client;
+namespace ShotstackClient;
 
 /**
  * Configuration Class Doc Comment
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -100,7 +100,7 @@ class Configuration
      *
      * @var string
      */
-    protected $userAgent = 'OpenAPI-Generator/0.2.6/PHP';
+    protected $userAgent = 'OpenAPI-Generator/1.10.3/PHP';
 
     /**
      * Debug switch (default set to false)
@@ -429,11 +429,11 @@ class Configuration
      */
     public static function toDebugReport()
     {
-        $report  = 'PHP SDK (Shotstack\Client) Debug Report:' . PHP_EOL;
+        $report  = 'PHP SDK (ShotstackClient) Debug Report:' . PHP_EOL;
         $report .= '    OS: ' . php_uname() . PHP_EOL;
         $report .= '    PHP Version: ' . PHP_VERSION . PHP_EOL;
         $report .= '    The version of the OpenAPI document: v1' . PHP_EOL;
-        $report .= '    SDK Package Version: 0.2.6' . PHP_EOL;
+        $report .= '    SDK Package Version: 1.10.3' . PHP_EOL;
         $report .= '    Temp Folder Path: ' . self::getDefaultConfiguration()->getTempFolderPath() . PHP_EOL;
 
         return $report;
@@ -502,20 +502,6 @@ class Configuration
             ],
             [
                 "url" => "https://api.shotstack.io/ingest/{version}",
-                "description" => "No description provided",
-                "variables" => [
-                    "version" => [
-                        "description" => "Set the stage to **v1** for production usage. Set to **stage** to use the development sandbox.",
-                        "default_value" => "v1",
-                        "enum_values" => [
-                            "v1",
-                            "stage"
-                        ]
-                    ]
-                ]
-            ],
-            [
-                "url" => "https://api.shotstack.io/create/{version}",
                 "description" => "No description provided",
                 "variables" => [
                     "version" => [

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Source Class Doc Comment
  *
  * @category Class
  * @description The details of the file to be ingested and any transformations to be applied. Once the source file has been ingested, new renditions can be created from it. The renditions are specified in the **outputs** property. A rendition is a new version, generated from the source. This can be used to create new sizes and aspect ratios tht serve different purposes within an application.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,8 +59,8 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'url' => 'string',
-        'outputs' => '\Shotstack\Client\Model\Outputs',
-        'destinations' => '\Shotstack\Client\Model\Destinations',
+        'outputs' => '\ShotstackClient\Model\Outputs',
+        'destinations' => '\ShotstackClient\Model\Destinations',
         'callback' => 'string'
     ];
 
@@ -341,7 +341,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets outputs
      *
-     * @return \Shotstack\Client\Model\Outputs|null
+     * @return \ShotstackClient\Model\Outputs|null
      */
     public function getOutputs()
     {
@@ -351,7 +351,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets outputs
      *
-     * @param \Shotstack\Client\Model\Outputs|null $outputs outputs
+     * @param \ShotstackClient\Model\Outputs|null $outputs outputs
      *
      * @return self
      */
@@ -368,7 +368,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets destinations
      *
-     * @return \Shotstack\Client\Model\Destinations|null
+     * @return \ShotstackClient\Model\Destinations|null
      */
     public function getDestinations()
     {
@@ -378,7 +378,7 @@ class Source implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets destinations
      *
-     * @param \Shotstack\Client\Model\Destinations|null $destinations destinations
+     * @param \ShotstackClient\Model\Destinations|null $destinations destinations
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Clip Class Doc Comment
  *
  * @category Class
  * @description A clip is a container for a specific type of asset, i.e. a title, image, video, audio or html. You use a Clip to define when an asset will display on the timeline, how long it will play for and transitions, filters and effects to apply to it.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,18 +58,21 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'asset' => '\Shotstack\Client\Model\Asset',
-        'start' => 'float',
-        'length' => 'float',
+        'asset' => '\ShotstackClient\Model\Asset',
+        'start' => '\ShotstackClient\Model\ClipStart',
+        'length' => '\ShotstackClient\Model\ClipLength',
         'fit' => 'string',
-        'scale' => 'float',
+        'scale' => '\ShotstackClient\Model\ClipScale',
+        'width' => 'float',
+        'height' => 'float',
         'position' => 'string',
-        'offset' => '\Shotstack\Client\Model\Offset',
-        'transition' => '\Shotstack\Client\Model\Transition',
+        'offset' => '\ShotstackClient\Model\Offset',
+        'transition' => '\ShotstackClient\Model\Transition',
         'effect' => 'string',
         'filter' => 'string',
-        'opacity' => 'float',
-        'transform' => '\Shotstack\Client\Model\Transformation'
+        'opacity' => '\ShotstackClient\Model\ClipOpacity',
+        'transform' => '\ShotstackClient\Model\Transformation',
+        'alias' => 'string'
     ];
 
     /**
@@ -85,13 +88,16 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'length' => null,
         'fit' => null,
         'scale' => null,
+        'width' => 'float',
+        'height' => 'float',
         'position' => null,
         'offset' => null,
         'transition' => null,
         'effect' => null,
         'filter' => null,
         'opacity' => null,
-        'transform' => null
+        'transform' => null,
+        'alias' => null
     ];
 
     /**
@@ -105,13 +111,16 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'length' => false,
         'fit' => false,
         'scale' => false,
+        'width' => false,
+        'height' => false,
         'position' => false,
         'offset' => false,
         'transition' => false,
         'effect' => false,
         'filter' => false,
         'opacity' => false,
-        'transform' => false
+        'transform' => false,
+        'alias' => false
     ];
 
     /**
@@ -205,13 +214,16 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'length' => 'length',
         'fit' => 'fit',
         'scale' => 'scale',
+        'width' => 'width',
+        'height' => 'height',
         'position' => 'position',
         'offset' => 'offset',
         'transition' => 'transition',
         'effect' => 'effect',
         'filter' => 'filter',
         'opacity' => 'opacity',
-        'transform' => 'transform'
+        'transform' => 'transform',
+        'alias' => 'alias'
     ];
 
     /**
@@ -225,13 +237,16 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'length' => 'setLength',
         'fit' => 'setFit',
         'scale' => 'setScale',
+        'width' => 'setWidth',
+        'height' => 'setHeight',
         'position' => 'setPosition',
         'offset' => 'setOffset',
         'transition' => 'setTransition',
         'effect' => 'setEffect',
         'filter' => 'setFilter',
         'opacity' => 'setOpacity',
-        'transform' => 'setTransform'
+        'transform' => 'setTransform',
+        'alias' => 'setAlias'
     ];
 
     /**
@@ -245,13 +260,16 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'length' => 'getLength',
         'fit' => 'getFit',
         'scale' => 'getScale',
+        'width' => 'getWidth',
+        'height' => 'getHeight',
         'position' => 'getPosition',
         'offset' => 'getOffset',
         'transition' => 'getTransition',
         'effect' => 'getEffect',
         'filter' => 'getFilter',
         'opacity' => 'getOpacity',
-        'transform' => 'getTransform'
+        'transform' => 'getTransform',
+        'alias' => 'getAlias'
     ];
 
     /**
@@ -326,6 +344,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     public const EFFECT_SLIDE_DOWN = 'slideDown';
     public const EFFECT_SLIDE_DOWN_SLOW = 'slideDownSlow';
     public const EFFECT_SLIDE_DOWN_FAST = 'slideDownFast';
+    public const FILTER_NONE = 'none';
     public const FILTER_BLUR = 'blur';
     public const FILTER_BOOST = 'boost';
     public const FILTER_CONTRAST = 'contrast';
@@ -407,6 +426,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getFilterAllowableValues()
     {
         return [
+            self::FILTER_NONE,
             self::FILTER_BLUR,
             self::FILTER_BOOST,
             self::FILTER_CONTRAST,
@@ -438,6 +458,8 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('length', $data ?? [], null);
         $this->setIfExists('fit', $data ?? [], null);
         $this->setIfExists('scale', $data ?? [], null);
+        $this->setIfExists('width', $data ?? [], null);
+        $this->setIfExists('height', $data ?? [], null);
         $this->setIfExists('position', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
         $this->setIfExists('transition', $data ?? [], null);
@@ -445,6 +467,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('filter', $data ?? [], null);
         $this->setIfExists('opacity', $data ?? [], null);
         $this->setIfExists('transform', $data ?? [], null);
+        $this->setIfExists('alias', $data ?? [], null);
     }
 
     /**
@@ -492,6 +515,22 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if (!is_null($this->container['width']) && ($this->container['width'] > 3840)) {
+            $invalidProperties[] = "invalid value for 'width', must be smaller than or equal to 3840.";
+        }
+
+        if (!is_null($this->container['width']) && ($this->container['width'] < 1)) {
+            $invalidProperties[] = "invalid value for 'width', must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['height']) && ($this->container['height'] > 2160)) {
+            $invalidProperties[] = "invalid value for 'height', must be smaller than or equal to 2160.";
+        }
+
+        if (!is_null($this->container['height']) && ($this->container['height'] < 1)) {
+            $invalidProperties[] = "invalid value for 'height', must be bigger than or equal to 1.";
+        }
+
         $allowedValues = $this->getPositionAllowableValues();
         if (!is_null($this->container['position']) && !in_array($this->container['position'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -519,6 +558,10 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if (!is_null($this->container['alias']) && !preg_match("/^[A-Za-z0-9_-]+$/", $this->container['alias'])) {
+            $invalidProperties[] = "invalid value for 'alias', must be conform to the pattern /^[A-Za-z0-9_-]+$/.";
+        }
+
         return $invalidProperties;
     }
 
@@ -537,7 +580,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets asset
      *
-     * @return \Shotstack\Client\Model\Asset
+     * @return \ShotstackClient\Model\Asset
      */
     public function getAsset()
     {
@@ -547,7 +590,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets asset
      *
-     * @param \Shotstack\Client\Model\Asset $asset asset
+     * @param \ShotstackClient\Model\Asset $asset asset
      *
      * @return self
      */
@@ -564,7 +607,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets start
      *
-     * @return float
+     * @return \ShotstackClient\Model\ClipStart
      */
     public function getStart()
     {
@@ -574,7 +617,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets start
      *
-     * @param float $start The start position of the Clip on the timeline, in seconds.
+     * @param \ShotstackClient\Model\ClipStart $start start
      *
      * @return self
      */
@@ -591,7 +634,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets length
      *
-     * @return float
+     * @return \ShotstackClient\Model\ClipLength
      */
     public function getLength()
     {
@@ -601,7 +644,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets length
      *
-     * @param float $length The length, in seconds, the Clip should play for.
+     * @param \ShotstackClient\Model\ClipLength $length length
      *
      * @return self
      */
@@ -655,7 +698,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets scale
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\ClipScale|null
      */
     public function getScale()
     {
@@ -665,7 +708,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets scale
      *
-     * @param float|null $scale Scale the asset to a fraction of the viewport size - i.e. setting the scale to 0.5 will scale asset to half the size of the viewport. This is useful for picture-in-picture video and  scaling images such as logos and watermarks.
+     * @param \ShotstackClient\Model\ClipScale|null $scale scale
      *
      * @return self
      */
@@ -675,6 +718,76 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable scale cannot be null');
         }
         $this->container['scale'] = $scale;
+
+        return $this;
+    }
+
+    /**
+     * Gets width
+     *
+     * @return float|null
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /**
+     * Sets width
+     *
+     * @param float|null $width Set the width of the clip bounding box in pixels. This constrains the width of the clip, overriding the default behavior where clips fill the viewport width.
+     *
+     * @return self
+     */
+    public function setWidth($width)
+    {
+        if (is_null($width)) {
+            throw new \InvalidArgumentException('non-nullable width cannot be null');
+        }
+
+        if (($width > 3840)) {
+            throw new \InvalidArgumentException('invalid value for $width when calling Clip., must be smaller than or equal to 3840.');
+        }
+        if (($width < 1)) {
+            throw new \InvalidArgumentException('invalid value for $width when calling Clip., must be bigger than or equal to 1.');
+        }
+
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets height
+     *
+     * @return float|null
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /**
+     * Sets height
+     *
+     * @param float|null $height Set the height of the clip bounding box in pixels. This constrains the height of the clip, overriding the default behavior where clips fill the viewport height.
+     *
+     * @return self
+     */
+    public function setHeight($height)
+    {
+        if (is_null($height)) {
+            throw new \InvalidArgumentException('non-nullable height cannot be null');
+        }
+
+        if (($height > 2160)) {
+            throw new \InvalidArgumentException('invalid value for $height when calling Clip., must be smaller than or equal to 2160.');
+        }
+        if (($height < 1)) {
+            throw new \InvalidArgumentException('invalid value for $height when calling Clip., must be bigger than or equal to 1.');
+        }
+
+        $this->container['height'] = $height;
 
         return $this;
     }
@@ -719,7 +832,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset
      *
-     * @return \Shotstack\Client\Model\Offset|null
+     * @return \ShotstackClient\Model\Offset|null
      */
     public function getOffset()
     {
@@ -729,7 +842,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets offset
      *
-     * @param \Shotstack\Client\Model\Offset|null $offset offset
+     * @param \ShotstackClient\Model\Offset|null $offset offset
      *
      * @return self
      */
@@ -746,7 +859,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets transition
      *
-     * @return \Shotstack\Client\Model\Transition|null
+     * @return \ShotstackClient\Model\Transition|null
      */
     public function getTransition()
     {
@@ -756,7 +869,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transition
      *
-     * @param \Shotstack\Client\Model\Transition|null $transition transition
+     * @param \ShotstackClient\Model\Transition|null $transition transition
      *
      * @return self
      */
@@ -820,7 +933,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets filter
      *
-     * @param string|null $filter A filter effect to apply to the Clip. <ul>   <li>`blur` - blur the scene</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
+     * @param string|null $filter A filter effect to apply to the Clip. <ul>   <li>`none` - no filter applied</li>   <li>`blur` - blur the scene</li>   <li>`boost` - boost contrast and saturation</li>   <li>`contrast` - increase contrast</li>   <li>`darken` - darken the scene</li>   <li>`greyscale` - remove colour</li>   <li>`lighten` - lighten the scene</li>   <li>`muted` - reduce saturation and contrast</li>   <li>`negative` - negative colors</li> </ul>
      *
      * @return self
      */
@@ -847,7 +960,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets opacity
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\ClipOpacity|null
      */
     public function getOpacity()
     {
@@ -857,7 +970,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets opacity
      *
-     * @param float|null $opacity Sets the opacity of the Clip where 1 is opaque and 0 is transparent.
+     * @param \ShotstackClient\Model\ClipOpacity|null $opacity opacity
      *
      * @return self
      */
@@ -874,7 +987,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets transform
      *
-     * @return \Shotstack\Client\Model\Transformation|null
+     * @return \ShotstackClient\Model\Transformation|null
      */
     public function getTransform()
     {
@@ -884,7 +997,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transform
      *
-     * @param \Shotstack\Client\Model\Transformation|null $transform transform
+     * @param \ShotstackClient\Model\Transformation|null $transform transform
      *
      * @return self
      */
@@ -894,6 +1007,38 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable transform cannot be null');
         }
         $this->container['transform'] = $transform;
+
+        return $this;
+    }
+
+    /**
+     * Gets alias
+     *
+     * @return string|null
+     */
+    public function getAlias()
+    {
+        return $this->container['alias'];
+    }
+
+    /**
+     * Sets alias
+     *
+     * @param string|null $alias A unique identifier for this clip that can be used to reference it from other clips using the `alias://` protocol in asset sources. This is useful for features like auto-captioning where a caption asset needs to reference the audio from another clip.
+     *
+     * @return self
+     */
+    public function setAlias($alias)
+    {
+        if (is_null($alias)) {
+            throw new \InvalidArgumentException('non-nullable alias cannot be null');
+        }
+
+        if ((!preg_match("/^[A-Za-z0-9_-]+$/", ObjectSerializer::toString($alias)))) {
+            throw new \InvalidArgumentException("invalid value for \$alias when calling Clip., must conform to the pattern /^[A-Za-z0-9_-]+$/.");
+        }
+
+        $this->container['alias'] = $alias;
 
         return $this;
     }

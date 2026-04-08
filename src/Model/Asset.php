@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,24 +26,24 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Asset Class Doc Comment
  *
  * @category Class
- * @description The type of asset to display for the duration of the Clip. Value must be one of: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_videoasset\&quot;&gt;VideoAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_imageasset\&quot;&gt;ImageAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_titleasset\&quot;&gt;TitleAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_htmlasset\&quot;&gt;HtmlAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_audioasset\&quot;&gt;AudioAsset&lt;/a&gt;&lt;/li&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_lumaasset\&quot;&gt;LumaAsset&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
- * @package  Shotstack\Client
+ * @description The type of asset to display for the duration of the Clip, i.e. a video clip or an image. Choose from one of the available asset types below.
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
 class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
-    public const DISCRIMINATOR = 'asset';
+    public const DISCRIMINATOR = 'type';
 
     /**
       * The original name of the model.
@@ -60,23 +60,46 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
+        'transcode' => 'bool',
         'trim' => 'float',
-        'volume' => 'float',
+        'volume' => '\ShotstackClient\Model\AudioAssetVolume',
         'volume_effect' => 'string',
         'speed' => 'float',
-        'crop' => '\Shotstack\Client\Model\Crop',
+        'crop' => '\ShotstackClient\Model\Crop',
+        'chroma_key' => '\ShotstackClient\Model\ChromaKey',
         'text' => 'string',
-        'style' => 'string',
-        'color' => 'string',
-        'size' => 'string',
-        'background' => 'string',
-        'position' => 'string',
-        'offset' => '\Shotstack\Client\Model\Offset',
-        'html' => 'string',
-        'css' => 'string',
         'width' => 'int',
         'height' => 'int',
-        'effect' => 'string'
+        'font' => '\ShotstackClient\Model\RichCaptionAssetFont',
+        'background' => 'string',
+        'alignment' => '\ShotstackClient\Model\TextAlignment',
+        'stroke' => '\ShotstackClient\Model\ShapeAssetStroke',
+        'animation' => '\ShotstackClient\Model\RichCaptionAnimation',
+        'ellipsis' => 'string',
+        'style' => 'string',
+        'shadow' => '\ShotstackClient\Model\RichTextShadow',
+        'border' => '\ShotstackClient\Model\Border',
+        'padding' => '\ShotstackClient\Model\RichCaptionAssetPadding',
+        'align' => '\ShotstackClient\Model\RichTextAlignment',
+        'effect' => 'string',
+        'margin' => '\ShotstackClient\Model\CaptionMargin',
+        'active' => '\ShotstackClient\Model\RichCaptionActive',
+        'html' => 'string',
+        'css' => 'string',
+        'position' => 'string',
+        'color' => 'string',
+        'size' => 'string',
+        'offset' => '\ShotstackClient\Model\Offset',
+        'shape' => 'string',
+        'fill' => '\ShotstackClient\Model\ShapeAssetFill',
+        'rectangle' => '\ShotstackClient\Model\ShapeAssetRectangle',
+        'circle' => '\ShotstackClient\Model\ShapeAssetCircle',
+        'line' => '\ShotstackClient\Model\ShapeAssetLine',
+        'prompt' => 'string',
+        'aspect_ratio' => 'string',
+        'voice' => 'string',
+        'language' => 'string',
+        'newscaster' => 'bool'
     ];
 
     /**
@@ -89,23 +112,46 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
+        'transcode' => null,
         'trim' => null,
         'volume' => null,
         'volume_effect' => null,
         'speed' => 'float',
         'crop' => null,
+        'chroma_key' => null,
         'text' => null,
-        'style' => null,
-        'color' => null,
-        'size' => null,
-        'background' => null,
-        'position' => null,
-        'offset' => null,
-        'html' => null,
-        'css' => null,
         'width' => null,
         'height' => null,
-        'effect' => null
+        'font' => null,
+        'background' => null,
+        'alignment' => null,
+        'stroke' => null,
+        'animation' => null,
+        'ellipsis' => null,
+        'style' => null,
+        'shadow' => null,
+        'border' => null,
+        'padding' => null,
+        'align' => null,
+        'effect' => null,
+        'margin' => null,
+        'active' => null,
+        'html' => null,
+        'css' => null,
+        'position' => null,
+        'color' => null,
+        'size' => null,
+        'offset' => null,
+        'shape' => null,
+        'fill' => null,
+        'rectangle' => null,
+        'circle' => null,
+        'line' => null,
+        'prompt' => null,
+        'aspect_ratio' => null,
+        'voice' => null,
+        'language' => null,
+        'newscaster' => null
     ];
 
     /**
@@ -116,23 +162,46 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
+        'transcode' => false,
         'trim' => false,
         'volume' => false,
         'volume_effect' => false,
         'speed' => false,
         'crop' => false,
+        'chroma_key' => false,
         'text' => false,
-        'style' => false,
-        'color' => false,
-        'size' => false,
-        'background' => false,
-        'position' => false,
-        'offset' => false,
-        'html' => false,
-        'css' => false,
         'width' => false,
         'height' => false,
-        'effect' => false
+        'font' => false,
+        'background' => false,
+        'alignment' => false,
+        'stroke' => false,
+        'animation' => false,
+        'ellipsis' => false,
+        'style' => false,
+        'shadow' => false,
+        'border' => false,
+        'padding' => false,
+        'align' => false,
+        'effect' => false,
+        'margin' => false,
+        'active' => false,
+        'html' => false,
+        'css' => false,
+        'position' => false,
+        'color' => false,
+        'size' => false,
+        'offset' => false,
+        'shape' => false,
+        'fill' => false,
+        'rectangle' => false,
+        'circle' => false,
+        'line' => false,
+        'prompt' => false,
+        'aspect_ratio' => false,
+        'voice' => false,
+        'language' => false,
+        'newscaster' => false
     ];
 
     /**
@@ -223,23 +292,46 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
+        'transcode' => 'transcode',
         'trim' => 'trim',
         'volume' => 'volume',
         'volume_effect' => 'volumeEffect',
         'speed' => 'speed',
         'crop' => 'crop',
+        'chroma_key' => 'chromaKey',
         'text' => 'text',
-        'style' => 'style',
-        'color' => 'color',
-        'size' => 'size',
-        'background' => 'background',
-        'position' => 'position',
-        'offset' => 'offset',
-        'html' => 'html',
-        'css' => 'css',
         'width' => 'width',
         'height' => 'height',
-        'effect' => 'effect'
+        'font' => 'font',
+        'background' => 'background',
+        'alignment' => 'alignment',
+        'stroke' => 'stroke',
+        'animation' => 'animation',
+        'ellipsis' => 'ellipsis',
+        'style' => 'style',
+        'shadow' => 'shadow',
+        'border' => 'border',
+        'padding' => 'padding',
+        'align' => 'align',
+        'effect' => 'effect',
+        'margin' => 'margin',
+        'active' => 'active',
+        'html' => 'html',
+        'css' => 'css',
+        'position' => 'position',
+        'color' => 'color',
+        'size' => 'size',
+        'offset' => 'offset',
+        'shape' => 'shape',
+        'fill' => 'fill',
+        'rectangle' => 'rectangle',
+        'circle' => 'circle',
+        'line' => 'line',
+        'prompt' => 'prompt',
+        'aspect_ratio' => 'aspectRatio',
+        'voice' => 'voice',
+        'language' => 'language',
+        'newscaster' => 'newscaster'
     ];
 
     /**
@@ -250,23 +342,46 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
+        'transcode' => 'setTranscode',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
         'volume_effect' => 'setVolumeEffect',
         'speed' => 'setSpeed',
         'crop' => 'setCrop',
+        'chroma_key' => 'setChromaKey',
         'text' => 'setText',
-        'style' => 'setStyle',
-        'color' => 'setColor',
-        'size' => 'setSize',
-        'background' => 'setBackground',
-        'position' => 'setPosition',
-        'offset' => 'setOffset',
-        'html' => 'setHtml',
-        'css' => 'setCss',
         'width' => 'setWidth',
         'height' => 'setHeight',
-        'effect' => 'setEffect'
+        'font' => 'setFont',
+        'background' => 'setBackground',
+        'alignment' => 'setAlignment',
+        'stroke' => 'setStroke',
+        'animation' => 'setAnimation',
+        'ellipsis' => 'setEllipsis',
+        'style' => 'setStyle',
+        'shadow' => 'setShadow',
+        'border' => 'setBorder',
+        'padding' => 'setPadding',
+        'align' => 'setAlign',
+        'effect' => 'setEffect',
+        'margin' => 'setMargin',
+        'active' => 'setActive',
+        'html' => 'setHtml',
+        'css' => 'setCss',
+        'position' => 'setPosition',
+        'color' => 'setColor',
+        'size' => 'setSize',
+        'offset' => 'setOffset',
+        'shape' => 'setShape',
+        'fill' => 'setFill',
+        'rectangle' => 'setRectangle',
+        'circle' => 'setCircle',
+        'line' => 'setLine',
+        'prompt' => 'setPrompt',
+        'aspect_ratio' => 'setAspectRatio',
+        'voice' => 'setVoice',
+        'language' => 'setLanguage',
+        'newscaster' => 'setNewscaster'
     ];
 
     /**
@@ -277,23 +392,46 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
+        'transcode' => 'getTranscode',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
         'volume_effect' => 'getVolumeEffect',
         'speed' => 'getSpeed',
         'crop' => 'getCrop',
+        'chroma_key' => 'getChromaKey',
         'text' => 'getText',
-        'style' => 'getStyle',
-        'color' => 'getColor',
-        'size' => 'getSize',
-        'background' => 'getBackground',
-        'position' => 'getPosition',
-        'offset' => 'getOffset',
-        'html' => 'getHtml',
-        'css' => 'getCss',
         'width' => 'getWidth',
         'height' => 'getHeight',
-        'effect' => 'getEffect'
+        'font' => 'getFont',
+        'background' => 'getBackground',
+        'alignment' => 'getAlignment',
+        'stroke' => 'getStroke',
+        'animation' => 'getAnimation',
+        'ellipsis' => 'getEllipsis',
+        'style' => 'getStyle',
+        'shadow' => 'getShadow',
+        'border' => 'getBorder',
+        'padding' => 'getPadding',
+        'align' => 'getAlign',
+        'effect' => 'getEffect',
+        'margin' => 'getMargin',
+        'active' => 'getActive',
+        'html' => 'getHtml',
+        'css' => 'getCss',
+        'position' => 'getPosition',
+        'color' => 'getColor',
+        'size' => 'getSize',
+        'offset' => 'getOffset',
+        'shape' => 'getShape',
+        'fill' => 'getFill',
+        'rectangle' => 'getRectangle',
+        'circle' => 'getCircle',
+        'line' => 'getLine',
+        'prompt' => 'getPrompt',
+        'aspect_ratio' => 'getAspectRatio',
+        'voice' => 'getVoice',
+        'language' => 'getLanguage',
+        'newscaster' => 'getNewscaster'
     ];
 
     /**
@@ -337,6 +475,22 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_VIDEO = 'video';
+    public const TYPE_IMAGE = 'image';
+    public const TYPE_TEXT = 'text';
+    public const TYPE_RICH_TEXT = 'rich-text';
+    public const TYPE_AUDIO = 'audio';
+    public const TYPE_LUMA = 'luma';
+    public const TYPE_CAPTION = 'caption';
+    public const TYPE_RICH_CAPTION = 'rich-caption';
+    public const TYPE_HTML = 'html';
+    public const TYPE_TITLE = 'title';
+    public const TYPE_SHAPE = 'shape';
+    public const TYPE_SVG = 'svg';
+    public const TYPE_TEXT_TO_IMAGE = 'text-to-image';
+    public const TYPE_IMAGE_TO_VIDEO = 'image-to-video';
+    public const TYPE_TEXT_TO_SPEECH = 'text-to-speech';
+    public const VOLUME_EFFECT_NONE = 'none';
     public const VOLUME_EFFECT_FADE_IN = 'fadeIn';
     public const VOLUME_EFFECT_FADE_OUT = 'fadeOut';
     public const VOLUME_EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
@@ -350,13 +504,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const STYLE_MARKER = 'marker';
     public const STYLE_FUTURE = 'future';
     public const STYLE_SUBTITLE = 'subtitle';
-    public const SIZE_XX_SMALL = 'xx-small';
-    public const SIZE_X_SMALL = 'x-small';
-    public const SIZE_SMALL = 'small';
-    public const SIZE_MEDIUM = 'medium';
-    public const SIZE_LARGE = 'large';
-    public const SIZE_X_LARGE = 'x-large';
-    public const SIZE_XX_LARGE = 'xx-large';
+    public const EFFECT_NONE = 'none';
+    public const EFFECT_FADE_IN = 'fadeIn';
+    public const EFFECT_FADE_OUT = 'fadeOut';
+    public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     public const POSITION_TOP = 'top';
     public const POSITION_TOP_RIGHT = 'topRight';
     public const POSITION_RIGHT = 'right';
@@ -366,9 +517,49 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const POSITION_LEFT = 'left';
     public const POSITION_TOP_LEFT = 'topLeft';
     public const POSITION_CENTER = 'center';
-    public const EFFECT_FADE_IN = 'fadeIn';
-    public const EFFECT_FADE_OUT = 'fadeOut';
-    public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
+    public const SIZE_XX_SMALL = 'xx-small';
+    public const SIZE_X_SMALL = 'x-small';
+    public const SIZE_SMALL = 'small';
+    public const SIZE_MEDIUM = 'medium';
+    public const SIZE_LARGE = 'large';
+    public const SIZE_X_LARGE = 'x-large';
+    public const SIZE_XX_LARGE = 'xx-large';
+    public const SHAPE_RECTANGLE = 'rectangle';
+    public const SHAPE_CIRCLE = 'circle';
+    public const SHAPE_LINE = 'line';
+    public const ASPECT_RATIO__11 = '1:1';
+    public const ASPECT_RATIO__43 = '4:3';
+    public const ASPECT_RATIO__169 = '16:9';
+    public const ASPECT_RATIO__916 = '9:16';
+    public const ASPECT_RATIO__34 = '3:4';
+    public const ASPECT_RATIO__219 = '21:9';
+    public const ASPECT_RATIO__921 = '9:21';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_VIDEO,
+            self::TYPE_IMAGE,
+            self::TYPE_TEXT,
+            self::TYPE_RICH_TEXT,
+            self::TYPE_AUDIO,
+            self::TYPE_LUMA,
+            self::TYPE_CAPTION,
+            self::TYPE_RICH_CAPTION,
+            self::TYPE_HTML,
+            self::TYPE_TITLE,
+            self::TYPE_SHAPE,
+            self::TYPE_SVG,
+            self::TYPE_TEXT_TO_IMAGE,
+            self::TYPE_IMAGE_TO_VIDEO,
+            self::TYPE_TEXT_TO_SPEECH,
+        ];
+    }
 
     /**
      * Gets allowable values of the enum
@@ -378,6 +569,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getVolumeEffectAllowableValues()
     {
         return [
+            self::VOLUME_EFFECT_NONE,
             self::VOLUME_EFFECT_FADE_IN,
             self::VOLUME_EFFECT_FADE_OUT,
             self::VOLUME_EFFECT_FADE_IN_FADE_OUT,
@@ -410,16 +602,13 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string[]
      */
-    public function getSizeAllowableValues()
+    public function getEffectAllowableValues()
     {
         return [
-            self::SIZE_XX_SMALL,
-            self::SIZE_X_SMALL,
-            self::SIZE_SMALL,
-            self::SIZE_MEDIUM,
-            self::SIZE_LARGE,
-            self::SIZE_X_LARGE,
-            self::SIZE_XX_LARGE,
+            self::EFFECT_NONE,
+            self::EFFECT_FADE_IN,
+            self::EFFECT_FADE_OUT,
+            self::EFFECT_FADE_IN_FADE_OUT,
         ];
     }
 
@@ -448,12 +637,48 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string[]
      */
-    public function getEffectAllowableValues()
+    public function getSizeAllowableValues()
     {
         return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
+            self::SIZE_XX_SMALL,
+            self::SIZE_X_SMALL,
+            self::SIZE_SMALL,
+            self::SIZE_MEDIUM,
+            self::SIZE_LARGE,
+            self::SIZE_X_LARGE,
+            self::SIZE_XX_LARGE,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getShapeAllowableValues()
+    {
+        return [
+            self::SHAPE_RECTANGLE,
+            self::SHAPE_CIRCLE,
+            self::SHAPE_LINE,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAspectRatioAllowableValues()
+    {
+        return [
+            self::ASPECT_RATIO__11,
+            self::ASPECT_RATIO__43,
+            self::ASPECT_RATIO__169,
+            self::ASPECT_RATIO__916,
+            self::ASPECT_RATIO__34,
+            self::ASPECT_RATIO__219,
+            self::ASPECT_RATIO__921,
         ];
     }
 
@@ -472,28 +697,51 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'luma');
+        $this->setIfExists('type', $data ?? [], 'video');
         $this->setIfExists('src', $data ?? [], null);
+        $this->setIfExists('transcode', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
         $this->setIfExists('volume_effect', $data ?? [], null);
         $this->setIfExists('speed', $data ?? [], null);
         $this->setIfExists('crop', $data ?? [], null);
+        $this->setIfExists('chroma_key', $data ?? [], null);
         $this->setIfExists('text', $data ?? [], null);
-        $this->setIfExists('style', $data ?? [], null);
-        $this->setIfExists('color', $data ?? [], null);
-        $this->setIfExists('size', $data ?? [], null);
-        $this->setIfExists('background', $data ?? [], null);
-        $this->setIfExists('position', $data ?? [], null);
-        $this->setIfExists('offset', $data ?? [], null);
-        $this->setIfExists('html', $data ?? [], null);
-        $this->setIfExists('css', $data ?? [], null);
         $this->setIfExists('width', $data ?? [], null);
         $this->setIfExists('height', $data ?? [], null);
+        $this->setIfExists('font', $data ?? [], null);
+        $this->setIfExists('background', $data ?? [], null);
+        $this->setIfExists('alignment', $data ?? [], null);
+        $this->setIfExists('stroke', $data ?? [], null);
+        $this->setIfExists('animation', $data ?? [], null);
+        $this->setIfExists('ellipsis', $data ?? [], null);
+        $this->setIfExists('style', $data ?? [], null);
+        $this->setIfExists('shadow', $data ?? [], null);
+        $this->setIfExists('border', $data ?? [], null);
+        $this->setIfExists('padding', $data ?? [], null);
+        $this->setIfExists('align', $data ?? [], null);
         $this->setIfExists('effect', $data ?? [], null);
+        $this->setIfExists('margin', $data ?? [], null);
+        $this->setIfExists('active', $data ?? [], null);
+        $this->setIfExists('html', $data ?? [], null);
+        $this->setIfExists('css', $data ?? [], null);
+        $this->setIfExists('position', $data ?? [], null);
+        $this->setIfExists('color', $data ?? [], null);
+        $this->setIfExists('size', $data ?? [], null);
+        $this->setIfExists('offset', $data ?? [], null);
+        $this->setIfExists('shape', $data ?? [], null);
+        $this->setIfExists('fill', $data ?? [], null);
+        $this->setIfExists('rectangle', $data ?? [], null);
+        $this->setIfExists('circle', $data ?? [], null);
+        $this->setIfExists('line', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('aspect_ratio', $data ?? [], null);
+        $this->setIfExists('voice', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('newscaster', $data ?? [], false);
 
         // Initialize discriminator property with the model name.
-        $this->container['asset'] = static::$openAPIModelName;
+        $this->container['type'] = static::$openAPIModelName;
     }
 
     /**
@@ -526,9 +774,22 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['src'] === null) {
             $invalidProperties[] = "'src' can't be null";
         }
+        if ((mb_strlen($this->container['src']) < 1)) {
+            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        }
+
         $allowedValues = $this->getVolumeEffectAllowableValues();
         if (!is_null($this->container['volume_effect']) && !in_array($this->container['volume_effect'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -558,27 +819,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        $allowedValues = $this->getSizeAllowableValues();
-        if (!is_null($this->container['size']) && !in_array($this->container['size'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'size', must be one of '%s'",
-                $this->container['size'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        $allowedValues = $this->getPositionAllowableValues();
-        if (!is_null($this->container['position']) && !in_array($this->container['position'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'position', must be one of '%s'",
-                $this->container['position'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['html'] === null) {
-            $invalidProperties[] = "'html' can't be null";
-        }
         $allowedValues = $this->getEffectAllowableValues();
         if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -588,6 +828,54 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['html'] === null) {
+            $invalidProperties[] = "'html' can't be null";
+        }
+        $allowedValues = $this->getPositionAllowableValues();
+        if (!is_null($this->container['position']) && !in_array($this->container['position'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'position', must be one of '%s'",
+                $this->container['position'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getSizeAllowableValues();
+        if (!is_null($this->container['size']) && !in_array($this->container['size'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'size', must be one of '%s'",
+                $this->container['size'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['shape'] === null) {
+            $invalidProperties[] = "'shape' can't be null";
+        }
+        $allowedValues = $this->getShapeAllowableValues();
+        if (!is_null($this->container['shape']) && !in_array($this->container['shape'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'shape', must be one of '%s'",
+                $this->container['shape'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['prompt'] === null) {
+            $invalidProperties[] = "'prompt' can't be null";
+        }
+        $allowedValues = $this->getAspectRatioAllowableValues();
+        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
+                $this->container['aspect_ratio'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['voice'] === null) {
+            $invalidProperties[] = "'voice' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -616,7 +904,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to `luma` for luma mattes.
+     * @param string $type The type of asset - set to `video` for videos.
      *
      * @return self
      */
@@ -624,6 +912,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['type'] = $type;
 
@@ -643,7 +941,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets src
      *
-     * @param string $src The luma matte source URL. The URL must be publicly accessible or include credentials.
+     * @param string $src The image source URL. The URL must be publicly accessible or include credentials.
      *
      * @return self
      */
@@ -652,7 +950,39 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($src)) {
             throw new \InvalidArgumentException('non-nullable src cannot be null');
         }
+
+        if ((mb_strlen($src) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $src when calling Asset., must be bigger than or equal to 1.');
+        }
+
         $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets transcode
+     *
+     * @return bool|null
+     */
+    public function getTranscode()
+    {
+        return $this->container['transcode'];
+    }
+
+    /**
+     * Sets transcode
+     *
+     * @param bool|null $transcode Set to `true` to force re-encoding of the video during preprocessing. This can help resolve compatibility issues, fix rotation problems, synchronize audio, or convert formats. The video will be processed to ensure optimal compatibility with the rendering engine.
+     *
+     * @return self
+     */
+    public function setTranscode($transcode)
+    {
+        if (is_null($transcode)) {
+            throw new \InvalidArgumentException('non-nullable transcode cannot be null');
+        }
+        $this->container['transcode'] = $transcode;
 
         return $this;
     }
@@ -670,7 +1000,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets trim
      *
-     * @param float|null $trim The start trim point of the luma matte clip, in seconds (defaults to 0). Videos will start from the in trim point. A luma matte video will play until the file ends or the Clip length is reached.
+     * @param float|null $trim The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the trim point. The audio will play until the file ends or the Clip length is reached.
      *
      * @return self
      */
@@ -687,7 +1017,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets volume
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\AudioAssetVolume|null
      */
     public function getVolume()
     {
@@ -697,7 +1027,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets volume
      *
-     * @param float|null $volume Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param \ShotstackClient\Model\AudioAssetVolume|null $volume volume
      *
      * @return self
      */
@@ -724,7 +1054,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets volume_effect
      *
-     * @param string|null $volume_effect The volume effect to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @param string|null $volume_effect Preset volume effects to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
      *
      * @return self
      */
@@ -761,7 +1091,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets speed
      *
-     * @param float|null $speed Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
+     * @param float|null $speed Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length.
      *
      * @return self
      */
@@ -786,7 +1116,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets crop
      *
-     * @return \Shotstack\Client\Model\Crop|null
+     * @return \ShotstackClient\Model\Crop|null
      */
     public function getCrop()
     {
@@ -796,7 +1126,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets crop
      *
-     * @param \Shotstack\Client\Model\Crop|null $crop crop
+     * @param \ShotstackClient\Model\Crop|null $crop crop
      *
      * @return self
      */
@@ -806,6 +1136,33 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable crop cannot be null');
         }
         $this->container['crop'] = $crop;
+
+        return $this;
+    }
+
+    /**
+     * Gets chroma_key
+     *
+     * @return \ShotstackClient\Model\ChromaKey|null
+     */
+    public function getChromaKey()
+    {
+        return $this->container['chroma_key'];
+    }
+
+    /**
+     * Sets chroma_key
+     *
+     * @param \ShotstackClient\Model\ChromaKey|null $chroma_key chroma_key
+     *
+     * @return self
+     */
+    public function setChromaKey($chroma_key)
+    {
+        if (is_null($chroma_key)) {
+            throw new \InvalidArgumentException('non-nullable chroma_key cannot be null');
+        }
+        $this->container['chroma_key'] = $chroma_key;
 
         return $this;
     }
@@ -823,7 +1180,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets text
      *
-     * @param string $text The title text string - i.e. \"My Title\".
+     * @param string $text The text to convert to speech.
      *
      * @return self
      */
@@ -833,6 +1190,222 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable text cannot be null');
         }
         $this->container['text'] = $text;
+
+        return $this;
+    }
+
+    /**
+     * Gets width
+     *
+     * @return int|null
+     */
+    public function getWidth()
+    {
+        return $this->container['width'];
+    }
+
+    /**
+     * Sets width
+     *
+     * @param int|null $width The width of the image in pixels.
+     *
+     * @return self
+     */
+    public function setWidth($width)
+    {
+        if (is_null($width)) {
+            throw new \InvalidArgumentException('non-nullable width cannot be null');
+        }
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets height
+     *
+     * @return int|null
+     */
+    public function getHeight()
+    {
+        return $this->container['height'];
+    }
+
+    /**
+     * Sets height
+     *
+     * @param int|null $height The height of the image in pixels.
+     *
+     * @return self
+     */
+    public function setHeight($height)
+    {
+        if (is_null($height)) {
+            throw new \InvalidArgumentException('non-nullable height cannot be null');
+        }
+        $this->container['height'] = $height;
+
+        return $this;
+    }
+
+    /**
+     * Gets font
+     *
+     * @return \ShotstackClient\Model\RichCaptionAssetFont|null
+     */
+    public function getFont()
+    {
+        return $this->container['font'];
+    }
+
+    /**
+     * Sets font
+     *
+     * @param \ShotstackClient\Model\RichCaptionAssetFont|null $font font
+     *
+     * @return self
+     */
+    public function setFont($font)
+    {
+        if (is_null($font)) {
+            throw new \InvalidArgumentException('non-nullable font cannot be null');
+        }
+        $this->container['font'] = $font;
+
+        return $this;
+    }
+
+    /**
+     * Gets background
+     *
+     * @return string|null
+     */
+    public function getBackground()
+    {
+        return $this->container['background'];
+    }
+
+    /**
+     * Sets background
+     *
+     * @param string|null $background Apply a background color behind the text. Set the text color using hexadecimal color notation. Transparency is supported by setting the first two characters of the hex string (opposite to HTML),  i.e. #80ffffff will be white with 50% transparency. Omit to use transparent background.
+     *
+     * @return self
+     */
+    public function setBackground($background)
+    {
+        if (is_null($background)) {
+            throw new \InvalidArgumentException('non-nullable background cannot be null');
+        }
+        $this->container['background'] = $background;
+
+        return $this;
+    }
+
+    /**
+     * Gets alignment
+     *
+     * @return \ShotstackClient\Model\TextAlignment|null
+     */
+    public function getAlignment()
+    {
+        return $this->container['alignment'];
+    }
+
+    /**
+     * Sets alignment
+     *
+     * @param \ShotstackClient\Model\TextAlignment|null $alignment alignment
+     *
+     * @return self
+     */
+    public function setAlignment($alignment)
+    {
+        if (is_null($alignment)) {
+            throw new \InvalidArgumentException('non-nullable alignment cannot be null');
+        }
+        $this->container['alignment'] = $alignment;
+
+        return $this;
+    }
+
+    /**
+     * Gets stroke
+     *
+     * @return \ShotstackClient\Model\ShapeAssetStroke|null
+     */
+    public function getStroke()
+    {
+        return $this->container['stroke'];
+    }
+
+    /**
+     * Sets stroke
+     *
+     * @param \ShotstackClient\Model\ShapeAssetStroke|null $stroke stroke
+     *
+     * @return self
+     */
+    public function setStroke($stroke)
+    {
+        if (is_null($stroke)) {
+            throw new \InvalidArgumentException('non-nullable stroke cannot be null');
+        }
+        $this->container['stroke'] = $stroke;
+
+        return $this;
+    }
+
+    /**
+     * Gets animation
+     *
+     * @return \ShotstackClient\Model\RichCaptionAnimation|null
+     */
+    public function getAnimation()
+    {
+        return $this->container['animation'];
+    }
+
+    /**
+     * Sets animation
+     *
+     * @param \ShotstackClient\Model\RichCaptionAnimation|null $animation animation
+     *
+     * @return self
+     */
+    public function setAnimation($animation)
+    {
+        if (is_null($animation)) {
+            throw new \InvalidArgumentException('non-nullable animation cannot be null');
+        }
+        $this->container['animation'] = $animation;
+
+        return $this;
+    }
+
+    /**
+     * Gets ellipsis
+     *
+     * @return string|null
+     */
+    public function getEllipsis()
+    {
+        return $this->container['ellipsis'];
+    }
+
+    /**
+     * Sets ellipsis
+     *
+     * @param string|null $ellipsis The string to display when text overflows its bounding box. Set to an ellipsis character or custom string to indicate truncated text.
+     *
+     * @return self
+     */
+    public function setEllipsis($ellipsis)
+    {
+        if (is_null($ellipsis)) {
+            throw new \InvalidArgumentException('non-nullable ellipsis cannot be null');
+        }
+        $this->container['ellipsis'] = $ellipsis;
 
         return $this;
     }
@@ -870,6 +1443,296 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['style'] = $style;
+
+        return $this;
+    }
+
+    /**
+     * Gets shadow
+     *
+     * @return \ShotstackClient\Model\RichTextShadow|null
+     */
+    public function getShadow()
+    {
+        return $this->container['shadow'];
+    }
+
+    /**
+     * Sets shadow
+     *
+     * @param \ShotstackClient\Model\RichTextShadow|null $shadow shadow
+     *
+     * @return self
+     */
+    public function setShadow($shadow)
+    {
+        if (is_null($shadow)) {
+            throw new \InvalidArgumentException('non-nullable shadow cannot be null');
+        }
+        $this->container['shadow'] = $shadow;
+
+        return $this;
+    }
+
+    /**
+     * Gets border
+     *
+     * @return \ShotstackClient\Model\Border|null
+     */
+    public function getBorder()
+    {
+        return $this->container['border'];
+    }
+
+    /**
+     * Sets border
+     *
+     * @param \ShotstackClient\Model\Border|null $border border
+     *
+     * @return self
+     */
+    public function setBorder($border)
+    {
+        if (is_null($border)) {
+            throw new \InvalidArgumentException('non-nullable border cannot be null');
+        }
+        $this->container['border'] = $border;
+
+        return $this;
+    }
+
+    /**
+     * Gets padding
+     *
+     * @return \ShotstackClient\Model\RichCaptionAssetPadding|null
+     */
+    public function getPadding()
+    {
+        return $this->container['padding'];
+    }
+
+    /**
+     * Sets padding
+     *
+     * @param \ShotstackClient\Model\RichCaptionAssetPadding|null $padding padding
+     *
+     * @return self
+     */
+    public function setPadding($padding)
+    {
+        if (is_null($padding)) {
+            throw new \InvalidArgumentException('non-nullable padding cannot be null');
+        }
+        $this->container['padding'] = $padding;
+
+        return $this;
+    }
+
+    /**
+     * Gets align
+     *
+     * @return \ShotstackClient\Model\RichTextAlignment|null
+     */
+    public function getAlign()
+    {
+        return $this->container['align'];
+    }
+
+    /**
+     * Sets align
+     *
+     * @param \ShotstackClient\Model\RichTextAlignment|null $align align
+     *
+     * @return self
+     */
+    public function setAlign($align)
+    {
+        if (is_null($align)) {
+            throw new \InvalidArgumentException('non-nullable align cannot be null');
+        }
+        $this->container['align'] = $align;
+
+        return $this;
+    }
+
+    /**
+     * Gets effect
+     *
+     * @return string|null
+     */
+    public function getEffect()
+    {
+        return $this->container['effect'];
+    }
+
+    /**
+     * Sets effect
+     *
+     * @param string|null $effect The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     *
+     * @return self
+     */
+    public function setEffect($effect)
+    {
+        if (is_null($effect)) {
+            throw new \InvalidArgumentException('non-nullable effect cannot be null');
+        }
+        $allowedValues = $this->getEffectAllowableValues();
+        if (!in_array($effect, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'effect', must be one of '%s'",
+                    $effect,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['effect'] = $effect;
+
+        return $this;
+    }
+
+    /**
+     * Gets margin
+     *
+     * @return \ShotstackClient\Model\CaptionMargin|null
+     */
+    public function getMargin()
+    {
+        return $this->container['margin'];
+    }
+
+    /**
+     * Sets margin
+     *
+     * @param \ShotstackClient\Model\CaptionMargin|null $margin margin
+     *
+     * @return self
+     */
+    public function setMargin($margin)
+    {
+        if (is_null($margin)) {
+            throw new \InvalidArgumentException('non-nullable margin cannot be null');
+        }
+        $this->container['margin'] = $margin;
+
+        return $this;
+    }
+
+    /**
+     * Gets active
+     *
+     * @return \ShotstackClient\Model\RichCaptionActive|null
+     */
+    public function getActive()
+    {
+        return $this->container['active'];
+    }
+
+    /**
+     * Sets active
+     *
+     * @param \ShotstackClient\Model\RichCaptionActive|null $active active
+     *
+     * @return self
+     */
+    public function setActive($active)
+    {
+        if (is_null($active)) {
+            throw new \InvalidArgumentException('non-nullable active cannot be null');
+        }
+        $this->container['active'] = $active;
+
+        return $this;
+    }
+
+    /**
+     * Gets html
+     *
+     * @return string
+     */
+    public function getHtml()
+    {
+        return $this->container['html'];
+    }
+
+    /**
+     * Sets html
+     *
+     * @param string $html The HTML text string. See list of [supported HTML tags](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-html-tags).
+     *
+     * @return self
+     */
+    public function setHtml($html)
+    {
+        if (is_null($html)) {
+            throw new \InvalidArgumentException('non-nullable html cannot be null');
+        }
+        $this->container['html'] = $html;
+
+        return $this;
+    }
+
+    /**
+     * Gets css
+     *
+     * @return string|null
+     */
+    public function getCss()
+    {
+        return $this->container['css'];
+    }
+
+    /**
+     * Sets css
+     *
+     * @param string|null $css The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-css-properties).
+     *
+     * @return self
+     */
+    public function setCss($css)
+    {
+        if (is_null($css)) {
+            throw new \InvalidArgumentException('non-nullable css cannot be null');
+        }
+        $this->container['css'] = $css;
+
+        return $this;
+    }
+
+    /**
+     * Gets position
+     *
+     * @return string|null
+     */
+    public function getPosition()
+    {
+        return $this->container['position'];
+    }
+
+    /**
+     * Sets position
+     *
+     * @param string|null $position Place the title in one of nine predefined positions of the viewport. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
+     *
+     * @return self
+     */
+    public function setPosition($position)
+    {
+        if (is_null($position)) {
+            throw new \InvalidArgumentException('non-nullable position cannot be null');
+        }
+        $allowedValues = $this->getPositionAllowableValues();
+        if (!in_array($position, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'position', must be one of '%s'",
+                    $position,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['position'] = $position;
 
         return $this;
     }
@@ -939,73 +1802,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets background
-     *
-     * @return string|null
-     */
-    public function getBackground()
-    {
-        return $this->container['background'];
-    }
-
-    /**
-     * Sets background
-     *
-     * @param string|null $background Apply a background color behind the HTML bounding box using. Set the text color using hexadecimal  color notation. Transparency is supported by setting the first two characters of the hex string  (opposite to HTML), i.e. #80ffffff will be white with 50% transparency.
-     *
-     * @return self
-     */
-    public function setBackground($background)
-    {
-        if (is_null($background)) {
-            throw new \InvalidArgumentException('non-nullable background cannot be null');
-        }
-        $this->container['background'] = $background;
-
-        return $this;
-    }
-
-    /**
-     * Gets position
-     *
-     * @return string|null
-     */
-    public function getPosition()
-    {
-        return $this->container['position'];
-    }
-
-    /**
-     * Sets position
-     *
-     * @param string|null $position Place the HTML in one of nine predefined positions within the HTML area. <ul>   <li>`top` - top (center)</li>   <li>`topRight` - top right</li>   <li>`right` - right (center)</li>   <li>`bottomRight` - bottom right</li>   <li>`bottom` - bottom (center)</li>   <li>`bottomLeft` - bottom left</li>   <li>`left` - left (center)</li>   <li>`topLeft` - top left</li>   <li>`center` - center</li> </ul>
-     *
-     * @return self
-     */
-    public function setPosition($position)
-    {
-        if (is_null($position)) {
-            throw new \InvalidArgumentException('non-nullable position cannot be null');
-        }
-        $allowedValues = $this->getPositionAllowableValues();
-        if (!in_array($position, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'position', must be one of '%s'",
-                    $position,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['position'] = $position;
-
-        return $this;
-    }
-
-    /**
      * Gets offset
      *
-     * @return \Shotstack\Client\Model\Offset|null
+     * @return \ShotstackClient\Model\Offset|null
      */
     public function getOffset()
     {
@@ -1015,7 +1814,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets offset
      *
-     * @param \Shotstack\Client\Model\Offset|null $offset offset
+     * @param \ShotstackClient\Model\Offset|null $offset offset
      *
      * @return self
      */
@@ -1030,146 +1829,291 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets html
+     * Gets shape
      *
      * @return string
      */
-    public function getHtml()
+    public function getShape()
     {
-        return $this->container['html'];
+        return $this->container['shape'];
     }
 
     /**
-     * Sets html
+     * Sets shape
      *
-     * @param string $html The HTML text string. See list of [supported HTML tags](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-html-tags).
+     * @param string $shape The shape to display.
      *
      * @return self
      */
-    public function setHtml($html)
+    public function setShape($shape)
     {
-        if (is_null($html)) {
-            throw new \InvalidArgumentException('non-nullable html cannot be null');
+        if (is_null($shape)) {
+            throw new \InvalidArgumentException('non-nullable shape cannot be null');
         }
-        $this->container['html'] = $html;
-
-        return $this;
-    }
-
-    /**
-     * Gets css
-     *
-     * @return string|null
-     */
-    public function getCss()
-    {
-        return $this->container['css'];
-    }
-
-    /**
-     * Sets css
-     *
-     * @param string|null $css The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-css-properties).
-     *
-     * @return self
-     */
-    public function setCss($css)
-    {
-        if (is_null($css)) {
-            throw new \InvalidArgumentException('non-nullable css cannot be null');
-        }
-        $this->container['css'] = $css;
-
-        return $this;
-    }
-
-    /**
-     * Gets width
-     *
-     * @return int|null
-     */
-    public function getWidth()
-    {
-        return $this->container['width'];
-    }
-
-    /**
-     * Sets width
-     *
-     * @param int|null $width Set the width of the HTML asset bounding box in pixels. Text will wrap to fill the bounding box.
-     *
-     * @return self
-     */
-    public function setWidth($width)
-    {
-        if (is_null($width)) {
-            throw new \InvalidArgumentException('non-nullable width cannot be null');
-        }
-        $this->container['width'] = $width;
-
-        return $this;
-    }
-
-    /**
-     * Gets height
-     *
-     * @return int|null
-     */
-    public function getHeight()
-    {
-        return $this->container['height'];
-    }
-
-    /**
-     * Sets height
-     *
-     * @param int|null $height Set the width of the HTML asset bounding box in pixels. Text and elements will be masked if they exceed the  height of the bounding box.
-     *
-     * @return self
-     */
-    public function setHeight($height)
-    {
-        if (is_null($height)) {
-            throw new \InvalidArgumentException('non-nullable height cannot be null');
-        }
-        $this->container['height'] = $height;
-
-        return $this;
-    }
-
-    /**
-     * Gets effect
-     *
-     * @return string|null
-     */
-    public function getEffect()
-    {
-        return $this->container['effect'];
-    }
-
-    /**
-     * Sets effect
-     *
-     * @param string|null $effect The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     *
-     * @return self
-     */
-    public function setEffect($effect)
-    {
-        if (is_null($effect)) {
-            throw new \InvalidArgumentException('non-nullable effect cannot be null');
-        }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!in_array($effect, $allowedValues, true)) {
+        $allowedValues = $this->getShapeAllowableValues();
+        if (!in_array($shape, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
+                    "Invalid value '%s' for 'shape', must be one of '%s'",
+                    $shape,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['effect'] = $effect;
+        $this->container['shape'] = $shape;
+
+        return $this;
+    }
+
+    /**
+     * Gets fill
+     *
+     * @return \ShotstackClient\Model\ShapeAssetFill|null
+     */
+    public function getFill()
+    {
+        return $this->container['fill'];
+    }
+
+    /**
+     * Sets fill
+     *
+     * @param \ShotstackClient\Model\ShapeAssetFill|null $fill fill
+     *
+     * @return self
+     */
+    public function setFill($fill)
+    {
+        if (is_null($fill)) {
+            throw new \InvalidArgumentException('non-nullable fill cannot be null');
+        }
+        $this->container['fill'] = $fill;
+
+        return $this;
+    }
+
+    /**
+     * Gets rectangle
+     *
+     * @return \ShotstackClient\Model\ShapeAssetRectangle|null
+     */
+    public function getRectangle()
+    {
+        return $this->container['rectangle'];
+    }
+
+    /**
+     * Sets rectangle
+     *
+     * @param \ShotstackClient\Model\ShapeAssetRectangle|null $rectangle rectangle
+     *
+     * @return self
+     */
+    public function setRectangle($rectangle)
+    {
+        if (is_null($rectangle)) {
+            throw new \InvalidArgumentException('non-nullable rectangle cannot be null');
+        }
+        $this->container['rectangle'] = $rectangle;
+
+        return $this;
+    }
+
+    /**
+     * Gets circle
+     *
+     * @return \ShotstackClient\Model\ShapeAssetCircle|null
+     */
+    public function getCircle()
+    {
+        return $this->container['circle'];
+    }
+
+    /**
+     * Sets circle
+     *
+     * @param \ShotstackClient\Model\ShapeAssetCircle|null $circle circle
+     *
+     * @return self
+     */
+    public function setCircle($circle)
+    {
+        if (is_null($circle)) {
+            throw new \InvalidArgumentException('non-nullable circle cannot be null');
+        }
+        $this->container['circle'] = $circle;
+
+        return $this;
+    }
+
+    /**
+     * Gets line
+     *
+     * @return \ShotstackClient\Model\ShapeAssetLine|null
+     */
+    public function getLine()
+    {
+        return $this->container['line'];
+    }
+
+    /**
+     * Sets line
+     *
+     * @param \ShotstackClient\Model\ShapeAssetLine|null $line line
+     *
+     * @return self
+     */
+    public function setLine($line)
+    {
+        if (is_null($line)) {
+            throw new \InvalidArgumentException('non-nullable line cannot be null');
+        }
+        $this->container['line'] = $line;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string $prompt The instructions for modifying the image into a video sequence.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets aspect_ratio
+     *
+     * @return string|null
+     */
+    public function getAspectRatio()
+    {
+        return $this->container['aspect_ratio'];
+    }
+
+    /**
+     * Sets aspect_ratio
+     *
+     * @param string|null $aspect_ratio The aspect ratio (shape) of the video output.
+     *
+     * @return self
+     */
+    public function setAspectRatio($aspect_ratio)
+    {
+        if (is_null($aspect_ratio)) {
+            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
+        }
+        $allowedValues = $this->getAspectRatioAllowableValues();
+        if (!in_array($aspect_ratio, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
+                    $aspect_ratio,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['aspect_ratio'] = $aspect_ratio;
+
+        return $this;
+    }
+
+    /**
+     * Gets voice
+     *
+     * @return string
+     */
+    public function getVoice()
+    {
+        return $this->container['voice'];
+    }
+
+    /**
+     * Sets voice
+     *
+     * @param string $voice The voice to use for the text-to-speech conversion.
+     *
+     * @return self
+     */
+    public function setVoice($voice)
+    {
+        if (is_null($voice)) {
+            throw new \InvalidArgumentException('non-nullable voice cannot be null');
+        }
+        $this->container['voice'] = $voice;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string|null
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string|null $language The language code for the text-to-speech conversion.
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
+        }
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets newscaster
+     *
+     * @return bool|null
+     */
+    public function getNewscaster()
+    {
+        return $this->container['newscaster'];
+    }
+
+    /**
+     * Sets newscaster
+     *
+     * @param bool|null $newscaster Set the voice to newscaster mode.
+     *
+     * @return self
+     */
+    public function setNewscaster($newscaster)
+    {
+        if (is_null($newscaster)) {
+            throw new \InvalidArgumentException('non-nullable newscaster cannot be null');
+        }
+        $this->container['newscaster'] = $newscaster;
 
         return $this;
     }

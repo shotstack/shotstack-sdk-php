@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * RenderResponse Class Doc Comment
  *
  * @category Class
  * @description The response received after a [render status request](#get-render-status) is submitted. The response includes  details about status of a render and the output URL.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class RenderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'success' => 'bool',
         'message' => 'string',
-        'response' => '\Shotstack\Client\Model\RenderResponseData'
+        'response' => '\ShotstackClient\Model\RenderResponseData'
     ];
 
     /**
@@ -370,7 +370,7 @@ class RenderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets response
      *
-     * @return \Shotstack\Client\Model\RenderResponseData
+     * @return \ShotstackClient\Model\RenderResponseData
      */
     public function getResponse()
     {
@@ -380,7 +380,7 @@ class RenderResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets response
      *
-     * @param \Shotstack\Client\Model\RenderResponseData $response response
+     * @param \ShotstackClient\Model\RenderResponseData $response response
      *
      * @return self
      */

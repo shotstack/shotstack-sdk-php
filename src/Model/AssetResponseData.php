@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * AssetResponseData Class Doc Comment
  *
  * @category Class
  * @description The type of resource (an asset) and attributes of the asset.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class AssetResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'attributes' => '\Shotstack\Client\Model\AssetResponseAttributes'
+        'attributes' => '\ShotstackClient\Model\AssetResponseAttributes'
     ];
 
     /**
@@ -333,7 +333,7 @@ class AssetResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Gets attributes
      *
-     * @return \Shotstack\Client\Model\AssetResponseAttributes
+     * @return \ShotstackClient\Model\AssetResponseAttributes
      */
     public function getAttributes()
     {
@@ -343,7 +343,7 @@ class AssetResponseData implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets attributes
      *
-     * @param \Shotstack\Client\Model\AssetResponseAttributes $attributes attributes
+     * @param \ShotstackClient\Model\AssetResponseAttributes $attributes attributes
      *
      * @return self
      */

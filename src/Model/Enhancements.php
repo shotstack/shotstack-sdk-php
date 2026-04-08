@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Enhancements Class Doc Comment
  *
  * @category Class
  * @description Enhancements that can be applied to a rendition. Currently only supports the Dolby audio enhancement.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class Enhancements implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'audio' => '\Shotstack\Client\Model\AudioEnhancement'
+        'audio' => '\ShotstackClient\Model\AudioEnhancement'
     ];
 
     /**
@@ -293,7 +293,7 @@ class Enhancements implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets audio
      *
-     * @return \Shotstack\Client\Model\AudioEnhancement|null
+     * @return \ShotstackClient\Model\AudioEnhancement|null
      */
     public function getAudio()
     {
@@ -303,7 +303,7 @@ class Enhancements implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets audio
      *
-     * @param \Shotstack\Client\Model\AudioEnhancement|null $audio audio
+     * @param \ShotstackClient\Model\AudioEnhancement|null $audio audio
      *
      * @return self
      */

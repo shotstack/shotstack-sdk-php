@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * QueuedResponse Class Doc Comment
  *
  * @category Class
  * @description The response received after a [render request](#render-asset) or [template render](#render-template) is submitted. The render task is queued for rendering and a unique render id is returned.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class QueuedResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'success' => 'bool',
         'message' => 'string',
-        'response' => '\Shotstack\Client\Model\QueuedResponseData'
+        'response' => '\ShotstackClient\Model\QueuedResponseData'
     ];
 
     /**
@@ -370,7 +370,7 @@ class QueuedResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets response
      *
-     * @return \Shotstack\Client\Model\QueuedResponseData
+     * @return \ShotstackClient\Model\QueuedResponseData
      */
     public function getResponse()
     {
@@ -380,7 +380,7 @@ class QueuedResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets response
      *
-     * @param \Shotstack\Client\Model\QueuedResponseData $response response
+     * @param \ShotstackClient\Model\QueuedResponseData $response response
      *
      * @return self
      */

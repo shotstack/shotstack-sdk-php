@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * TemplateRender Class Doc Comment
  *
  * @category Class
  * @description Configure the id and optional merge fields to render a template by id.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class TemplateRender implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'id' => 'string',
-        'merge' => '\Shotstack\Client\Model\MergeField[]'
+        'merge' => '\ShotstackClient\Model\MergeField[]'
     ];
 
     /**
@@ -330,7 +330,7 @@ class TemplateRender implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets merge
      *
-     * @return \Shotstack\Client\Model\MergeField[]|null
+     * @return \ShotstackClient\Model\MergeField[]|null
      */
     public function getMerge()
     {
@@ -340,7 +340,7 @@ class TemplateRender implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merge
      *
-     * @param \Shotstack\Client\Model\MergeField[]|null $merge An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`.
+     * @param \ShotstackClient\Model\MergeField[]|null $merge An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`.
      *
      * @return self
      */

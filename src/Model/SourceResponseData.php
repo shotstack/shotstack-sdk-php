@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * SourceResponseData Class Doc Comment
  *
  * @category Class
  * @description The type of resource (a source), it&#39;s id and attributes of the source file.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class SourceResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'type' => 'string',
         'id' => 'string',
-        'attributes' => '\Shotstack\Client\Model\SourceResponseAttributes'
+        'attributes' => '\ShotstackClient\Model\SourceResponseAttributes'
     ];
 
     /**
@@ -370,7 +370,7 @@ class SourceResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets attributes
      *
-     * @return \Shotstack\Client\Model\SourceResponseAttributes
+     * @return \ShotstackClient\Model\SourceResponseAttributes
      */
     public function getAttributes()
     {
@@ -380,7 +380,7 @@ class SourceResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets attributes
      *
-     * @param \Shotstack\Client\Model\SourceResponseAttributes $attributes attributes
+     * @param \ShotstackClient\Model\SourceResponseAttributes $attributes attributes
      *
      * @return self
      */

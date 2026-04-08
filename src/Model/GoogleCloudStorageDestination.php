@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * GoogleCloudStorageDestination Class Doc Comment
  *
  * @category Class
  * @description Send videos and assets to a [Google Cloud Storage](https://cloud.google.com/storage) bucket. Send files with your own prefix and filename. Google Cloud credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/google-cloud-storage), not in the request.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class GoogleCloudStorageDestination implements ModelInterface, ArrayAccess, \Jso
       */
     protected static $openAPITypes = [
         'provider' => 'string',
-        'options' => '\Shotstack\Client\Model\GoogleCloudStorageDestinationOptions'
+        'options' => '\ShotstackClient\Model\GoogleCloudStorageDestinationOptions'
     ];
 
     /**
@@ -330,7 +330,7 @@ class GoogleCloudStorageDestination implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets options
      *
-     * @return \Shotstack\Client\Model\GoogleCloudStorageDestinationOptions|null
+     * @return \ShotstackClient\Model\GoogleCloudStorageDestinationOptions|null
      */
     public function getOptions()
     {
@@ -340,7 +340,7 @@ class GoogleCloudStorageDestination implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets options
      *
-     * @param \Shotstack\Client\Model\GoogleCloudStorageDestinationOptions|null $options options
+     * @param \ShotstackClient\Model\GoogleCloudStorageDestinationOptions|null $options options
      *
      * @return self
      */

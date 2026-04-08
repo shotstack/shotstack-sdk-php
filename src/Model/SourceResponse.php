@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * SourceResponse Class Doc Comment
  *
  * @category Class
  * @description The response returned by the Ingest API [get source](#get-source) request. Includes details of the ingested source file. The response follows the [json:api](https://jsonapi.org/) specification.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class SourceResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Shotstack\Client\Model\SourceResponseData'
+        'data' => '\ShotstackClient\Model\SourceResponseData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class SourceResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets data
      *
-     * @return \Shotstack\Client\Model\SourceResponseData
+     * @return \ShotstackClient\Model\SourceResponseData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class SourceResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets data
      *
-     * @param \Shotstack\Client\Model\SourceResponseData $data data
+     * @param \ShotstackClient\Model\SourceResponseData $data data
      *
      * @return self
      */

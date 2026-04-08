@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * TransferResponseData Class Doc Comment
  *
  * @category Class
  * @description The type of resource (an asset) and the transfer attributes. Returned with [TransferResponse](#tocs_transferresponse).
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class TransferResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'attributes' => '\Shotstack\Client\Model\TransferResponseAttributes'
+        'attributes' => '\ShotstackClient\Model\TransferResponseAttributes'
     ];
 
     /**
@@ -327,7 +327,7 @@ class TransferResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets attributes
      *
-     * @return \Shotstack\Client\Model\TransferResponseAttributes|null
+     * @return \ShotstackClient\Model\TransferResponseAttributes|null
      */
     public function getAttributes()
     {
@@ -337,7 +337,7 @@ class TransferResponseData implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets attributes
      *
-     * @param \Shotstack\Client\Model\TransferResponseAttributes|null $attributes attributes
+     * @param \ShotstackClient\Model\TransferResponseAttributes|null $attributes attributes
      *
      * @return self
      */

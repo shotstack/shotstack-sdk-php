@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * RenditionResponseAttributes Class Doc Comment
  *
  * @category Class
  * @description The id and attributes of the generated rendition file.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -62,7 +62,7 @@ class RenditionResponseAttributes implements ModelInterface, ArrayAccess, \JsonS
         'status' => 'string',
         'url' => 'string',
         'execution_time' => 'float',
-        'transformation' => '\Shotstack\Client\Model\Rendition',
+        'transformation' => '\ShotstackClient\Model\Rendition',
         'width' => 'int',
         'height' => 'int',
         'duration' => 'float',
@@ -502,7 +502,7 @@ class RenditionResponseAttributes implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Gets transformation
      *
-     * @return \Shotstack\Client\Model\Rendition|null
+     * @return \ShotstackClient\Model\Rendition|null
      */
     public function getTransformation()
     {
@@ -512,7 +512,7 @@ class RenditionResponseAttributes implements ModelInterface, ArrayAccess, \JsonS
     /**
      * Sets transformation
      *
-     * @param \Shotstack\Client\Model\Rendition|null $transformation transformation
+     * @param \ShotstackClient\Model\Rendition|null $transformation transformation
      *
      * @return self
      */

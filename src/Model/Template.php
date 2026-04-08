@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Template Class Doc Comment
  *
  * @category Class
  * @description A template is a saved [Edit](#tocs_edit) than can be loaded and re-used.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class Template implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'name' => 'string',
-        'template' => '\Shotstack\Client\Model\Edit'
+        'template' => '\ShotstackClient\Model\Edit'
     ];
 
     /**
@@ -330,7 +330,7 @@ class Template implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets template
      *
-     * @return \Shotstack\Client\Model\Edit|null
+     * @return \ShotstackClient\Model\Edit|null
      */
     public function getTemplate()
     {
@@ -340,7 +340,7 @@ class Template implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets template
      *
-     * @param \Shotstack\Client\Model\Edit|null $template template
+     * @param \ShotstackClient\Model\Edit|null $template template
      *
      * @return self
      */

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * AssetResponse Class Doc Comment
  *
  * @category Class
  * @description The response returned by the Serve API [get asset](#get-asset) request. Includes details of a hosted video, image, audio file, thumbnail or poster image. The response follows the [json:api](https://jsonapi.org/) specification.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class AssetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Shotstack\Client\Model\AssetResponseData'
+        'data' => '\ShotstackClient\Model\AssetResponseData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class AssetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets data
      *
-     * @return \Shotstack\Client\Model\AssetResponseData
+     * @return \ShotstackClient\Model\AssetResponseData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class AssetResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets data
      *
-     * @param \Shotstack\Client\Model\AssetResponseData $data data
+     * @param \ShotstackClient\Model\AssetResponseData $data data
      *
      * @return self
      */

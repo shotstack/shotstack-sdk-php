@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Api;
+namespace ShotstackClient\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Shotstack\Client\ApiException;
-use Shotstack\Client\Configuration;
-use Shotstack\Client\HeaderSelector;
-use Shotstack\Client\ObjectSerializer;
+use ShotstackClient\ApiException;
+use ShotstackClient\Configuration;
+use ShotstackClient\HeaderSelector;
+use ShotstackClient\ObjectSerializer;
 
 /**
  * IngestApi Class Doc Comment
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -142,7 +142,7 @@ class IngestApi
      * @param  string $id The id of the source file in [KSUID](https://github.com/segmentio/ksuid#what-is-a-ksuid) format. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSource'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -159,7 +159,7 @@ class IngestApi
      * @param  string $id The id of the source file in [KSUID](https://github.com/segmentio/ksuid#what-is-a-ksuid) format. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteSource'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -379,9 +379,9 @@ class IngestApi
      * @param  string $id The id of the source file in [KSUID](https://github.com/segmentio/ksuid#what-is-a-ksuid) format. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSource'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\SourceResponse
+     * @return \ShotstackClient\Model\SourceResponse
      */
     public function getSource($id, string $contentType = self::contentTypes['getSource'][0])
     {
@@ -397,9 +397,9 @@ class IngestApi
      * @param  string $id The id of the source file in [KSUID](https://github.com/segmentio/ksuid#what-is-a-ksuid) format. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSource'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\SourceResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\SourceResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSourceWithHttpInfo($id, string $contentType = self::contentTypes['getSource'][0])
     {
@@ -442,11 +442,11 @@ class IngestApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\SourceResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\SourceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\SourceResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\SourceResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -464,13 +464,13 @@ class IngestApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\SourceResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\SourceResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\SourceResponse';
+            $returnType = '\ShotstackClient\Model\SourceResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -503,7 +503,7 @@ class IngestApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\SourceResponse',
+                        '\ShotstackClient\Model\SourceResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -547,7 +547,7 @@ class IngestApi
      */
     public function getSourceAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getSource'][0])
     {
-        $returnType = '\Shotstack\Client\Model\SourceResponse';
+        $returnType = '\ShotstackClient\Model\SourceResponse';
         $request = $this->getSourceRequest($id, $contentType);
 
         return $this->client
@@ -693,9 +693,9 @@ class IngestApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSources'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\SourceListResponse
+     * @return \ShotstackClient\Model\SourceListResponse
      */
     public function getSources(string $contentType = self::contentTypes['getSources'][0])
     {
@@ -710,9 +710,9 @@ class IngestApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getSources'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\SourceListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\SourceListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getSourcesWithHttpInfo(string $contentType = self::contentTypes['getSources'][0])
     {
@@ -755,11 +755,11 @@ class IngestApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\SourceListResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\SourceListResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\SourceListResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\SourceListResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -777,13 +777,13 @@ class IngestApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\SourceListResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\SourceListResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\SourceListResponse';
+            $returnType = '\ShotstackClient\Model\SourceListResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -816,7 +816,7 @@ class IngestApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\SourceListResponse',
+                        '\ShotstackClient\Model\SourceListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -858,7 +858,7 @@ class IngestApi
      */
     public function getSourcesAsyncWithHttpInfo(string $contentType = self::contentTypes['getSources'][0])
     {
-        $returnType = '\Shotstack\Client\Model\SourceListResponse';
+        $returnType = '\ShotstackClient\Model\SourceListResponse';
         $request = $this->getSourcesRequest($contentType);
 
         return $this->client
@@ -985,9 +985,9 @@ class IngestApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUploadSignedUrl'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\UploadResponse
+     * @return \ShotstackClient\Model\UploadResponse
      */
     public function getUploadSignedUrl(string $contentType = self::contentTypes['getUploadSignedUrl'][0])
     {
@@ -1002,9 +1002,9 @@ class IngestApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getUploadSignedUrl'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\UploadResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\UploadResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getUploadSignedUrlWithHttpInfo(string $contentType = self::contentTypes['getUploadSignedUrl'][0])
     {
@@ -1047,11 +1047,11 @@ class IngestApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\UploadResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\UploadResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\UploadResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\UploadResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1069,13 +1069,13 @@ class IngestApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\UploadResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\UploadResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\UploadResponse';
+            $returnType = '\ShotstackClient\Model\UploadResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1108,7 +1108,7 @@ class IngestApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\UploadResponse',
+                        '\ShotstackClient\Model\UploadResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1150,7 +1150,7 @@ class IngestApi
      */
     public function getUploadSignedUrlAsyncWithHttpInfo(string $contentType = self::contentTypes['getUploadSignedUrl'][0])
     {
-        $returnType = '\Shotstack\Client\Model\UploadResponse';
+        $returnType = '\ShotstackClient\Model\UploadResponse';
         $request = $this->getUploadSignedUrlRequest($contentType);
 
         return $this->client
@@ -1275,12 +1275,12 @@ class IngestApi
      *
      * Fetch Source
      *
-     * @param  \Shotstack\Client\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
+     * @param  \ShotstackClient\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSource'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\QueuedSourceResponse|\Shotstack\Client\Model\IngestErrorResponse
+     * @return \ShotstackClient\Model\QueuedSourceResponse|\ShotstackClient\Model\IngestErrorResponse
      */
     public function postSource($source, string $contentType = self::contentTypes['postSource'][0])
     {
@@ -1293,12 +1293,12 @@ class IngestApi
      *
      * Fetch Source
      *
-     * @param  \Shotstack\Client\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
+     * @param  \ShotstackClient\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSource'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\QueuedSourceResponse|\Shotstack\Client\Model\IngestErrorResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\QueuedSourceResponse|\ShotstackClient\Model\IngestErrorResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function postSourceWithHttpInfo($source, string $contentType = self::contentTypes['postSource'][0])
     {
@@ -1341,11 +1341,11 @@ class IngestApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\Shotstack\Client\Model\QueuedSourceResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\QueuedSourceResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\QueuedSourceResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\QueuedSourceResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1363,16 +1363,16 @@ class IngestApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\QueuedSourceResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\QueuedSourceResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
                 case 400:
-                    if ('\Shotstack\Client\Model\IngestErrorResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\IngestErrorResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\IngestErrorResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\IngestErrorResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1390,13 +1390,13 @@ class IngestApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\IngestErrorResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\IngestErrorResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\QueuedSourceResponse';
+            $returnType = '\ShotstackClient\Model\QueuedSourceResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1429,7 +1429,7 @@ class IngestApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\QueuedSourceResponse',
+                        '\ShotstackClient\Model\QueuedSourceResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1437,7 +1437,7 @@ class IngestApi
                 case 400:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\IngestErrorResponse',
+                        '\ShotstackClient\Model\IngestErrorResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1452,7 +1452,7 @@ class IngestApi
      *
      * Fetch Source
      *
-     * @param  \Shotstack\Client\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
+     * @param  \ShotstackClient\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1473,7 +1473,7 @@ class IngestApi
      *
      * Fetch Source
      *
-     * @param  \Shotstack\Client\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
+     * @param  \ShotstackClient\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1481,7 +1481,7 @@ class IngestApi
      */
     public function postSourceAsyncWithHttpInfo($source, string $contentType = self::contentTypes['postSource'][0])
     {
-        $returnType = '\Shotstack\Client\Model\QueuedSourceResponse';
+        $returnType = '\ShotstackClient\Model\QueuedSourceResponse';
         $request = $this->postSourceRequest($source, $contentType);
 
         return $this->client
@@ -1523,7 +1523,7 @@ class IngestApi
     /**
      * Create request for operation 'postSource'
      *
-     * @param  \Shotstack\Client\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
+     * @param  \ShotstackClient\Model\Source $source Ingest a video, image, audio or font file from the provided URL. Optionally provide a list of output renditions. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postSource'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

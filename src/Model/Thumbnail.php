@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Thumbnail Class Doc Comment
  *
  * @category Class
  * @description Generate a thumbnail image for the video or image at a specific point from the timeline.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -288,6 +288,14 @@ class Thumbnail implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['scale'] === null) {
             $invalidProperties[] = "'scale' can't be null";
         }
+        if (($this->container['scale'] > 1)) {
+            $invalidProperties[] = "invalid value for 'scale', must be smaller than or equal to 1.";
+        }
+
+        if (($this->container['scale'] < 0)) {
+            $invalidProperties[] = "invalid value for 'scale', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -352,6 +360,14 @@ class Thumbnail implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($scale)) {
             throw new \InvalidArgumentException('non-nullable scale cannot be null');
         }
+
+        if (($scale > 1)) {
+            throw new \InvalidArgumentException('invalid value for $scale when calling Thumbnail., must be smaller than or equal to 1.');
+        }
+        if (($scale < 0)) {
+            throw new \InvalidArgumentException('invalid value for $scale when calling Thumbnail., must be bigger than or equal to 0.');
+        }
+
         $this->container['scale'] = $scale;
 
         return $this;

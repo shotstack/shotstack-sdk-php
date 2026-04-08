@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * TransferResponse Class Doc Comment
  *
  * @category Class
  * @description The response returned by the Serve API [transfer asset](#transfer-asset) request. The response includes the ID and transfer status. The response follows the [json:api](https://jsonapi.org/) specification.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class TransferResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Shotstack\Client\Model\TransferResponseData'
+        'data' => '\ShotstackClient\Model\TransferResponseData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class TransferResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets data
      *
-     * @return \Shotstack\Client\Model\TransferResponseData
+     * @return \ShotstackClient\Model\TransferResponseData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class TransferResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets data
      *
-     * @param \Shotstack\Client\Model\TransferResponseData $data data
+     * @param \ShotstackClient\Model\TransferResponseData $data data
      *
      * @return self
      */

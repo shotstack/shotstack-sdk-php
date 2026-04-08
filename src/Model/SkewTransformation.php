@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * SkewTransformation Class Doc Comment
  *
  * @category Class
- * @description Skew a clip so its edges are sheared at an angle. Use values between 0 and 3. Over 3 the clip will be skewed almost flat.
- * @package  Shotstack\Client
+ * @description Skew a clip so its edges are sheared at an angle. Use values between -100 and 100. Values over 3 or under -3 will skew the clip almost flat.
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class SkewTransformation implements ModelInterface, ArrayAccess, \JsonSerializab
       * @var string[]
       */
     protected static $openAPITypes = [
-        'x' => 'float',
-        'y' => 'float'
+        'x' => '\ShotstackClient\Model\SkewTransformationX',
+        'y' => '\ShotstackClient\Model\SkewTransformationY'
     ];
 
     /**
@@ -70,8 +70,8 @@ class SkewTransformation implements ModelInterface, ArrayAccess, \JsonSerializab
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'x' => 'float',
-        'y' => 'float'
+        'x' => null,
+        'y' => null
     ];
 
     /**
@@ -300,7 +300,7 @@ class SkewTransformation implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets x
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\SkewTransformationX|null
      */
     public function getX()
     {
@@ -310,7 +310,7 @@ class SkewTransformation implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets x
      *
-     * @param float|null $x Skew the clip along it's x axis.
+     * @param \ShotstackClient\Model\SkewTransformationX|null $x x
      *
      * @return self
      */
@@ -327,7 +327,7 @@ class SkewTransformation implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets y
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\SkewTransformationY|null
      */
     public function getY()
     {
@@ -337,7 +337,7 @@ class SkewTransformation implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets y
      *
-     * @param float|null $y Skew the clip along it's y axis.
+     * @param \ShotstackClient\Model\SkewTransformationY|null $y y
      *
      * @return self
      */

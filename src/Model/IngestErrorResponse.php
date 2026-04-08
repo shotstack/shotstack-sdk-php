@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * IngestErrorResponse Class Doc Comment
  *
  * @category Class
  * @description Error response data for validation and other errors returned by the Ingest API.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class IngestErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'errors' => '\Shotstack\Client\Model\IngestErrorResponseData[]'
+        'errors' => '\ShotstackClient\Model\IngestErrorResponseData[]'
     ];
 
     /**
@@ -296,7 +296,7 @@ class IngestErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Gets errors
      *
-     * @return \Shotstack\Client\Model\IngestErrorResponseData[]
+     * @return \ShotstackClient\Model\IngestErrorResponseData[]
      */
     public function getErrors()
     {
@@ -306,7 +306,7 @@ class IngestErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializa
     /**
      * Sets errors
      *
-     * @param \Shotstack\Client\Model\IngestErrorResponseData[] $errors An array of errors.
+     * @param \ShotstackClient\Model\IngestErrorResponseData[] $errors An array of errors.
      *
      * @return self
      */

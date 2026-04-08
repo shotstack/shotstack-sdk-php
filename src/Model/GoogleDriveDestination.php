@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * GoogleDriveDestination Class Doc Comment
  *
  * @category Class
  * @description Send rendered videos and assets to the [Google Drive](https://shotstack.io/docs/guide/serving-assets/destinations/google-drive/) cloud storage service. Google Drive uses OAuth and you must authenticate and link your Google account via  [dashboard](https://dashboard.shotstack.io/integrations/google-drive), not in the request.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class GoogleDriveDestination implements ModelInterface, ArrayAccess, \JsonSerial
       */
     protected static $openAPITypes = [
         'provider' => 'string',
-        'options' => '\Shotstack\Client\Model\GoogleDriveDestinationOptions'
+        'options' => '\ShotstackClient\Model\GoogleDriveDestinationOptions'
     ];
 
     /**
@@ -333,7 +333,7 @@ class GoogleDriveDestination implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets options
      *
-     * @return \Shotstack\Client\Model\GoogleDriveDestinationOptions
+     * @return \ShotstackClient\Model\GoogleDriveDestinationOptions
      */
     public function getOptions()
     {
@@ -343,7 +343,7 @@ class GoogleDriveDestination implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets options
      *
-     * @param \Shotstack\Client\Model\GoogleDriveDestinationOptions $options options
+     * @param \ShotstackClient\Model\GoogleDriveDestinationOptions $options options
      *
      * @return self
      */

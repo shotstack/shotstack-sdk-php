@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Transfer Class Doc Comment
  *
  * @category Class
  * @description The asset URL to fetch and transfer to a destination.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'url' => 'string',
         'id' => 'string',
-        'destinations' => '\Shotstack\Client\Model\Destinations[]'
+        'destinations' => '\ShotstackClient\Model\Destinations[]'
     ];
 
     /**
@@ -370,7 +370,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets destinations
      *
-     * @return \Shotstack\Client\Model\Destinations[]
+     * @return \ShotstackClient\Model\Destinations[]
      */
     public function getDestinations()
     {
@@ -380,7 +380,7 @@ class Transfer implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets destinations
      *
-     * @param \Shotstack\Client\Model\Destinations[] $destinations Specify the storage locations and hosting services to send the file to.
+     * @param \ShotstackClient\Model\Destinations[] $destinations Specify the storage locations and hosting services to send the file to.
      *
      * @return self
      */

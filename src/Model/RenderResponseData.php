@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * RenderResponseData Class Doc Comment
  *
  * @category Class
  * @description The response data returned with the [RenderResponse](#tocs_renderresponse) including status and URL.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -68,7 +68,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         'url' => 'string',
         'poster' => 'string',
         'thumbnail' => 'string',
-        'data' => '\Shotstack\Client\Model\Edit',
+        'data' => '\ShotstackClient\Model\Edit',
         'created' => 'string',
         'updated' => 'string'
     ];
@@ -303,6 +303,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
 
     public const STATUS_QUEUED = 'queued';
     public const STATUS_FETCHING = 'fetching';
+    public const STATUS_PREPROCESSING = 'preprocessing';
     public const STATUS_RENDERING = 'rendering';
     public const STATUS_SAVING = 'saving';
     public const STATUS_DONE = 'done';
@@ -318,6 +319,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
         return [
             self::STATUS_QUEUED,
             self::STATUS_FETCHING,
+            self::STATUS_PREPROCESSING,
             self::STATUS_RENDERING,
             self::STATUS_SAVING,
             self::STATUS_DONE,
@@ -509,7 +511,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      *
-     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
+     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`preprocessing` - video assets are being processed for compatibility</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
      *
      * @return self
      */
@@ -712,7 +714,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Gets data
      *
-     * @return \Shotstack\Client\Model\Edit|null
+     * @return \ShotstackClient\Model\Edit|null
      */
     public function getData()
     {
@@ -722,7 +724,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets data
      *
-     * @param \Shotstack\Client\Model\Edit|null $data data
+     * @param \ShotstackClient\Model\Edit|null $data data
      *
      * @return self
      */

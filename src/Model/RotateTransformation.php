@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * RotateTransformation Class Doc Comment
  *
  * @category Class
  * @description Rotate a clip by the specified angle in degrees. Rotation origin is set based on the clips &#x60;position&#x60;.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class RotateTransformation implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'angle' => 'int'
+        'angle' => '\ShotstackClient\Model\RotateTransformationAngle'
     ];
 
     /**
@@ -293,7 +293,7 @@ class RotateTransformation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets angle
      *
-     * @return int|null
+     * @return \ShotstackClient\Model\RotateTransformationAngle|null
      */
     public function getAngle()
     {
@@ -303,7 +303,7 @@ class RotateTransformation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets angle
      *
-     * @param int|null $angle The angle to rotate the clip. Can be 0 to 360, or 0 to -360. Using a positive number rotates the clip clockwise, negative numbers counter-clockwise.
+     * @param \ShotstackClient\Model\RotateTransformationAngle|null $angle angle
      *
      * @return self
      */
