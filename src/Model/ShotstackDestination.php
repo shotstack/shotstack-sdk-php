@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * ShotstackDestination Class Doc Comment
  *
  * @category Class
  * @description Send videos and assets to the  [Shotstack hosting and CDN](https://shotstack.io/docs/guide/serving-assets/destinations/shotstack/) service.  This destination is enabled by default.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>

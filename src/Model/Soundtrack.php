@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Soundtrack Class Doc Comment
  *
  * @category Class
  * @description A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -309,6 +309,14 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['src'] === null) {
             $invalidProperties[] = "'src' can't be null";
         }
+        if ((mb_strlen($this->container['src']) < 1)) {
+            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!preg_match("/\\S/", $this->container['src'])) {
+            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        }
+
         $allowedValues = $this->getEffectAllowableValues();
         if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -355,6 +363,14 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($src)) {
             throw new \InvalidArgumentException('non-nullable src cannot be null');
         }
+
+        if ((mb_strlen($src) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $src when calling Soundtrack., must be bigger than or equal to 1.');
+        }
+        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
+            throw new \InvalidArgumentException("invalid value for \$src when calling Soundtrack., must conform to the pattern /\\S/.");
+        }
+
         $this->container['src'] = $src;
 
         return $this;

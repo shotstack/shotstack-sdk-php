@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * ImageAsset Class Doc Comment
  *
  * @category Class
  * @description The ImageAsset is used to create video from images to compose an image. The src must be a publicly accessible URL to an image resource such as a jpg or png file.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -60,7 +60,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
-        'crop' => '\Shotstack\Client\Model\Crop'
+        'crop' => '\ShotstackClient\Model\Crop'
     ];
 
     /**
@@ -241,6 +241,19 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_IMAGE = 'image';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_IMAGE,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -292,9 +305,26 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['src'] === null) {
             $invalidProperties[] = "'src' can't be null";
         }
+        if ((mb_strlen($this->container['src']) < 1)) {
+            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!preg_match("/\\S/", $this->container['src'])) {
+            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        }
+
         return $invalidProperties;
     }
 
@@ -332,6 +362,16 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -359,6 +399,14 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($src)) {
             throw new \InvalidArgumentException('non-nullable src cannot be null');
         }
+
+        if ((mb_strlen($src) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $src when calling ImageAsset., must be bigger than or equal to 1.');
+        }
+        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
+            throw new \InvalidArgumentException("invalid value for \$src when calling ImageAsset., must conform to the pattern /\\S/.");
+        }
+
         $this->container['src'] = $src;
 
         return $this;
@@ -367,7 +415,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets crop
      *
-     * @return \Shotstack\Client\Model\Crop|null
+     * @return \ShotstackClient\Model\Crop|null
      */
     public function getCrop()
     {
@@ -377,7 +425,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets crop
      *
-     * @param \Shotstack\Client\Model\Crop|null $crop crop
+     * @param \ShotstackClient\Model\Crop|null $crop crop
      *
      * @return self
      */

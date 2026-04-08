@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Timeline Class Doc Comment
  *
  * @category Class
  * @description A timeline represents the contents of a video edit over time, an audio edit over time, in seconds, or an image layout. A timeline consists of layers called tracks. Tracks are composed of titles, images, audio, html or video segments referred to as clips which are placed along the track at specific starting point and lasting for a specific amount of time.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,10 +58,10 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'soundtrack' => '\Shotstack\Client\Model\Soundtrack',
+        'soundtrack' => '\ShotstackClient\Model\Soundtrack',
         'background' => 'string',
-        'fonts' => '\Shotstack\Client\Model\Font[]',
-        'tracks' => '\Shotstack\Client\Model\Track[]',
+        'fonts' => '\ShotstackClient\Model\Font[]',
+        'tracks' => '\ShotstackClient\Model\Track[]',
         'cache' => 'bool'
     ];
 
@@ -306,6 +306,10 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['tracks'] === null) {
             $invalidProperties[] = "'tracks' can't be null";
         }
+        if ((count($this->container['tracks']) < 1)) {
+            $invalidProperties[] = "invalid value for 'tracks', number of items must be greater than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -324,7 +328,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets soundtrack
      *
-     * @return \Shotstack\Client\Model\Soundtrack|null
+     * @return \ShotstackClient\Model\Soundtrack|null
      */
     public function getSoundtrack()
     {
@@ -334,7 +338,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets soundtrack
      *
-     * @param \Shotstack\Client\Model\Soundtrack|null $soundtrack soundtrack
+     * @param \ShotstackClient\Model\Soundtrack|null $soundtrack soundtrack
      *
      * @return self
      */
@@ -378,7 +382,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets fonts
      *
-     * @return \Shotstack\Client\Model\Font[]|null
+     * @return \ShotstackClient\Model\Font[]|null
      */
     public function getFonts()
     {
@@ -388,7 +392,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fonts
      *
-     * @param \Shotstack\Client\Model\Font[]|null $fonts An array of custom fonts to be downloaded for use by the HTML assets.
+     * @param \ShotstackClient\Model\Font[]|null $fonts An array of custom fonts to be downloaded for use by the HTML assets.
      *
      * @return self
      */
@@ -405,7 +409,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets tracks
      *
-     * @return \Shotstack\Client\Model\Track[]
+     * @return \ShotstackClient\Model\Track[]
      */
     public function getTracks()
     {
@@ -415,7 +419,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets tracks
      *
-     * @param \Shotstack\Client\Model\Track[] $tracks A timeline consists of an array of tracks, each track containing clips. Tracks are layered on top of each other in the same order they are added to the array with the top most track layered over the top of those below it. Ensure that a track containing titles is the top most track so that it is displayed above videos and images.
+     * @param \ShotstackClient\Model\Track[] $tracks A timeline consists of an array of tracks, each track containing clips. Tracks are layered on top of each other in the same order they are added to the array with the top most track layered over the top of those below it. Ensure that a track containing titles is the top most track so that it is displayed above videos and images.
      *
      * @return self
      */
@@ -423,6 +427,11 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($tracks)) {
             throw new \InvalidArgumentException('non-nullable tracks cannot be null');
+        }
+
+
+        if ((count($tracks) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $tracks when calling Timeline., number of items must be greater than or equal to 1.');
         }
         $this->container['tracks'] = $tracks;
 

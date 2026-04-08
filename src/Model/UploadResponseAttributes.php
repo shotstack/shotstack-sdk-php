@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * UploadResponseAttributes Class Doc Comment
  *
  * @category Class
  * @description The id and attributes of the upload file including the signed URL to send the binary file data to.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>

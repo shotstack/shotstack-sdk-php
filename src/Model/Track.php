@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Track Class Doc Comment
  *
  * @category Class
  * @description A track contains an array of clips. Tracks are layered on top of each other in the order in the array. The top most track will render on top of those below it.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'clips' => '\Shotstack\Client\Model\Clip[]'
+        'clips' => '\ShotstackClient\Model\Clip[]'
     ];
 
     /**
@@ -278,6 +278,10 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['clips'] === null) {
             $invalidProperties[] = "'clips' can't be null";
         }
+        if ((count($this->container['clips']) < 1)) {
+            $invalidProperties[] = "invalid value for 'clips', number of items must be greater than or equal to 1.";
+        }
+
         return $invalidProperties;
     }
 
@@ -296,7 +300,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets clips
      *
-     * @return \Shotstack\Client\Model\Clip[]
+     * @return \ShotstackClient\Model\Clip[]
      */
     public function getClips()
     {
@@ -306,7 +310,7 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets clips
      *
-     * @param \Shotstack\Client\Model\Clip[] $clips An array of Clips comprising of TitleClip, ImageClip or VideoClip.
+     * @param \ShotstackClient\Model\Clip[] $clips An array of Clips comprising of TitleClip, ImageClip or VideoClip.
      *
      * @return self
      */
@@ -314,6 +318,11 @@ class Track implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($clips)) {
             throw new \InvalidArgumentException('non-nullable clips cannot be null');
+        }
+
+
+        if ((count($clips) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $clips when calling Track., number of items must be greater than or equal to 1.');
         }
         $this->container['clips'] = $clips;
 

@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * AudioAsset Class Doc Comment
  *
  * @category Class
  * @description The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'type' => 'string',
         'src' => 'string',
         'trim' => 'float',
-        'volume' => 'float',
+        'volume' => '\ShotstackClient\Model\AudioAssetVolume',
         'speed' => 'float',
         'effect' => 'string'
     ];
@@ -259,6 +259,8 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_AUDIO = 'audio';
+    public const EFFECT_NONE = 'none';
     public const EFFECT_FADE_IN = 'fadeIn';
     public const EFFECT_FADE_OUT = 'fadeOut';
     public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
@@ -268,9 +270,22 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      *
      * @return string[]
      */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_AUDIO,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
     public function getEffectAllowableValues()
     {
         return [
+            self::EFFECT_NONE,
             self::EFFECT_FADE_IN,
             self::EFFECT_FADE_OUT,
             self::EFFECT_FADE_IN_FADE_OUT,
@@ -330,9 +345,26 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['src'] === null) {
             $invalidProperties[] = "'src' can't be null";
         }
+        if ((mb_strlen($this->container['src']) < 1)) {
+            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!preg_match("/\\S/", $this->container['src'])) {
+            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        }
+
         if (!is_null($this->container['speed']) && ($this->container['speed'] > 10)) {
             $invalidProperties[] = "invalid value for 'speed', must be smaller than or equal to 10.";
         }
@@ -387,6 +419,16 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
         $this->container['type'] = $type;
 
         return $this;
@@ -414,6 +456,14 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($src)) {
             throw new \InvalidArgumentException('non-nullable src cannot be null');
         }
+
+        if ((mb_strlen($src) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $src when calling AudioAsset., must be bigger than or equal to 1.');
+        }
+        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
+            throw new \InvalidArgumentException("invalid value for \$src when calling AudioAsset., must conform to the pattern /\\S/.");
+        }
+
         $this->container['src'] = $src;
 
         return $this;
@@ -449,7 +499,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets volume
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\AudioAssetVolume|null
      */
     public function getVolume()
     {
@@ -459,7 +509,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets volume
      *
-     * @param float|null $volume Set the volume for the audio clip between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param \ShotstackClient\Model\AudioAssetVolume|null $volume volume
      *
      * @return self
      */

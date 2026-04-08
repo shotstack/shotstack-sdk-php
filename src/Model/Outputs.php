@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Outputs Class Doc Comment
  *
  * @category Class
  * @description The output renditions and transformations that should be generated from the source file.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class Outputs implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'renditions' => '\Shotstack\Client\Model\Rendition[]',
-        'transcription' => '\Shotstack\Client\Model\Transcription'
+        'renditions' => '\ShotstackClient\Model\Rendition[]',
+        'transcription' => '\ShotstackClient\Model\Transcription'
     ];
 
     /**
@@ -300,7 +300,7 @@ class Outputs implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets renditions
      *
-     * @return \Shotstack\Client\Model\Rendition[]|null
+     * @return \ShotstackClient\Model\Rendition[]|null
      */
     public function getRenditions()
     {
@@ -310,7 +310,7 @@ class Outputs implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets renditions
      *
-     * @param \Shotstack\Client\Model\Rendition[]|null $renditions The output renditions and transformations that should be generated from the source file.
+     * @param \ShotstackClient\Model\Rendition[]|null $renditions The output renditions and transformations that should be generated from the source file.
      *
      * @return self
      */
@@ -327,7 +327,7 @@ class Outputs implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets transcription
      *
-     * @return \Shotstack\Client\Model\Transcription|null
+     * @return \ShotstackClient\Model\Transcription|null
      */
     public function getTranscription()
     {
@@ -337,7 +337,7 @@ class Outputs implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets transcription
      *
-     * @param \Shotstack\Client\Model\Transcription|null $transcription transcription
+     * @param \ShotstackClient\Model\Transcription|null $transcription transcription
      *
      * @return self
      */

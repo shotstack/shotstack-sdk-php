@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * TemplateDataResponseData Class Doc Comment
  *
  * @category Class
  * @description The response data returned with the [TemplateDataResponse](#tocs_templatedataresponse).
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,7 +61,7 @@ class TemplateDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
         'id' => 'string',
         'name' => 'string',
         'owner' => 'string',
-        'template' => '\Shotstack\Client\Model\Edit'
+        'template' => '\ShotstackClient\Model\Edit'
     ];
 
     /**
@@ -407,7 +407,7 @@ class TemplateDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets template
      *
-     * @return \Shotstack\Client\Model\Edit
+     * @return \ShotstackClient\Model\Edit
      */
     public function getTemplate()
     {
@@ -417,7 +417,7 @@ class TemplateDataResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets template
      *
-     * @param \Shotstack\Client\Model\Edit $template template
+     * @param \ShotstackClient\Model\Edit $template template
      *
      * @return self
      */

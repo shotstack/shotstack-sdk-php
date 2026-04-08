@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Edit Class Doc Comment
  *
  * @category Class
- * @description An edit defines the arrangement of a video on a timeline, an audio edit or an image design and the output format.
- * @package  Shotstack\Client
+ * @description An edit defines the arrangement of a video on a timeline, an audio edit or an image design and the output format. Video assets are automatically preprocessed to fix common compatibility issues before rendering. You can control preprocessing behavior using the &#x60;transcode&#x60; flag on video assets.
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,11 +58,12 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'timeline' => '\Shotstack\Client\Model\Timeline',
-        'output' => '\Shotstack\Client\Model\Output',
-        'merge' => '\Shotstack\Client\Model\MergeField[]',
+        'timeline' => '\ShotstackClient\Model\Timeline',
+        'output' => '\ShotstackClient\Model\Output',
+        'merge' => '\ShotstackClient\Model\MergeField[]',
         'callback' => 'string',
-        'disk' => 'string'
+        'disk' => 'string',
+        'instance' => 'string'
     ];
 
     /**
@@ -77,7 +78,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         'output' => null,
         'merge' => null,
         'callback' => null,
-        'disk' => null
+        'disk' => null,
+        'instance' => null
     ];
 
     /**
@@ -90,7 +92,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         'output' => false,
         'merge' => false,
         'callback' => false,
-        'disk' => false
+        'disk' => false,
+        'instance' => false
     ];
 
     /**
@@ -183,7 +186,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         'output' => 'output',
         'merge' => 'merge',
         'callback' => 'callback',
-        'disk' => 'disk'
+        'disk' => 'disk',
+        'instance' => 'instance'
     ];
 
     /**
@@ -196,7 +200,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         'output' => 'setOutput',
         'merge' => 'setMerge',
         'callback' => 'setCallback',
-        'disk' => 'setDisk'
+        'disk' => 'setDisk',
+        'instance' => 'setInstance'
     ];
 
     /**
@@ -209,7 +214,8 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         'output' => 'getOutput',
         'merge' => 'getMerge',
         'callback' => 'getCallback',
-        'disk' => 'getDisk'
+        'disk' => 'getDisk',
+        'instance' => 'getInstance'
     ];
 
     /**
@@ -255,6 +261,9 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
 
     public const DISK_LOCAL = 'local';
     public const DISK_MOUNT = 'mount';
+    public const INSTANCE_S1 = 's1';
+    public const INSTANCE_S2 = 's2';
+    public const INSTANCE_A1 = 'a1';
 
     /**
      * Gets allowable values of the enum
@@ -266,6 +275,20 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         return [
             self::DISK_LOCAL,
             self::DISK_MOUNT,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getInstanceAllowableValues()
+    {
+        return [
+            self::INSTANCE_S1,
+            self::INSTANCE_S2,
+            self::INSTANCE_A1,
         ];
     }
 
@@ -289,6 +312,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('merge', $data ?? [], null);
         $this->setIfExists('callback', $data ?? [], null);
         $this->setIfExists('disk', $data ?? [], null);
+        $this->setIfExists('instance', $data ?? [], 's1');
     }
 
     /**
@@ -333,6 +357,15 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        $allowedValues = $this->getInstanceAllowableValues();
+        if (!is_null($this->container['instance']) && !in_array($this->container['instance'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'instance', must be one of '%s'",
+                $this->container['instance'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -351,7 +384,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets timeline
      *
-     * @return \Shotstack\Client\Model\Timeline
+     * @return \ShotstackClient\Model\Timeline
      */
     public function getTimeline()
     {
@@ -361,7 +394,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets timeline
      *
-     * @param \Shotstack\Client\Model\Timeline $timeline timeline
+     * @param \ShotstackClient\Model\Timeline $timeline timeline
      *
      * @return self
      */
@@ -378,7 +411,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets output
      *
-     * @return \Shotstack\Client\Model\Output
+     * @return \ShotstackClient\Model\Output
      */
     public function getOutput()
     {
@@ -388,7 +421,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets output
      *
-     * @param \Shotstack\Client\Model\Output $output output
+     * @param \ShotstackClient\Model\Output $output output
      *
      * @return self
      */
@@ -405,7 +438,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets merge
      *
-     * @return \Shotstack\Client\Model\MergeField[]|null
+     * @return \ShotstackClient\Model\MergeField[]|null
      */
     public function getMerge()
     {
@@ -415,7 +448,7 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets merge
      *
-     * @param \Shotstack\Client\Model\MergeField[]|null $merge An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`.
+     * @param \ShotstackClient\Model\MergeField[]|null $merge An array of key/value pairs that provides an easy way to create templates with placeholders. The placeholders can be used to find and replace keys with values. For example you can search for the placeholder `{{NAME}}` and replace it with the value `Jane`.
      *
      * @return self
      */
@@ -491,6 +524,43 @@ class Edit implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['disk'] = $disk;
+
+        return $this;
+    }
+
+    /**
+     * Gets instance
+     *
+     * @return string|null
+     */
+    public function getInstance()
+    {
+        return $this->container['instance'];
+    }
+
+    /**
+     * Sets instance
+     *
+     * @param string|null $instance The render instance type to use for processing the edit. <ul>   <li>`s1` - standard instance (default)</li>   <li>`s2` - standard instance with more resources</li>   <li>`a1` - accelerated instance for faster rendering</li> </ul>
+     *
+     * @return self
+     */
+    public function setInstance($instance)
+    {
+        if (is_null($instance)) {
+            throw new \InvalidArgumentException('non-nullable instance cannot be null');
+        }
+        $allowedValues = $this->getInstanceAllowableValues();
+        if (!in_array($instance, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'instance', must be one of '%s'",
+                    $instance,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['instance'] = $instance;
 
         return $this;
     }

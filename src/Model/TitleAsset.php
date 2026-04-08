@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * TitleAsset Class Doc Comment
  *
  * @category Class
- * @description **Notice: The title asset is deprecated, use the [HTML asset](#tocs_htmlasset) instead.**  The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning.
- * @package  Shotstack\Client
+ * @description **Notice: The TitleAsset is deprecated, use the [TextAsset](#tocs_textasset) instead.**  The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning.
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -65,7 +65,7 @@ class TitleAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'size' => 'string',
         'background' => 'string',
         'position' => 'string',
-        'offset' => '\Shotstack\Client\Model\Offset'
+        'offset' => '\ShotstackClient\Model\Offset'
     ];
 
     /**
@@ -271,6 +271,7 @@ class TitleAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_TITLE = 'title';
     public const STYLE_MINIMAL = 'minimal';
     public const STYLE_BLOCKBUSTER = 'blockbuster';
     public const STYLE_VOGUE = 'vogue';
@@ -297,6 +298,18 @@ class TitleAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const POSITION_LEFT = 'left';
     public const POSITION_TOP_LEFT = 'topLeft';
     public const POSITION_CENTER = 'center';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_TITLE,
+        ];
+    }
 
     /**
      * Gets allowable values of the enum
@@ -412,6 +425,15 @@ class TitleAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['type'] === null) {
             $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if ($this->container['text'] === null) {
             $invalidProperties[] = "'text' can't be null";
         }
@@ -478,6 +500,16 @@ class TitleAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         if (is_null($type)) {
             throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
         $this->container['type'] = $type;
 
@@ -679,7 +711,7 @@ class TitleAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets offset
      *
-     * @return \Shotstack\Client\Model\Offset|null
+     * @return \ShotstackClient\Model\Offset|null
      */
     public function getOffset()
     {
@@ -689,7 +721,7 @@ class TitleAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets offset
      *
-     * @param \Shotstack\Client\Model\Offset|null $offset offset
+     * @param \ShotstackClient\Model\Offset|null $offset offset
      *
      * @return self
      */

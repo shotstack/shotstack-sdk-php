@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * OutputsResponse Class Doc Comment
  *
  * @category Class
  * @description The list of outputs generated from the source file. Currently supports renditions which are versions of the source file with different transformations applied.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class OutputsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'renditions' => '\Shotstack\Client\Model\RenditionResponseAttributes[]'
+        'renditions' => '\ShotstackClient\Model\RenditionResponseAttributes[]'
     ];
 
     /**
@@ -293,7 +293,7 @@ class OutputsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets renditions
      *
-     * @return \Shotstack\Client\Model\RenditionResponseAttributes[]|null
+     * @return \ShotstackClient\Model\RenditionResponseAttributes[]|null
      */
     public function getRenditions()
     {
@@ -303,7 +303,7 @@ class OutputsResponse implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets renditions
      *
-     * @param \Shotstack\Client\Model\RenditionResponseAttributes[]|null $renditions The list of renditions generated from the source file.
+     * @param \ShotstackClient\Model\RenditionResponseAttributes[]|null $renditions The list of renditions generated from the source file.
      *
      * @return self
      */

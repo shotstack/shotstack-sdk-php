@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * SourceResponseAttributes Class Doc Comment
  *
  * @category Class
  * @description The id and attributes of the source file.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -63,9 +63,9 @@ class SourceResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeri
         'input' => 'string',
         'source' => 'string',
         'status' => 'string',
-        'outputs' => '\Shotstack\Client\Model\OutputsResponse',
+        'outputs' => '\ShotstackClient\Model\OutputsResponse',
         'width' => 'int',
-        'height' => 'string',
+        'height' => 'int',
         'duration' => 'float',
         'fps' => 'float',
         'created' => 'string',
@@ -553,7 +553,7 @@ class SourceResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets outputs
      *
-     * @return \Shotstack\Client\Model\OutputsResponse|null
+     * @return \ShotstackClient\Model\OutputsResponse|null
      */
     public function getOutputs()
     {
@@ -563,7 +563,7 @@ class SourceResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets outputs
      *
-     * @param \Shotstack\Client\Model\OutputsResponse|null $outputs outputs
+     * @param \ShotstackClient\Model\OutputsResponse|null $outputs outputs
      *
      * @return self
      */
@@ -607,7 +607,7 @@ class SourceResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets height
      *
-     * @return string|null
+     * @return int|null
      */
     public function getHeight()
     {
@@ -617,7 +617,7 @@ class SourceResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets height
      *
-     * @param string|null $height The height in pixels of the ingested source file, if a video or image.
+     * @param int|null $height The height in pixels of the ingested source file, if a video or image.
      *
      * @return self
      */

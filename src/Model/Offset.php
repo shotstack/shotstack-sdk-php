@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Offset Class Doc Comment
  *
  * @category Class
  * @description Offsets the position of an asset horizontally or vertically by a relative distance.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,8 +58,8 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'x' => 'float',
-        'y' => 'float'
+        'x' => '\ShotstackClient\Model\OffsetX',
+        'y' => '\ShotstackClient\Model\OffsetY'
     ];
 
     /**
@@ -70,8 +70,8 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'x' => 'float',
-        'y' => 'float'
+        'x' => null,
+        'y' => null
     ];
 
     /**
@@ -282,22 +282,6 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['x']) && ($this->container['x'] > 10)) {
-            $invalidProperties[] = "invalid value for 'x', must be smaller than or equal to 10.";
-        }
-
-        if (!is_null($this->container['x']) && ($this->container['x'] < -10)) {
-            $invalidProperties[] = "invalid value for 'x', must be bigger than or equal to -10.";
-        }
-
-        if (!is_null($this->container['y']) && ($this->container['y'] > 10)) {
-            $invalidProperties[] = "invalid value for 'y', must be smaller than or equal to 10.";
-        }
-
-        if (!is_null($this->container['y']) && ($this->container['y'] < -10)) {
-            $invalidProperties[] = "invalid value for 'y', must be bigger than or equal to -10.";
-        }
-
         return $invalidProperties;
     }
 
@@ -316,7 +300,7 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets x
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\OffsetX|null
      */
     public function getX()
     {
@@ -326,7 +310,7 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets x
      *
-     * @param float|null $x Offset an asset on the horizontal axis (left or right), range varies from -10 to 10. Positive numbers move the asset right, negative left. For all assets except titles the distance moved is relative to the width  of the viewport - i.e. an X offset of 0.5 will move the asset half the  screen width to the right.
+     * @param \ShotstackClient\Model\OffsetX|null $x x
      *
      * @return self
      */
@@ -335,14 +319,6 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($x)) {
             throw new \InvalidArgumentException('non-nullable x cannot be null');
         }
-
-        if (($x > 10)) {
-            throw new \InvalidArgumentException('invalid value for $x when calling Offset., must be smaller than or equal to 10.');
-        }
-        if (($x < -10)) {
-            throw new \InvalidArgumentException('invalid value for $x when calling Offset., must be bigger than or equal to -10.');
-        }
-
         $this->container['x'] = $x;
 
         return $this;
@@ -351,7 +327,7 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets y
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\OffsetY|null
      */
     public function getY()
     {
@@ -361,7 +337,7 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets y
      *
-     * @param float|null $y Offset an asset on the vertical axis (up or down), range varies from -10 to 10. Positive numbers move the asset up, negative down. For all assets except titles the distance moved is relative to the height  of the viewport - i.e. an Y offset of 0.5 will move the asset up half the  screen height.
+     * @param \ShotstackClient\Model\OffsetY|null $y y
      *
      * @return self
      */
@@ -370,14 +346,6 @@ class Offset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($y)) {
             throw new \InvalidArgumentException('non-nullable y cannot be null');
         }
-
-        if (($y > 10)) {
-            throw new \InvalidArgumentException('invalid value for $y when calling Offset., must be smaller than or equal to 10.');
-        }
-        if (($y < -10)) {
-            throw new \InvalidArgumentException('invalid value for $y when calling Offset., must be bigger than or equal to -10.');
-        }
-
         $this->container['y'] = $y;
 
         return $this;

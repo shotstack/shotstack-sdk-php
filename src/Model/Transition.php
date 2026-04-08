@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Transition Class Doc Comment
  *
  * @category Class
  * @description In and out transitions for a clip - i.e. fade in and fade out
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -235,6 +235,7 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const IN_NONE = 'none';
     public const IN_FADE = 'fade';
     public const IN_FADE_SLOW = 'fadeSlow';
     public const IN_FADE_FAST = 'fadeFast';
@@ -296,6 +297,7 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
     public const IN_SHUFFLE_TOP_LEFT_SLOW = 'shuffleTopLeftSlow';
     public const IN_SHUFFLE_TOP_LEFT_FAST = 'shuffleTopLeftFast';
     public const IN_ZOOM = 'zoom';
+    public const OUT_NONE = 'none';
     public const OUT_FADE = 'fade';
     public const OUT_FADE_SLOW = 'fadeSlow';
     public const OUT_FADE_FAST = 'fadeFast';
@@ -366,6 +368,7 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getInAllowableValues()
     {
         return [
+            self::IN_NONE,
             self::IN_FADE,
             self::IN_FADE_SLOW,
             self::IN_FADE_FAST,
@@ -438,6 +441,7 @@ class Transition implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getOutAllowableValues()
     {
         return [
+            self::OUT_NONE,
             self::OUT_FADE,
             self::OUT_FADE_SLOW,
             self::OUT_FADE_FAST,

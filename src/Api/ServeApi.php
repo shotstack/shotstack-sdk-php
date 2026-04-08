@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Api;
+namespace ShotstackClient\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Shotstack\Client\ApiException;
-use Shotstack\Client\Configuration;
-use Shotstack\Client\HeaderSelector;
-use Shotstack\Client\ObjectSerializer;
+use ShotstackClient\ApiException;
+use ShotstackClient\Configuration;
+use ShotstackClient\HeaderSelector;
+use ShotstackClient\ObjectSerializer;
 
 /**
  * ServeApi Class Doc Comment
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -139,7 +139,7 @@ class ServeApi
      * @param  string $id The id of the asset in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAsset'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -156,7 +156,7 @@ class ServeApi
      * @param  string $id The id of the asset in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteAsset'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -376,9 +376,9 @@ class ServeApi
      * @param  string $id The id of the asset in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsset'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\AssetResponse
+     * @return \ShotstackClient\Model\AssetResponse
      */
     public function getAsset($id, string $contentType = self::contentTypes['getAsset'][0])
     {
@@ -394,9 +394,9 @@ class ServeApi
      * @param  string $id The id of the asset in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAsset'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\AssetResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\AssetResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAssetWithHttpInfo($id, string $contentType = self::contentTypes['getAsset'][0])
     {
@@ -439,11 +439,11 @@ class ServeApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\AssetResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\AssetResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\AssetResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\AssetResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -461,13 +461,13 @@ class ServeApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\AssetResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\AssetResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\AssetResponse';
+            $returnType = '\ShotstackClient\Model\AssetResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -500,7 +500,7 @@ class ServeApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\AssetResponse',
+                        '\ShotstackClient\Model\AssetResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -544,7 +544,7 @@ class ServeApi
      */
     public function getAssetAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getAsset'][0])
     {
-        $returnType = '\Shotstack\Client\Model\AssetResponse';
+        $returnType = '\ShotstackClient\Model\AssetResponse';
         $request = $this->getAssetRequest($id, $contentType);
 
         return $this->client
@@ -691,9 +691,9 @@ class ServeApi
      * @param  string $id The render id associated with the asset in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetByRenderId'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\AssetRenderResponse
+     * @return \ShotstackClient\Model\AssetRenderResponse
      */
     public function getAssetByRenderId($id, string $contentType = self::contentTypes['getAssetByRenderId'][0])
     {
@@ -709,9 +709,9 @@ class ServeApi
      * @param  string $id The render id associated with the asset in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getAssetByRenderId'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\AssetRenderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\AssetRenderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getAssetByRenderIdWithHttpInfo($id, string $contentType = self::contentTypes['getAssetByRenderId'][0])
     {
@@ -754,11 +754,11 @@ class ServeApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\AssetRenderResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\AssetRenderResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\AssetRenderResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\AssetRenderResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -776,13 +776,13 @@ class ServeApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\AssetRenderResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\AssetRenderResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\AssetRenderResponse';
+            $returnType = '\ShotstackClient\Model\AssetRenderResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -815,7 +815,7 @@ class ServeApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\AssetRenderResponse',
+                        '\ShotstackClient\Model\AssetRenderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -859,7 +859,7 @@ class ServeApi
      */
     public function getAssetByRenderIdAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getAssetByRenderId'][0])
     {
-        $returnType = '\Shotstack\Client\Model\AssetRenderResponse';
+        $returnType = '\ShotstackClient\Model\AssetRenderResponse';
         $request = $this->getAssetByRenderIdRequest($id, $contentType);
 
         return $this->client
@@ -1003,12 +1003,12 @@ class ServeApi
      *
      * Transfer Asset
      *
-     * @param  \Shotstack\Client\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
+     * @param  \ShotstackClient\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postServeAsset'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\TransferResponse
+     * @return \ShotstackClient\Model\TransferResponse
      */
     public function postServeAsset($transfer, string $contentType = self::contentTypes['postServeAsset'][0])
     {
@@ -1021,12 +1021,12 @@ class ServeApi
      *
      * Transfer Asset
      *
-     * @param  \Shotstack\Client\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
+     * @param  \ShotstackClient\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postServeAsset'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\TransferResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\TransferResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function postServeAssetWithHttpInfo($transfer, string $contentType = self::contentTypes['postServeAsset'][0])
     {
@@ -1069,11 +1069,11 @@ class ServeApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\TransferResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\TransferResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\TransferResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\TransferResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1091,13 +1091,13 @@ class ServeApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\TransferResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\TransferResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\TransferResponse';
+            $returnType = '\ShotstackClient\Model\TransferResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1130,7 +1130,7 @@ class ServeApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\TransferResponse',
+                        '\ShotstackClient\Model\TransferResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1145,7 +1145,7 @@ class ServeApi
      *
      * Transfer Asset
      *
-     * @param  \Shotstack\Client\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
+     * @param  \ShotstackClient\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postServeAsset'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1166,7 +1166,7 @@ class ServeApi
      *
      * Transfer Asset
      *
-     * @param  \Shotstack\Client\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
+     * @param  \ShotstackClient\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postServeAsset'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1174,7 +1174,7 @@ class ServeApi
      */
     public function postServeAssetAsyncWithHttpInfo($transfer, string $contentType = self::contentTypes['postServeAsset'][0])
     {
-        $returnType = '\Shotstack\Client\Model\TransferResponse';
+        $returnType = '\ShotstackClient\Model\TransferResponse';
         $request = $this->postServeAssetRequest($transfer, $contentType);
 
         return $this->client
@@ -1216,7 +1216,7 @@ class ServeApi
     /**
      * Create request for operation 'postServeAsset'
      *
-     * @param  \Shotstack\Client\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
+     * @param  \ShotstackClient\Model\Transfer $transfer Fetch an asset from a URL and send it to one or more destinations. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postServeAsset'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

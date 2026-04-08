@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * QueuedSourceResponse Class Doc Comment
  *
  * @category Class
  * @description The response returned by the Ingest API [fetch source](#fetch-source) request. Includes the id of the source file. The response follows the [json:api](https://jsonapi.org/) specification.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,7 +58,7 @@ class QueuedSourceResponse implements ModelInterface, ArrayAccess, \JsonSerializ
       * @var string[]
       */
     protected static $openAPITypes = [
-        'data' => '\Shotstack\Client\Model\QueuedSourceResponseData'
+        'data' => '\ShotstackClient\Model\QueuedSourceResponseData'
     ];
 
     /**
@@ -296,7 +296,7 @@ class QueuedSourceResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Gets data
      *
-     * @return \Shotstack\Client\Model\QueuedSourceResponseData
+     * @return \ShotstackClient\Model\QueuedSourceResponseData
      */
     public function getData()
     {
@@ -306,7 +306,7 @@ class QueuedSourceResponse implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets data
      *
-     * @param \Shotstack\Client\Model\QueuedSourceResponseData $data data
+     * @param \ShotstackClient\Model\QueuedSourceResponseData $data data
      *
      * @return self
      */

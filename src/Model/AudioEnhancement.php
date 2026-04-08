@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * AudioEnhancement Class Doc Comment
  *
  * @category Class
  * @description An audio enhancement that can be applied to the audio content of a rendition. The following providers are available: &lt;ul&gt;   &lt;li&gt;&lt;a href&#x3D;\&quot;#tocs_dolbyenhancement\&quot;&gt;DolbyEnhancement&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class AudioEnhancement implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'provider' => 'string',
-        'options' => '\Shotstack\Client\Model\DolbyEnhancementOptions'
+        'options' => '\ShotstackClient\Model\DolbyEnhancementOptions'
     ];
 
     /**
@@ -336,7 +336,7 @@ class AudioEnhancement implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets options
      *
-     * @return \Shotstack\Client\Model\DolbyEnhancementOptions
+     * @return \ShotstackClient\Model\DolbyEnhancementOptions
      */
     public function getOptions()
     {
@@ -346,7 +346,7 @@ class AudioEnhancement implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets options
      *
-     * @param \Shotstack\Client\Model\DolbyEnhancementOptions $options options
+     * @param \ShotstackClient\Model\DolbyEnhancementOptions $options options
      *
      * @return self
      */

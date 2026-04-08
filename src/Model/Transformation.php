@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Transformation Class Doc Comment
  *
  * @category Class
  * @description Apply one or more transformations to a clip. Transformations alter the visual properties of a clip and can be combined to create new shapes and effects.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -58,9 +58,9 @@ class Transformation implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'rotate' => '\Shotstack\Client\Model\RotateTransformation',
-        'skew' => '\Shotstack\Client\Model\SkewTransformation',
-        'flip' => '\Shotstack\Client\Model\FlipTransformation'
+        'rotate' => '\ShotstackClient\Model\RotateTransformation',
+        'skew' => '\ShotstackClient\Model\SkewTransformation',
+        'flip' => '\ShotstackClient\Model\FlipTransformation'
     ];
 
     /**
@@ -307,7 +307,7 @@ class Transformation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets rotate
      *
-     * @return \Shotstack\Client\Model\RotateTransformation|null
+     * @return \ShotstackClient\Model\RotateTransformation|null
      */
     public function getRotate()
     {
@@ -317,7 +317,7 @@ class Transformation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets rotate
      *
-     * @param \Shotstack\Client\Model\RotateTransformation|null $rotate rotate
+     * @param \ShotstackClient\Model\RotateTransformation|null $rotate rotate
      *
      * @return self
      */
@@ -334,7 +334,7 @@ class Transformation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets skew
      *
-     * @return \Shotstack\Client\Model\SkewTransformation|null
+     * @return \ShotstackClient\Model\SkewTransformation|null
      */
     public function getSkew()
     {
@@ -344,7 +344,7 @@ class Transformation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets skew
      *
-     * @param \Shotstack\Client\Model\SkewTransformation|null $skew skew
+     * @param \ShotstackClient\Model\SkewTransformation|null $skew skew
      *
      * @return self
      */
@@ -361,7 +361,7 @@ class Transformation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets flip
      *
-     * @return \Shotstack\Client\Model\FlipTransformation|null
+     * @return \ShotstackClient\Model\FlipTransformation|null
      */
     public function getFlip()
     {
@@ -371,7 +371,7 @@ class Transformation implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets flip
      *
-     * @param \Shotstack\Client\Model\FlipTransformation|null $flip flip
+     * @param \ShotstackClient\Model\FlipTransformation|null $flip flip
      *
      * @return self
      */

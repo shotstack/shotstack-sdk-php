@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Output Class Doc Comment
  *
  * @category Class
  * @description The output format, render range and type of media to generate.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -61,16 +61,16 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
         'format' => 'string',
         'resolution' => 'string',
         'aspect_ratio' => 'string',
-        'size' => '\Shotstack\Client\Model\Size',
+        'size' => '\ShotstackClient\Model\Size',
         'fps' => 'float',
         'scale_to' => 'string',
         'quality' => 'string',
         'repeat' => 'bool',
         'mute' => 'bool',
-        'range' => '\Shotstack\Client\Model\Range',
-        'poster' => '\Shotstack\Client\Model\Poster',
-        'thumbnail' => '\Shotstack\Client\Model\Thumbnail',
-        'destinations' => '\Shotstack\Client\Model\Destinations[]'
+        'range' => '\ShotstackClient\Model\Range',
+        'poster' => '\ShotstackClient\Model\Poster',
+        'thumbnail' => '\ShotstackClient\Model\Thumbnail',
+        'destinations' => '\ShotstackClient\Model\Destinations[]'
     ];
 
     /**
@@ -334,6 +334,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     public const SCALE_TO_SD = 'sd';
     public const SCALE_TO_HD = 'hd';
     public const SCALE_TO__1080 = '1080';
+    public const SCALE_TO__4K = '4k';
     public const QUALITY_VERYLOW = 'verylow';
     public const QUALITY_LOW = 'low';
     public const QUALITY_MEDIUM = 'medium';
@@ -425,6 +426,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
             self::SCALE_TO_SD,
             self::SCALE_TO_HD,
             self::SCALE_TO__1080,
+            self::SCALE_TO__4K,
         ];
     }
 
@@ -687,7 +689,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets size
      *
-     * @return \Shotstack\Client\Model\Size|null
+     * @return \ShotstackClient\Model\Size|null
      */
     public function getSize()
     {
@@ -697,7 +699,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets size
      *
-     * @param \Shotstack\Client\Model\Size|null $size size
+     * @param \ShotstackClient\Model\Size|null $size size
      *
      * @return self
      */
@@ -879,7 +881,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets range
      *
-     * @return \Shotstack\Client\Model\Range|null
+     * @return \ShotstackClient\Model\Range|null
      */
     public function getRange()
     {
@@ -889,7 +891,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets range
      *
-     * @param \Shotstack\Client\Model\Range|null $range range
+     * @param \ShotstackClient\Model\Range|null $range range
      *
      * @return self
      */
@@ -906,7 +908,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets poster
      *
-     * @return \Shotstack\Client\Model\Poster|null
+     * @return \ShotstackClient\Model\Poster|null
      */
     public function getPoster()
     {
@@ -916,7 +918,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets poster
      *
-     * @param \Shotstack\Client\Model\Poster|null $poster poster
+     * @param \ShotstackClient\Model\Poster|null $poster poster
      *
      * @return self
      */
@@ -933,7 +935,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets thumbnail
      *
-     * @return \Shotstack\Client\Model\Thumbnail|null
+     * @return \ShotstackClient\Model\Thumbnail|null
      */
     public function getThumbnail()
     {
@@ -943,7 +945,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets thumbnail
      *
-     * @param \Shotstack\Client\Model\Thumbnail|null $thumbnail thumbnail
+     * @param \ShotstackClient\Model\Thumbnail|null $thumbnail thumbnail
      *
      * @return self
      */
@@ -960,7 +962,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets destinations
      *
-     * @return \Shotstack\Client\Model\Destinations[]|null
+     * @return \ShotstackClient\Model\Destinations[]|null
      */
     public function getDestinations()
     {
@@ -970,7 +972,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets destinations
      *
-     * @param \Shotstack\Client\Model\Destinations[]|null $destinations Specify the storage locations and hosting services to send rendered videos to.
+     * @param \ShotstackClient\Model\Destinations[]|null $destinations Specify the storage locations and hosting services to send rendered videos to.
      *
      * @return self
      */

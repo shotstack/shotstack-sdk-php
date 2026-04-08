@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * Rendition Class Doc Comment
  *
  * @category Class
  * @description A rendition is a new output file that is generated from the source. The rendition can be encoded to a different format and have transformations applied to it such as resizing, cropping, etc...
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,14 +59,16 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'format' => 'string',
-        'size' => '\Shotstack\Client\Model\Size',
+        'size' => '\ShotstackClient\Model\Size',
         'fit' => 'string',
         'resolution' => 'string',
         'quality' => 'int',
         'fps' => 'float',
-        'speed' => '\Shotstack\Client\Model\Speed',
+        'speed' => '\ShotstackClient\Model\Speed',
         'keyframe_interval' => 'int',
-        'enhance' => '\Shotstack\Client\Model\Enhancements',
+        'fix_offset' => 'bool',
+        'fix_rotation' => 'bool',
+        'enhance' => '\ShotstackClient\Model\Enhancements',
         'filename' => 'string'
     ];
 
@@ -86,6 +88,8 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => null,
         'speed' => null,
         'keyframe_interval' => null,
+        'fix_offset' => null,
+        'fix_rotation' => null,
         'enhance' => null,
         'filename' => null
     ];
@@ -104,6 +108,8 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => false,
         'speed' => false,
         'keyframe_interval' => false,
+        'fix_offset' => false,
+        'fix_rotation' => false,
         'enhance' => false,
         'filename' => false
     ];
@@ -202,6 +208,8 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => 'fps',
         'speed' => 'speed',
         'keyframe_interval' => 'keyframeInterval',
+        'fix_offset' => 'fixOffset',
+        'fix_rotation' => 'fixRotation',
         'enhance' => 'enhance',
         'filename' => 'filename'
     ];
@@ -220,6 +228,8 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => 'setFps',
         'speed' => 'setSpeed',
         'keyframe_interval' => 'setKeyframeInterval',
+        'fix_offset' => 'setFixOffset',
+        'fix_rotation' => 'setFixRotation',
         'enhance' => 'setEnhance',
         'filename' => 'setFilename'
     ];
@@ -238,6 +248,8 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
         'fps' => 'getFps',
         'speed' => 'getSpeed',
         'keyframe_interval' => 'getKeyframeInterval',
+        'fix_offset' => 'getFixOffset',
+        'fix_rotation' => 'getFixRotation',
         'enhance' => 'getEnhance',
         'filename' => 'getFilename'
     ];
@@ -419,6 +431,8 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('fps', $data ?? [], null);
         $this->setIfExists('speed', $data ?? [], null);
         $this->setIfExists('keyframe_interval', $data ?? [], null);
+        $this->setIfExists('fix_offset', $data ?? [], null);
+        $this->setIfExists('fix_rotation', $data ?? [], null);
         $this->setIfExists('enhance', $data ?? [], null);
         $this->setIfExists('filename', $data ?? [], null);
     }
@@ -557,7 +571,7 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets size
      *
-     * @return \Shotstack\Client\Model\Size|null
+     * @return \ShotstackClient\Model\Size|null
      */
     public function getSize()
     {
@@ -567,7 +581,7 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets size
      *
-     * @param \Shotstack\Client\Model\Size|null $size size
+     * @param \ShotstackClient\Model\Size|null $size size
      *
      * @return self
      */
@@ -730,7 +744,7 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets speed
      *
-     * @return \Shotstack\Client\Model\Speed|null
+     * @return \ShotstackClient\Model\Speed|null
      */
     public function getSpeed()
     {
@@ -740,7 +754,7 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets speed
      *
-     * @param \Shotstack\Client\Model\Speed|null $speed speed
+     * @param \ShotstackClient\Model\Speed|null $speed speed
      *
      * @return self
      */
@@ -790,9 +804,63 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets fix_offset
+     *
+     * @return bool|null
+     */
+    public function getFixOffset()
+    {
+        return $this->container['fix_offset'];
+    }
+
+    /**
+     * Sets fix_offset
+     *
+     * @param bool|null $fix_offset Attempt to fix audio and video sync issues. This can occur when recording devices, such as smartphones and  web cams use compression techniques like [Variable Frame Rate](https://en.wikipedia.org/wiki/Variable_frame_rate)  (VFR) which can cause audio and video to go out of sync. This option will attempt to fix the sync issues.
+     *
+     * @return self
+     */
+    public function setFixOffset($fix_offset)
+    {
+        if (is_null($fix_offset)) {
+            throw new \InvalidArgumentException('non-nullable fix_offset cannot be null');
+        }
+        $this->container['fix_offset'] = $fix_offset;
+
+        return $this;
+    }
+
+    /**
+     * Gets fix_rotation
+     *
+     * @return bool|null
+     */
+    public function getFixRotation()
+    {
+        return $this->container['fix_rotation'];
+    }
+
+    /**
+     * Sets fix_rotation
+     *
+     * @param bool|null $fix_rotation Automatically reset the rotation of the video based on the orientation metadata in the video file. This is useful for videos recorded on smartphones that have orientation metadata that may not work correctly with certain video editing software, including the Shotstack Edit API.
+     *
+     * @return self
+     */
+    public function setFixRotation($fix_rotation)
+    {
+        if (is_null($fix_rotation)) {
+            throw new \InvalidArgumentException('non-nullable fix_rotation cannot be null');
+        }
+        $this->container['fix_rotation'] = $fix_rotation;
+
+        return $this;
+    }
+
+    /**
      * Gets enhance
      *
-     * @return \Shotstack\Client\Model\Enhancements|null
+     * @return \ShotstackClient\Model\Enhancements|null
      */
     public function getEnhance()
     {
@@ -802,7 +870,7 @@ class Rendition implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets enhance
      *
-     * @param \Shotstack\Client\Model\Enhancements|null $enhance enhance
+     * @param \ShotstackClient\Model\Enhancements|null $enhance enhance
      *
      * @return self
      */

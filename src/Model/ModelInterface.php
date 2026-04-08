@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client\Model
+ * @package  ShotstackClient\Model
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,12 +26,12 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 /**
  * Interface abstracting model access.
  *
- * @package Shotstack\Client\Model
+ * @package ShotstackClient\Model
  * @author  OpenAPI Generator team
  */
 interface ModelInterface

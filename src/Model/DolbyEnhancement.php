@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * DolbyEnhancement Class Doc Comment
  *
  * @category Class
  * @description Dolby.io audio enhancement provider. Credentials are required and must be added via the  [dashboard](https://dashboard.shotstack.io/integrations/dolby), not in the request.
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class DolbyEnhancement implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'provider' => 'string',
-        'options' => '\Shotstack\Client\Model\DolbyEnhancementOptions'
+        'options' => '\ShotstackClient\Model\DolbyEnhancementOptions'
     ];
 
     /**
@@ -333,7 +333,7 @@ class DolbyEnhancement implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets options
      *
-     * @return \Shotstack\Client\Model\DolbyEnhancementOptions
+     * @return \ShotstackClient\Model\DolbyEnhancementOptions
      */
     public function getOptions()
     {
@@ -343,7 +343,7 @@ class DolbyEnhancement implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets options
      *
-     * @param \Shotstack\Client\Model\DolbyEnhancementOptions $options options
+     * @param \ShotstackClient\Model\DolbyEnhancementOptions $options options
      *
      * @return self
      */

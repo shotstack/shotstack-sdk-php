@@ -4,7 +4,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -25,7 +25,7 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Api;
+namespace ShotstackClient\Api;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
@@ -34,16 +34,16 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\Psr7\MultipartStream;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\RequestOptions;
-use Shotstack\Client\ApiException;
-use Shotstack\Client\Configuration;
-use Shotstack\Client\HeaderSelector;
-use Shotstack\Client\ObjectSerializer;
+use ShotstackClient\ApiException;
+use ShotstackClient\Configuration;
+use ShotstackClient\HeaderSelector;
+use ShotstackClient\ObjectSerializer;
 
 /**
  * EditApi Class Doc Comment
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -154,7 +154,7 @@ class EditApi
      * @param  string $id The id of the template in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTemplate'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return void
      */
@@ -171,7 +171,7 @@ class EditApi
      * @param  string $id The id of the template in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['deleteTemplate'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
      * @return array of null, HTTP status code, HTTP response headers (array of strings)
      */
@@ -393,9 +393,9 @@ class EditApi
      * @param  bool $merged Used when data is set to true, it will show the [merge fields](#tocs_mergefield) merged in to the data response. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRender'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\RenderResponse
+     * @return \ShotstackClient\Model\RenderResponse
      */
     public function getRender($id, $data = null, $merged = null, string $contentType = self::contentTypes['getRender'][0])
     {
@@ -413,9 +413,9 @@ class EditApi
      * @param  bool $merged Used when data is set to true, it will show the [merge fields](#tocs_mergefield) merged in to the data response. (optional)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getRender'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\RenderResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\RenderResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getRenderWithHttpInfo($id, $data = null, $merged = null, string $contentType = self::contentTypes['getRender'][0])
     {
@@ -458,11 +458,11 @@ class EditApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\RenderResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\RenderResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\RenderResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\RenderResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -480,13 +480,13 @@ class EditApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\RenderResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\RenderResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\RenderResponse';
+            $returnType = '\ShotstackClient\Model\RenderResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -519,7 +519,7 @@ class EditApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\RenderResponse',
+                        '\ShotstackClient\Model\RenderResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -567,7 +567,7 @@ class EditApi
      */
     public function getRenderAsyncWithHttpInfo($id, $data = null, $merged = null, string $contentType = self::contentTypes['getRender'][0])
     {
-        $returnType = '\Shotstack\Client\Model\RenderResponse';
+        $returnType = '\ShotstackClient\Model\RenderResponse';
         $request = $this->getRenderRequest($id, $data, $merged, $contentType);
 
         return $this->client
@@ -736,9 +736,9 @@ class EditApi
      * @param  string $id The id of the template in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTemplate'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\TemplateDataResponse
+     * @return \ShotstackClient\Model\TemplateDataResponse
      */
     public function getTemplate($id, string $contentType = self::contentTypes['getTemplate'][0])
     {
@@ -754,9 +754,9 @@ class EditApi
      * @param  string $id The id of the template in UUID format (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTemplate'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\TemplateDataResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\TemplateDataResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTemplateWithHttpInfo($id, string $contentType = self::contentTypes['getTemplate'][0])
     {
@@ -799,11 +799,11 @@ class EditApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\TemplateDataResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\TemplateDataResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\TemplateDataResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\TemplateDataResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -821,13 +821,13 @@ class EditApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\TemplateDataResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\TemplateDataResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\TemplateDataResponse';
+            $returnType = '\ShotstackClient\Model\TemplateDataResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -860,7 +860,7 @@ class EditApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\TemplateDataResponse',
+                        '\ShotstackClient\Model\TemplateDataResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -904,7 +904,7 @@ class EditApi
      */
     public function getTemplateAsyncWithHttpInfo($id, string $contentType = self::contentTypes['getTemplate'][0])
     {
-        $returnType = '\Shotstack\Client\Model\TemplateDataResponse';
+        $returnType = '\ShotstackClient\Model\TemplateDataResponse';
         $request = $this->getTemplateRequest($id, $contentType);
 
         return $this->client
@@ -1050,9 +1050,9 @@ class EditApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTemplates'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\TemplateListResponse
+     * @return \ShotstackClient\Model\TemplateListResponse
      */
     public function getTemplates(string $contentType = self::contentTypes['getTemplates'][0])
     {
@@ -1067,9 +1067,9 @@ class EditApi
      *
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['getTemplates'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\TemplateListResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\TemplateListResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function getTemplatesWithHttpInfo(string $contentType = self::contentTypes['getTemplates'][0])
     {
@@ -1112,11 +1112,11 @@ class EditApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\TemplateListResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\TemplateListResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\TemplateListResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\TemplateListResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1134,13 +1134,13 @@ class EditApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\TemplateListResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\TemplateListResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\TemplateListResponse';
+            $returnType = '\ShotstackClient\Model\TemplateListResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1173,7 +1173,7 @@ class EditApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\TemplateListResponse',
+                        '\ShotstackClient\Model\TemplateListResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1215,7 +1215,7 @@ class EditApi
      */
     public function getTemplatesAsyncWithHttpInfo(string $contentType = self::contentTypes['getTemplates'][0])
     {
-        $returnType = '\Shotstack\Client\Model\TemplateListResponse';
+        $returnType = '\ShotstackClient\Model\TemplateListResponse';
         $request = $this->getTemplatesRequest($contentType);
 
         return $this->client
@@ -1340,12 +1340,12 @@ class EditApi
      *
      * Render Asset
      *
-     * @param  \Shotstack\Client\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
+     * @param  \ShotstackClient\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postRender'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\QueuedResponse
+     * @return \ShotstackClient\Model\QueuedResponse
      */
     public function postRender($edit, string $contentType = self::contentTypes['postRender'][0])
     {
@@ -1358,12 +1358,12 @@ class EditApi
      *
      * Render Asset
      *
-     * @param  \Shotstack\Client\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
+     * @param  \ShotstackClient\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postRender'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\QueuedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\QueuedResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function postRenderWithHttpInfo($edit, string $contentType = self::contentTypes['postRender'][0])
     {
@@ -1406,11 +1406,11 @@ class EditApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\Shotstack\Client\Model\QueuedResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\QueuedResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\QueuedResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\QueuedResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1428,13 +1428,13 @@ class EditApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\QueuedResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\QueuedResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\QueuedResponse';
+            $returnType = '\ShotstackClient\Model\QueuedResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1467,7 +1467,7 @@ class EditApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\QueuedResponse',
+                        '\ShotstackClient\Model\QueuedResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1482,7 +1482,7 @@ class EditApi
      *
      * Render Asset
      *
-     * @param  \Shotstack\Client\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
+     * @param  \ShotstackClient\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postRender'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1503,7 +1503,7 @@ class EditApi
      *
      * Render Asset
      *
-     * @param  \Shotstack\Client\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
+     * @param  \ShotstackClient\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postRender'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1511,7 +1511,7 @@ class EditApi
      */
     public function postRenderAsyncWithHttpInfo($edit, string $contentType = self::contentTypes['postRender'][0])
     {
-        $returnType = '\Shotstack\Client\Model\QueuedResponse';
+        $returnType = '\ShotstackClient\Model\QueuedResponse';
         $request = $this->postRenderRequest($edit, $contentType);
 
         return $this->client
@@ -1553,7 +1553,7 @@ class EditApi
     /**
      * Create request for operation 'postRender'
      *
-     * @param  \Shotstack\Client\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
+     * @param  \ShotstackClient\Model\Edit $edit The video, image or audio edit specified using JSON. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postRender'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1651,12 +1651,12 @@ class EditApi
      *
      * Create Template
      *
-     * @param  \Shotstack\Client\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
+     * @param  \ShotstackClient\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplate'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\TemplateResponse
+     * @return \ShotstackClient\Model\TemplateResponse
      */
     public function postTemplate($template, string $contentType = self::contentTypes['postTemplate'][0])
     {
@@ -1669,12 +1669,12 @@ class EditApi
      *
      * Create Template
      *
-     * @param  \Shotstack\Client\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
+     * @param  \ShotstackClient\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplate'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\TemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\TemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function postTemplateWithHttpInfo($template, string $contentType = self::contentTypes['postTemplate'][0])
     {
@@ -1717,11 +1717,11 @@ class EditApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\Shotstack\Client\Model\TemplateResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\TemplateResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\TemplateResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\TemplateResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -1739,13 +1739,13 @@ class EditApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\TemplateResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\TemplateResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\TemplateResponse';
+            $returnType = '\ShotstackClient\Model\TemplateResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -1778,7 +1778,7 @@ class EditApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\TemplateResponse',
+                        '\ShotstackClient\Model\TemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -1793,7 +1793,7 @@ class EditApi
      *
      * Create Template
      *
-     * @param  \Shotstack\Client\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
+     * @param  \ShotstackClient\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1814,7 +1814,7 @@ class EditApi
      *
      * Create Template
      *
-     * @param  \Shotstack\Client\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
+     * @param  \ShotstackClient\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1822,7 +1822,7 @@ class EditApi
      */
     public function postTemplateAsyncWithHttpInfo($template, string $contentType = self::contentTypes['postTemplate'][0])
     {
-        $returnType = '\Shotstack\Client\Model\TemplateResponse';
+        $returnType = '\ShotstackClient\Model\TemplateResponse';
         $request = $this->postTemplateRequest($template, $contentType);
 
         return $this->client
@@ -1864,7 +1864,7 @@ class EditApi
     /**
      * Create request for operation 'postTemplate'
      *
-     * @param  \Shotstack\Client\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
+     * @param  \ShotstackClient\Model\Template $template Create a template with a name and [Edit](#tocs_edit). (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -1962,12 +1962,12 @@ class EditApi
      *
      * Render Template
      *
-     * @param  \Shotstack\Client\Model\TemplateRender $template_render Render a template by template id. (required)
+     * @param  \ShotstackClient\Model\TemplateRender $template_render Render a template by template id. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplateRender'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\QueuedResponse
+     * @return \ShotstackClient\Model\QueuedResponse
      */
     public function postTemplateRender($template_render, string $contentType = self::contentTypes['postTemplateRender'][0])
     {
@@ -1980,12 +1980,12 @@ class EditApi
      *
      * Render Template
      *
-     * @param  \Shotstack\Client\Model\TemplateRender $template_render Render a template by template id. (required)
+     * @param  \ShotstackClient\Model\TemplateRender $template_render Render a template by template id. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplateRender'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\QueuedResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\QueuedResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function postTemplateRenderWithHttpInfo($template_render, string $contentType = self::contentTypes['postTemplateRender'][0])
     {
@@ -2028,11 +2028,11 @@ class EditApi
 
             switch($statusCode) {
                 case 201:
-                    if ('\Shotstack\Client\Model\QueuedResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\QueuedResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\QueuedResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\QueuedResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2050,13 +2050,13 @@ class EditApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\QueuedResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\QueuedResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\QueuedResponse';
+            $returnType = '\ShotstackClient\Model\QueuedResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2089,7 +2089,7 @@ class EditApi
                 case 201:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\QueuedResponse',
+                        '\ShotstackClient\Model\QueuedResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2104,7 +2104,7 @@ class EditApi
      *
      * Render Template
      *
-     * @param  \Shotstack\Client\Model\TemplateRender $template_render Render a template by template id. (required)
+     * @param  \ShotstackClient\Model\TemplateRender $template_render Render a template by template id. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplateRender'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2125,7 +2125,7 @@ class EditApi
      *
      * Render Template
      *
-     * @param  \Shotstack\Client\Model\TemplateRender $template_render Render a template by template id. (required)
+     * @param  \ShotstackClient\Model\TemplateRender $template_render Render a template by template id. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplateRender'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2133,7 +2133,7 @@ class EditApi
      */
     public function postTemplateRenderAsyncWithHttpInfo($template_render, string $contentType = self::contentTypes['postTemplateRender'][0])
     {
-        $returnType = '\Shotstack\Client\Model\QueuedResponse';
+        $returnType = '\ShotstackClient\Model\QueuedResponse';
         $request = $this->postTemplateRenderRequest($template_render, $contentType);
 
         return $this->client
@@ -2175,7 +2175,7 @@ class EditApi
     /**
      * Create request for operation 'postTemplateRender'
      *
-     * @param  \Shotstack\Client\Model\TemplateRender $template_render Render a template by template id. (required)
+     * @param  \ShotstackClient\Model\TemplateRender $template_render Render a template by template id. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['postTemplateRender'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2276,9 +2276,9 @@ class EditApi
      * @param  string $url The URL of the media to inspect, must be **URL encoded**. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['probe'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\ProbeResponse
+     * @return \ShotstackClient\Model\ProbeResponse
      */
     public function probe($url, string $contentType = self::contentTypes['probe'][0])
     {
@@ -2294,9 +2294,9 @@ class EditApi
      * @param  string $url The URL of the media to inspect, must be **URL encoded**. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['probe'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\ProbeResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\ProbeResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function probeWithHttpInfo($url, string $contentType = self::contentTypes['probe'][0])
     {
@@ -2339,11 +2339,11 @@ class EditApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\ProbeResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\ProbeResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\ProbeResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\ProbeResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2361,13 +2361,13 @@ class EditApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\ProbeResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\ProbeResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\ProbeResponse';
+            $returnType = '\ShotstackClient\Model\ProbeResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2400,7 +2400,7 @@ class EditApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\ProbeResponse',
+                        '\ShotstackClient\Model\ProbeResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2444,7 +2444,7 @@ class EditApi
      */
     public function probeAsyncWithHttpInfo($url, string $contentType = self::contentTypes['probe'][0])
     {
-        $returnType = '\Shotstack\Client\Model\ProbeResponse';
+        $returnType = '\ShotstackClient\Model\ProbeResponse';
         $request = $this->probeRequest($url, $contentType);
 
         return $this->client
@@ -2586,12 +2586,12 @@ class EditApi
      * Update Template
      *
      * @param  string $id The id of the template in UUID format (required)
-     * @param  \Shotstack\Client\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
+     * @param  \ShotstackClient\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putTemplate'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return \Shotstack\Client\Model\TemplateResponse
+     * @return \ShotstackClient\Model\TemplateResponse
      */
     public function putTemplate($id, $template, string $contentType = self::contentTypes['putTemplate'][0])
     {
@@ -2605,12 +2605,12 @@ class EditApi
      * Update Template
      *
      * @param  string $id The id of the template in UUID format (required)
-     * @param  \Shotstack\Client\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
+     * @param  \ShotstackClient\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putTemplate'] to see the possible values for this operation
      *
-     * @throws \Shotstack\Client\ApiException on non-2xx response or if the response body is not in the expected format
+     * @throws \ShotstackClient\ApiException on non-2xx response or if the response body is not in the expected format
      * @throws \InvalidArgumentException
-     * @return array of \Shotstack\Client\Model\TemplateResponse, HTTP status code, HTTP response headers (array of strings)
+     * @return array of \ShotstackClient\Model\TemplateResponse, HTTP status code, HTTP response headers (array of strings)
      */
     public function putTemplateWithHttpInfo($id, $template, string $contentType = self::contentTypes['putTemplate'][0])
     {
@@ -2653,11 +2653,11 @@ class EditApi
 
             switch($statusCode) {
                 case 200:
-                    if ('\Shotstack\Client\Model\TemplateResponse' === '\SplFileObject') {
+                    if ('\ShotstackClient\Model\TemplateResponse' === '\SplFileObject') {
                         $content = $response->getBody(); //stream goes to serializer
                     } else {
                         $content = (string) $response->getBody();
-                        if ('\Shotstack\Client\Model\TemplateResponse' !== 'string') {
+                        if ('\ShotstackClient\Model\TemplateResponse' !== 'string') {
                             try {
                                 $content = json_decode($content, false, 512, JSON_THROW_ON_ERROR);
                             } catch (\JsonException $exception) {
@@ -2675,13 +2675,13 @@ class EditApi
                     }
 
                     return [
-                        ObjectSerializer::deserialize($content, '\Shotstack\Client\Model\TemplateResponse', []),
+                        ObjectSerializer::deserialize($content, '\ShotstackClient\Model\TemplateResponse', []),
                         $response->getStatusCode(),
                         $response->getHeaders()
                     ];
             }
 
-            $returnType = '\Shotstack\Client\Model\TemplateResponse';
+            $returnType = '\ShotstackClient\Model\TemplateResponse';
             if ($returnType === '\SplFileObject') {
                 $content = $response->getBody(); //stream goes to serializer
             } else {
@@ -2714,7 +2714,7 @@ class EditApi
                 case 200:
                     $data = ObjectSerializer::deserialize(
                         $e->getResponseBody(),
-                        '\Shotstack\Client\Model\TemplateResponse',
+                        '\ShotstackClient\Model\TemplateResponse',
                         $e->getResponseHeaders()
                     );
                     $e->setResponseObject($data);
@@ -2730,7 +2730,7 @@ class EditApi
      * Update Template
      *
      * @param  string $id The id of the template in UUID format (required)
-     * @param  \Shotstack\Client\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
+     * @param  \ShotstackClient\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2752,7 +2752,7 @@ class EditApi
      * Update Template
      *
      * @param  string $id The id of the template in UUID format (required)
-     * @param  \Shotstack\Client\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
+     * @param  \ShotstackClient\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException
@@ -2760,7 +2760,7 @@ class EditApi
      */
     public function putTemplateAsyncWithHttpInfo($id, $template, string $contentType = self::contentTypes['putTemplate'][0])
     {
-        $returnType = '\Shotstack\Client\Model\TemplateResponse';
+        $returnType = '\ShotstackClient\Model\TemplateResponse';
         $request = $this->putTemplateRequest($id, $template, $contentType);
 
         return $this->client
@@ -2803,7 +2803,7 @@ class EditApi
      * Create request for operation 'putTemplate'
      *
      * @param  string $id The id of the template in UUID format (required)
-     * @param  \Shotstack\Client\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
+     * @param  \ShotstackClient\Model\Template $template Update an individual templates name and [Edit](#tocs_edit). Both template name and template must be provided. If the template parameter is omitted a blank template will be saved. (required)
      * @param  string $contentType The value for the Content-Type header. Check self::contentTypes['putTemplate'] to see the possible values for this operation
      *
      * @throws \InvalidArgumentException

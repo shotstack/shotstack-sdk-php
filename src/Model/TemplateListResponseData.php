@@ -5,7 +5,7 @@
  * PHP version 7.4
  *
  * @category Class
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  */
@@ -26,17 +26,17 @@
  * Do not edit the class manually.
  */
 
-namespace Shotstack\Client\Model;
+namespace ShotstackClient\Model;
 
 use \ArrayAccess;
-use \Shotstack\Client\ObjectSerializer;
+use \ShotstackClient\ObjectSerializer;
 
 /**
  * TemplateListResponseData Class Doc Comment
  *
  * @category Class
  * @description The response data returned with the [TemplateListResponse](#tocs_templatelistresponse).
- * @package  Shotstack\Client
+ * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
@@ -59,7 +59,7 @@ class TemplateListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
       */
     protected static $openAPITypes = [
         'owner' => 'string',
-        'templates' => '\Shotstack\Client\Model\TemplateListResponseItem[]'
+        'templates' => '\ShotstackClient\Model\TemplateListResponseItem[]'
     ];
 
     /**
@@ -333,7 +333,7 @@ class TemplateListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Gets templates
      *
-     * @return \Shotstack\Client\Model\TemplateListResponseItem[]
+     * @return \ShotstackClient\Model\TemplateListResponseItem[]
      */
     public function getTemplates()
     {
@@ -343,7 +343,7 @@ class TemplateListResponseData implements ModelInterface, ArrayAccess, \JsonSeri
     /**
      * Sets templates
      *
-     * @param \Shotstack\Client\Model\TemplateListResponseItem[] $templates The list of templates.
+     * @param \ShotstackClient\Model\TemplateListResponseItem[] $templates The list of templates.
      *
      * @return self
      */
