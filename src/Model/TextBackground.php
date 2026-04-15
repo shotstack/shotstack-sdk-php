@@ -61,7 +61,8 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => 'string',
         'opacity' => 'float',
         'padding' => 'float',
-        'border_radius' => 'float'
+        'border_radius' => 'float',
+        'wrap' => 'bool'
     ];
 
     /**
@@ -75,7 +76,8 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => null,
         'opacity' => null,
         'padding' => null,
-        'border_radius' => null
+        'border_radius' => null,
+        'wrap' => null
     ];
 
     /**
@@ -87,7 +89,8 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => false,
         'opacity' => false,
         'padding' => false,
-        'border_radius' => false
+        'border_radius' => false,
+        'wrap' => false
     ];
 
     /**
@@ -179,7 +182,8 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => 'color',
         'opacity' => 'opacity',
         'padding' => 'padding',
-        'border_radius' => 'borderRadius'
+        'border_radius' => 'borderRadius',
+        'wrap' => 'wrap'
     ];
 
     /**
@@ -191,7 +195,8 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => 'setColor',
         'opacity' => 'setOpacity',
         'padding' => 'setPadding',
-        'border_radius' => 'setBorderRadius'
+        'border_radius' => 'setBorderRadius',
+        'wrap' => 'setWrap'
     ];
 
     /**
@@ -203,7 +208,8 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         'color' => 'getColor',
         'opacity' => 'getOpacity',
         'padding' => 'getPadding',
-        'border_radius' => 'getBorderRadius'
+        'border_radius' => 'getBorderRadius',
+        'wrap' => 'getWrap'
     ];
 
     /**
@@ -267,6 +273,7 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('opacity', $data ?? [], null);
         $this->setIfExists('padding', $data ?? [], null);
         $this->setIfExists('border_radius', $data ?? [], null);
+        $this->setIfExists('wrap', $data ?? [], null);
     }
 
     /**
@@ -465,6 +472,33 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['border_radius'] = $border_radius;
+
+        return $this;
+    }
+
+    /**
+     * Gets wrap
+     *
+     * @return bool|null
+     */
+    public function getWrap()
+    {
+        return $this->container['wrap'];
+    }
+
+    /**
+     * Sets wrap
+     *
+     * @param bool|null $wrap Not supported on legacy `text` assets. Accepted here only so validators can emit a clear migration error pointing users to `rich-text` or `rich-caption`, which support background wrapping natively.
+     *
+     * @return self
+     */
+    public function setWrap($wrap)
+    {
+        if (is_null($wrap)) {
+            throw new \InvalidArgumentException('non-nullable wrap cannot be null');
+        }
+        $this->container['wrap'] = $wrap;
 
         return $this;
     }
