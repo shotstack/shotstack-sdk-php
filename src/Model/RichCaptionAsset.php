@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * RichCaptionAsset Class Doc Comment
  *
  * @category Class
- * @description The RichCaptionAsset provides word-level caption animations with rich-text styling. It supports karaoke-style highlighting, word-by-word animations, and advanced typography. Use with SRT/VTT files or auto-transcription via aliases.
+ * @description The RichCaptionAsset provides word-level caption animations with rich-text styling. It supports karaoke-style highlighting, word-by-word animations, and advanced typography. Captions can be sourced from SRT/VTT/TTML subtitle files, from audio/video media URLs (auto-transcribed), or from alias references to other clips in the same timeline.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -449,7 +449,7 @@ class RichCaptionAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets src
      *
-     * @param string $src The URL to an SRT or VTT subtitles file, or an alias reference to auto-generate captions from an audio or video clip. For file URLs, the URL must be publicly accessible or include credentials. For auto-captioning, use the format `alias://clip-name` where clip-name is the alias of an audio, video, or text-to-speech clip.
+     * @param string $src Source for the caption words. Accepts three formats: (1) the URL to a subtitle file (`.srt`, `.vtt`, `.ttml`, or `.dfxp`) which is parsed directly; (2) the URL to an audio or video media file (`.mp4`, `.mov`, `.webm`, `.mp3`, `.wav`, `.m4a`, `.flac`, `.aac`, `.ogg`, and related formats) which is auto-transcribed; (3) an alias reference in the form `alias://clip-name` where `clip-name` is the alias of another audio, video, or text-to-speech clip in the same timeline — the referenced clip's source is auto-transcribed. For file URLs, the URL must be publicly accessible or include credentials. Content is classified at runtime and unsupported content types (HTML, PDF, images, archives) are rejected with a structured error.
      *
      * @return self
      */
