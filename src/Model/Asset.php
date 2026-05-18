@@ -87,6 +87,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'html' => 'string',
         'css' => 'string',
         'position' => 'string',
+        'js' => 'string',
         'color' => 'string',
         'size' => 'string',
         'offset' => '\ShotstackClient\Model\Offset',
@@ -139,6 +140,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'html' => null,
         'css' => null,
         'position' => null,
+        'js' => null,
         'color' => null,
         'size' => null,
         'offset' => null,
@@ -189,6 +191,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'html' => false,
         'css' => false,
         'position' => false,
+        'js' => false,
         'color' => false,
         'size' => false,
         'offset' => false,
@@ -319,6 +322,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'html' => 'html',
         'css' => 'css',
         'position' => 'position',
+        'js' => 'js',
         'color' => 'color',
         'size' => 'size',
         'offset' => 'offset',
@@ -369,6 +373,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'html' => 'setHtml',
         'css' => 'setCss',
         'position' => 'setPosition',
+        'js' => 'setJs',
         'color' => 'setColor',
         'size' => 'setSize',
         'offset' => 'setOffset',
@@ -419,6 +424,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'html' => 'getHtml',
         'css' => 'getCss',
         'position' => 'getPosition',
+        'js' => 'getJs',
         'color' => 'getColor',
         'size' => 'getSize',
         'offset' => 'getOffset',
@@ -484,6 +490,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_CAPTION = 'caption';
     public const TYPE_RICH_CAPTION = 'rich-caption';
     public const TYPE_HTML = 'html';
+    public const TYPE_HTML5 = 'html5';
     public const TYPE_TITLE = 'title';
     public const TYPE_SHAPE = 'shape';
     public const TYPE_SVG = 'svg';
@@ -552,6 +559,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_CAPTION,
             self::TYPE_RICH_CAPTION,
             self::TYPE_HTML,
+            self::TYPE_HTML5,
             self::TYPE_TITLE,
             self::TYPE_SHAPE,
             self::TYPE_SVG,
@@ -726,6 +734,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('html', $data ?? [], null);
         $this->setIfExists('css', $data ?? [], null);
         $this->setIfExists('position', $data ?? [], null);
+        $this->setIfExists('js', $data ?? [], null);
         $this->setIfExists('color', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
@@ -831,6 +840,14 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['html'] === null) {
             $invalidProperties[] = "'html' can't be null";
         }
+        if ((mb_strlen($this->container['html']) > 1000000)) {
+            $invalidProperties[] = "invalid value for 'html', the character length must be smaller than or equal to 1000000.";
+        }
+
+        if (!is_null($this->container['css']) && (mb_strlen($this->container['css']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'css', the character length must be smaller than or equal to 500000.";
+        }
+
         $allowedValues = $this->getPositionAllowableValues();
         if (!is_null($this->container['position']) && !in_array($this->container['position'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -838,6 +855,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
                 $this->container['position'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['js']) && (mb_strlen($this->container['js']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'js', the character length must be smaller than or equal to 500000.";
         }
 
         $allowedValues = $this->getSizeAllowableValues();
@@ -1659,7 +1680,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets html
      *
-     * @param string $html The HTML text string. See list of [supported HTML tags](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-html-tags).
+     * @param string $html The HTML markup for the asset. Max 1,000,000 characters.
      *
      * @return self
      */
@@ -1668,6 +1689,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($html)) {
             throw new \InvalidArgumentException('non-nullable html cannot be null');
         }
+        if ((mb_strlen($html) > 1000000)) {
+            throw new \InvalidArgumentException('invalid length for $html when calling Asset., must be smaller than or equal to 1000000.');
+        }
+
         $this->container['html'] = $html;
 
         return $this;
@@ -1686,7 +1711,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets css
      *
-     * @param string|null $css The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-css-properties).
+     * @param string|null $css The CSS string applied to the HTML. Max 500,000 characters.
      *
      * @return self
      */
@@ -1695,6 +1720,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($css)) {
             throw new \InvalidArgumentException('non-nullable css cannot be null');
         }
+        if ((mb_strlen($css) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $css when calling Asset., must be smaller than or equal to 500000.');
+        }
+
         $this->container['css'] = $css;
 
         return $this;
@@ -1733,6 +1762,37 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Gets js
+     *
+     * @return string|null
+     */
+    public function getJs()
+    {
+        return $this->container['js'];
+    }
+
+    /**
+     * Sets js
+     *
+     * @param string|null $js Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
+     *
+     * @return self
+     */
+    public function setJs($js)
+    {
+        if (is_null($js)) {
+            throw new \InvalidArgumentException('non-nullable js cannot be null');
+        }
+        if ((mb_strlen($js) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $js when calling Asset., must be smaller than or equal to 500000.');
+        }
+
+        $this->container['js'] = $js;
 
         return $this;
     }
