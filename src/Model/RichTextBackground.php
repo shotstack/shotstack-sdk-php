@@ -60,7 +60,8 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'color' => 'string',
         'opacity' => 'float',
-        'border_radius' => 'float'
+        'border_radius' => 'float',
+        'wrap' => 'bool'
     ];
 
     /**
@@ -73,7 +74,8 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'color' => null,
         'opacity' => null,
-        'border_radius' => null
+        'border_radius' => null,
+        'wrap' => null
     ];
 
     /**
@@ -84,7 +86,8 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static array $openAPINullables = [
         'color' => false,
         'opacity' => false,
-        'border_radius' => false
+        'border_radius' => false,
+        'wrap' => false
     ];
 
     /**
@@ -175,7 +178,8 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'color' => 'color',
         'opacity' => 'opacity',
-        'border_radius' => 'borderRadius'
+        'border_radius' => 'borderRadius',
+        'wrap' => 'wrap'
     ];
 
     /**
@@ -186,7 +190,8 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'color' => 'setColor',
         'opacity' => 'setOpacity',
-        'border_radius' => 'setBorderRadius'
+        'border_radius' => 'setBorderRadius',
+        'wrap' => 'setWrap'
     ];
 
     /**
@@ -197,7 +202,8 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'color' => 'getColor',
         'opacity' => 'getOpacity',
-        'border_radius' => 'getBorderRadius'
+        'border_radius' => 'getBorderRadius',
+        'wrap' => 'getWrap'
     ];
 
     /**
@@ -260,6 +266,7 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('color', $data ?? [], null);
         $this->setIfExists('opacity', $data ?? [], 1);
         $this->setIfExists('border_radius', $data ?? [], 0);
+        $this->setIfExists('wrap', $data ?? [], false);
     }
 
     /**
@@ -415,6 +422,33 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['border_radius'] = $border_radius;
+
+        return $this;
+    }
+
+    /**
+     * Gets wrap
+     *
+     * @return bool|null
+     */
+    public function getWrap()
+    {
+        return $this->container['wrap'];
+    }
+
+    /**
+     * Sets wrap
+     *
+     * @param bool|null $wrap When true, the background pill shrinks to fit the rendered text bounding box plus the asset's padding (and stroke width, if present), producing a pill or badge effect. When false (default), the background fills the full asset content area. Available on rich-text and rich-caption assets only; not supported on legacy `type: text`.
+     *
+     * @return self
+     */
+    public function setWrap($wrap)
+    {
+        if (is_null($wrap)) {
+            throw new \InvalidArgumentException('non-nullable wrap cannot be null');
+        }
+        $this->container['wrap'] = $wrap;
 
         return $this;
     }

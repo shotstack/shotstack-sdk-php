@@ -1,6 +1,6 @@
 <?php
 /**
- * TextBackground
+ * Html5Asset
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * TextBackground Class Doc Comment
+ * Html5Asset Class Doc Comment
  *
  * @category Class
- * @description Displays a background box behind the text.
+ * @description The Html5Asset renders full HTML5/CSS3/JS.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
+class Html5Asset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'TextBackground';
+    protected static $openAPIModelName = 'Html5Asset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,11 +58,10 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'color' => 'string',
-        'opacity' => 'float',
-        'padding' => 'float',
-        'border_radius' => 'float',
-        'wrap' => 'bool'
+        'type' => 'string',
+        'html' => 'string',
+        'css' => 'string',
+        'js' => 'string'
     ];
 
     /**
@@ -73,11 +72,10 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'color' => null,
-        'opacity' => null,
-        'padding' => null,
-        'border_radius' => null,
-        'wrap' => null
+        'type' => null,
+        'html' => null,
+        'css' => null,
+        'js' => null
     ];
 
     /**
@@ -86,11 +84,10 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'color' => false,
-        'opacity' => false,
-        'padding' => false,
-        'border_radius' => false,
-        'wrap' => false
+        'type' => false,
+        'html' => false,
+        'css' => false,
+        'js' => false
     ];
 
     /**
@@ -179,11 +176,10 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'color' => 'color',
-        'opacity' => 'opacity',
-        'padding' => 'padding',
-        'border_radius' => 'borderRadius',
-        'wrap' => 'wrap'
+        'type' => 'type',
+        'html' => 'html',
+        'css' => 'css',
+        'js' => 'js'
     ];
 
     /**
@@ -192,11 +188,10 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'color' => 'setColor',
-        'opacity' => 'setOpacity',
-        'padding' => 'setPadding',
-        'border_radius' => 'setBorderRadius',
-        'wrap' => 'setWrap'
+        'type' => 'setType',
+        'html' => 'setHtml',
+        'css' => 'setCss',
+        'js' => 'setJs'
     ];
 
     /**
@@ -205,11 +200,10 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'color' => 'getColor',
-        'opacity' => 'getOpacity',
-        'padding' => 'getPadding',
-        'border_radius' => 'getBorderRadius',
-        'wrap' => 'getWrap'
+        'type' => 'getType',
+        'html' => 'getHtml',
+        'css' => 'getCss',
+        'js' => 'getJs'
     ];
 
     /**
@@ -253,6 +247,19 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_HTML5 = 'html5';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_HTML5,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -269,11 +276,10 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('color', $data ?? [], null);
-        $this->setIfExists('opacity', $data ?? [], null);
-        $this->setIfExists('padding', $data ?? [], null);
-        $this->setIfExists('border_radius', $data ?? [], null);
-        $this->setIfExists('wrap', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'html5');
+        $this->setIfExists('html', $data ?? [], null);
+        $this->setIfExists('css', $data ?? [], null);
+        $this->setIfExists('js', $data ?? [], null);
     }
 
     /**
@@ -303,28 +309,31 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['color']) && !preg_match("/^#[A-Fa-f0-9]{6}$/", $this->container['color'])) {
-            $invalidProperties[] = "invalid value for 'color', must be conform to the pattern /^#[A-Fa-f0-9]{6}$/.";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
         }
 
-        if (!is_null($this->container['opacity']) && ($this->container['opacity'] > 1)) {
-            $invalidProperties[] = "invalid value for 'opacity', must be smaller than or equal to 1.";
+        if ($this->container['html'] === null) {
+            $invalidProperties[] = "'html' can't be null";
+        }
+        if ((mb_strlen($this->container['html']) > 1000000)) {
+            $invalidProperties[] = "invalid value for 'html', the character length must be smaller than or equal to 1000000.";
         }
 
-        if (!is_null($this->container['opacity']) && ($this->container['opacity'] < 0)) {
-            $invalidProperties[] = "invalid value for 'opacity', must be bigger than or equal to 0.";
+        if (!is_null($this->container['css']) && (mb_strlen($this->container['css']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'css', the character length must be smaller than or equal to 500000.";
         }
 
-        if (!is_null($this->container['padding']) && ($this->container['padding'] > 100)) {
-            $invalidProperties[] = "invalid value for 'padding', must be smaller than or equal to 100.";
-        }
-
-        if (!is_null($this->container['padding']) && ($this->container['padding'] < 0)) {
-            $invalidProperties[] = "invalid value for 'padding', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['border_radius']) && ($this->container['border_radius'] < 0)) {
-            $invalidProperties[] = "invalid value for 'border_radius', must be bigger than or equal to 0.";
+        if (!is_null($this->container['js']) && (mb_strlen($this->container['js']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'js', the character length must be smaller than or equal to 500000.";
         }
 
         return $invalidProperties;
@@ -343,162 +352,131 @@ class TextBackground implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets color
+     * Gets type
+     *
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->container['type'];
+    }
+
+    /**
+     * Sets type
+     *
+     * @param string $type The type of asset - set to `html5` for HTML5/CSS3/JS.
+     *
+     * @return self
+     */
+    public function setType($type)
+    {
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets html
+     *
+     * @return string
+     */
+    public function getHtml()
+    {
+        return $this->container['html'];
+    }
+
+    /**
+     * Sets html
+     *
+     * @param string $html The HTML markup for the asset. Max 1,000,000 characters.
+     *
+     * @return self
+     */
+    public function setHtml($html)
+    {
+        if (is_null($html)) {
+            throw new \InvalidArgumentException('non-nullable html cannot be null');
+        }
+        if ((mb_strlen($html) > 1000000)) {
+            throw new \InvalidArgumentException('invalid length for $html when calling Html5Asset., must be smaller than or equal to 1000000.');
+        }
+
+        $this->container['html'] = $html;
+
+        return $this;
+    }
+
+    /**
+     * Gets css
      *
      * @return string|null
      */
-    public function getColor()
+    public function getCss()
     {
-        return $this->container['color'];
+        return $this->container['css'];
     }
 
     /**
-     * Sets color
+     * Sets css
      *
-     * @param string|null $color The background color using hexadecimal color notation.
+     * @param string|null $css The CSS string applied to the HTML. Max 500,000 characters.
      *
      * @return self
      */
-    public function setColor($color)
+    public function setCss($css)
     {
-        if (is_null($color)) {
-            throw new \InvalidArgumentException('non-nullable color cannot be null');
+        if (is_null($css)) {
+            throw new \InvalidArgumentException('non-nullable css cannot be null');
+        }
+        if ((mb_strlen($css) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $css when calling Html5Asset., must be smaller than or equal to 500000.');
         }
 
-        if ((!preg_match("/^#[A-Fa-f0-9]{6}$/", ObjectSerializer::toString($color)))) {
-            throw new \InvalidArgumentException("invalid value for \$color when calling TextBackground., must conform to the pattern /^#[A-Fa-f0-9]{6}$/.");
-        }
-
-        $this->container['color'] = $color;
+        $this->container['css'] = $css;
 
         return $this;
     }
 
     /**
-     * Gets opacity
+     * Gets js
      *
-     * @return float|null
+     * @return string|null
      */
-    public function getOpacity()
+    public function getJs()
     {
-        return $this->container['opacity'];
+        return $this->container['js'];
     }
 
     /**
-     * Sets opacity
+     * Sets js
      *
-     * @param float|null $opacity The opacity of the background where 1 is opaque and 0 is transparent.
+     * @param string|null $js Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
      *
      * @return self
      */
-    public function setOpacity($opacity)
+    public function setJs($js)
     {
-        if (is_null($opacity)) {
-            throw new \InvalidArgumentException('non-nullable opacity cannot be null');
+        if (is_null($js)) {
+            throw new \InvalidArgumentException('non-nullable js cannot be null');
+        }
+        if ((mb_strlen($js) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $js when calling Html5Asset., must be smaller than or equal to 500000.');
         }
 
-        if (($opacity > 1)) {
-            throw new \InvalidArgumentException('invalid value for $opacity when calling TextBackground., must be smaller than or equal to 1.');
-        }
-        if (($opacity < 0)) {
-            throw new \InvalidArgumentException('invalid value for $opacity when calling TextBackground., must be bigger than or equal to 0.');
-        }
-
-        $this->container['opacity'] = $opacity;
-
-        return $this;
-    }
-
-    /**
-     * Gets padding
-     *
-     * @return float|null
-     */
-    public function getPadding()
-    {
-        return $this->container['padding'];
-    }
-
-    /**
-     * Sets padding
-     *
-     * @param float|null $padding Padding inside the background box in pixels.
-     *
-     * @return self
-     */
-    public function setPadding($padding)
-    {
-        if (is_null($padding)) {
-            throw new \InvalidArgumentException('non-nullable padding cannot be null');
-        }
-
-        if (($padding > 100)) {
-            throw new \InvalidArgumentException('invalid value for $padding when calling TextBackground., must be smaller than or equal to 100.');
-        }
-        if (($padding < 0)) {
-            throw new \InvalidArgumentException('invalid value for $padding when calling TextBackground., must be bigger than or equal to 0.');
-        }
-
-        $this->container['padding'] = $padding;
-
-        return $this;
-    }
-
-    /**
-     * Gets border_radius
-     *
-     * @return float|null
-     */
-    public function getBorderRadius()
-    {
-        return $this->container['border_radius'];
-    }
-
-    /**
-     * Sets border_radius
-     *
-     * @param float|null $border_radius The border radius of the background box in pixels for rounded corners.
-     *
-     * @return self
-     */
-    public function setBorderRadius($border_radius)
-    {
-        if (is_null($border_radius)) {
-            throw new \InvalidArgumentException('non-nullable border_radius cannot be null');
-        }
-
-        if (($border_radius < 0)) {
-            throw new \InvalidArgumentException('invalid value for $border_radius when calling TextBackground., must be bigger than or equal to 0.');
-        }
-
-        $this->container['border_radius'] = $border_radius;
-
-        return $this;
-    }
-
-    /**
-     * Gets wrap
-     *
-     * @return bool|null
-     */
-    public function getWrap()
-    {
-        return $this->container['wrap'];
-    }
-
-    /**
-     * Sets wrap
-     *
-     * @param bool|null $wrap Not supported on legacy `text` assets. Accepted here only so validators can emit a clear migration error pointing users to `rich-text` or `rich-caption`, which support background wrapping natively.
-     *
-     * @return self
-     */
-    public function setWrap($wrap)
-    {
-        if (is_null($wrap)) {
-            throw new \InvalidArgumentException('non-nullable wrap cannot be null');
-        }
-        $this->container['wrap'] = $wrap;
+        $this->container['js'] = $js;
 
         return $this;
     }
