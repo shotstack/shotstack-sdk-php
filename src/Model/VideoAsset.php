@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * VideoAsset Class Doc Comment
  *
  * @category Class
- * @description The VideoAsset is used to create video sequences from video files. The src must be a publicly accessible URL to a video resource such as an mp4 file.
+ * @description The VideoAsset adds a video to a Clip. The video can be sourced from a URL (&#x60;src&#x60;) or generated from a text prompt (&#x60;prompt&#x60;), optionally from a starting image (&#x60;inputSrc&#x60;). Exactly one of &#x60;src&#x60; or &#x60;prompt&#x60; must be provided.  - **Source URL:** set &#x60;src&#x60; to the URL of an mp4 (or compatible) video file. - **Generated:** set &#x60;prompt&#x60; to describe the motion. Optionally set &#x60;inputSrc&#x60;   to a starting image URL (image-to-video). Use &#x60;model&#x60; to choose the generator   (e.g. &#x60;luma-ray-3&#x60;, &#x60;runpod-itv-mini&#x60;). The generated &#x60;src&#x60; is filled in   automatically.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,6 +60,10 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
+        'prompt' => 'string',
+        'input_src' => 'string',
+        'seed' => 'string',
+        'model' => 'string',
         'transcode' => 'bool',
         'trim' => 'float',
         'volume' => '\ShotstackClient\Model\VideoAssetVolume',
@@ -79,6 +83,10 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
+        'prompt' => null,
+        'input_src' => null,
+        'seed' => null,
+        'model' => null,
         'transcode' => null,
         'trim' => null,
         'volume' => null,
@@ -96,6 +104,10 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
+        'prompt' => false,
+        'input_src' => false,
+        'seed' => false,
+        'model' => false,
         'transcode' => false,
         'trim' => false,
         'volume' => false,
@@ -193,6 +205,10 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
+        'prompt' => 'prompt',
+        'input_src' => 'inputSrc',
+        'seed' => 'seed',
+        'model' => 'model',
         'transcode' => 'transcode',
         'trim' => 'trim',
         'volume' => 'volume',
@@ -210,6 +226,10 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
+        'prompt' => 'setPrompt',
+        'input_src' => 'setInputSrc',
+        'seed' => 'setSeed',
+        'model' => 'setModel',
         'transcode' => 'setTranscode',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
@@ -227,6 +247,10 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
+        'prompt' => 'getPrompt',
+        'input_src' => 'getInputSrc',
+        'seed' => 'getSeed',
+        'model' => 'getModel',
         'transcode' => 'getTranscode',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
@@ -327,6 +351,10 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('type', $data ?? [], 'video');
         $this->setIfExists('src', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('input_src', $data ?? [], null);
+        $this->setIfExists('seed', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
         $this->setIfExists('transcode', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
@@ -375,15 +403,24 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        if ((mb_strlen($this->container['src']) < 1)) {
+        if (!is_null($this->container['src']) && (mb_strlen($this->container['src']) < 1)) {
             $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
         }
 
-        if (!preg_match("/\\S/", $this->container['src'])) {
+        if (!is_null($this->container['src']) && !preg_match("/\\S/", $this->container['src'])) {
             $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        }
+
+        if (!is_null($this->container['prompt']) && (mb_strlen($this->container['prompt']) > 4000)) {
+            $invalidProperties[] = "invalid value for 'prompt', the character length must be smaller than or equal to 4000.";
+        }
+
+        if (!is_null($this->container['input_src']) && (mb_strlen($this->container['input_src']) < 1)) {
+            $invalidProperties[] = "invalid value for 'input_src', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['seed']) && (mb_strlen($this->container['seed']) < 1)) {
+            $invalidProperties[] = "invalid value for 'seed', the character length must be bigger than or equal to 1.";
         }
 
         $allowedValues = $this->getVolumeEffectAllowableValues();
@@ -458,7 +495,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets src
      *
-     * @return string
+     * @return string|null
      */
     public function getSrc()
     {
@@ -468,7 +505,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets src
      *
-     * @param string $src The video source URL. The URL must be publicly accessible or include credentials.
+     * @param string|null $src The video source URL. The URL must be publicly accessible or include credentials. Provide either `src` or `prompt`, not both.
      *
      * @return self
      */
@@ -486,6 +523,130 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string|null
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string|null $prompt A text prompt to generate the video from. When set without `src`, the engine generates a video and fills `src` automatically. Optionally pair with `inputSrc` for image-to-video. Use `model` to choose the generator.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        if ((mb_strlen($prompt) > 4000)) {
+            throw new \InvalidArgumentException('invalid length for $prompt when calling VideoAsset., must be smaller than or equal to 4000.');
+        }
+
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets input_src
+     *
+     * @return string|null
+     */
+    public function getInputSrc()
+    {
+        return $this->container['input_src'];
+    }
+
+    /**
+     * Sets input_src
+     *
+     * @param string|null $input_src Input image URL for image-to-video generation. The image is used as the starting frame; `prompt` describes the motion. Has no effect unless `prompt` is set.
+     *
+     * @return self
+     */
+    public function setInputSrc($input_src)
+    {
+        if (is_null($input_src)) {
+            throw new \InvalidArgumentException('non-nullable input_src cannot be null');
+        }
+
+        if ((mb_strlen($input_src) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $input_src when calling VideoAsset., must be bigger than or equal to 1.');
+        }
+
+        $this->container['input_src'] = $input_src;
+
+        return $this;
+    }
+
+    /**
+     * Gets seed
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getSeed()
+    {
+        return $this->container['seed'];
+    }
+
+    /**
+     * Sets seed
+     *
+     * @param string|null $seed **Deprecated — use `inputSrc`.** Legacy alias for the image-to-video input image URL, accepted and normalised to `inputSrc` on ingest. The name is misleading — industry-wide `seed` means an integer RNG sampling seed — and will be removed in a future major version.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setSeed($seed)
+    {
+        if (is_null($seed)) {
+            throw new \InvalidArgumentException('non-nullable seed cannot be null');
+        }
+
+        if ((mb_strlen($seed) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $seed when calling VideoAsset., must be bigger than or equal to 1.');
+        }
+
+        $this->container['seed'] = $seed;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string|null
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string|null $model The generation model to use when `prompt` is set (e.g. `luma-ray-3`, `runpod-itv-mini`). Defaults to the platform's preferred generator if omitted.
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
 
         return $this;
     }
@@ -621,7 +782,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets speed
      *
-     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
      *
      * @return self
      */

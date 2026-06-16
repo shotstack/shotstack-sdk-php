@@ -60,6 +60,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
+        'prompt' => 'string',
+        'input_src' => 'string',
+        'seed' => 'string',
+        'model' => 'string',
         'transcode' => 'bool',
         'trim' => 'float',
         'volume' => '\ShotstackClient\Model\AudioAssetVolume',
@@ -81,12 +85,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => '\ShotstackClient\Model\Border',
         'padding' => '\ShotstackClient\Model\RichCaptionAssetPadding',
         'align' => '\ShotstackClient\Model\RichTextAlignment',
+        'voice' => 'string',
+        'language' => 'string',
+        'newscaster' => 'bool',
         'effect' => 'string',
         'margin' => '\ShotstackClient\Model\CaptionMargin',
         'active' => '\ShotstackClient\Model\RichCaptionActive',
         'html' => 'string',
         'css' => 'string',
         'position' => 'string',
+        'js' => 'string',
         'color' => 'string',
         'size' => 'string',
         'offset' => '\ShotstackClient\Model\Offset',
@@ -95,11 +103,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'rectangle' => '\ShotstackClient\Model\ShapeAssetRectangle',
         'circle' => '\ShotstackClient\Model\ShapeAssetCircle',
         'line' => '\ShotstackClient\Model\ShapeAssetLine',
-        'prompt' => 'string',
-        'aspect_ratio' => 'string',
-        'voice' => 'string',
-        'language' => 'string',
-        'newscaster' => 'bool'
+        'aspect_ratio' => 'string'
     ];
 
     /**
@@ -112,6 +116,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
+        'prompt' => null,
+        'input_src' => null,
+        'seed' => null,
+        'model' => null,
         'transcode' => null,
         'trim' => null,
         'volume' => null,
@@ -133,12 +141,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => null,
         'padding' => null,
         'align' => null,
+        'voice' => null,
+        'language' => null,
+        'newscaster' => null,
         'effect' => null,
         'margin' => null,
         'active' => null,
         'html' => null,
         'css' => null,
         'position' => null,
+        'js' => null,
         'color' => null,
         'size' => null,
         'offset' => null,
@@ -147,11 +159,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'rectangle' => null,
         'circle' => null,
         'line' => null,
-        'prompt' => null,
-        'aspect_ratio' => null,
-        'voice' => null,
-        'language' => null,
-        'newscaster' => null
+        'aspect_ratio' => null
     ];
 
     /**
@@ -162,6 +170,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
+        'prompt' => false,
+        'input_src' => false,
+        'seed' => false,
+        'model' => false,
         'transcode' => false,
         'trim' => false,
         'volume' => false,
@@ -183,12 +195,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => false,
         'padding' => false,
         'align' => false,
+        'voice' => false,
+        'language' => false,
+        'newscaster' => false,
         'effect' => false,
         'margin' => false,
         'active' => false,
         'html' => false,
         'css' => false,
         'position' => false,
+        'js' => false,
         'color' => false,
         'size' => false,
         'offset' => false,
@@ -197,11 +213,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'rectangle' => false,
         'circle' => false,
         'line' => false,
-        'prompt' => false,
-        'aspect_ratio' => false,
-        'voice' => false,
-        'language' => false,
-        'newscaster' => false
+        'aspect_ratio' => false
     ];
 
     /**
@@ -292,6 +304,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
+        'prompt' => 'prompt',
+        'input_src' => 'inputSrc',
+        'seed' => 'seed',
+        'model' => 'model',
         'transcode' => 'transcode',
         'trim' => 'trim',
         'volume' => 'volume',
@@ -313,12 +329,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => 'border',
         'padding' => 'padding',
         'align' => 'align',
+        'voice' => 'voice',
+        'language' => 'language',
+        'newscaster' => 'newscaster',
         'effect' => 'effect',
         'margin' => 'margin',
         'active' => 'active',
         'html' => 'html',
         'css' => 'css',
         'position' => 'position',
+        'js' => 'js',
         'color' => 'color',
         'size' => 'size',
         'offset' => 'offset',
@@ -327,11 +347,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'rectangle' => 'rectangle',
         'circle' => 'circle',
         'line' => 'line',
-        'prompt' => 'prompt',
-        'aspect_ratio' => 'aspectRatio',
-        'voice' => 'voice',
-        'language' => 'language',
-        'newscaster' => 'newscaster'
+        'aspect_ratio' => 'aspectRatio'
     ];
 
     /**
@@ -342,6 +358,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
+        'prompt' => 'setPrompt',
+        'input_src' => 'setInputSrc',
+        'seed' => 'setSeed',
+        'model' => 'setModel',
         'transcode' => 'setTranscode',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
@@ -363,12 +383,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => 'setBorder',
         'padding' => 'setPadding',
         'align' => 'setAlign',
+        'voice' => 'setVoice',
+        'language' => 'setLanguage',
+        'newscaster' => 'setNewscaster',
         'effect' => 'setEffect',
         'margin' => 'setMargin',
         'active' => 'setActive',
         'html' => 'setHtml',
         'css' => 'setCss',
         'position' => 'setPosition',
+        'js' => 'setJs',
         'color' => 'setColor',
         'size' => 'setSize',
         'offset' => 'setOffset',
@@ -377,11 +401,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'rectangle' => 'setRectangle',
         'circle' => 'setCircle',
         'line' => 'setLine',
-        'prompt' => 'setPrompt',
-        'aspect_ratio' => 'setAspectRatio',
-        'voice' => 'setVoice',
-        'language' => 'setLanguage',
-        'newscaster' => 'setNewscaster'
+        'aspect_ratio' => 'setAspectRatio'
     ];
 
     /**
@@ -392,6 +412,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
+        'prompt' => 'getPrompt',
+        'input_src' => 'getInputSrc',
+        'seed' => 'getSeed',
+        'model' => 'getModel',
         'transcode' => 'getTranscode',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
@@ -413,12 +437,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => 'getBorder',
         'padding' => 'getPadding',
         'align' => 'getAlign',
+        'voice' => 'getVoice',
+        'language' => 'getLanguage',
+        'newscaster' => 'getNewscaster',
         'effect' => 'getEffect',
         'margin' => 'getMargin',
         'active' => 'getActive',
         'html' => 'getHtml',
         'css' => 'getCss',
         'position' => 'getPosition',
+        'js' => 'getJs',
         'color' => 'getColor',
         'size' => 'getSize',
         'offset' => 'getOffset',
@@ -427,11 +455,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'rectangle' => 'getRectangle',
         'circle' => 'getCircle',
         'line' => 'getLine',
-        'prompt' => 'getPrompt',
-        'aspect_ratio' => 'getAspectRatio',
-        'voice' => 'getVoice',
-        'language' => 'getLanguage',
-        'newscaster' => 'getNewscaster'
+        'aspect_ratio' => 'getAspectRatio'
     ];
 
     /**
@@ -484,6 +508,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_CAPTION = 'caption';
     public const TYPE_RICH_CAPTION = 'rich-caption';
     public const TYPE_HTML = 'html';
+    public const TYPE_HTML5 = 'html5';
     public const TYPE_TITLE = 'title';
     public const TYPE_SHAPE = 'shape';
     public const TYPE_SVG = 'svg';
@@ -552,6 +577,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_CAPTION,
             self::TYPE_RICH_CAPTION,
             self::TYPE_HTML,
+            self::TYPE_HTML5,
             self::TYPE_TITLE,
             self::TYPE_SHAPE,
             self::TYPE_SVG,
@@ -699,6 +725,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('type', $data ?? [], 'video');
         $this->setIfExists('src', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('input_src', $data ?? [], null);
+        $this->setIfExists('seed', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
         $this->setIfExists('transcode', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
@@ -720,12 +750,16 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('border', $data ?? [], null);
         $this->setIfExists('padding', $data ?? [], null);
         $this->setIfExists('align', $data ?? [], null);
+        $this->setIfExists('voice', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('newscaster', $data ?? [], false);
         $this->setIfExists('effect', $data ?? [], null);
         $this->setIfExists('margin', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('html', $data ?? [], null);
         $this->setIfExists('css', $data ?? [], null);
         $this->setIfExists('position', $data ?? [], null);
+        $this->setIfExists('js', $data ?? [], null);
         $this->setIfExists('color', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
@@ -734,11 +768,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('rectangle', $data ?? [], null);
         $this->setIfExists('circle', $data ?? [], null);
         $this->setIfExists('line', $data ?? [], null);
-        $this->setIfExists('prompt', $data ?? [], null);
         $this->setIfExists('aspect_ratio', $data ?? [], null);
-        $this->setIfExists('voice', $data ?? [], null);
-        $this->setIfExists('language', $data ?? [], null);
-        $this->setIfExists('newscaster', $data ?? [], false);
 
         // Initialize discriminator property with the model name.
         $this->container['type'] = static::$openAPIModelName;
@@ -790,6 +820,17 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
         }
 
+        if ($this->container['prompt'] === null) {
+            $invalidProperties[] = "'prompt' can't be null";
+        }
+        if (!is_null($this->container['input_src']) && (mb_strlen($this->container['input_src']) < 1)) {
+            $invalidProperties[] = "invalid value for 'input_src', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!is_null($this->container['seed']) && (mb_strlen($this->container['seed']) < 1)) {
+            $invalidProperties[] = "invalid value for 'seed', the character length must be bigger than or equal to 1.";
+        }
+
         $allowedValues = $this->getVolumeEffectAllowableValues();
         if (!is_null($this->container['volume_effect']) && !in_array($this->container['volume_effect'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -819,6 +860,9 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['voice'] === null) {
+            $invalidProperties[] = "'voice' can't be null";
+        }
         $allowedValues = $this->getEffectAllowableValues();
         if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -831,6 +875,14 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['html'] === null) {
             $invalidProperties[] = "'html' can't be null";
         }
+        if ((mb_strlen($this->container['html']) > 1000000)) {
+            $invalidProperties[] = "invalid value for 'html', the character length must be smaller than or equal to 1000000.";
+        }
+
+        if (!is_null($this->container['css']) && (mb_strlen($this->container['css']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'css', the character length must be smaller than or equal to 500000.";
+        }
+
         $allowedValues = $this->getPositionAllowableValues();
         if (!is_null($this->container['position']) && !in_array($this->container['position'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -838,6 +890,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
                 $this->container['position'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['js']) && (mb_strlen($this->container['js']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'js', the character length must be smaller than or equal to 500000.";
         }
 
         $allowedValues = $this->getSizeAllowableValues();
@@ -861,9 +917,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['prompt'] === null) {
-            $invalidProperties[] = "'prompt' can't be null";
-        }
         $allowedValues = $this->getAspectRatioAllowableValues();
         if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -873,9 +926,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['voice'] === null) {
-            $invalidProperties[] = "'voice' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -956,6 +1006,126 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string $prompt The instructions for modifying the image into a video sequence.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets input_src
+     *
+     * @return string|null
+     */
+    public function getInputSrc()
+    {
+        return $this->container['input_src'];
+    }
+
+    /**
+     * Sets input_src
+     *
+     * @param string|null $input_src Input image URL for image-to-video generation. The image is used as the starting frame; `prompt` describes the motion. Has no effect unless `prompt` is set.
+     *
+     * @return self
+     */
+    public function setInputSrc($input_src)
+    {
+        if (is_null($input_src)) {
+            throw new \InvalidArgumentException('non-nullable input_src cannot be null');
+        }
+
+        if ((mb_strlen($input_src) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $input_src when calling Asset., must be bigger than or equal to 1.');
+        }
+
+        $this->container['input_src'] = $input_src;
+
+        return $this;
+    }
+
+    /**
+     * Gets seed
+     *
+     * @return string|null
+     * @deprecated
+     */
+    public function getSeed()
+    {
+        return $this->container['seed'];
+    }
+
+    /**
+     * Sets seed
+     *
+     * @param string|null $seed **Deprecated — use `inputSrc`.** Legacy alias for the image-to-video input image URL, accepted and normalised to `inputSrc` on ingest. The name is misleading — industry-wide `seed` means an integer RNG sampling seed — and will be removed in a future major version.
+     *
+     * @return self
+     * @deprecated
+     */
+    public function setSeed($seed)
+    {
+        if (is_null($seed)) {
+            throw new \InvalidArgumentException('non-nullable seed cannot be null');
+        }
+
+        if ((mb_strlen($seed) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $seed when calling Asset., must be bigger than or equal to 1.');
+        }
+
+        $this->container['seed'] = $seed;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string|null
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string|null $model The generation model to use when `prompt` is set (e.g. `polly-neural`). Defaults to the platform's preferred generator if omitted.
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
 
         return $this;
     }
@@ -1556,6 +1726,87 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets voice
+     *
+     * @return string
+     */
+    public function getVoice()
+    {
+        return $this->container['voice'];
+    }
+
+    /**
+     * Sets voice
+     *
+     * @param string $voice The voice to use for the text-to-speech conversion.
+     *
+     * @return self
+     */
+    public function setVoice($voice)
+    {
+        if (is_null($voice)) {
+            throw new \InvalidArgumentException('non-nullable voice cannot be null');
+        }
+        $this->container['voice'] = $voice;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string|null
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string|null $language The language code for the text-to-speech conversion.
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
+        }
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets newscaster
+     *
+     * @return bool|null
+     */
+    public function getNewscaster()
+    {
+        return $this->container['newscaster'];
+    }
+
+    /**
+     * Sets newscaster
+     *
+     * @param bool|null $newscaster Set the voice to newscaster mode.
+     *
+     * @return self
+     */
+    public function setNewscaster($newscaster)
+    {
+        if (is_null($newscaster)) {
+            throw new \InvalidArgumentException('non-nullable newscaster cannot be null');
+        }
+        $this->container['newscaster'] = $newscaster;
+
+        return $this;
+    }
+
+    /**
      * Gets effect
      *
      * @return string|null
@@ -1659,7 +1910,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets html
      *
-     * @param string $html The HTML text string. See list of [supported HTML tags](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-html-tags).
+     * @param string $html The HTML markup for the asset. Max 1,000,000 characters.
      *
      * @return self
      */
@@ -1668,6 +1919,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($html)) {
             throw new \InvalidArgumentException('non-nullable html cannot be null');
         }
+        if ((mb_strlen($html) > 1000000)) {
+            throw new \InvalidArgumentException('invalid length for $html when calling Asset., must be smaller than or equal to 1000000.');
+        }
+
         $this->container['html'] = $html;
 
         return $this;
@@ -1686,7 +1941,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets css
      *
-     * @param string|null $css The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-css-properties).
+     * @param string|null $css The CSS string applied to the HTML. Max 500,000 characters.
      *
      * @return self
      */
@@ -1695,6 +1950,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($css)) {
             throw new \InvalidArgumentException('non-nullable css cannot be null');
         }
+        if ((mb_strlen($css) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $css when calling Asset., must be smaller than or equal to 500000.');
+        }
+
         $this->container['css'] = $css;
 
         return $this;
@@ -1733,6 +1992,37 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Gets js
+     *
+     * @return string|null
+     */
+    public function getJs()
+    {
+        return $this->container['js'];
+    }
+
+    /**
+     * Sets js
+     *
+     * @param string|null $js Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
+     *
+     * @return self
+     */
+    public function setJs($js)
+    {
+        if (is_null($js)) {
+            throw new \InvalidArgumentException('non-nullable js cannot be null');
+        }
+        if ((mb_strlen($js) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $js when calling Asset., must be smaller than or equal to 500000.');
+        }
+
+        $this->container['js'] = $js;
 
         return $this;
     }
@@ -1974,33 +2264,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets prompt
-     *
-     * @return string
-     */
-    public function getPrompt()
-    {
-        return $this->container['prompt'];
-    }
-
-    /**
-     * Sets prompt
-     *
-     * @param string $prompt The instructions for modifying the image into a video sequence.
-     *
-     * @return self
-     */
-    public function setPrompt($prompt)
-    {
-        if (is_null($prompt)) {
-            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
-        }
-        $this->container['prompt'] = $prompt;
-
-        return $this;
-    }
-
-    /**
      * Gets aspect_ratio
      *
      * @return string|null
@@ -2033,87 +2296,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['aspect_ratio'] = $aspect_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets voice
-     *
-     * @return string
-     */
-    public function getVoice()
-    {
-        return $this->container['voice'];
-    }
-
-    /**
-     * Sets voice
-     *
-     * @param string $voice The voice to use for the text-to-speech conversion.
-     *
-     * @return self
-     */
-    public function setVoice($voice)
-    {
-        if (is_null($voice)) {
-            throw new \InvalidArgumentException('non-nullable voice cannot be null');
-        }
-        $this->container['voice'] = $voice;
-
-        return $this;
-    }
-
-    /**
-     * Gets language
-     *
-     * @return string|null
-     */
-    public function getLanguage()
-    {
-        return $this->container['language'];
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string|null $language The language code for the text-to-speech conversion.
-     *
-     * @return self
-     */
-    public function setLanguage($language)
-    {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-
-    /**
-     * Gets newscaster
-     *
-     * @return bool|null
-     */
-    public function getNewscaster()
-    {
-        return $this->container['newscaster'];
-    }
-
-    /**
-     * Sets newscaster
-     *
-     * @param bool|null $newscaster Set the voice to newscaster mode.
-     *
-     * @return self
-     */
-    public function setNewscaster($newscaster)
-    {
-        if (is_null($newscaster)) {
-            throw new \InvalidArgumentException('non-nullable newscaster cannot be null');
-        }
-        $this->container['newscaster'] = $newscaster;
 
         return $this;
     }
