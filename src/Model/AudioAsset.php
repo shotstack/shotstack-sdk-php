@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * AudioAsset Class Doc Comment
  *
  * @category Class
- * @description The AudioAsset is used to add sound effects and audio at specific intervals on the timeline. The src must be a publicly accessible URL to an audio resource such  as an mp3 file.
+ * @description The AudioAsset adds audio to a Clip. The audio can be sourced from a URL (&#x60;src&#x60;) or generated from a text prompt (&#x60;prompt&#x60;). Exactly one of &#x60;src&#x60; or &#x60;prompt&#x60; must be provided.  - **Source URL:** set &#x60;src&#x60; to a publicly accessible audio URL (e.g. mp3). - **Generated speech:** set &#x60;prompt&#x60; to the spoken text and &#x60;voice&#x60; to a voice   identifier (text-to-speech). Optionally set &#x60;language&#x60;/&#x60;newscaster&#x60;. - **Generated music or SFX:** set &#x60;prompt&#x60; describing the sound; omit &#x60;voice&#x60;. - Use &#x60;model&#x60; to choose the generator. The generated &#x60;src&#x60; is filled in   automatically.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,6 +60,11 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
+        'prompt' => 'string',
+        'voice' => 'string',
+        'language' => 'string',
+        'newscaster' => 'bool',
+        'model' => 'string',
         'trim' => 'float',
         'volume' => '\ShotstackClient\Model\AudioAssetVolume',
         'speed' => 'float',
@@ -76,6 +81,11 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
+        'prompt' => null,
+        'voice' => null,
+        'language' => null,
+        'newscaster' => null,
+        'model' => null,
         'trim' => null,
         'volume' => null,
         'speed' => 'float',
@@ -90,6 +100,11 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
+        'prompt' => false,
+        'voice' => false,
+        'language' => false,
+        'newscaster' => false,
+        'model' => false,
         'trim' => false,
         'volume' => false,
         'speed' => false,
@@ -184,6 +199,11 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
+        'prompt' => 'prompt',
+        'voice' => 'voice',
+        'language' => 'language',
+        'newscaster' => 'newscaster',
+        'model' => 'model',
         'trim' => 'trim',
         'volume' => 'volume',
         'speed' => 'speed',
@@ -198,6 +218,11 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
+        'prompt' => 'setPrompt',
+        'voice' => 'setVoice',
+        'language' => 'setLanguage',
+        'newscaster' => 'setNewscaster',
+        'model' => 'setModel',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
         'speed' => 'setSpeed',
@@ -212,6 +237,11 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
+        'prompt' => 'getPrompt',
+        'voice' => 'getVoice',
+        'language' => 'getLanguage',
+        'newscaster' => 'getNewscaster',
+        'model' => 'getModel',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
         'speed' => 'getSpeed',
@@ -309,6 +339,11 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('type', $data ?? [], 'audio');
         $this->setIfExists('src', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('voice', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('newscaster', $data ?? [], false);
+        $this->setIfExists('model', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
         $this->setIfExists('speed', $data ?? [], null);
@@ -354,15 +389,16 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        if ((mb_strlen($this->container['src']) < 1)) {
+        if (!is_null($this->container['src']) && (mb_strlen($this->container['src']) < 1)) {
             $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
         }
 
-        if (!preg_match("/\\S/", $this->container['src'])) {
+        if (!is_null($this->container['src']) && !preg_match("/\\S/", $this->container['src'])) {
             $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        }
+
+        if (!is_null($this->container['prompt']) && (mb_strlen($this->container['prompt']) > 4000)) {
+            $invalidProperties[] = "invalid value for 'prompt', the character length must be smaller than or equal to 4000.";
         }
 
         if (!is_null($this->container['speed']) && ($this->container['speed'] > 10)) {
@@ -437,7 +473,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets src
      *
-     * @return string
+     * @return string|null
      */
     public function getSrc()
     {
@@ -447,7 +483,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets src
      *
-     * @param string $src The audio source URL. The URL must be publicly accessible or include credentials.
+     * @param string|null $src The audio source URL. The URL must be publicly accessible or include credentials. Provide either `src` or `prompt`, not both.
      *
      * @return self
      */
@@ -465,6 +501,145 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string|null
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string|null $prompt A text prompt. When `voice` is set, the prompt is the spoken text (text-to-speech). Without `voice`, the prompt describes generated music or sound effects. The generated `src` is filled in automatically.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        if ((mb_strlen($prompt) > 4000)) {
+            throw new \InvalidArgumentException('invalid length for $prompt when calling AudioAsset., must be smaller than or equal to 4000.');
+        }
+
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets voice
+     *
+     * @return string|null
+     */
+    public function getVoice()
+    {
+        return $this->container['voice'];
+    }
+
+    /**
+     * Sets voice
+     *
+     * @param string|null $voice Voice identifier for text-to-speech generation (e.g. `Matthew`, `Joanna`). Only meaningful when `prompt` is set.
+     *
+     * @return self
+     */
+    public function setVoice($voice)
+    {
+        if (is_null($voice)) {
+            throw new \InvalidArgumentException('non-nullable voice cannot be null');
+        }
+        $this->container['voice'] = $voice;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string|null
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string|null $language Optional BCP-47 language code (e.g. `en-US`) for text-to-speech. Only meaningful when `prompt` and `voice` are set.
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
+        }
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets newscaster
+     *
+     * @return bool|null
+     */
+    public function getNewscaster()
+    {
+        return $this->container['newscaster'];
+    }
+
+    /**
+     * Sets newscaster
+     *
+     * @param bool|null $newscaster Set to `true` to use the voice's newscaster mode when supported. Only meaningful when `prompt` and `voice` are set.
+     *
+     * @return self
+     */
+    public function setNewscaster($newscaster)
+    {
+        if (is_null($newscaster)) {
+            throw new \InvalidArgumentException('non-nullable newscaster cannot be null');
+        }
+        $this->container['newscaster'] = $newscaster;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string|null
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string|null $model The generation model to use when `prompt` is set (e.g. `polly-neural`). Defaults to the platform's preferred generator if omitted.
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
 
         return $this;
     }
@@ -536,7 +711,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets speed
      *
-     * @param float|null $speed Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
+     * @param float|null $speed Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
      *
      * @return self
      */
