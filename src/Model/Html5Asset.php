@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageAsset
+ * Html5Asset
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * ImageAsset Class Doc Comment
+ * Html5Asset Class Doc Comment
  *
  * @category Class
- * @description The ImageAsset adds an image to a Clip. The image can be sourced from a URL (&#x60;src&#x60;) or generated from a text prompt (&#x60;prompt&#x60;). Exactly one of &#x60;src&#x60; or &#x60;prompt&#x60; must be provided.  - **Source URL:** set &#x60;src&#x60; to the publicly accessible URL of a jpg or png file. - **Generated:** set &#x60;prompt&#x60; to describe the image; the engine generates it   using the provider chosen by &#x60;model&#x60; and fills &#x60;src&#x60; in automatically.
+ * @description The Html5Asset renders full HTML5/CSS3/JS.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
+class Html5Asset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImageAsset';
+    protected static $openAPIModelName = 'Html5Asset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,10 +59,9 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'src' => 'string',
-        'prompt' => 'string',
-        'model' => 'string',
-        'crop' => '\ShotstackClient\Model\Crop'
+        'html' => 'string',
+        'css' => 'string',
+        'js' => 'string'
     ];
 
     /**
@@ -74,10 +73,9 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'src' => null,
-        'prompt' => null,
-        'model' => null,
-        'crop' => null
+        'html' => null,
+        'css' => null,
+        'js' => null
     ];
 
     /**
@@ -87,10 +85,9 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       */
     protected static array $openAPINullables = [
         'type' => false,
-        'src' => false,
-        'prompt' => false,
-        'model' => false,
-        'crop' => false
+        'html' => false,
+        'css' => false,
+        'js' => false
     ];
 
     /**
@@ -180,10 +177,9 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'src' => 'src',
-        'prompt' => 'prompt',
-        'model' => 'model',
-        'crop' => 'crop'
+        'html' => 'html',
+        'css' => 'css',
+        'js' => 'js'
     ];
 
     /**
@@ -193,10 +189,9 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $setters = [
         'type' => 'setType',
-        'src' => 'setSrc',
-        'prompt' => 'setPrompt',
-        'model' => 'setModel',
-        'crop' => 'setCrop'
+        'html' => 'setHtml',
+        'css' => 'setCss',
+        'js' => 'setJs'
     ];
 
     /**
@@ -206,10 +201,9 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     protected static $getters = [
         'type' => 'getType',
-        'src' => 'getSrc',
-        'prompt' => 'getPrompt',
-        'model' => 'getModel',
-        'crop' => 'getCrop'
+        'html' => 'getHtml',
+        'css' => 'getCss',
+        'js' => 'getJs'
     ];
 
     /**
@@ -253,7 +247,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IMAGE = 'image';
+    public const TYPE_HTML5 = 'html5';
 
     /**
      * Gets allowable values of the enum
@@ -263,7 +257,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_IMAGE,
+            self::TYPE_HTML5,
         ];
     }
 
@@ -282,11 +276,10 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'image');
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('prompt', $data ?? [], null);
-        $this->setIfExists('model', $data ?? [], null);
-        $this->setIfExists('crop', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'html5');
+        $this->setIfExists('html', $data ?? [], null);
+        $this->setIfExists('css', $data ?? [], null);
+        $this->setIfExists('js', $data ?? [], null);
     }
 
     /**
@@ -328,16 +321,19 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if (!is_null($this->container['src']) && (mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        if ($this->container['html'] === null) {
+            $invalidProperties[] = "'html' can't be null";
+        }
+        if ((mb_strlen($this->container['html']) > 1000000)) {
+            $invalidProperties[] = "invalid value for 'html', the character length must be smaller than or equal to 1000000.";
         }
 
-        if (!is_null($this->container['src']) && !preg_match("/\\S/", $this->container['src'])) {
-            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        if (!is_null($this->container['css']) && (mb_strlen($this->container['css']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'css', the character length must be smaller than or equal to 500000.";
         }
 
-        if (!is_null($this->container['prompt']) && (mb_strlen($this->container['prompt']) > 4000)) {
-            $invalidProperties[] = "invalid value for 'prompt', the character length must be smaller than or equal to 4000.";
+        if (!is_null($this->container['js']) && (mb_strlen($this->container['js']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'js', the character length must be smaller than or equal to 500000.";
         }
 
         return $invalidProperties;
@@ -368,7 +364,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to `image` for images.
+     * @param string $type The type of asset - set to `html5` for HTML5/CSS3/JS.
      *
      * @return self
      */
@@ -393,121 +389,94 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets src
+     * Gets html
      *
-     * @return string|null
+     * @return string
      */
-    public function getSrc()
+    public function getHtml()
     {
-        return $this->container['src'];
+        return $this->container['html'];
     }
 
     /**
-     * Sets src
+     * Sets html
      *
-     * @param string|null $src The image source URL. The URL must be publicly accessible or include credentials. Provide either `src` or `prompt`, not both.
+     * @param string $html The HTML markup for the asset. Max 1,000,000 characters.
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setHtml($html)
     {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
+        if (is_null($html)) {
+            throw new \InvalidArgumentException('non-nullable html cannot be null');
+        }
+        if ((mb_strlen($html) > 1000000)) {
+            throw new \InvalidArgumentException('invalid length for $html when calling Html5Asset., must be smaller than or equal to 1000000.');
         }
 
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling ImageAsset., must be bigger than or equal to 1.');
-        }
-        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
-            throw new \InvalidArgumentException("invalid value for \$src when calling ImageAsset., must conform to the pattern /\\S/.");
-        }
-
-        $this->container['src'] = $src;
+        $this->container['html'] = $html;
 
         return $this;
     }
 
     /**
-     * Gets prompt
+     * Gets css
      *
      * @return string|null
      */
-    public function getPrompt()
+    public function getCss()
     {
-        return $this->container['prompt'];
+        return $this->container['css'];
     }
 
     /**
-     * Sets prompt
+     * Sets css
      *
-     * @param string|null $prompt A text prompt to generate the image from. When set without `src`, the engine generates an image and fills `src` automatically. Use `model` to choose the generator.
+     * @param string|null $css The CSS string applied to the HTML. Max 500,000 characters.
      *
      * @return self
      */
-    public function setPrompt($prompt)
+    public function setCss($css)
     {
-        if (is_null($prompt)) {
-            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        if (is_null($css)) {
+            throw new \InvalidArgumentException('non-nullable css cannot be null');
         }
-        if ((mb_strlen($prompt) > 4000)) {
-            throw new \InvalidArgumentException('invalid length for $prompt when calling ImageAsset., must be smaller than or equal to 4000.');
+        if ((mb_strlen($css) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $css when calling Html5Asset., must be smaller than or equal to 500000.');
         }
 
-        $this->container['prompt'] = $prompt;
+        $this->container['css'] = $css;
 
         return $this;
     }
 
     /**
-     * Gets model
+     * Gets js
      *
      * @return string|null
      */
-    public function getModel()
+    public function getJs()
     {
-        return $this->container['model'];
+        return $this->container['js'];
     }
 
     /**
-     * Sets model
+     * Sets js
      *
-     * @param string|null $model The generation model to use when `prompt` is set (e.g. `flux-schnell`). Defaults to the platform's preferred generator if omitted.
+     * @param string|null $js Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
      *
      * @return self
      */
-    public function setModel($model)
+    public function setJs($js)
     {
-        if (is_null($model)) {
-            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        if (is_null($js)) {
+            throw new \InvalidArgumentException('non-nullable js cannot be null');
         }
-        $this->container['model'] = $model;
-
-        return $this;
-    }
-
-    /**
-     * Gets crop
-     *
-     * @return \ShotstackClient\Model\Crop|null
-     */
-    public function getCrop()
-    {
-        return $this->container['crop'];
-    }
-
-    /**
-     * Sets crop
-     *
-     * @param \ShotstackClient\Model\Crop|null $crop crop
-     *
-     * @return self
-     */
-    public function setCrop($crop)
-    {
-        if (is_null($crop)) {
-            throw new \InvalidArgumentException('non-nullable crop cannot be null');
+        if ((mb_strlen($js) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $js when calling Html5Asset., must be smaller than or equal to 500000.');
         }
-        $this->container['crop'] = $crop;
+
+        $this->container['js'] = $js;
 
         return $this;
     }
