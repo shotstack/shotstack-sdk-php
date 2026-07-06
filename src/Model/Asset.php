@@ -60,6 +60,13 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
+        'prompt' => 'string',
+        'input_src' => 'string',
+        'model' => 'string',
+        'resolution' => 'string',
+        'duration' => 'string',
+        'aspect_ratio' => 'string',
+        'generate_audio' => 'bool',
         'transcode' => 'bool',
         'trim' => 'float',
         'volume' => '\ShotstackClient\Model\AudioAssetVolume',
@@ -81,12 +88,19 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => '\ShotstackClient\Model\Border',
         'padding' => '\ShotstackClient\Model\RichCaptionAssetPadding',
         'align' => '\ShotstackClient\Model\RichTextAlignment',
+        'voice' => 'string',
+        'language' => 'string',
+        'newscaster' => 'bool',
+        'music_length_ms' => 'float',
+        'force_instrumental' => 'bool',
+        'composition_plan' => 'string',
         'effect' => 'string',
         'margin' => '\ShotstackClient\Model\CaptionMargin',
         'active' => '\ShotstackClient\Model\RichCaptionActive',
         'html' => 'string',
         'css' => 'string',
         'position' => 'string',
+        'js' => 'string',
         'color' => 'string',
         'size' => 'string',
         'offset' => '\ShotstackClient\Model\Offset',
@@ -94,12 +108,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'fill' => '\ShotstackClient\Model\ShapeAssetFill',
         'rectangle' => '\ShotstackClient\Model\ShapeAssetRectangle',
         'circle' => '\ShotstackClient\Model\ShapeAssetCircle',
-        'line' => '\ShotstackClient\Model\ShapeAssetLine',
-        'prompt' => 'string',
-        'aspect_ratio' => 'string',
-        'voice' => 'string',
-        'language' => 'string',
-        'newscaster' => 'bool'
+        'line' => '\ShotstackClient\Model\ShapeAssetLine'
     ];
 
     /**
@@ -112,6 +121,13 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
+        'prompt' => null,
+        'input_src' => null,
+        'model' => null,
+        'resolution' => null,
+        'duration' => null,
+        'aspect_ratio' => null,
+        'generate_audio' => null,
         'transcode' => null,
         'trim' => null,
         'volume' => null,
@@ -133,12 +149,19 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => null,
         'padding' => null,
         'align' => null,
+        'voice' => null,
+        'language' => null,
+        'newscaster' => null,
+        'music_length_ms' => null,
+        'force_instrumental' => null,
+        'composition_plan' => null,
         'effect' => null,
         'margin' => null,
         'active' => null,
         'html' => null,
         'css' => null,
         'position' => null,
+        'js' => null,
         'color' => null,
         'size' => null,
         'offset' => null,
@@ -146,12 +169,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'fill' => null,
         'rectangle' => null,
         'circle' => null,
-        'line' => null,
-        'prompt' => null,
-        'aspect_ratio' => null,
-        'voice' => null,
-        'language' => null,
-        'newscaster' => null
+        'line' => null
     ];
 
     /**
@@ -162,6 +180,13 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
+        'prompt' => false,
+        'input_src' => false,
+        'model' => false,
+        'resolution' => false,
+        'duration' => false,
+        'aspect_ratio' => false,
+        'generate_audio' => false,
         'transcode' => false,
         'trim' => false,
         'volume' => false,
@@ -183,12 +208,19 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => false,
         'padding' => false,
         'align' => false,
+        'voice' => false,
+        'language' => false,
+        'newscaster' => false,
+        'music_length_ms' => false,
+        'force_instrumental' => false,
+        'composition_plan' => false,
         'effect' => false,
         'margin' => false,
         'active' => false,
         'html' => false,
         'css' => false,
         'position' => false,
+        'js' => false,
         'color' => false,
         'size' => false,
         'offset' => false,
@@ -196,12 +228,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'fill' => false,
         'rectangle' => false,
         'circle' => false,
-        'line' => false,
-        'prompt' => false,
-        'aspect_ratio' => false,
-        'voice' => false,
-        'language' => false,
-        'newscaster' => false
+        'line' => false
     ];
 
     /**
@@ -292,6 +319,13 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
+        'prompt' => 'prompt',
+        'input_src' => 'inputSrc',
+        'model' => 'model',
+        'resolution' => 'resolution',
+        'duration' => 'duration',
+        'aspect_ratio' => 'aspectRatio',
+        'generate_audio' => 'generateAudio',
         'transcode' => 'transcode',
         'trim' => 'trim',
         'volume' => 'volume',
@@ -313,12 +347,19 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => 'border',
         'padding' => 'padding',
         'align' => 'align',
+        'voice' => 'voice',
+        'language' => 'language',
+        'newscaster' => 'newscaster',
+        'music_length_ms' => 'musicLengthMs',
+        'force_instrumental' => 'forceInstrumental',
+        'composition_plan' => 'compositionPlan',
         'effect' => 'effect',
         'margin' => 'margin',
         'active' => 'active',
         'html' => 'html',
         'css' => 'css',
         'position' => 'position',
+        'js' => 'js',
         'color' => 'color',
         'size' => 'size',
         'offset' => 'offset',
@@ -326,12 +367,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'fill' => 'fill',
         'rectangle' => 'rectangle',
         'circle' => 'circle',
-        'line' => 'line',
-        'prompt' => 'prompt',
-        'aspect_ratio' => 'aspectRatio',
-        'voice' => 'voice',
-        'language' => 'language',
-        'newscaster' => 'newscaster'
+        'line' => 'line'
     ];
 
     /**
@@ -342,6 +378,13 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
+        'prompt' => 'setPrompt',
+        'input_src' => 'setInputSrc',
+        'model' => 'setModel',
+        'resolution' => 'setResolution',
+        'duration' => 'setDuration',
+        'aspect_ratio' => 'setAspectRatio',
+        'generate_audio' => 'setGenerateAudio',
         'transcode' => 'setTranscode',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
@@ -363,12 +406,19 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => 'setBorder',
         'padding' => 'setPadding',
         'align' => 'setAlign',
+        'voice' => 'setVoice',
+        'language' => 'setLanguage',
+        'newscaster' => 'setNewscaster',
+        'music_length_ms' => 'setMusicLengthMs',
+        'force_instrumental' => 'setForceInstrumental',
+        'composition_plan' => 'setCompositionPlan',
         'effect' => 'setEffect',
         'margin' => 'setMargin',
         'active' => 'setActive',
         'html' => 'setHtml',
         'css' => 'setCss',
         'position' => 'setPosition',
+        'js' => 'setJs',
         'color' => 'setColor',
         'size' => 'setSize',
         'offset' => 'setOffset',
@@ -376,12 +426,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'fill' => 'setFill',
         'rectangle' => 'setRectangle',
         'circle' => 'setCircle',
-        'line' => 'setLine',
-        'prompt' => 'setPrompt',
-        'aspect_ratio' => 'setAspectRatio',
-        'voice' => 'setVoice',
-        'language' => 'setLanguage',
-        'newscaster' => 'setNewscaster'
+        'line' => 'setLine'
     ];
 
     /**
@@ -392,6 +437,13 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
+        'prompt' => 'getPrompt',
+        'input_src' => 'getInputSrc',
+        'model' => 'getModel',
+        'resolution' => 'getResolution',
+        'duration' => 'getDuration',
+        'aspect_ratio' => 'getAspectRatio',
+        'generate_audio' => 'getGenerateAudio',
         'transcode' => 'getTranscode',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
@@ -413,12 +465,19 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'border' => 'getBorder',
         'padding' => 'getPadding',
         'align' => 'getAlign',
+        'voice' => 'getVoice',
+        'language' => 'getLanguage',
+        'newscaster' => 'getNewscaster',
+        'music_length_ms' => 'getMusicLengthMs',
+        'force_instrumental' => 'getForceInstrumental',
+        'composition_plan' => 'getCompositionPlan',
         'effect' => 'getEffect',
         'margin' => 'getMargin',
         'active' => 'getActive',
         'html' => 'getHtml',
         'css' => 'getCss',
         'position' => 'getPosition',
+        'js' => 'getJs',
         'color' => 'getColor',
         'size' => 'getSize',
         'offset' => 'getOffset',
@@ -426,12 +485,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         'fill' => 'getFill',
         'rectangle' => 'getRectangle',
         'circle' => 'getCircle',
-        'line' => 'getLine',
-        'prompt' => 'getPrompt',
-        'aspect_ratio' => 'getAspectRatio',
-        'voice' => 'getVoice',
-        'language' => 'getLanguage',
-        'newscaster' => 'getNewscaster'
+        'line' => 'getLine'
     ];
 
     /**
@@ -484,12 +538,36 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const TYPE_CAPTION = 'caption';
     public const TYPE_RICH_CAPTION = 'rich-caption';
     public const TYPE_HTML = 'html';
+    public const TYPE_HTML5 = 'html5';
     public const TYPE_TITLE = 'title';
     public const TYPE_SHAPE = 'shape';
     public const TYPE_SVG = 'svg';
     public const TYPE_TEXT_TO_IMAGE = 'text-to-image';
     public const TYPE_IMAGE_TO_VIDEO = 'image-to-video';
     public const TYPE_TEXT_TO_SPEECH = 'text-to-speech';
+    public const RESOLUTION__1_K = '1K';
+    public const RESOLUTION__2_K = '2K';
+    public const RESOLUTION__4_K = '4K';
+    public const DURATION_AUTO = 'auto';
+    public const DURATION__4 = '4';
+    public const DURATION__5 = '5';
+    public const DURATION__6 = '6';
+    public const DURATION__7 = '7';
+    public const DURATION__8 = '8';
+    public const DURATION__9 = '9';
+    public const DURATION__10 = '10';
+    public const DURATION__11 = '11';
+    public const DURATION__12 = '12';
+    public const DURATION__13 = '13';
+    public const DURATION__14 = '14';
+    public const DURATION__15 = '15';
+    public const ASPECT_RATIO__11 = '1:1';
+    public const ASPECT_RATIO__43 = '4:3';
+    public const ASPECT_RATIO__169 = '16:9';
+    public const ASPECT_RATIO__916 = '9:16';
+    public const ASPECT_RATIO__34 = '3:4';
+    public const ASPECT_RATIO__219 = '21:9';
+    public const ASPECT_RATIO__921 = '9:21';
     public const VOLUME_EFFECT_NONE = 'none';
     public const VOLUME_EFFECT_FADE_IN = 'fadeIn';
     public const VOLUME_EFFECT_FADE_OUT = 'fadeOut';
@@ -527,13 +605,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     public const SHAPE_RECTANGLE = 'rectangle';
     public const SHAPE_CIRCLE = 'circle';
     public const SHAPE_LINE = 'line';
-    public const ASPECT_RATIO__11 = '1:1';
-    public const ASPECT_RATIO__43 = '4:3';
-    public const ASPECT_RATIO__169 = '16:9';
-    public const ASPECT_RATIO__916 = '9:16';
-    public const ASPECT_RATIO__34 = '3:4';
-    public const ASPECT_RATIO__219 = '21:9';
-    public const ASPECT_RATIO__921 = '9:21';
 
     /**
      * Gets allowable values of the enum
@@ -552,12 +623,69 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             self::TYPE_CAPTION,
             self::TYPE_RICH_CAPTION,
             self::TYPE_HTML,
+            self::TYPE_HTML5,
             self::TYPE_TITLE,
             self::TYPE_SHAPE,
             self::TYPE_SVG,
             self::TYPE_TEXT_TO_IMAGE,
             self::TYPE_IMAGE_TO_VIDEO,
             self::TYPE_TEXT_TO_SPEECH,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResolutionAllowableValues()
+    {
+        return [
+            self::RESOLUTION__1_K,
+            self::RESOLUTION__2_K,
+            self::RESOLUTION__4_K,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDurationAllowableValues()
+    {
+        return [
+            self::DURATION_AUTO,
+            self::DURATION__4,
+            self::DURATION__5,
+            self::DURATION__6,
+            self::DURATION__7,
+            self::DURATION__8,
+            self::DURATION__9,
+            self::DURATION__10,
+            self::DURATION__11,
+            self::DURATION__12,
+            self::DURATION__13,
+            self::DURATION__14,
+            self::DURATION__15,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAspectRatioAllowableValues()
+    {
+        return [
+            self::ASPECT_RATIO__11,
+            self::ASPECT_RATIO__43,
+            self::ASPECT_RATIO__169,
+            self::ASPECT_RATIO__916,
+            self::ASPECT_RATIO__34,
+            self::ASPECT_RATIO__219,
+            self::ASPECT_RATIO__921,
         ];
     }
 
@@ -665,24 +793,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAspectRatioAllowableValues()
-    {
-        return [
-            self::ASPECT_RATIO__11,
-            self::ASPECT_RATIO__43,
-            self::ASPECT_RATIO__169,
-            self::ASPECT_RATIO__916,
-            self::ASPECT_RATIO__34,
-            self::ASPECT_RATIO__219,
-            self::ASPECT_RATIO__921,
-        ];
-    }
-
-    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -699,6 +809,13 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('type', $data ?? [], 'video');
         $this->setIfExists('src', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('input_src', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('resolution', $data ?? [], null);
+        $this->setIfExists('duration', $data ?? [], 'auto');
+        $this->setIfExists('aspect_ratio', $data ?? [], null);
+        $this->setIfExists('generate_audio', $data ?? [], false);
         $this->setIfExists('transcode', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
@@ -720,12 +837,19 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('border', $data ?? [], null);
         $this->setIfExists('padding', $data ?? [], null);
         $this->setIfExists('align', $data ?? [], null);
+        $this->setIfExists('voice', $data ?? [], null);
+        $this->setIfExists('language', $data ?? [], null);
+        $this->setIfExists('newscaster', $data ?? [], false);
+        $this->setIfExists('music_length_ms', $data ?? [], null);
+        $this->setIfExists('force_instrumental', $data ?? [], false);
+        $this->setIfExists('composition_plan', $data ?? [], null);
         $this->setIfExists('effect', $data ?? [], null);
         $this->setIfExists('margin', $data ?? [], null);
         $this->setIfExists('active', $data ?? [], null);
         $this->setIfExists('html', $data ?? [], null);
         $this->setIfExists('css', $data ?? [], null);
         $this->setIfExists('position', $data ?? [], null);
+        $this->setIfExists('js', $data ?? [], null);
         $this->setIfExists('color', $data ?? [], null);
         $this->setIfExists('size', $data ?? [], null);
         $this->setIfExists('offset', $data ?? [], null);
@@ -734,11 +858,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('rectangle', $data ?? [], null);
         $this->setIfExists('circle', $data ?? [], null);
         $this->setIfExists('line', $data ?? [], null);
-        $this->setIfExists('prompt', $data ?? [], null);
-        $this->setIfExists('aspect_ratio', $data ?? [], null);
-        $this->setIfExists('voice', $data ?? [], null);
-        $this->setIfExists('language', $data ?? [], null);
-        $this->setIfExists('newscaster', $data ?? [], false);
 
         // Initialize discriminator property with the model name.
         $this->container['type'] = static::$openAPIModelName;
@@ -790,6 +909,40 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
         }
 
+        if ($this->container['prompt'] === null) {
+            $invalidProperties[] = "'prompt' can't be null";
+        }
+        if (!is_null($this->container['input_src']) && (mb_strlen($this->container['input_src']) < 1)) {
+            $invalidProperties[] = "invalid value for 'input_src', the character length must be bigger than or equal to 1.";
+        }
+
+        $allowedValues = $this->getResolutionAllowableValues();
+        if (!is_null($this->container['resolution']) && !in_array($this->container['resolution'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'resolution', must be one of '%s'",
+                $this->container['resolution'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getDurationAllowableValues();
+        if (!is_null($this->container['duration']) && !in_array($this->container['duration'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'duration', must be one of '%s'",
+                $this->container['duration'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAspectRatioAllowableValues();
+        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
+                $this->container['aspect_ratio'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         $allowedValues = $this->getVolumeEffectAllowableValues();
         if (!is_null($this->container['volume_effect']) && !in_array($this->container['volume_effect'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -819,6 +972,21 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
+        if ($this->container['voice'] === null) {
+            $invalidProperties[] = "'voice' can't be null";
+        }
+        if (!is_null($this->container['music_length_ms']) && ($this->container['music_length_ms'] > 600000)) {
+            $invalidProperties[] = "invalid value for 'music_length_ms', must be smaller than or equal to 600000.";
+        }
+
+        if (!is_null($this->container['music_length_ms']) && ($this->container['music_length_ms'] < 3000)) {
+            $invalidProperties[] = "invalid value for 'music_length_ms', must be bigger than or equal to 3000.";
+        }
+
+        if (!is_null($this->container['composition_plan']) && (mb_strlen($this->container['composition_plan']) > 4000)) {
+            $invalidProperties[] = "invalid value for 'composition_plan', the character length must be smaller than or equal to 4000.";
+        }
+
         $allowedValues = $this->getEffectAllowableValues();
         if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -831,6 +999,14 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['html'] === null) {
             $invalidProperties[] = "'html' can't be null";
         }
+        if ((mb_strlen($this->container['html']) > 1000000)) {
+            $invalidProperties[] = "invalid value for 'html', the character length must be smaller than or equal to 1000000.";
+        }
+
+        if (!is_null($this->container['css']) && (mb_strlen($this->container['css']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'css', the character length must be smaller than or equal to 500000.";
+        }
+
         $allowedValues = $this->getPositionAllowableValues();
         if (!is_null($this->container['position']) && !in_array($this->container['position'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
@@ -838,6 +1014,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
                 $this->container['position'],
                 implode("', '", $allowedValues)
             );
+        }
+
+        if (!is_null($this->container['js']) && (mb_strlen($this->container['js']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'js', the character length must be smaller than or equal to 500000.";
         }
 
         $allowedValues = $this->getSizeAllowableValues();
@@ -861,21 +1041,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['prompt'] === null) {
-            $invalidProperties[] = "'prompt' can't be null";
-        }
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                $this->container['aspect_ratio'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if ($this->container['voice'] === null) {
-            $invalidProperties[] = "'voice' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -956,6 +1121,230 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string $prompt The instructions for modifying the image into a video sequence.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets input_src
+     *
+     * @return string|null
+     */
+    public function getInputSrc()
+    {
+        return $this->container['input_src'];
+    }
+
+    /**
+     * Sets input_src
+     *
+     * @param string|null $input_src Input image URL for image-to-video generation. The image is used as the starting frame; `prompt` describes the motion. Has no effect unless `prompt` is set.
+     *
+     * @return self
+     */
+    public function setInputSrc($input_src)
+    {
+        if (is_null($input_src)) {
+            throw new \InvalidArgumentException('non-nullable input_src cannot be null');
+        }
+
+        if ((mb_strlen($input_src) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $input_src when calling Asset., must be bigger than or equal to 1.');
+        }
+
+        $this->container['input_src'] = $input_src;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string|null
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string|null $model The generation model to use when `prompt` is set (e.g. `polly-neural`, `fal/elevenlabs-tts`, `fal/minimax-speech`, `fal/elevenlabs-music`). Defaults to the platform's preferred generator if omitted.
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolution
+     *
+     * @return string|null
+     */
+    public function getResolution()
+    {
+        return $this->container['resolution'];
+    }
+
+    /**
+     * Sets resolution
+     *
+     * @param string|null $resolution Output resolution tier for supported image generation models. `1K` (default), `2K`, or `4K`. Only meaningful when `prompt` is set.
+     *
+     * @return self
+     */
+    public function setResolution($resolution)
+    {
+        if (is_null($resolution)) {
+            throw new \InvalidArgumentException('non-nullable resolution cannot be null');
+        }
+        $allowedValues = $this->getResolutionAllowableValues();
+        if (!in_array($resolution, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'resolution', must be one of '%s'",
+                    $resolution,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['resolution'] = $resolution;
+
+        return $this;
+    }
+
+    /**
+     * Gets duration
+     *
+     * @return string|null
+     */
+    public function getDuration()
+    {
+        return $this->container['duration'];
+    }
+
+    /**
+     * Sets duration
+     *
+     * @param string|null $duration Target video duration in seconds for generation models that accept it. `\"auto\"` lets the model decide. Only meaningful when `prompt` is set.
+     *
+     * @return self
+     */
+    public function setDuration($duration)
+    {
+        if (is_null($duration)) {
+            throw new \InvalidArgumentException('non-nullable duration cannot be null');
+        }
+        $allowedValues = $this->getDurationAllowableValues();
+        if (!in_array($duration, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'duration', must be one of '%s'",
+                    $duration,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['duration'] = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets aspect_ratio
+     *
+     * @return string|null
+     */
+    public function getAspectRatio()
+    {
+        return $this->container['aspect_ratio'];
+    }
+
+    /**
+     * Sets aspect_ratio
+     *
+     * @param string|null $aspect_ratio The aspect ratio (shape) of the video output.
+     *
+     * @return self
+     */
+    public function setAspectRatio($aspect_ratio)
+    {
+        if (is_null($aspect_ratio)) {
+            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
+        }
+        $allowedValues = $this->getAspectRatioAllowableValues();
+        if (!in_array($aspect_ratio, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
+                    $aspect_ratio,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['aspect_ratio'] = $aspect_ratio;
+
+        return $this;
+    }
+
+    /**
+     * Gets generate_audio
+     *
+     * @return bool|null
+     */
+    public function getGenerateAudio()
+    {
+        return $this->container['generate_audio'];
+    }
+
+    /**
+     * Sets generate_audio
+     *
+     * @param bool|null $generate_audio Set to `true` to request audio generation alongside the video. Only meaningful for video generation models that support it (e.g. `fal/seedance-2.0`).
+     *
+     * @return self
+     */
+    public function setGenerateAudio($generate_audio)
+    {
+        if (is_null($generate_audio)) {
+            throw new \InvalidArgumentException('non-nullable generate_audio cannot be null');
+        }
+        $this->container['generate_audio'] = $generate_audio;
 
         return $this;
     }
@@ -1556,6 +1945,180 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets voice
+     *
+     * @return string
+     */
+    public function getVoice()
+    {
+        return $this->container['voice'];
+    }
+
+    /**
+     * Sets voice
+     *
+     * @param string $voice The voice to use for the text-to-speech conversion.
+     *
+     * @return self
+     */
+    public function setVoice($voice)
+    {
+        if (is_null($voice)) {
+            throw new \InvalidArgumentException('non-nullable voice cannot be null');
+        }
+        $this->container['voice'] = $voice;
+
+        return $this;
+    }
+
+    /**
+     * Gets language
+     *
+     * @return string|null
+     */
+    public function getLanguage()
+    {
+        return $this->container['language'];
+    }
+
+    /**
+     * Sets language
+     *
+     * @param string|null $language The language code for the text-to-speech conversion.
+     *
+     * @return self
+     */
+    public function setLanguage($language)
+    {
+        if (is_null($language)) {
+            throw new \InvalidArgumentException('non-nullable language cannot be null');
+        }
+        $this->container['language'] = $language;
+
+        return $this;
+    }
+
+    /**
+     * Gets newscaster
+     *
+     * @return bool|null
+     */
+    public function getNewscaster()
+    {
+        return $this->container['newscaster'];
+    }
+
+    /**
+     * Sets newscaster
+     *
+     * @param bool|null $newscaster Set the voice to newscaster mode.
+     *
+     * @return self
+     */
+    public function setNewscaster($newscaster)
+    {
+        if (is_null($newscaster)) {
+            throw new \InvalidArgumentException('non-nullable newscaster cannot be null');
+        }
+        $this->container['newscaster'] = $newscaster;
+
+        return $this;
+    }
+
+    /**
+     * Gets music_length_ms
+     *
+     * @return float|null
+     */
+    public function getMusicLengthMs()
+    {
+        return $this->container['music_length_ms'];
+    }
+
+    /**
+     * Sets music_length_ms
+     *
+     * @param float|null $music_length_ms Target duration in milliseconds for generated music (3,000–600,000). Only meaningful when `prompt` is set and the model is a music generator (e.g. `fal/elevenlabs-music`).
+     *
+     * @return self
+     */
+    public function setMusicLengthMs($music_length_ms)
+    {
+        if (is_null($music_length_ms)) {
+            throw new \InvalidArgumentException('non-nullable music_length_ms cannot be null');
+        }
+
+        if (($music_length_ms > 600000)) {
+            throw new \InvalidArgumentException('invalid value for $music_length_ms when calling Asset., must be smaller than or equal to 600000.');
+        }
+        if (($music_length_ms < 3000)) {
+            throw new \InvalidArgumentException('invalid value for $music_length_ms when calling Asset., must be bigger than or equal to 3000.');
+        }
+
+        $this->container['music_length_ms'] = $music_length_ms;
+
+        return $this;
+    }
+
+    /**
+     * Gets force_instrumental
+     *
+     * @return bool|null
+     */
+    public function getForceInstrumental()
+    {
+        return $this->container['force_instrumental'];
+    }
+
+    /**
+     * Sets force_instrumental
+     *
+     * @param bool|null $force_instrumental Set to `true` to force instrumental music (no vocals). Only meaningful for music generation models.
+     *
+     * @return self
+     */
+    public function setForceInstrumental($force_instrumental)
+    {
+        if (is_null($force_instrumental)) {
+            throw new \InvalidArgumentException('non-nullable force_instrumental cannot be null');
+        }
+        $this->container['force_instrumental'] = $force_instrumental;
+
+        return $this;
+    }
+
+    /**
+     * Gets composition_plan
+     *
+     * @return string|null
+     */
+    public function getCompositionPlan()
+    {
+        return $this->container['composition_plan'];
+    }
+
+    /**
+     * Sets composition_plan
+     *
+     * @param string|null $composition_plan An optional structured composition plan for music generation. Only meaningful for music generation models (e.g. `fal/elevenlabs-music`).
+     *
+     * @return self
+     */
+    public function setCompositionPlan($composition_plan)
+    {
+        if (is_null($composition_plan)) {
+            throw new \InvalidArgumentException('non-nullable composition_plan cannot be null');
+        }
+        if ((mb_strlen($composition_plan) > 4000)) {
+            throw new \InvalidArgumentException('invalid length for $composition_plan when calling Asset., must be smaller than or equal to 4000.');
+        }
+
+        $this->container['composition_plan'] = $composition_plan;
+
+        return $this;
+    }
+
+    /**
      * Gets effect
      *
      * @return string|null
@@ -1659,7 +2222,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets html
      *
-     * @param string $html The HTML text string. See list of [supported HTML tags](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-html-tags).
+     * @param string $html The HTML markup for the asset. Max 1,000,000 characters.
      *
      * @return self
      */
@@ -1668,6 +2231,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($html)) {
             throw new \InvalidArgumentException('non-nullable html cannot be null');
         }
+        if ((mb_strlen($html) > 1000000)) {
+            throw new \InvalidArgumentException('invalid length for $html when calling Asset., must be smaller than or equal to 1000000.');
+        }
+
         $this->container['html'] = $html;
 
         return $this;
@@ -1686,7 +2253,7 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets css
      *
-     * @param string|null $css The CSS text string to apply styling to the HTML. See list of  [support CSS properties](https://shotstack.io/docs/guide/architecting-an-application/html-support/#supported-css-properties).
+     * @param string|null $css The CSS string applied to the HTML. Max 500,000 characters.
      *
      * @return self
      */
@@ -1695,6 +2262,10 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
         if (is_null($css)) {
             throw new \InvalidArgumentException('non-nullable css cannot be null');
         }
+        if ((mb_strlen($css) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $css when calling Asset., must be smaller than or equal to 500000.');
+        }
+
         $this->container['css'] = $css;
 
         return $this;
@@ -1733,6 +2304,37 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['position'] = $position;
+
+        return $this;
+    }
+
+    /**
+     * Gets js
+     *
+     * @return string|null
+     */
+    public function getJs()
+    {
+        return $this->container['js'];
+    }
+
+    /**
+     * Sets js
+     *
+     * @param string|null $js Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
+     *
+     * @return self
+     */
+    public function setJs($js)
+    {
+        if (is_null($js)) {
+            throw new \InvalidArgumentException('non-nullable js cannot be null');
+        }
+        if ((mb_strlen($js) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $js when calling Asset., must be smaller than or equal to 500000.');
+        }
+
+        $this->container['js'] = $js;
 
         return $this;
     }
@@ -1969,151 +2571,6 @@ class Asset implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable line cannot be null');
         }
         $this->container['line'] = $line;
-
-        return $this;
-    }
-
-    /**
-     * Gets prompt
-     *
-     * @return string
-     */
-    public function getPrompt()
-    {
-        return $this->container['prompt'];
-    }
-
-    /**
-     * Sets prompt
-     *
-     * @param string $prompt The instructions for modifying the image into a video sequence.
-     *
-     * @return self
-     */
-    public function setPrompt($prompt)
-    {
-        if (is_null($prompt)) {
-            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
-        }
-        $this->container['prompt'] = $prompt;
-
-        return $this;
-    }
-
-    /**
-     * Gets aspect_ratio
-     *
-     * @return string|null
-     */
-    public function getAspectRatio()
-    {
-        return $this->container['aspect_ratio'];
-    }
-
-    /**
-     * Sets aspect_ratio
-     *
-     * @param string|null $aspect_ratio The aspect ratio (shape) of the video output.
-     *
-     * @return self
-     */
-    public function setAspectRatio($aspect_ratio)
-    {
-        if (is_null($aspect_ratio)) {
-            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
-        }
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!in_array($aspect_ratio, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                    $aspect_ratio,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['aspect_ratio'] = $aspect_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets voice
-     *
-     * @return string
-     */
-    public function getVoice()
-    {
-        return $this->container['voice'];
-    }
-
-    /**
-     * Sets voice
-     *
-     * @param string $voice The voice to use for the text-to-speech conversion.
-     *
-     * @return self
-     */
-    public function setVoice($voice)
-    {
-        if (is_null($voice)) {
-            throw new \InvalidArgumentException('non-nullable voice cannot be null');
-        }
-        $this->container['voice'] = $voice;
-
-        return $this;
-    }
-
-    /**
-     * Gets language
-     *
-     * @return string|null
-     */
-    public function getLanguage()
-    {
-        return $this->container['language'];
-    }
-
-    /**
-     * Sets language
-     *
-     * @param string|null $language The language code for the text-to-speech conversion.
-     *
-     * @return self
-     */
-    public function setLanguage($language)
-    {
-        if (is_null($language)) {
-            throw new \InvalidArgumentException('non-nullable language cannot be null');
-        }
-        $this->container['language'] = $language;
-
-        return $this;
-    }
-
-    /**
-     * Gets newscaster
-     *
-     * @return bool|null
-     */
-    public function getNewscaster()
-    {
-        return $this->container['newscaster'];
-    }
-
-    /**
-     * Sets newscaster
-     *
-     * @param bool|null $newscaster Set the voice to newscaster mode.
-     *
-     * @return self
-     */
-    public function setNewscaster($newscaster)
-    {
-        if (is_null($newscaster)) {
-            throw new \InvalidArgumentException('non-nullable newscaster cannot be null');
-        }
-        $this->container['newscaster'] = $newscaster;
 
         return $this;
     }
