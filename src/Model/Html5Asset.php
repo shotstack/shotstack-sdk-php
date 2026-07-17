@@ -1,6 +1,6 @@
 <?php
 /**
- * GoogleDriveDestinationOptions
+ * Html5Asset
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * GoogleDriveDestinationOptions Class Doc Comment
+ * Html5Asset Class Doc Comment
  *
  * @category Class
- * @description Pass the folder ID and options to configure how assets are stored in Google Drive.
+ * @description The Html5Asset renders full HTML5/CSS3/JS.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \JsonSerializable
+class Html5Asset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
       *
       * @var string
       */
-    protected static $openAPIModelName = 'GoogleDriveDestinationOptions';
+    protected static $openAPIModelName = 'Html5Asset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
       * @var string[]
       */
     protected static $openAPITypes = [
-        'folder_id' => 'string',
-        'filename' => 'string'
+        'type' => 'string',
+        'html' => 'string',
+        'css' => 'string',
+        'js' => 'string'
     ];
 
     /**
@@ -70,8 +72,10 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'folder_id' => null,
-        'filename' => null
+        'type' => null,
+        'html' => null,
+        'css' => null,
+        'js' => null
     ];
 
     /**
@@ -80,8 +84,10 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'folder_id' => false,
-        'filename' => false
+        'type' => false,
+        'html' => false,
+        'css' => false,
+        'js' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $attributeMap = [
-        'folder_id' => 'folderId',
-        'filename' => 'filename'
+        'type' => 'type',
+        'html' => 'html',
+        'css' => 'css',
+        'js' => 'js'
     ];
 
     /**
@@ -180,8 +188,10 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $setters = [
-        'folder_id' => 'setFolderId',
-        'filename' => 'setFilename'
+        'type' => 'setType',
+        'html' => 'setHtml',
+        'css' => 'setCss',
+        'js' => 'setJs'
     ];
 
     /**
@@ -190,8 +200,10 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
      * @var string[]
      */
     protected static $getters = [
-        'folder_id' => 'getFolderId',
-        'filename' => 'getFilename'
+        'type' => 'getType',
+        'html' => 'getHtml',
+        'css' => 'getCss',
+        'js' => 'getJs'
     ];
 
     /**
@@ -235,6 +247,19 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
         return self::$openAPIModelName;
     }
 
+    public const TYPE_HTML5 = 'html5';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_HTML5,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -251,8 +276,10 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('folder_id', $data ?? [], null);
-        $this->setIfExists('filename', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'html5');
+        $this->setIfExists('html', $data ?? [], null);
+        $this->setIfExists('css', $data ?? [], null);
+        $this->setIfExists('js', $data ?? [], null);
     }
 
     /**
@@ -282,6 +309,33 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
+        }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['html'] === null) {
+            $invalidProperties[] = "'html' can't be null";
+        }
+        if ((mb_strlen($this->container['html']) > 1000000)) {
+            $invalidProperties[] = "invalid value for 'html', the character length must be smaller than or equal to 1000000.";
+        }
+
+        if (!is_null($this->container['css']) && (mb_strlen($this->container['css']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'css', the character length must be smaller than or equal to 500000.";
+        }
+
+        if (!is_null($this->container['js']) && (mb_strlen($this->container['js']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'js', the character length must be smaller than or equal to 500000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -298,55 +352,131 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
 
 
     /**
-     * Gets folder_id
+     * Gets type
      *
-     * @return string|null
+     * @return string
      */
-    public function getFolderId()
+    public function getType()
     {
-        return $this->container['folder_id'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets folder_id
+     * Sets type
      *
-     * @param string|null $folder_id The Google Drive folder ID where the asset will be stored. If omitted, the asset is saved to the root of My Drive. The folder ID can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
+     * @param string $type The type of asset - set to `html5` for HTML5/CSS3/JS.
      *
      * @return self
      */
-    public function setFolderId($folder_id)
+    public function setType($type)
     {
-        if (is_null($folder_id)) {
-            throw new \InvalidArgumentException('non-nullable folder_id cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['folder_id'] = $folder_id;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets filename
+     * Gets html
      *
-     * @return string|null
+     * @return string
      */
-    public function getFilename()
+    public function getHtml()
     {
-        return $this->container['filename'];
+        return $this->container['html'];
     }
 
     /**
-     * Sets filename
+     * Sets html
      *
-     * @param string|null $filename Use your own filename instead of the default filenames generated by Shotstack. Note: omit the file extension as this will be appended depending on the output format. Also `-poster.jpg` and `-thumb.jpg` will be appended for poster and thumbnail images.
+     * @param string $html The HTML markup for the asset. Max 1,000,000 characters.
      *
      * @return self
      */
-    public function setFilename($filename)
+    public function setHtml($html)
     {
-        if (is_null($filename)) {
-            throw new \InvalidArgumentException('non-nullable filename cannot be null');
+        if (is_null($html)) {
+            throw new \InvalidArgumentException('non-nullable html cannot be null');
         }
-        $this->container['filename'] = $filename;
+        if ((mb_strlen($html) > 1000000)) {
+            throw new \InvalidArgumentException('invalid length for $html when calling Html5Asset., must be smaller than or equal to 1000000.');
+        }
+
+        $this->container['html'] = $html;
+
+        return $this;
+    }
+
+    /**
+     * Gets css
+     *
+     * @return string|null
+     */
+    public function getCss()
+    {
+        return $this->container['css'];
+    }
+
+    /**
+     * Sets css
+     *
+     * @param string|null $css The CSS string applied to the HTML. Max 500,000 characters.
+     *
+     * @return self
+     */
+    public function setCss($css)
+    {
+        if (is_null($css)) {
+            throw new \InvalidArgumentException('non-nullable css cannot be null');
+        }
+        if ((mb_strlen($css) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $css when calling Html5Asset., must be smaller than or equal to 500000.');
+        }
+
+        $this->container['css'] = $css;
+
+        return $this;
+    }
+
+    /**
+     * Gets js
+     *
+     * @return string|null
+     */
+    public function getJs()
+    {
+        return $this->container['js'];
+    }
+
+    /**
+     * Sets js
+     *
+     * @param string|null $js Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
+     *
+     * @return self
+     */
+    public function setJs($js)
+    {
+        if (is_null($js)) {
+            throw new \InvalidArgumentException('non-nullable js cannot be null');
+        }
+        if ((mb_strlen($js) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $js when calling Html5Asset., must be smaller than or equal to 500000.');
+        }
+
+        $this->container['js'] = $js;
 
         return $this;
     }
