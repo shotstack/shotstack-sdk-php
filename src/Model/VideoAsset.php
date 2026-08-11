@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * VideoAsset Class Doc Comment
  *
  * @category Class
- * @description The VideoAsset is used to create video sequences from video files. The src must be a publicly accessible URL to a video resource such as an mp4 file.
+ * @description The VideoAsset adds a video to a Clip. The video can be sourced from a URL (&#x60;src&#x60;) or generated from a text prompt (&#x60;prompt&#x60;), optionally from a starting image (&#x60;inputSrc&#x60;). Exactly one of &#x60;src&#x60; or &#x60;prompt&#x60; must be provided.  - **Source URL:** set &#x60;src&#x60; to the URL of an mp4 (or compatible) video file. - **Generated:** set &#x60;prompt&#x60; to describe the motion. Optionally set &#x60;inputSrc&#x60;   to a starting image URL (image-to-video). Use &#x60;model&#x60; to choose the generator   (e.g. &#x60;luma-ray-3&#x60;, &#x60;runpod-itv-mini&#x60;). The generated &#x60;src&#x60; is filled in   automatically.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,6 +60,13 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
+        'prompt' => 'string',
+        'input_src' => 'string',
+        'model' => 'string',
+        'resolution' => 'string',
+        'duration' => 'string',
+        'aspect_ratio' => 'string',
+        'generate_audio' => 'bool',
         'transcode' => 'bool',
         'trim' => 'float',
         'volume' => '\ShotstackClient\Model\VideoAssetVolume',
@@ -79,6 +86,13 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
+        'prompt' => null,
+        'input_src' => null,
+        'model' => null,
+        'resolution' => null,
+        'duration' => null,
+        'aspect_ratio' => null,
+        'generate_audio' => null,
         'transcode' => null,
         'trim' => null,
         'volume' => null,
@@ -96,6 +110,13 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
+        'prompt' => false,
+        'input_src' => false,
+        'model' => false,
+        'resolution' => false,
+        'duration' => false,
+        'aspect_ratio' => false,
+        'generate_audio' => false,
         'transcode' => false,
         'trim' => false,
         'volume' => false,
@@ -193,6 +214,13 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
+        'prompt' => 'prompt',
+        'input_src' => 'inputSrc',
+        'model' => 'model',
+        'resolution' => 'resolution',
+        'duration' => 'duration',
+        'aspect_ratio' => 'aspectRatio',
+        'generate_audio' => 'generateAudio',
         'transcode' => 'transcode',
         'trim' => 'trim',
         'volume' => 'volume',
@@ -210,6 +238,13 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
+        'prompt' => 'setPrompt',
+        'input_src' => 'setInputSrc',
+        'model' => 'setModel',
+        'resolution' => 'setResolution',
+        'duration' => 'setDuration',
+        'aspect_ratio' => 'setAspectRatio',
+        'generate_audio' => 'setGenerateAudio',
         'transcode' => 'setTranscode',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
@@ -227,6 +262,13 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
+        'prompt' => 'getPrompt',
+        'input_src' => 'getInputSrc',
+        'model' => 'getModel',
+        'resolution' => 'getResolution',
+        'duration' => 'getDuration',
+        'aspect_ratio' => 'getAspectRatio',
+        'generate_audio' => 'getGenerateAudio',
         'transcode' => 'getTranscode',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
@@ -278,6 +320,29 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     public const TYPE_VIDEO = 'video';
+    public const RESOLUTION__480P = '480p';
+    public const RESOLUTION__720P = '720p';
+    public const RESOLUTION__1080P = '1080p';
+    public const DURATION_AUTO = 'auto';
+    public const DURATION__4 = '4';
+    public const DURATION__5 = '5';
+    public const DURATION__6 = '6';
+    public const DURATION__7 = '7';
+    public const DURATION__8 = '8';
+    public const DURATION__9 = '9';
+    public const DURATION__10 = '10';
+    public const DURATION__11 = '11';
+    public const DURATION__12 = '12';
+    public const DURATION__13 = '13';
+    public const DURATION__14 = '14';
+    public const DURATION__15 = '15';
+    public const ASPECT_RATIO__11 = '1:1';
+    public const ASPECT_RATIO__169 = '16:9';
+    public const ASPECT_RATIO__916 = '9:16';
+    public const ASPECT_RATIO__43 = '4:3';
+    public const ASPECT_RATIO__34 = '3:4';
+    public const ASPECT_RATIO__219 = '21:9';
+    public const ASPECT_RATIO__921 = '9:21';
     public const VOLUME_EFFECT_NONE = 'none';
     public const VOLUME_EFFECT_FADE_IN = 'fadeIn';
     public const VOLUME_EFFECT_FADE_OUT = 'fadeOut';
@@ -292,6 +357,62 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::TYPE_VIDEO,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResolutionAllowableValues()
+    {
+        return [
+            self::RESOLUTION__480P,
+            self::RESOLUTION__720P,
+            self::RESOLUTION__1080P,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getDurationAllowableValues()
+    {
+        return [
+            self::DURATION_AUTO,
+            self::DURATION__4,
+            self::DURATION__5,
+            self::DURATION__6,
+            self::DURATION__7,
+            self::DURATION__8,
+            self::DURATION__9,
+            self::DURATION__10,
+            self::DURATION__11,
+            self::DURATION__12,
+            self::DURATION__13,
+            self::DURATION__14,
+            self::DURATION__15,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAspectRatioAllowableValues()
+    {
+        return [
+            self::ASPECT_RATIO__11,
+            self::ASPECT_RATIO__169,
+            self::ASPECT_RATIO__916,
+            self::ASPECT_RATIO__43,
+            self::ASPECT_RATIO__34,
+            self::ASPECT_RATIO__219,
+            self::ASPECT_RATIO__921,
         ];
     }
 
@@ -327,6 +448,13 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('type', $data ?? [], 'video');
         $this->setIfExists('src', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('input_src', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('resolution', $data ?? [], null);
+        $this->setIfExists('duration', $data ?? [], 'auto');
+        $this->setIfExists('aspect_ratio', $data ?? [], null);
+        $this->setIfExists('generate_audio', $data ?? [], false);
         $this->setIfExists('transcode', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
@@ -375,15 +503,47 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        if ((mb_strlen($this->container['src']) < 1)) {
+        if (!is_null($this->container['src']) && (mb_strlen($this->container['src']) < 1)) {
             $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
         }
 
-        if (!preg_match("/\\S/", $this->container['src'])) {
+        if (!is_null($this->container['src']) && !preg_match("/\\S/", $this->container['src'])) {
             $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        }
+
+        if (!is_null($this->container['prompt']) && (mb_strlen($this->container['prompt']) > 4000)) {
+            $invalidProperties[] = "invalid value for 'prompt', the character length must be smaller than or equal to 4000.";
+        }
+
+        if (!is_null($this->container['input_src']) && (mb_strlen($this->container['input_src']) < 1)) {
+            $invalidProperties[] = "invalid value for 'input_src', the character length must be bigger than or equal to 1.";
+        }
+
+        $allowedValues = $this->getResolutionAllowableValues();
+        if (!is_null($this->container['resolution']) && !in_array($this->container['resolution'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'resolution', must be one of '%s'",
+                $this->container['resolution'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getDurationAllowableValues();
+        if (!is_null($this->container['duration']) && !in_array($this->container['duration'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'duration', must be one of '%s'",
+                $this->container['duration'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAspectRatioAllowableValues();
+        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
+                $this->container['aspect_ratio'],
+                implode("', '", $allowedValues)
+            );
         }
 
         $allowedValues = $this->getVolumeEffectAllowableValues();
@@ -458,7 +618,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets src
      *
-     * @return string
+     * @return string|null
      */
     public function getSrc()
     {
@@ -468,7 +628,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets src
      *
-     * @param string $src The video source URL. The URL must be publicly accessible or include credentials.
+     * @param string|null $src The video source URL. The URL must be publicly accessible or include credentials. Provide either `src` or `prompt`, not both.
      *
      * @return self
      */
@@ -486,6 +646,234 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string|null
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string|null $prompt A text prompt to generate the video from. When set without `src`, the engine generates a video and fills `src` automatically. Optionally pair with `inputSrc` for image-to-video. Use `model` to choose the generator.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        if ((mb_strlen($prompt) > 4000)) {
+            throw new \InvalidArgumentException('invalid length for $prompt when calling VideoAsset., must be smaller than or equal to 4000.');
+        }
+
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets input_src
+     *
+     * @return string|null
+     */
+    public function getInputSrc()
+    {
+        return $this->container['input_src'];
+    }
+
+    /**
+     * Sets input_src
+     *
+     * @param string|null $input_src Input image URL for image-to-video generation. The image is used as the starting frame; `prompt` describes the motion. Has no effect unless `prompt` is set.
+     *
+     * @return self
+     */
+    public function setInputSrc($input_src)
+    {
+        if (is_null($input_src)) {
+            throw new \InvalidArgumentException('non-nullable input_src cannot be null');
+        }
+
+        if ((mb_strlen($input_src) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $input_src when calling VideoAsset., must be bigger than or equal to 1.');
+        }
+
+        $this->container['input_src'] = $input_src;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string|null
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string|null $model The generation model to use when `prompt` is set (e.g. `luma-ray-3`, `runpod-itv-mini`, `fal/seedance-2.0`). Defaults to the platform's preferred generator if omitted.
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolution
+     *
+     * @return string|null
+     */
+    public function getResolution()
+    {
+        return $this->container['resolution'];
+    }
+
+    /**
+     * Sets resolution
+     *
+     * @param string|null $resolution Output resolution for video generation. Only meaningful when `prompt` is set and the model supports it (e.g. `fal/seedance-2.0`).
+     *
+     * @return self
+     */
+    public function setResolution($resolution)
+    {
+        if (is_null($resolution)) {
+            throw new \InvalidArgumentException('non-nullable resolution cannot be null');
+        }
+        $allowedValues = $this->getResolutionAllowableValues();
+        if (!in_array($resolution, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'resolution', must be one of '%s'",
+                    $resolution,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['resolution'] = $resolution;
+
+        return $this;
+    }
+
+    /**
+     * Gets duration
+     *
+     * @return string|null
+     */
+    public function getDuration()
+    {
+        return $this->container['duration'];
+    }
+
+    /**
+     * Sets duration
+     *
+     * @param string|null $duration Target video duration in seconds for generation models that accept it. `\"auto\"` lets the model decide. Only meaningful when `prompt` is set.
+     *
+     * @return self
+     */
+    public function setDuration($duration)
+    {
+        if (is_null($duration)) {
+            throw new \InvalidArgumentException('non-nullable duration cannot be null');
+        }
+        $allowedValues = $this->getDurationAllowableValues();
+        if (!in_array($duration, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'duration', must be one of '%s'",
+                    $duration,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['duration'] = $duration;
+
+        return $this;
+    }
+
+    /**
+     * Gets aspect_ratio
+     *
+     * @return string|null
+     */
+    public function getAspectRatio()
+    {
+        return $this->container['aspect_ratio'];
+    }
+
+    /**
+     * Sets aspect_ratio
+     *
+     * @param string|null $aspect_ratio Aspect ratio for the generated video. Only meaningful when `prompt` is set and the model supports it.
+     *
+     * @return self
+     */
+    public function setAspectRatio($aspect_ratio)
+    {
+        if (is_null($aspect_ratio)) {
+            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
+        }
+        $allowedValues = $this->getAspectRatioAllowableValues();
+        if (!in_array($aspect_ratio, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
+                    $aspect_ratio,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['aspect_ratio'] = $aspect_ratio;
+
+        return $this;
+    }
+
+    /**
+     * Gets generate_audio
+     *
+     * @return bool|null
+     */
+    public function getGenerateAudio()
+    {
+        return $this->container['generate_audio'];
+    }
+
+    /**
+     * Sets generate_audio
+     *
+     * @param bool|null $generate_audio Set to `true` to request audio generation alongside the video. Only meaningful for video generation models that support it (e.g. `fal/seedance-2.0`).
+     *
+     * @return self
+     */
+    public function setGenerateAudio($generate_audio)
+    {
+        if (is_null($generate_audio)) {
+            throw new \InvalidArgumentException('non-nullable generate_audio cannot be null');
+        }
+        $this->container['generate_audio'] = $generate_audio;
 
         return $this;
     }
@@ -621,7 +1009,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets speed
      *
-     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
      *
      * @return self
      */
