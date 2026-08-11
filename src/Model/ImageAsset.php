@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * ImageAsset Class Doc Comment
  *
  * @category Class
- * @description The ImageAsset is used to create video from images to compose an image. The src must be a publicly accessible URL to an image resource such as a jpg or png file.
+ * @description The ImageAsset adds an image to a Clip. The image can be sourced from a URL (&#x60;src&#x60;) or generated from a text prompt (&#x60;prompt&#x60;). Exactly one of &#x60;src&#x60; or &#x60;prompt&#x60; must be provided.  - **Source URL:** set &#x60;src&#x60; to the publicly accessible URL of a jpg or png file. - **Generated:** set &#x60;prompt&#x60; to describe the image; the engine generates it   using the provider chosen by &#x60;model&#x60; and fills &#x60;src&#x60; in automatically.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,6 +60,10 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
+        'prompt' => 'string',
+        'model' => 'string',
+        'resolution' => 'string',
+        'aspect_ratio' => 'string',
         'crop' => '\ShotstackClient\Model\Crop'
     ];
 
@@ -73,6 +77,10 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
+        'prompt' => null,
+        'model' => null,
+        'resolution' => null,
+        'aspect_ratio' => null,
         'crop' => null
     ];
 
@@ -84,6 +92,10 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
+        'prompt' => false,
+        'model' => false,
+        'resolution' => false,
+        'aspect_ratio' => false,
         'crop' => false
     ];
 
@@ -175,6 +187,10 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
+        'prompt' => 'prompt',
+        'model' => 'model',
+        'resolution' => 'resolution',
+        'aspect_ratio' => 'aspectRatio',
         'crop' => 'crop'
     ];
 
@@ -186,6 +202,10 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
+        'prompt' => 'setPrompt',
+        'model' => 'setModel',
+        'resolution' => 'setResolution',
+        'aspect_ratio' => 'setAspectRatio',
         'crop' => 'setCrop'
     ];
 
@@ -197,6 +217,10 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
+        'prompt' => 'getPrompt',
+        'model' => 'getModel',
+        'resolution' => 'getResolution',
+        'aspect_ratio' => 'getAspectRatio',
         'crop' => 'getCrop'
     ];
 
@@ -242,6 +266,16 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     public const TYPE_IMAGE = 'image';
+    public const RESOLUTION__1_K = '1K';
+    public const RESOLUTION__2_K = '2K';
+    public const RESOLUTION__4_K = '4K';
+    public const ASPECT_RATIO__11 = '1:1';
+    public const ASPECT_RATIO__169 = '16:9';
+    public const ASPECT_RATIO__916 = '9:16';
+    public const ASPECT_RATIO__43 = '4:3';
+    public const ASPECT_RATIO__34 = '3:4';
+    public const ASPECT_RATIO__219 = '21:9';
+    public const ASPECT_RATIO__921 = '9:21';
 
     /**
      * Gets allowable values of the enum
@@ -252,6 +286,38 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         return [
             self::TYPE_IMAGE,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getResolutionAllowableValues()
+    {
+        return [
+            self::RESOLUTION__1_K,
+            self::RESOLUTION__2_K,
+            self::RESOLUTION__4_K,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getAspectRatioAllowableValues()
+    {
+        return [
+            self::ASPECT_RATIO__11,
+            self::ASPECT_RATIO__169,
+            self::ASPECT_RATIO__916,
+            self::ASPECT_RATIO__43,
+            self::ASPECT_RATIO__34,
+            self::ASPECT_RATIO__219,
+            self::ASPECT_RATIO__921,
         ];
     }
 
@@ -272,6 +338,10 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('type', $data ?? [], 'image');
         $this->setIfExists('src', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('resolution', $data ?? [], null);
+        $this->setIfExists('aspect_ratio', $data ?? [], null);
         $this->setIfExists('crop', $data ?? [], null);
     }
 
@@ -314,15 +384,34 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        if ((mb_strlen($this->container['src']) < 1)) {
+        if (!is_null($this->container['src']) && (mb_strlen($this->container['src']) < 1)) {
             $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
         }
 
-        if (!preg_match("/\\S/", $this->container['src'])) {
+        if (!is_null($this->container['src']) && !preg_match("/\\S/", $this->container['src'])) {
             $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        }
+
+        if (!is_null($this->container['prompt']) && (mb_strlen($this->container['prompt']) > 4000)) {
+            $invalidProperties[] = "invalid value for 'prompt', the character length must be smaller than or equal to 4000.";
+        }
+
+        $allowedValues = $this->getResolutionAllowableValues();
+        if (!is_null($this->container['resolution']) && !in_array($this->container['resolution'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'resolution', must be one of '%s'",
+                $this->container['resolution'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getAspectRatioAllowableValues();
+        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
+                $this->container['aspect_ratio'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -380,7 +469,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets src
      *
-     * @return string
+     * @return string|null
      */
     public function getSrc()
     {
@@ -390,7 +479,7 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets src
      *
-     * @param string $src The image source URL. The URL must be publicly accessible or include credentials.
+     * @param string|null $src The image source URL. The URL must be publicly accessible or include credentials. Provide either `src` or `prompt`, not both.
      *
      * @return self
      */
@@ -408,6 +497,138 @@ class ImageAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string|null
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string|null $prompt A text prompt to generate the image from. When set without `src`, the engine generates an image and fills `src` automatically. Use `model` to choose the generator.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        if ((mb_strlen($prompt) > 4000)) {
+            throw new \InvalidArgumentException('invalid length for $prompt when calling ImageAsset., must be smaller than or equal to 4000.');
+        }
+
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string|null
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string|null $model The generation model to use when `prompt` is set (e.g. `flux-schnell`, `fal/flux-schnell`, `fal/nano-banana-2`). Defaults to the platform's preferred generator if omitted.
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Gets resolution
+     *
+     * @return string|null
+     */
+    public function getResolution()
+    {
+        return $this->container['resolution'];
+    }
+
+    /**
+     * Sets resolution
+     *
+     * @param string|null $resolution Output resolution tier for supported image generation models. `1K` (default), `2K`, or `4K`. Only meaningful when `prompt` is set.
+     *
+     * @return self
+     */
+    public function setResolution($resolution)
+    {
+        if (is_null($resolution)) {
+            throw new \InvalidArgumentException('non-nullable resolution cannot be null');
+        }
+        $allowedValues = $this->getResolutionAllowableValues();
+        if (!in_array($resolution, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'resolution', must be one of '%s'",
+                    $resolution,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['resolution'] = $resolution;
+
+        return $this;
+    }
+
+    /**
+     * Gets aspect_ratio
+     *
+     * @return string|null
+     */
+    public function getAspectRatio()
+    {
+        return $this->container['aspect_ratio'];
+    }
+
+    /**
+     * Sets aspect_ratio
+     *
+     * @param string|null $aspect_ratio Aspect ratio for the generated image. Only meaningful when `prompt` is set and the model supports it.
+     *
+     * @return self
+     */
+    public function setAspectRatio($aspect_ratio)
+    {
+        if (is_null($aspect_ratio)) {
+            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
+        }
+        $allowedValues = $this->getAspectRatioAllowableValues();
+        if (!in_array($aspect_ratio, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
+                    $aspect_ratio,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['aspect_ratio'] = $aspect_ratio;
 
         return $this;
     }
