@@ -1,6 +1,6 @@
 <?php
 /**
- * AudioAsset
+ * PostGenerateRequestAsset
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * AudioAsset Class Doc Comment
+ * PostGenerateRequestAsset Class Doc Comment
  *
  * @category Class
- * @description The AudioAsset adds audio to a Clip. The audio can be sourced from a URL (&#x60;src&#x60;), generated from a text prompt (&#x60;prompt&#x60;), or both. At least one of &#x60;src&#x60; or &#x60;prompt&#x60; must be provided.  - **Source URL:** set &#x60;src&#x60; to a publicly accessible audio URL (e.g. mp3). - **Generated speech:** set &#x60;prompt&#x60; to the spoken text and choose a   text-to-speech &#x60;model&#x60;; set the voice via &#x60;options&#x60;. - **Generated music or SFX:** set &#x60;prompt&#x60; describing the sound and choose   a music generation &#x60;model&#x60;. - **Both:** &#x60;src&#x60; acts as a preview placeholder while &#x60;prompt&#x60; drives   generation — the audio is regenerated from the prompt at render time.   Unchanged prompts and options resolve from the generation cache. - Use &#x60;model&#x60; to choose the generator and &#x60;options&#x60; to configure it. The   generated &#x60;src&#x60; is filled in automatically.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
+class PostGenerateRequestAsset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AudioAsset';
+    protected static $openAPIModelName = 'postGenerate_request_asset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -63,9 +62,13 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => 'string',
         'model' => 'string',
         'options' => 'array<string,mixed>',
+        'crop' => '\ShotstackClient\Model\Crop',
+        'transcode' => 'bool',
         'trim' => 'float',
         'volume' => '\ShotstackClient\Model\AudioAssetVolume',
+        'volume_effect' => 'string',
         'speed' => 'float',
+        'chroma_key' => '\ShotstackClient\Model\ChromaKey',
         'effect' => 'string'
     ];
 
@@ -82,9 +85,13 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => null,
         'model' => null,
         'options' => null,
+        'crop' => null,
+        'transcode' => null,
         'trim' => null,
         'volume' => null,
+        'volume_effect' => null,
         'speed' => 'float',
+        'chroma_key' => null,
         'effect' => null
     ];
 
@@ -99,9 +106,13 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => false,
         'model' => false,
         'options' => false,
+        'crop' => false,
+        'transcode' => false,
         'trim' => false,
         'volume' => false,
+        'volume_effect' => false,
         'speed' => false,
+        'chroma_key' => false,
         'effect' => false
     ];
 
@@ -196,9 +207,13 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => 'prompt',
         'model' => 'model',
         'options' => 'options',
+        'crop' => 'crop',
+        'transcode' => 'transcode',
         'trim' => 'trim',
         'volume' => 'volume',
+        'volume_effect' => 'volumeEffect',
         'speed' => 'speed',
+        'chroma_key' => 'chromaKey',
         'effect' => 'effect'
     ];
 
@@ -213,9 +228,13 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => 'setPrompt',
         'model' => 'setModel',
         'options' => 'setOptions',
+        'crop' => 'setCrop',
+        'transcode' => 'setTranscode',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
+        'volume_effect' => 'setVolumeEffect',
         'speed' => 'setSpeed',
+        'chroma_key' => 'setChromaKey',
         'effect' => 'setEffect'
     ];
 
@@ -230,9 +249,13 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => 'getPrompt',
         'model' => 'getModel',
         'options' => 'getOptions',
+        'crop' => 'getCrop',
+        'transcode' => 'getTranscode',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
+        'volume_effect' => 'getVolumeEffect',
         'speed' => 'getSpeed',
+        'chroma_key' => 'getChromaKey',
         'effect' => 'getEffect'
     ];
 
@@ -277,7 +300,13 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_IMAGE = 'image';
+    public const TYPE_VIDEO = 'video';
     public const TYPE_AUDIO = 'audio';
+    public const VOLUME_EFFECT_NONE = 'none';
+    public const VOLUME_EFFECT_FADE_IN = 'fadeIn';
+    public const VOLUME_EFFECT_FADE_OUT = 'fadeOut';
+    public const VOLUME_EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
     public const EFFECT_NONE = 'none';
     public const EFFECT_FADE_IN = 'fadeIn';
     public const EFFECT_FADE_OUT = 'fadeOut';
@@ -291,7 +320,24 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
+            self::TYPE_IMAGE,
+            self::TYPE_VIDEO,
             self::TYPE_AUDIO,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getVolumeEffectAllowableValues()
+    {
+        return [
+            self::VOLUME_EFFECT_NONE,
+            self::VOLUME_EFFECT_FADE_IN,
+            self::VOLUME_EFFECT_FADE_OUT,
+            self::VOLUME_EFFECT_FADE_IN_FADE_OUT,
         ];
     }
 
@@ -325,14 +371,18 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'audio');
+        $this->setIfExists('type', $data ?? [], 'image');
         $this->setIfExists('src', $data ?? [], null);
         $this->setIfExists('prompt', $data ?? [], null);
         $this->setIfExists('model', $data ?? [], null);
         $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('crop', $data ?? [], null);
+        $this->setIfExists('transcode', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
+        $this->setIfExists('volume_effect', $data ?? [], null);
         $this->setIfExists('speed', $data ?? [], null);
+        $this->setIfExists('chroma_key', $data ?? [], null);
         $this->setIfExists('effect', $data ?? [], null);
     }
 
@@ -387,6 +437,15 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'prompt', the character length must be smaller than or equal to 4000.";
         }
 
+        $allowedValues = $this->getVolumeEffectAllowableValues();
+        if (!is_null($this->container['volume_effect']) && !in_array($this->container['volume_effect'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'volume_effect', must be one of '%s'",
+                $this->container['volume_effect'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         if (!is_null($this->container['speed']) && ($this->container['speed'] > 10)) {
             $invalidProperties[] = "invalid value for 'speed', must be smaller than or equal to 10.";
         }
@@ -432,7 +491,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to `audio` for audio assets.
+     * @param string $type The type of asset - set to `image` for images.
      *
      * @return self
      */
@@ -480,10 +539,10 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling AudioAsset., must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for $src when calling PostGenerateRequestAsset., must be bigger than or equal to 1.');
         }
         if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
-            throw new \InvalidArgumentException("invalid value for \$src when calling AudioAsset., must conform to the pattern /\\S/.");
+            throw new \InvalidArgumentException("invalid value for \$src when calling PostGenerateRequestAsset., must conform to the pattern /\\S/.");
         }
 
         $this->container['src'] = $src;
@@ -514,7 +573,7 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable prompt cannot be null');
         }
         if ((mb_strlen($prompt) > 4000)) {
-            throw new \InvalidArgumentException('invalid length for $prompt when calling AudioAsset., must be smaller than or equal to 4000.');
+            throw new \InvalidArgumentException('invalid length for $prompt when calling PostGenerateRequestAsset., must be smaller than or equal to 4000.');
         }
 
         $this->container['prompt'] = $prompt;
@@ -577,6 +636,60 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets crop
+     *
+     * @return \ShotstackClient\Model\Crop|null
+     */
+    public function getCrop()
+    {
+        return $this->container['crop'];
+    }
+
+    /**
+     * Sets crop
+     *
+     * @param \ShotstackClient\Model\Crop|null $crop crop
+     *
+     * @return self
+     */
+    public function setCrop($crop)
+    {
+        if (is_null($crop)) {
+            throw new \InvalidArgumentException('non-nullable crop cannot be null');
+        }
+        $this->container['crop'] = $crop;
+
+        return $this;
+    }
+
+    /**
+     * Gets transcode
+     *
+     * @return bool|null
+     */
+    public function getTranscode()
+    {
+        return $this->container['transcode'];
+    }
+
+    /**
+     * Sets transcode
+     *
+     * @param bool|null $transcode Set to `true` to force re-encoding of the video during preprocessing. This can help resolve compatibility issues, fix rotation problems, synchronize audio, or convert formats. The video will be processed to ensure optimal compatibility with the rendering engine.
+     *
+     * @return self
+     */
+    public function setTranscode($transcode)
+    {
+        if (is_null($transcode)) {
+            throw new \InvalidArgumentException('non-nullable transcode cannot be null');
+        }
+        $this->container['transcode'] = $transcode;
+
+        return $this;
+    }
+
+    /**
      * Gets trim
      *
      * @return float|null
@@ -631,6 +744,43 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets volume_effect
+     *
+     * @return string|null
+     */
+    public function getVolumeEffect()
+    {
+        return $this->container['volume_effect'];
+    }
+
+    /**
+     * Sets volume_effect
+     *
+     * @param string|null $volume_effect Preset volume effects to apply to the video asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     *
+     * @return self
+     */
+    public function setVolumeEffect($volume_effect)
+    {
+        if (is_null($volume_effect)) {
+            throw new \InvalidArgumentException('non-nullable volume_effect cannot be null');
+        }
+        $allowedValues = $this->getVolumeEffectAllowableValues();
+        if (!in_array($volume_effect, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'volume_effect', must be one of '%s'",
+                    $volume_effect,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['volume_effect'] = $volume_effect;
+
+        return $this;
+    }
+
+    /**
      * Gets speed
      *
      * @return float|null
@@ -654,13 +804,40 @@ class AudioAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if (($speed > 10)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling AudioAsset., must be smaller than or equal to 10.');
+            throw new \InvalidArgumentException('invalid value for $speed when calling PostGenerateRequestAsset., must be smaller than or equal to 10.');
         }
         if (($speed < 0)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling AudioAsset., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for $speed when calling PostGenerateRequestAsset., must be bigger than or equal to 0.');
         }
 
         $this->container['speed'] = $speed;
+
+        return $this;
+    }
+
+    /**
+     * Gets chroma_key
+     *
+     * @return \ShotstackClient\Model\ChromaKey|null
+     */
+    public function getChromaKey()
+    {
+        return $this->container['chroma_key'];
+    }
+
+    /**
+     * Sets chroma_key
+     *
+     * @param \ShotstackClient\Model\ChromaKey|null $chroma_key chroma_key
+     *
+     * @return self
+     */
+    public function setChromaKey($chroma_key)
+    {
+        if (is_null($chroma_key)) {
+            throw new \InvalidArgumentException('non-nullable chroma_key cannot be null');
+        }
+        $this->container['chroma_key'] = $chroma_key;
 
         return $this;
     }

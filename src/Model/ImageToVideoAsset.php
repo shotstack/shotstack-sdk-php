@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * ImageToVideoAsset Class Doc Comment
  *
  * @category Class
- * @description The ImageToVideoAsset lets you create a video from an image and a text prompt.
+ * @description **Notice: ImageToVideoAsset is deprecated. Use [VideoAsset](#tocs_videoasset) with &#x60;prompt&#x60; and &#x60;inputSrc&#x60; instead.** This type continues to function and is internally rewritten to VideoAsset; no behaviour change for existing integrations.  The ImageToVideoAsset lets you create a video from an image and a text prompt.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
