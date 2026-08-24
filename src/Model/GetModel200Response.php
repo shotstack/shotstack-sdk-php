@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * GetModel200Response
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * GetModel200Response Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Soundtrack is deprecated, use an [AudioAsset](#tocs_audioasset) clip on its own track instead.** This type continues to function; no behaviour change for existing integrations. A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description A generation model available to &#x60;prompt&#x60;-bearing image, video and audio assets, with the options it accepts and what it costs. Render a model picker and its option fields from this rather than hard coding a model list, so a newly launched model is available without a client release.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetModel200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'getModel_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'model' => 'string',
+        'type' => 'string',
+        'pricing' => '\ShotstackClient\Model\GetModel200ResponsePricing',
+        'options' => 'array<string,mixed>'
     ];
 
     /**
@@ -71,9 +72,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'model' => null,
+        'type' => null,
+        'pricing' => null,
+        'options' => null
     ];
 
     /**
@@ -82,9 +84,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'src' => false,
-        'effect' => false,
-        'volume' => false
+        'model' => false,
+        'type' => false,
+        'pricing' => false,
+        'options' => false
     ];
 
     /**
@@ -173,9 +176,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'model' => 'model',
+        'type' => 'type',
+        'pricing' => 'pricing',
+        'options' => 'options'
     ];
 
     /**
@@ -184,9 +188,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'model' => 'setModel',
+        'type' => 'setType',
+        'pricing' => 'setPricing',
+        'options' => 'setOptions'
     ];
 
     /**
@@ -195,9 +200,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'model' => 'getModel',
+        'type' => 'getType',
+        'pricing' => 'getPricing',
+        'options' => 'getOptions'
     ];
 
     /**
@@ -241,21 +247,21 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const EFFECT_FADE_IN = 'fadeIn';
-    public const EFFECT_FADE_OUT = 'fadeOut';
-    public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
+    public const TYPE_IMAGE = 'image';
+    public const TYPE_VIDEO = 'video';
+    public const TYPE_AUDIO = 'audio';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getEffectAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
+            self::TYPE_IMAGE,
+            self::TYPE_VIDEO,
+            self::TYPE_AUDIO,
         ];
     }
 
@@ -274,9 +280,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('effect', $data ?? [], null);
-        $this->setIfExists('volume', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('pricing', $data ?? [], null);
+        $this->setIfExists('options', $data ?? [], null);
     }
 
     /**
@@ -306,22 +313,17 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['model'] === null) {
+            $invalidProperties[] = "'model' can't be null";
         }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-
-        if (!preg_match("/\\S/", $this->container['src'])) {
-            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
-        }
-
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
@@ -342,100 +344,119 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets src
+     * Gets model
      *
      * @return string
      */
-    public function getSrc()
+    public function getModel()
     {
-        return $this->container['src'];
+        return $this->container['model'];
     }
 
     /**
-     * Sets src
+     * Sets model
      *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param string $model The identifier to set as the asset `model`. Carries no provider name, so routing can change without a public rename.
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setModel($model)
     {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
         }
-
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling Soundtrack., must be bigger than or equal to 1.');
-        }
-        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
-            throw new \InvalidArgumentException("invalid value for \$src when calling Soundtrack., must conform to the pattern /\\S/.");
-        }
-
-        $this->container['src'] = $src;
+        $this->container['model'] = $model;
 
         return $this;
     }
 
     /**
-     * Gets effect
+     * Gets type
      *
-     * @return string|null
+     * @return string
      */
-    public function getEffect()
+    public function getType()
     {
-        return $this->container['effect'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets effect
+     * Sets type
      *
-     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     * @param string $type The asset type this model generates.
      *
      * @return self
      */
-    public function setEffect($effect)
+    public function setType($type)
     {
-        if (is_null($effect)) {
-            throw new \InvalidArgumentException('non-nullable effect cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!in_array($effect, $allowedValues, true)) {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['effect'] = $effect;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets volume
+     * Gets pricing
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\GetModel200ResponsePricing|null
      */
-    public function getVolume()
+    public function getPricing()
     {
-        return $this->container['volume'];
+        return $this->container['pricing'];
     }
 
     /**
-     * Sets volume
+     * Sets pricing
      *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param \ShotstackClient\Model\GetModel200ResponsePricing|null $pricing pricing
      *
      * @return self
      */
-    public function setVolume($volume)
+    public function setPricing($pricing)
     {
-        if (is_null($volume)) {
-            throw new \InvalidArgumentException('non-nullable volume cannot be null');
+        if (is_null($pricing)) {
+            throw new \InvalidArgumentException('non-nullable pricing cannot be null');
         }
-        $this->container['volume'] = $volume;
+        $this->container['pricing'] = $pricing;
+
+        return $this;
+    }
+
+    /**
+     * Gets options
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getOptions()
+    {
+        return $this->container['options'];
+    }
+
+    /**
+     * Sets options
+     *
+     * @param array<string,mixed>|null $options JSON Schema for the model's `options` object. Only returned for a single model, or for a list requested with `expand=options`. Values outside this schema are rejected.
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        if (is_null($options)) {
+            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        }
+        $this->container['options'] = $options;
 
         return $this;
     }
