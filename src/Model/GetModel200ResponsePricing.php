@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * GetModel200ResponsePricing
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * GetModel200ResponsePricing Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Soundtrack is deprecated, use an [AudioAsset](#tocs_audioasset) clip on its own track instead.** This type continues to function; no behaviour change for existing integrations. A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description What one generation with this model costs.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetModel200ResponsePricing implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'getModel_200_response_pricing';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,11 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'unit' => 'string',
+        'credits' => '\ShotstackClient\Model\GetModel200ResponsePricingCredits',
+        'tiered_by' => 'string[]',
+        'min_units' => 'float',
+        'effective_from' => 'string'
     ];
 
     /**
@@ -71,9 +73,11 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'unit' => null,
+        'credits' => null,
+        'tiered_by' => null,
+        'min_units' => null,
+        'effective_from' => null
     ];
 
     /**
@@ -82,9 +86,11 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'src' => false,
-        'effect' => false,
-        'volume' => false
+        'unit' => false,
+        'credits' => false,
+        'tiered_by' => false,
+        'min_units' => false,
+        'effective_from' => false
     ];
 
     /**
@@ -173,9 +179,11 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'unit' => 'unit',
+        'credits' => 'credits',
+        'tiered_by' => 'tieredBy',
+        'min_units' => 'minUnits',
+        'effective_from' => 'effectiveFrom'
     ];
 
     /**
@@ -184,9 +192,11 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'unit' => 'setUnit',
+        'credits' => 'setCredits',
+        'tiered_by' => 'setTieredBy',
+        'min_units' => 'setMinUnits',
+        'effective_from' => 'setEffectiveFrom'
     ];
 
     /**
@@ -195,9 +205,11 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'unit' => 'getUnit',
+        'credits' => 'getCredits',
+        'tiered_by' => 'getTieredBy',
+        'min_units' => 'getMinUnits',
+        'effective_from' => 'getEffectiveFrom'
     ];
 
     /**
@@ -241,21 +253,23 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const EFFECT_FADE_IN = 'fadeIn';
-    public const EFFECT_FADE_OUT = 'fadeOut';
-    public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
+    public const UNIT_RENDER = 'render';
+    public const UNIT_SECOND = 'second';
+    public const UNIT_MINUTE = 'minute';
+    public const UNIT_THOUSAND_CHARACTERS = 'thousandCharacters';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getEffectAllowableValues()
+    public function getUnitAllowableValues()
     {
         return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
+            self::UNIT_RENDER,
+            self::UNIT_SECOND,
+            self::UNIT_MINUTE,
+            self::UNIT_THOUSAND_CHARACTERS,
         ];
     }
 
@@ -274,9 +288,11 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('effect', $data ?? [], null);
-        $this->setIfExists('volume', $data ?? [], null);
+        $this->setIfExists('unit', $data ?? [], null);
+        $this->setIfExists('credits', $data ?? [], null);
+        $this->setIfExists('tiered_by', $data ?? [], null);
+        $this->setIfExists('min_units', $data ?? [], null);
+        $this->setIfExists('effective_from', $data ?? [], null);
     }
 
     /**
@@ -306,26 +322,24 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['unit'] === null) {
+            $invalidProperties[] = "'unit' can't be null";
         }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
-        }
-
-        if (!preg_match("/\\S/", $this->container['src'])) {
-            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
-        }
-
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
+        $allowedValues = $this->getUnitAllowableValues();
+        if (!is_null($this->container['unit']) && !in_array($this->container['unit'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
+                "invalid value '%s' for 'unit', must be one of '%s'",
+                $this->container['unit'],
                 implode("', '", $allowedValues)
             );
         }
 
+        if ($this->container['credits'] === null) {
+            $invalidProperties[] = "'credits' can't be null";
+        }
+        if ($this->container['effective_from'] === null) {
+            $invalidProperties[] = "'effective_from' can't be null";
+        }
         return $invalidProperties;
     }
 
@@ -342,100 +356,146 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets src
+     * Gets unit
      *
      * @return string
      */
-    public function getSrc()
+    public function getUnit()
     {
-        return $this->container['src'];
+        return $this->container['unit'];
     }
 
     /**
-     * Sets src
+     * Sets unit
      *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param string $unit What one unit is. `render` means the whole generation counts as one unit, whatever its size.
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setUnit($unit)
     {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
+        if (is_null($unit)) {
+            throw new \InvalidArgumentException('non-nullable unit cannot be null');
         }
-
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling Soundtrack., must be bigger than or equal to 1.');
-        }
-        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
-            throw new \InvalidArgumentException("invalid value for \$src when calling Soundtrack., must conform to the pattern /\\S/.");
-        }
-
-        $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets effect
-     *
-     * @return string|null
-     */
-    public function getEffect()
-    {
-        return $this->container['effect'];
-    }
-
-    /**
-     * Sets effect
-     *
-     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     *
-     * @return self
-     */
-    public function setEffect($effect)
-    {
-        if (is_null($effect)) {
-            throw new \InvalidArgumentException('non-nullable effect cannot be null');
-        }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!in_array($effect, $allowedValues, true)) {
+        $allowedValues = $this->getUnitAllowableValues();
+        if (!in_array($unit, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
+                    "Invalid value '%s' for 'unit', must be one of '%s'",
+                    $unit,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['effect'] = $effect;
+        $this->container['unit'] = $unit;
 
         return $this;
     }
 
     /**
-     * Gets volume
+     * Gets credits
      *
-     * @return float|null
+     * @return \ShotstackClient\Model\GetModel200ResponsePricingCredits
      */
-    public function getVolume()
+    public function getCredits()
     {
-        return $this->container['volume'];
+        return $this->container['credits'];
     }
 
     /**
-     * Sets volume
+     * Sets credits
      *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param \ShotstackClient\Model\GetModel200ResponsePricingCredits $credits credits
      *
      * @return self
      */
-    public function setVolume($volume)
+    public function setCredits($credits)
     {
-        if (is_null($volume)) {
-            throw new \InvalidArgumentException('non-nullable volume cannot be null');
+        if (is_null($credits)) {
+            throw new \InvalidArgumentException('non-nullable credits cannot be null');
         }
-        $this->container['volume'] = $volume;
+        $this->container['credits'] = $credits;
+
+        return $this;
+    }
+
+    /**
+     * Gets tiered_by
+     *
+     * @return string[]|null
+     */
+    public function getTieredBy()
+    {
+        return $this->container['tiered_by'];
+    }
+
+    /**
+     * Sets tiered_by
+     *
+     * @param string[]|null $tiered_by The options whose values select the rate, outermost first. Absent when `credits` is a single number.
+     *
+     * @return self
+     */
+    public function setTieredBy($tiered_by)
+    {
+        if (is_null($tiered_by)) {
+            throw new \InvalidArgumentException('non-nullable tiered_by cannot be null');
+        }
+        $this->container['tiered_by'] = $tiered_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets min_units
+     *
+     * @return float|null
+     */
+    public function getMinUnits()
+    {
+        return $this->container['min_units'];
+    }
+
+    /**
+     * Sets min_units
+     *
+     * @param float|null $min_units The fewest units a generation is charged for, when a model has a minimum charge.
+     *
+     * @return self
+     */
+    public function setMinUnits($min_units)
+    {
+        if (is_null($min_units)) {
+            throw new \InvalidArgumentException('non-nullable min_units cannot be null');
+        }
+        $this->container['min_units'] = $min_units;
+
+        return $this;
+    }
+
+    /**
+     * Gets effective_from
+     *
+     * @return string
+     */
+    public function getEffectiveFrom()
+    {
+        return $this->container['effective_from'];
+    }
+
+    /**
+     * Sets effective_from
+     *
+     * @param string $effective_from The date this rate took effect, or `legacy` for a rate that predates dated pricing.
+     *
+     * @return self
+     */
+    public function setEffectiveFrom($effective_from)
+    {
+        if (is_null($effective_from)) {
+            throw new \InvalidArgumentException('non-nullable effective_from cannot be null');
+        }
+        $this->container['effective_from'] = $effective_from;
 
         return $this;
     }
