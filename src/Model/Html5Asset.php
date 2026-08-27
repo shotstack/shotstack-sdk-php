@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageToVideoAsset
+ * Html5Asset
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * ImageToVideoAsset Class Doc Comment
+ * Html5Asset Class Doc Comment
  *
  * @category Class
- * @description **Notice: ImageToVideoAsset is deprecated. Use [VideoAsset](#tocs_videoasset) with &#x60;prompt&#x60;, a &#x60;model&#x60; that accepts a starting image, and that image in &#x60;options.inputSrc&#x60; — for example &#x60;shotstack-itv-mini&#x60;.** This type continues to function and is internally rewritten to VideoAsset; no behaviour change for existing integrations.  The ImageToVideoAsset lets you create a video from an image and a text prompt.
+ * @description The Html5Asset renders full HTML5/CSS3/JS.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
+class Html5Asset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImageToVideoAsset';
+    protected static $openAPIModelName = 'Html5Asset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -59,11 +59,9 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPITypes = [
         'type' => 'string',
-        'src' => 'string',
-        'prompt' => 'string',
-        'aspect_ratio' => 'string',
-        'speed' => 'float',
-        'crop' => '\ShotstackClient\Model\Crop'
+        'html' => 'string',
+        'css' => 'string',
+        'js' => 'string'
     ];
 
     /**
@@ -75,11 +73,9 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static $openAPIFormats = [
         'type' => null,
-        'src' => null,
-        'prompt' => null,
-        'aspect_ratio' => null,
-        'speed' => 'float',
-        'crop' => null
+        'html' => null,
+        'css' => null,
+        'js' => null
     ];
 
     /**
@@ -89,11 +85,9 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       */
     protected static array $openAPINullables = [
         'type' => false,
-        'src' => false,
-        'prompt' => false,
-        'aspect_ratio' => false,
-        'speed' => false,
-        'crop' => false
+        'html' => false,
+        'css' => false,
+        'js' => false
     ];
 
     /**
@@ -183,11 +177,9 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $attributeMap = [
         'type' => 'type',
-        'src' => 'src',
-        'prompt' => 'prompt',
-        'aspect_ratio' => 'aspectRatio',
-        'speed' => 'speed',
-        'crop' => 'crop'
+        'html' => 'html',
+        'css' => 'css',
+        'js' => 'js'
     ];
 
     /**
@@ -197,11 +189,9 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $setters = [
         'type' => 'setType',
-        'src' => 'setSrc',
-        'prompt' => 'setPrompt',
-        'aspect_ratio' => 'setAspectRatio',
-        'speed' => 'setSpeed',
-        'crop' => 'setCrop'
+        'html' => 'setHtml',
+        'css' => 'setCss',
+        'js' => 'setJs'
     ];
 
     /**
@@ -211,11 +201,9 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     protected static $getters = [
         'type' => 'getType',
-        'src' => 'getSrc',
-        'prompt' => 'getPrompt',
-        'aspect_ratio' => 'getAspectRatio',
-        'speed' => 'getSpeed',
-        'crop' => 'getCrop'
+        'html' => 'getHtml',
+        'css' => 'getCss',
+        'js' => 'getJs'
     ];
 
     /**
@@ -259,14 +247,7 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IMAGE_TO_VIDEO = 'image-to-video';
-    public const ASPECT_RATIO__11 = '1:1';
-    public const ASPECT_RATIO__43 = '4:3';
-    public const ASPECT_RATIO__169 = '16:9';
-    public const ASPECT_RATIO__916 = '9:16';
-    public const ASPECT_RATIO__34 = '3:4';
-    public const ASPECT_RATIO__219 = '21:9';
-    public const ASPECT_RATIO__921 = '9:21';
+    public const TYPE_HTML5 = 'html5';
 
     /**
      * Gets allowable values of the enum
@@ -276,25 +257,7 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
     public function getTypeAllowableValues()
     {
         return [
-            self::TYPE_IMAGE_TO_VIDEO,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAspectRatioAllowableValues()
-    {
-        return [
-            self::ASPECT_RATIO__11,
-            self::ASPECT_RATIO__43,
-            self::ASPECT_RATIO__169,
-            self::ASPECT_RATIO__916,
-            self::ASPECT_RATIO__34,
-            self::ASPECT_RATIO__219,
-            self::ASPECT_RATIO__921,
+            self::TYPE_HTML5,
         ];
     }
 
@@ -313,12 +276,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'image-to-video');
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('prompt', $data ?? [], null);
-        $this->setIfExists('aspect_ratio', $data ?? [], null);
-        $this->setIfExists('speed', $data ?? [], null);
-        $this->setIfExists('crop', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'html5');
+        $this->setIfExists('html', $data ?? [], null);
+        $this->setIfExists('css', $data ?? [], null);
+        $this->setIfExists('js', $data ?? [], null);
     }
 
     /**
@@ -360,28 +321,19 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
             );
         }
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['html'] === null) {
+            $invalidProperties[] = "'html' can't be null";
         }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
-        }
-
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                $this->container['aspect_ratio'],
-                implode("', '", $allowedValues)
-            );
+        if ((mb_strlen($this->container['html']) > 1000000)) {
+            $invalidProperties[] = "invalid value for 'html', the character length must be smaller than or equal to 1000000.";
         }
 
-        if (!is_null($this->container['speed']) && ($this->container['speed'] > 10)) {
-            $invalidProperties[] = "invalid value for 'speed', must be smaller than or equal to 10.";
+        if (!is_null($this->container['css']) && (mb_strlen($this->container['css']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'css', the character length must be smaller than or equal to 500000.";
         }
 
-        if (!is_null($this->container['speed']) && ($this->container['speed'] < 0)) {
-            $invalidProperties[] = "invalid value for 'speed', must be bigger than or equal to 0.";
+        if (!is_null($this->container['js']) && (mb_strlen($this->container['js']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'js', the character length must be smaller than or equal to 500000.";
         }
 
         return $invalidProperties;
@@ -412,7 +364,7 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets type
      *
-     * @param string $type The type of asset to generate - set to `image-to-video` for image-to-video.
+     * @param string $type The type of asset - set to `html5` for HTML5/CSS3/JS.
      *
      * @return self
      */
@@ -437,159 +389,94 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
     }
 
     /**
-     * Gets src
+     * Gets html
      *
      * @return string
      */
-    public function getSrc()
+    public function getHtml()
     {
-        return $this->container['src'];
+        return $this->container['html'];
     }
 
     /**
-     * Sets src
+     * Sets html
      *
-     * @param string $src The image source URL. The URL must be publicly accessible or include credentials.
+     * @param string $html The HTML markup for the asset. Max 1,000,000 characters.
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setHtml($html)
     {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
+        if (is_null($html)) {
+            throw new \InvalidArgumentException('non-nullable html cannot be null');
+        }
+        if ((mb_strlen($html) > 1000000)) {
+            throw new \InvalidArgumentException('invalid length for $html when calling Html5Asset., must be smaller than or equal to 1000000.');
         }
 
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling ImageToVideoAsset., must be bigger than or equal to 1.');
-        }
-
-        $this->container['src'] = $src;
+        $this->container['html'] = $html;
 
         return $this;
     }
 
     /**
-     * Gets prompt
+     * Gets css
      *
      * @return string|null
      */
-    public function getPrompt()
+    public function getCss()
     {
-        return $this->container['prompt'];
+        return $this->container['css'];
     }
 
     /**
-     * Sets prompt
+     * Sets css
      *
-     * @param string|null $prompt The instructions for modifying the image into a video sequence.
+     * @param string|null $css The CSS string applied to the HTML. Max 500,000 characters.
      *
      * @return self
      */
-    public function setPrompt($prompt)
+    public function setCss($css)
     {
-        if (is_null($prompt)) {
-            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        if (is_null($css)) {
+            throw new \InvalidArgumentException('non-nullable css cannot be null');
         }
-        $this->container['prompt'] = $prompt;
+        if ((mb_strlen($css) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $css when calling Html5Asset., must be smaller than or equal to 500000.');
+        }
+
+        $this->container['css'] = $css;
 
         return $this;
     }
 
     /**
-     * Gets aspect_ratio
+     * Gets js
      *
      * @return string|null
      */
-    public function getAspectRatio()
+    public function getJs()
     {
-        return $this->container['aspect_ratio'];
+        return $this->container['js'];
     }
 
     /**
-     * Sets aspect_ratio
+     * Sets js
      *
-     * @param string|null $aspect_ratio The aspect ratio (shape) of the video output.
+     * @param string|null $js Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
      *
      * @return self
      */
-    public function setAspectRatio($aspect_ratio)
+    public function setJs($js)
     {
-        if (is_null($aspect_ratio)) {
-            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
+        if (is_null($js)) {
+            throw new \InvalidArgumentException('non-nullable js cannot be null');
         }
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!in_array($aspect_ratio, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                    $aspect_ratio,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['aspect_ratio'] = $aspect_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets speed
-     *
-     * @return float|null
-     */
-    public function getSpeed()
-    {
-        return $this->container['speed'];
-    }
-
-    /**
-     * Sets speed
-     *
-     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
-     *
-     * @return self
-     */
-    public function setSpeed($speed)
-    {
-        if (is_null($speed)) {
-            throw new \InvalidArgumentException('non-nullable speed cannot be null');
+        if ((mb_strlen($js) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $js when calling Html5Asset., must be smaller than or equal to 500000.');
         }
 
-        if (($speed > 10)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling ImageToVideoAsset., must be smaller than or equal to 10.');
-        }
-        if (($speed < 0)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling ImageToVideoAsset., must be bigger than or equal to 0.');
-        }
-
-        $this->container['speed'] = $speed;
-
-        return $this;
-    }
-
-    /**
-     * Gets crop
-     *
-     * @return \ShotstackClient\Model\Crop|null
-     */
-    public function getCrop()
-    {
-        return $this->container['crop'];
-    }
-
-    /**
-     * Sets crop
-     *
-     * @param \ShotstackClient\Model\Crop|null $crop crop
-     *
-     * @return self
-     */
-    public function setCrop($crop)
-    {
-        if (is_null($crop)) {
-            throw new \InvalidArgumentException('non-nullable crop cannot be null');
-        }
-        $this->container['crop'] = $crop;
+        $this->container['js'] = $js;
 
         return $this;
     }
