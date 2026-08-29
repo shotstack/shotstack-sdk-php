@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * VideoAsset Class Doc Comment
  *
  * @category Class
- * @description The VideoAsset is used to create video sequences from video files. The src must be a publicly accessible URL to a video resource such as an mp4 file.
+ * @description The VideoAsset adds a video to a Clip. The video can be sourced from a URL (&#x60;src&#x60;), generated from a text prompt (&#x60;prompt&#x60;), or both. At least one of &#x60;src&#x60; or &#x60;prompt&#x60; must be provided.  - **Source URL:** set &#x60;src&#x60; to the URL of an mp4 (or compatible) video file. - **Generated:** set &#x60;prompt&#x60; to describe the motion. Choose a generator   with &#x60;model&#x60; and configure it with model-specific &#x60;options&#x60;. Models that   animate a starting image take it as &#x60;options.inputSrc&#x60;; the default model   generates from the prompt alone. The generated &#x60;src&#x60; is filled in   automatically. - **Both:** &#x60;src&#x60; acts as a preview placeholder while &#x60;prompt&#x60; drives   generation — the video is regenerated from the prompt at render time.   Unchanged prompts and options resolve from the generation cache.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -60,6 +60,9 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPITypes = [
         'type' => 'string',
         'src' => 'string',
+        'prompt' => 'string',
+        'model' => 'string',
+        'options' => 'array<string,mixed>',
         'transcode' => 'bool',
         'trim' => 'float',
         'volume' => '\ShotstackClient\Model\VideoAssetVolume',
@@ -79,6 +82,9 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $openAPIFormats = [
         'type' => null,
         'src' => null,
+        'prompt' => null,
+        'model' => null,
+        'options' => null,
         'transcode' => null,
         'trim' => null,
         'volume' => null,
@@ -96,6 +102,9 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static array $openAPINullables = [
         'type' => false,
         'src' => false,
+        'prompt' => false,
+        'model' => false,
+        'options' => false,
         'transcode' => false,
         'trim' => false,
         'volume' => false,
@@ -193,6 +202,9 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $attributeMap = [
         'type' => 'type',
         'src' => 'src',
+        'prompt' => 'prompt',
+        'model' => 'model',
+        'options' => 'options',
         'transcode' => 'transcode',
         'trim' => 'trim',
         'volume' => 'volume',
@@ -210,6 +222,9 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $setters = [
         'type' => 'setType',
         'src' => 'setSrc',
+        'prompt' => 'setPrompt',
+        'model' => 'setModel',
+        'options' => 'setOptions',
         'transcode' => 'setTranscode',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
@@ -227,6 +242,9 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     protected static $getters = [
         'type' => 'getType',
         'src' => 'getSrc',
+        'prompt' => 'getPrompt',
+        'model' => 'getModel',
+        'options' => 'getOptions',
         'transcode' => 'getTranscode',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
@@ -327,6 +345,9 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $this->setIfExists('type', $data ?? [], 'video');
         $this->setIfExists('src', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('options', $data ?? [], null);
         $this->setIfExists('transcode', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
@@ -375,15 +396,16 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        if ((mb_strlen($this->container['src']) < 1)) {
+        if (!is_null($this->container['src']) && (mb_strlen($this->container['src']) < 1)) {
             $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
         }
 
-        if (!preg_match("/\\S/", $this->container['src'])) {
+        if (!is_null($this->container['src']) && !preg_match("/\\S/", $this->container['src'])) {
             $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        }
+
+        if (!is_null($this->container['prompt']) && (mb_strlen($this->container['prompt']) > 4000)) {
+            $invalidProperties[] = "invalid value for 'prompt', the character length must be smaller than or equal to 4000.";
         }
 
         $allowedValues = $this->getVolumeEffectAllowableValues();
@@ -458,7 +480,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets src
      *
-     * @return string
+     * @return string|null
      */
     public function getSrc()
     {
@@ -468,7 +490,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets src
      *
-     * @param string $src The video source URL. The URL must be publicly accessible or include credentials.
+     * @param string|null $src The video source URL. The URL must be publicly accessible or include credentials. When `prompt` is also set, `src` serves as a preview placeholder and the video is regenerated from the prompt at render time.
      *
      * @return self
      */
@@ -486,6 +508,91 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         $this->container['src'] = $src;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string|null
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string|null $prompt A text prompt to generate the video from. The engine generates a video at render time and fills `src` automatically; an existing `src` is treated as a preview placeholder and replaced. Use `model` to choose the generator and `options` to configure it. A starting image goes in `options.inputSrc`, on the models that accept one.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        if ((mb_strlen($prompt) > 4000)) {
+            throw new \InvalidArgumentException('invalid length for $prompt when calling VideoAsset., must be smaller than or equal to 4000.');
+        }
+
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string|null
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string|null $model The generation model to use when `prompt` is set (e.g. `shotstack-itv-mini`, `ray-flash-2`, `seedance-2.0`). Defaults to `seedance-2.0` if omitted. Each model's available options are defined by the model registry.
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
+
+        return $this;
+    }
+
+    /**
+     * Gets options
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getOptions()
+    {
+        return $this->container['options'];
+    }
+
+    /**
+     * Sets options
+     *
+     * @param array<string,mixed>|null $options Model-specific generation settings. Valid keys and values depend on the chosen `model` and are defined by the model registry. Omitted options use the model's defaults. Unknown or invalid options are rejected.
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        if (is_null($options)) {
+            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        }
+        $this->container['options'] = $options;
 
         return $this;
     }
@@ -621,7 +728,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets speed
      *
-     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
      *
      * @return self
      */

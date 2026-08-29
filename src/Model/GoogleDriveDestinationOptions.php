@@ -282,9 +282,6 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
     {
         $invalidProperties = [];
 
-        if ($this->container['folder_id'] === null) {
-            $invalidProperties[] = "'folder_id' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -303,7 +300,7 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
     /**
      * Gets folder_id
      *
-     * @return string
+     * @return string|null
      */
     public function getFolderId()
     {
@@ -313,7 +310,7 @@ class GoogleDriveDestinationOptions implements ModelInterface, ArrayAccess, \Jso
     /**
      * Sets folder_id
      *
-     * @param string $folder_id The Google Drive folder ID where asset will be stored. The folder ID is required and can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
+     * @param string|null $folder_id The Google Drive folder ID where the asset will be stored. If omitted, the asset is saved to the root of My Drive. The folder ID can be retrieved from the URL when logged in to Google Drive, e.g. <a href=\"#\">https://drive.google.com/drive/u/0/folders/1r-eTY6OLO8tzQRKwMyq-fIrQ_7AJEI6A</a>.
      *
      * @return self
      */

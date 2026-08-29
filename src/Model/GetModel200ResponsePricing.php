@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageToVideoAsset
+ * GetModel200ResponsePricing
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * ImageToVideoAsset Class Doc Comment
+ * GetModel200ResponsePricing Class Doc Comment
  *
  * @category Class
- * @description **Notice: ImageToVideoAsset is deprecated. Use [VideoAsset](#tocs_videoasset) with &#x60;prompt&#x60;, a &#x60;model&#x60; that accepts a starting image, and that image in &#x60;options.inputSrc&#x60; — for example &#x60;shotstack-itv-mini&#x60;.** This type continues to function and is internally rewritten to VideoAsset; no behaviour change for existing integrations.  The ImageToVideoAsset lets you create a video from an image and a text prompt.
+ * @description What one generation with this model costs.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetModel200ResponsePricing implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImageToVideoAsset';
+    protected static $openAPIModelName = 'getModel_200_response_pricing';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +58,11 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'src' => 'string',
-        'prompt' => 'string',
-        'aspect_ratio' => 'string',
-        'speed' => 'float',
-        'crop' => '\ShotstackClient\Model\Crop'
+        'unit' => 'string',
+        'credits' => '\ShotstackClient\Model\GetModel200ResponsePricingCredits',
+        'tiered_by' => 'string[]',
+        'min_units' => 'float',
+        'effective_from' => 'string'
     ];
 
     /**
@@ -74,12 +73,11 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'src' => null,
-        'prompt' => null,
-        'aspect_ratio' => null,
-        'speed' => 'float',
-        'crop' => null
+        'unit' => null,
+        'credits' => null,
+        'tiered_by' => null,
+        'min_units' => null,
+        'effective_from' => null
     ];
 
     /**
@@ -88,12 +86,11 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
-        'src' => false,
-        'prompt' => false,
-        'aspect_ratio' => false,
-        'speed' => false,
-        'crop' => false
+        'unit' => false,
+        'credits' => false,
+        'tiered_by' => false,
+        'min_units' => false,
+        'effective_from' => false
     ];
 
     /**
@@ -182,12 +179,11 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'src' => 'src',
-        'prompt' => 'prompt',
-        'aspect_ratio' => 'aspectRatio',
-        'speed' => 'speed',
-        'crop' => 'crop'
+        'unit' => 'unit',
+        'credits' => 'credits',
+        'tiered_by' => 'tieredBy',
+        'min_units' => 'minUnits',
+        'effective_from' => 'effectiveFrom'
     ];
 
     /**
@@ -196,12 +192,11 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'src' => 'setSrc',
-        'prompt' => 'setPrompt',
-        'aspect_ratio' => 'setAspectRatio',
-        'speed' => 'setSpeed',
-        'crop' => 'setCrop'
+        'unit' => 'setUnit',
+        'credits' => 'setCredits',
+        'tiered_by' => 'setTieredBy',
+        'min_units' => 'setMinUnits',
+        'effective_from' => 'setEffectiveFrom'
     ];
 
     /**
@@ -210,12 +205,11 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'src' => 'getSrc',
-        'prompt' => 'getPrompt',
-        'aspect_ratio' => 'getAspectRatio',
-        'speed' => 'getSpeed',
-        'crop' => 'getCrop'
+        'unit' => 'getUnit',
+        'credits' => 'getCredits',
+        'tiered_by' => 'getTieredBy',
+        'min_units' => 'getMinUnits',
+        'effective_from' => 'getEffectiveFrom'
     ];
 
     /**
@@ -259,42 +253,23 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IMAGE_TO_VIDEO = 'image-to-video';
-    public const ASPECT_RATIO__11 = '1:1';
-    public const ASPECT_RATIO__43 = '4:3';
-    public const ASPECT_RATIO__169 = '16:9';
-    public const ASPECT_RATIO__916 = '9:16';
-    public const ASPECT_RATIO__34 = '3:4';
-    public const ASPECT_RATIO__219 = '21:9';
-    public const ASPECT_RATIO__921 = '9:21';
+    public const UNIT_RENDER = 'render';
+    public const UNIT_SECOND = 'second';
+    public const UNIT_MINUTE = 'minute';
+    public const UNIT_THOUSAND_CHARACTERS = 'thousandCharacters';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getUnitAllowableValues()
     {
         return [
-            self::TYPE_IMAGE_TO_VIDEO,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAspectRatioAllowableValues()
-    {
-        return [
-            self::ASPECT_RATIO__11,
-            self::ASPECT_RATIO__43,
-            self::ASPECT_RATIO__169,
-            self::ASPECT_RATIO__916,
-            self::ASPECT_RATIO__34,
-            self::ASPECT_RATIO__219,
-            self::ASPECT_RATIO__921,
+            self::UNIT_RENDER,
+            self::UNIT_SECOND,
+            self::UNIT_MINUTE,
+            self::UNIT_THOUSAND_CHARACTERS,
         ];
     }
 
@@ -313,12 +288,11 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'image-to-video');
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('prompt', $data ?? [], null);
-        $this->setIfExists('aspect_ratio', $data ?? [], null);
-        $this->setIfExists('speed', $data ?? [], null);
-        $this->setIfExists('crop', $data ?? [], null);
+        $this->setIfExists('unit', $data ?? [], null);
+        $this->setIfExists('credits', $data ?? [], null);
+        $this->setIfExists('tiered_by', $data ?? [], null);
+        $this->setIfExists('min_units', $data ?? [], null);
+        $this->setIfExists('effective_from', $data ?? [], null);
     }
 
     /**
@@ -348,42 +322,24 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['unit'] === null) {
+            $invalidProperties[] = "'unit' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+        $allowedValues = $this->getUnitAllowableValues();
+        if (!is_null($this->container['unit']) && !in_array($this->container['unit'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
+                "invalid value '%s' for 'unit', must be one of '%s'",
+                $this->container['unit'],
                 implode("', '", $allowedValues)
             );
         }
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['credits'] === null) {
+            $invalidProperties[] = "'credits' can't be null";
         }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        if ($this->container['effective_from'] === null) {
+            $invalidProperties[] = "'effective_from' can't be null";
         }
-
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                $this->container['aspect_ratio'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if (!is_null($this->container['speed']) && ($this->container['speed'] > 10)) {
-            $invalidProperties[] = "invalid value for 'speed', must be smaller than or equal to 10.";
-        }
-
-        if (!is_null($this->container['speed']) && ($this->container['speed'] < 0)) {
-            $invalidProperties[] = "invalid value for 'speed', must be bigger than or equal to 0.";
-        }
-
         return $invalidProperties;
     }
 
@@ -400,196 +356,146 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets type
+     * Gets unit
      *
      * @return string
      */
-    public function getType()
+    public function getUnit()
     {
-        return $this->container['type'];
+        return $this->container['unit'];
     }
 
     /**
-     * Sets type
+     * Sets unit
      *
-     * @param string $type The type of asset to generate - set to `image-to-video` for image-to-video.
+     * @param string $unit What one unit is. `render` means the whole generation counts as one unit, whatever its size.
      *
      * @return self
      */
-    public function setType($type)
+    public function setUnit($unit)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($unit)) {
+            throw new \InvalidArgumentException('non-nullable unit cannot be null');
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
+        $allowedValues = $this->getUnitAllowableValues();
+        if (!in_array($unit, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
+                    "Invalid value '%s' for 'unit', must be one of '%s'",
+                    $unit,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['type'] = $type;
+        $this->container['unit'] = $unit;
 
         return $this;
     }
 
     /**
-     * Gets src
+     * Gets credits
      *
-     * @return string
+     * @return \ShotstackClient\Model\GetModel200ResponsePricingCredits
      */
-    public function getSrc()
+    public function getCredits()
     {
-        return $this->container['src'];
+        return $this->container['credits'];
     }
 
     /**
-     * Sets src
+     * Sets credits
      *
-     * @param string $src The image source URL. The URL must be publicly accessible or include credentials.
+     * @param \ShotstackClient\Model\GetModel200ResponsePricingCredits $credits credits
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setCredits($credits)
     {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
+        if (is_null($credits)) {
+            throw new \InvalidArgumentException('non-nullable credits cannot be null');
         }
-
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling ImageToVideoAsset., must be bigger than or equal to 1.');
-        }
-
-        $this->container['src'] = $src;
+        $this->container['credits'] = $credits;
 
         return $this;
     }
 
     /**
-     * Gets prompt
+     * Gets tiered_by
      *
-     * @return string|null
+     * @return string[]|null
      */
-    public function getPrompt()
+    public function getTieredBy()
     {
-        return $this->container['prompt'];
+        return $this->container['tiered_by'];
     }
 
     /**
-     * Sets prompt
+     * Sets tiered_by
      *
-     * @param string|null $prompt The instructions for modifying the image into a video sequence.
+     * @param string[]|null $tiered_by The options whose values select the rate, outermost first. Absent when `credits` is a single number.
      *
      * @return self
      */
-    public function setPrompt($prompt)
+    public function setTieredBy($tiered_by)
     {
-        if (is_null($prompt)) {
-            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        if (is_null($tiered_by)) {
+            throw new \InvalidArgumentException('non-nullable tiered_by cannot be null');
         }
-        $this->container['prompt'] = $prompt;
+        $this->container['tiered_by'] = $tiered_by;
 
         return $this;
     }
 
     /**
-     * Gets aspect_ratio
-     *
-     * @return string|null
-     */
-    public function getAspectRatio()
-    {
-        return $this->container['aspect_ratio'];
-    }
-
-    /**
-     * Sets aspect_ratio
-     *
-     * @param string|null $aspect_ratio The aspect ratio (shape) of the video output.
-     *
-     * @return self
-     */
-    public function setAspectRatio($aspect_ratio)
-    {
-        if (is_null($aspect_ratio)) {
-            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
-        }
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!in_array($aspect_ratio, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                    $aspect_ratio,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['aspect_ratio'] = $aspect_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets speed
+     * Gets min_units
      *
      * @return float|null
      */
-    public function getSpeed()
+    public function getMinUnits()
     {
-        return $this->container['speed'];
+        return $this->container['min_units'];
     }
 
     /**
-     * Sets speed
+     * Sets min_units
      *
-     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * @param float|null $min_units The fewest units a generation is charged for, when a model has a minimum charge.
      *
      * @return self
      */
-    public function setSpeed($speed)
+    public function setMinUnits($min_units)
     {
-        if (is_null($speed)) {
-            throw new \InvalidArgumentException('non-nullable speed cannot be null');
+        if (is_null($min_units)) {
+            throw new \InvalidArgumentException('non-nullable min_units cannot be null');
         }
-
-        if (($speed > 10)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling ImageToVideoAsset., must be smaller than or equal to 10.');
-        }
-        if (($speed < 0)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling ImageToVideoAsset., must be bigger than or equal to 0.');
-        }
-
-        $this->container['speed'] = $speed;
+        $this->container['min_units'] = $min_units;
 
         return $this;
     }
 
     /**
-     * Gets crop
+     * Gets effective_from
      *
-     * @return \ShotstackClient\Model\Crop|null
+     * @return string
      */
-    public function getCrop()
+    public function getEffectiveFrom()
     {
-        return $this->container['crop'];
+        return $this->container['effective_from'];
     }
 
     /**
-     * Sets crop
+     * Sets effective_from
      *
-     * @param \ShotstackClient\Model\Crop|null $crop crop
+     * @param string $effective_from The date this rate took effect, or `legacy` for a rate that predates dated pricing.
      *
      * @return self
      */
-    public function setCrop($crop)
+    public function setEffectiveFrom($effective_from)
     {
-        if (is_null($crop)) {
-            throw new \InvalidArgumentException('non-nullable crop cannot be null');
+        if (is_null($effective_from)) {
+            throw new \InvalidArgumentException('non-nullable effective_from cannot be null');
         }
-        $this->container['crop'] = $crop;
+        $this->container['effective_from'] = $effective_from;
 
         return $this;
     }
