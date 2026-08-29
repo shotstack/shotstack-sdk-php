@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageToVideoAsset
+ * PostGenerate200Response
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * ImageToVideoAsset Class Doc Comment
+ * PostGenerate200Response Class Doc Comment
  *
  * @category Class
- * @description **Notice: ImageToVideoAsset is deprecated. Use [VideoAsset](#tocs_videoasset) with &#x60;prompt&#x60;, a &#x60;model&#x60; that accepts a starting image, and that image in &#x60;options.inputSrc&#x60; — for example &#x60;shotstack-itv-mini&#x60;.** This type continues to function and is internally rewritten to VideoAsset; no behaviour change for existing integrations.  The ImageToVideoAsset lets you create a video from an image and a text prompt.
+ * @description The status of an on-demand asset generation job. Completed jobs include the public URL of the generated asset.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
+class PostGenerate200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImageToVideoAsset';
+    protected static $openAPIModelName = 'postGenerate_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +58,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'src' => 'string',
-        'prompt' => 'string',
-        'aspect_ratio' => 'string',
-        'speed' => 'float',
-        'crop' => '\ShotstackClient\Model\Crop'
+        'id' => 'string',
+        'status' => 'string',
+        'url' => 'string',
+        'error' => 'string'
     ];
 
     /**
@@ -74,12 +72,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'src' => null,
-        'prompt' => null,
-        'aspect_ratio' => null,
-        'speed' => 'float',
-        'crop' => null
+        'id' => null,
+        'status' => null,
+        'url' => null,
+        'error' => null
     ];
 
     /**
@@ -88,12 +84,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
-        'src' => false,
-        'prompt' => false,
-        'aspect_ratio' => false,
-        'speed' => false,
-        'crop' => false
+        'id' => false,
+        'status' => false,
+        'url' => false,
+        'error' => false
     ];
 
     /**
@@ -182,12 +176,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'src' => 'src',
-        'prompt' => 'prompt',
-        'aspect_ratio' => 'aspectRatio',
-        'speed' => 'speed',
-        'crop' => 'crop'
+        'id' => 'id',
+        'status' => 'status',
+        'url' => 'url',
+        'error' => 'error'
     ];
 
     /**
@@ -196,12 +188,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'src' => 'setSrc',
-        'prompt' => 'setPrompt',
-        'aspect_ratio' => 'setAspectRatio',
-        'speed' => 'setSpeed',
-        'crop' => 'setCrop'
+        'id' => 'setId',
+        'status' => 'setStatus',
+        'url' => 'setUrl',
+        'error' => 'setError'
     ];
 
     /**
@@ -210,12 +200,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'src' => 'getSrc',
-        'prompt' => 'getPrompt',
-        'aspect_ratio' => 'getAspectRatio',
-        'speed' => 'getSpeed',
-        'crop' => 'getCrop'
+        'id' => 'getId',
+        'status' => 'getStatus',
+        'url' => 'getUrl',
+        'error' => 'getError'
     ];
 
     /**
@@ -259,42 +247,23 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IMAGE_TO_VIDEO = 'image-to-video';
-    public const ASPECT_RATIO__11 = '1:1';
-    public const ASPECT_RATIO__43 = '4:3';
-    public const ASPECT_RATIO__169 = '16:9';
-    public const ASPECT_RATIO__916 = '9:16';
-    public const ASPECT_RATIO__34 = '3:4';
-    public const ASPECT_RATIO__219 = '21:9';
-    public const ASPECT_RATIO__921 = '9:21';
+    public const STATUS_QUEUED = 'queued';
+    public const STATUS_PROCESSING = 'processing';
+    public const STATUS_DONE = 'done';
+    public const STATUS_FAILED = 'failed';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getStatusAllowableValues()
     {
         return [
-            self::TYPE_IMAGE_TO_VIDEO,
-        ];
-    }
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getAspectRatioAllowableValues()
-    {
-        return [
-            self::ASPECT_RATIO__11,
-            self::ASPECT_RATIO__43,
-            self::ASPECT_RATIO__169,
-            self::ASPECT_RATIO__916,
-            self::ASPECT_RATIO__34,
-            self::ASPECT_RATIO__219,
-            self::ASPECT_RATIO__921,
+            self::STATUS_QUEUED,
+            self::STATUS_PROCESSING,
+            self::STATUS_DONE,
+            self::STATUS_FAILED,
         ];
     }
 
@@ -313,12 +282,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'image-to-video');
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('prompt', $data ?? [], null);
-        $this->setIfExists('aspect_ratio', $data ?? [], null);
-        $this->setIfExists('speed', $data ?? [], null);
-        $this->setIfExists('crop', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
     }
 
     /**
@@ -348,40 +315,19 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
                 implode("', '", $allowedValues)
             );
-        }
-
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
-        }
-
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                $this->container['aspect_ratio'],
-                implode("', '", $allowedValues)
-            );
-        }
-
-        if (!is_null($this->container['speed']) && ($this->container['speed'] > 10)) {
-            $invalidProperties[] = "invalid value for 'speed', must be smaller than or equal to 10.";
-        }
-
-        if (!is_null($this->container['speed']) && ($this->container['speed'] < 0)) {
-            $invalidProperties[] = "invalid value for 'speed', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -400,196 +346,119 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets type
+     * Gets id
      *
      * @return string
      */
-    public function getType()
+    public function getId()
     {
-        return $this->container['type'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets type
+     * Sets id
      *
-     * @param string $type The type of asset to generate - set to `image-to-video` for image-to-video.
+     * @param string $id The generation job id. Deterministic for a given owner and asset payload (or idempotency key), so identical requests return the same job and cached result.
      *
      * @return self
      */
-    public function setType($type)
+    public function setId($id)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
+        $this->container['id'] = $id;
+
+        return $this;
+    }
+
+    /**
+     * Gets status
+     *
+     * @return string
+     */
+    public function getStatus()
+    {
+        return $this->container['status'];
+    }
+
+    /**
+     * Sets status
+     *
+     * @param string $status The status of the generation job.
+     *
+     * @return self
+     */
+    public function setStatus($status)
+    {
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['type'] = $type;
+        $this->container['status'] = $status;
 
         return $this;
     }
 
     /**
-     * Gets src
-     *
-     * @return string
-     */
-    public function getSrc()
-    {
-        return $this->container['src'];
-    }
-
-    /**
-     * Sets src
-     *
-     * @param string $src The image source URL. The URL must be publicly accessible or include credentials.
-     *
-     * @return self
-     */
-    public function setSrc($src)
-    {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
-        }
-
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling ImageToVideoAsset., must be bigger than or equal to 1.');
-        }
-
-        $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets prompt
+     * Gets url
      *
      * @return string|null
      */
-    public function getPrompt()
+    public function getUrl()
     {
-        return $this->container['prompt'];
+        return $this->container['url'];
     }
 
     /**
-     * Sets prompt
+     * Sets url
      *
-     * @param string|null $prompt The instructions for modifying the image into a video sequence.
+     * @param string|null $url The public URL of the generated asset. Present only when `status` is `done`.
      *
      * @return self
      */
-    public function setPrompt($prompt)
+    public function setUrl($url)
     {
-        if (is_null($prompt)) {
-            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
         }
-        $this->container['prompt'] = $prompt;
+        $this->container['url'] = $url;
 
         return $this;
     }
 
     /**
-     * Gets aspect_ratio
+     * Gets error
      *
      * @return string|null
      */
-    public function getAspectRatio()
+    public function getError()
     {
-        return $this->container['aspect_ratio'];
+        return $this->container['error'];
     }
 
     /**
-     * Sets aspect_ratio
+     * Sets error
      *
-     * @param string|null $aspect_ratio The aspect ratio (shape) of the video output.
+     * @param string|null $error A human readable error message. Present only when `status` is `failed`.
      *
      * @return self
      */
-    public function setAspectRatio($aspect_ratio)
+    public function setError($error)
     {
-        if (is_null($aspect_ratio)) {
-            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!in_array($aspect_ratio, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                    $aspect_ratio,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['aspect_ratio'] = $aspect_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets speed
-     *
-     * @return float|null
-     */
-    public function getSpeed()
-    {
-        return $this->container['speed'];
-    }
-
-    /**
-     * Sets speed
-     *
-     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
-     *
-     * @return self
-     */
-    public function setSpeed($speed)
-    {
-        if (is_null($speed)) {
-            throw new \InvalidArgumentException('non-nullable speed cannot be null');
-        }
-
-        if (($speed > 10)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling ImageToVideoAsset., must be smaller than or equal to 10.');
-        }
-        if (($speed < 0)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling ImageToVideoAsset., must be bigger than or equal to 0.');
-        }
-
-        $this->container['speed'] = $speed;
-
-        return $this;
-    }
-
-    /**
-     * Gets crop
-     *
-     * @return \ShotstackClient\Model\Crop|null
-     */
-    public function getCrop()
-    {
-        return $this->container['crop'];
-    }
-
-    /**
-     * Sets crop
-     *
-     * @param \ShotstackClient\Model\Crop|null $crop crop
-     *
-     * @return self
-     */
-    public function setCrop($crop)
-    {
-        if (is_null($crop)) {
-            throw new \InvalidArgumentException('non-nullable crop cannot be null');
-        }
-        $this->container['crop'] = $crop;
+        $this->container['error'] = $error;
 
         return $this;
     }
