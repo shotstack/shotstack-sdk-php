@@ -1,6 +1,6 @@
 <?php
 /**
- * ImageToVideoAsset
+ * GetModel200ResponsePricingQuantity
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * ImageToVideoAsset Class Doc Comment
+ * GetModel200ResponsePricingQuantity Class Doc Comment
  *
  * @category Class
- * @description **Notice: ImageToVideoAsset is deprecated. Use [VideoAsset](#tocs_videoasset) with &#x60;prompt&#x60;, a &#x60;model&#x60; that accepts a starting image, and that image in &#x60;options.inputSrc&#x60; — for example &#x60;shotstack-itv-mini&#x60;.** This type continues to function and is internally rewritten to VideoAsset; no behaviour change for existing integrations.  The ImageToVideoAsset lets you create a video from an image and a text prompt.
+ * @description How many units a generation consumes. Take the value &#x60;measure&#x60; names, or &#x60;default&#x60; when the request carries none, hold it within &#x60;min&#x60; and &#x60;max&#x60;, divide by &#x60;per&#x60;, and round up when &#x60;round&#x60; is &#x60;up&#x60;. Absent when one generation is one unit.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetModel200ResponsePricingQuantity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       *
       * @var string
       */
-    protected static $openAPIModelName = 'ImageToVideoAsset';
+    protected static $openAPIModelName = 'getModel_200_response_pricing_quantity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,12 +58,12 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var string[]
       */
     protected static $openAPITypes = [
-        'type' => 'string',
-        'src' => 'string',
-        'prompt' => 'string',
-        'aspect_ratio' => 'string',
-        'speed' => 'float',
-        'crop' => '\ShotstackClient\Model\Crop'
+        'measure' => 'string',
+        'per' => 'float',
+        'min' => 'float',
+        'max' => 'float',
+        'default' => 'float',
+        'round' => 'string'
     ];
 
     /**
@@ -74,12 +74,12 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'type' => null,
-        'src' => null,
-        'prompt' => null,
-        'aspect_ratio' => null,
-        'speed' => 'float',
-        'crop' => null
+        'measure' => null,
+        'per' => null,
+        'min' => null,
+        'max' => null,
+        'default' => null,
+        'round' => null
     ];
 
     /**
@@ -88,12 +88,12 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'type' => false,
-        'src' => false,
-        'prompt' => false,
-        'aspect_ratio' => false,
-        'speed' => false,
-        'crop' => false
+        'measure' => false,
+        'per' => false,
+        'min' => false,
+        'max' => false,
+        'default' => false,
+        'round' => false
     ];
 
     /**
@@ -182,12 +182,12 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $attributeMap = [
-        'type' => 'type',
-        'src' => 'src',
-        'prompt' => 'prompt',
-        'aspect_ratio' => 'aspectRatio',
-        'speed' => 'speed',
-        'crop' => 'crop'
+        'measure' => 'measure',
+        'per' => 'per',
+        'min' => 'min',
+        'max' => 'max',
+        'default' => 'default',
+        'round' => 'round'
     ];
 
     /**
@@ -196,12 +196,12 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $setters = [
-        'type' => 'setType',
-        'src' => 'setSrc',
-        'prompt' => 'setPrompt',
-        'aspect_ratio' => 'setAspectRatio',
-        'speed' => 'setSpeed',
-        'crop' => 'setCrop'
+        'measure' => 'setMeasure',
+        'per' => 'setPer',
+        'min' => 'setMin',
+        'max' => 'setMax',
+        'default' => 'setDefault',
+        'round' => 'setRound'
     ];
 
     /**
@@ -210,12 +210,12 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @var string[]
      */
     protected static $getters = [
-        'type' => 'getType',
-        'src' => 'getSrc',
-        'prompt' => 'getPrompt',
-        'aspect_ratio' => 'getAspectRatio',
-        'speed' => 'getSpeed',
-        'crop' => 'getCrop'
+        'measure' => 'getMeasure',
+        'per' => 'getPer',
+        'min' => 'getMin',
+        'max' => 'getMax',
+        'default' => 'getDefault',
+        'round' => 'getRound'
     ];
 
     /**
@@ -259,24 +259,20 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
         return self::$openAPIModelName;
     }
 
-    public const TYPE_IMAGE_TO_VIDEO = 'image-to-video';
-    public const ASPECT_RATIO__11 = '1:1';
-    public const ASPECT_RATIO__43 = '4:3';
-    public const ASPECT_RATIO__169 = '16:9';
-    public const ASPECT_RATIO__916 = '9:16';
-    public const ASPECT_RATIO__34 = '3:4';
-    public const ASPECT_RATIO__219 = '21:9';
-    public const ASPECT_RATIO__921 = '9:21';
+    public const MEASURE_CLIP_SECONDS = 'clipSeconds';
+    public const MEASURE_PROMPT_CHARACTERS = 'promptCharacters';
+    public const ROUND_UP = 'up';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getTypeAllowableValues()
+    public function getMeasureAllowableValues()
     {
         return [
-            self::TYPE_IMAGE_TO_VIDEO,
+            self::MEASURE_CLIP_SECONDS,
+            self::MEASURE_PROMPT_CHARACTERS,
         ];
     }
 
@@ -285,16 +281,10 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      *
      * @return string[]
      */
-    public function getAspectRatioAllowableValues()
+    public function getRoundAllowableValues()
     {
         return [
-            self::ASPECT_RATIO__11,
-            self::ASPECT_RATIO__43,
-            self::ASPECT_RATIO__169,
-            self::ASPECT_RATIO__916,
-            self::ASPECT_RATIO__34,
-            self::ASPECT_RATIO__219,
-            self::ASPECT_RATIO__921,
+            self::ROUND_UP,
         ];
     }
 
@@ -313,12 +303,12 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'image-to-video');
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('prompt', $data ?? [], null);
-        $this->setIfExists('aspect_ratio', $data ?? [], null);
-        $this->setIfExists('speed', $data ?? [], null);
-        $this->setIfExists('crop', $data ?? [], null);
+        $this->setIfExists('measure', $data ?? [], null);
+        $this->setIfExists('per', $data ?? [], null);
+        $this->setIfExists('min', $data ?? [], null);
+        $this->setIfExists('max', $data ?? [], null);
+        $this->setIfExists('default', $data ?? [], null);
+        $this->setIfExists('round', $data ?? [], null);
     }
 
     /**
@@ -348,40 +338,28 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
     {
         $invalidProperties = [];
 
-        if ($this->container['type'] === null) {
-            $invalidProperties[] = "'type' can't be null";
+        if ($this->container['measure'] === null) {
+            $invalidProperties[] = "'measure' can't be null";
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+        $allowedValues = $this->getMeasureAllowableValues();
+        if (!is_null($this->container['measure']) && !in_array($this->container['measure'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'type', must be one of '%s'",
-                $this->container['type'],
+                "invalid value '%s' for 'measure', must be one of '%s'",
+                $this->container['measure'],
                 implode("', '", $allowedValues)
             );
         }
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['per'] === null) {
+            $invalidProperties[] = "'per' can't be null";
         }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
-        }
-
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!is_null($this->container['aspect_ratio']) && !in_array($this->container['aspect_ratio'], $allowedValues, true)) {
+        $allowedValues = $this->getRoundAllowableValues();
+        if (!is_null($this->container['round']) && !in_array($this->container['round'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                $this->container['aspect_ratio'],
+                "invalid value '%s' for 'round', must be one of '%s'",
+                $this->container['round'],
                 implode("', '", $allowedValues)
             );
-        }
-
-        if (!is_null($this->container['speed']) && ($this->container['speed'] > 10)) {
-            $invalidProperties[] = "invalid value for 'speed', must be smaller than or equal to 10.";
-        }
-
-        if (!is_null($this->container['speed']) && ($this->container['speed'] < 0)) {
-            $invalidProperties[] = "invalid value for 'speed', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -400,196 +378,183 @@ class ImageToVideoAsset implements ModelInterface, ArrayAccess, \JsonSerializabl
 
 
     /**
-     * Gets type
+     * Gets measure
      *
      * @return string
      */
-    public function getType()
+    public function getMeasure()
     {
-        return $this->container['type'];
+        return $this->container['measure'];
     }
 
     /**
-     * Sets type
+     * Sets measure
      *
-     * @param string $type The type of asset to generate - set to `image-to-video` for image-to-video.
+     * @param string $measure What the count is taken from, and the scale it is measured in.
      *
      * @return self
      */
-    public function setType($type)
+    public function setMeasure($measure)
     {
-        if (is_null($type)) {
-            throw new \InvalidArgumentException('non-nullable type cannot be null');
+        if (is_null($measure)) {
+            throw new \InvalidArgumentException('non-nullable measure cannot be null');
         }
-        $allowedValues = $this->getTypeAllowableValues();
-        if (!in_array($type, $allowedValues, true)) {
+        $allowedValues = $this->getMeasureAllowableValues();
+        if (!in_array($measure, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'type', must be one of '%s'",
-                    $type,
+                    "Invalid value '%s' for 'measure', must be one of '%s'",
+                    $measure,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['type'] = $type;
+        $this->container['measure'] = $measure;
 
         return $this;
     }
 
     /**
-     * Gets src
+     * Gets per
      *
-     * @return string
+     * @return float
      */
-    public function getSrc()
+    public function getPer()
     {
-        return $this->container['src'];
+        return $this->container['per'];
     }
 
     /**
-     * Sets src
+     * Sets per
      *
-     * @param string $src The image source URL. The URL must be publicly accessible or include credentials.
+     * @param float $per How many of `measure` make one billable unit.
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setPer($per)
     {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
+        if (is_null($per)) {
+            throw new \InvalidArgumentException('non-nullable per cannot be null');
         }
-
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling ImageToVideoAsset., must be bigger than or equal to 1.');
-        }
-
-        $this->container['src'] = $src;
+        $this->container['per'] = $per;
 
         return $this;
     }
 
     /**
-     * Gets prompt
-     *
-     * @return string|null
-     */
-    public function getPrompt()
-    {
-        return $this->container['prompt'];
-    }
-
-    /**
-     * Sets prompt
-     *
-     * @param string|null $prompt The instructions for modifying the image into a video sequence.
-     *
-     * @return self
-     */
-    public function setPrompt($prompt)
-    {
-        if (is_null($prompt)) {
-            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
-        }
-        $this->container['prompt'] = $prompt;
-
-        return $this;
-    }
-
-    /**
-     * Gets aspect_ratio
-     *
-     * @return string|null
-     */
-    public function getAspectRatio()
-    {
-        return $this->container['aspect_ratio'];
-    }
-
-    /**
-     * Sets aspect_ratio
-     *
-     * @param string|null $aspect_ratio The aspect ratio (shape) of the video output.
-     *
-     * @return self
-     */
-    public function setAspectRatio($aspect_ratio)
-    {
-        if (is_null($aspect_ratio)) {
-            throw new \InvalidArgumentException('non-nullable aspect_ratio cannot be null');
-        }
-        $allowedValues = $this->getAspectRatioAllowableValues();
-        if (!in_array($aspect_ratio, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'aspect_ratio', must be one of '%s'",
-                    $aspect_ratio,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['aspect_ratio'] = $aspect_ratio;
-
-        return $this;
-    }
-
-    /**
-     * Gets speed
+     * Gets min
      *
      * @return float|null
      */
-    public function getSpeed()
+    public function getMin()
     {
-        return $this->container['speed'];
+        return $this->container['min'];
     }
 
     /**
-     * Sets speed
+     * Sets min
      *
-     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to  adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * @param float|null $min Fewest accepted. A smaller request is charged at this.
      *
      * @return self
      */
-    public function setSpeed($speed)
+    public function setMin($min)
     {
-        if (is_null($speed)) {
-            throw new \InvalidArgumentException('non-nullable speed cannot be null');
+        if (is_null($min)) {
+            throw new \InvalidArgumentException('non-nullable min cannot be null');
         }
-
-        if (($speed > 10)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling ImageToVideoAsset., must be smaller than or equal to 10.');
-        }
-        if (($speed < 0)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling ImageToVideoAsset., must be bigger than or equal to 0.');
-        }
-
-        $this->container['speed'] = $speed;
+        $this->container['min'] = $min;
 
         return $this;
     }
 
     /**
-     * Gets crop
+     * Gets max
      *
-     * @return \ShotstackClient\Model\Crop|null
+     * @return float|null
      */
-    public function getCrop()
+    public function getMax()
     {
-        return $this->container['crop'];
+        return $this->container['max'];
     }
 
     /**
-     * Sets crop
+     * Sets max
      *
-     * @param \ShotstackClient\Model\Crop|null $crop crop
+     * @param float|null $max Most accepted. A larger request is charged at this.
      *
      * @return self
      */
-    public function setCrop($crop)
+    public function setMax($max)
     {
-        if (is_null($crop)) {
-            throw new \InvalidArgumentException('non-nullable crop cannot be null');
+        if (is_null($max)) {
+            throw new \InvalidArgumentException('non-nullable max cannot be null');
         }
-        $this->container['crop'] = $crop;
+        $this->container['max'] = $max;
+
+        return $this;
+    }
+
+    /**
+     * Gets default
+     *
+     * @return float|null
+     */
+    public function getDefault()
+    {
+        return $this->container['default'];
+    }
+
+    /**
+     * Sets default
+     *
+     * @param float|null $default Assumed when the request carries no value.
+     *
+     * @return self
+     */
+    public function setDefault($default)
+    {
+        if (is_null($default)) {
+            throw new \InvalidArgumentException('non-nullable default cannot be null');
+        }
+        $this->container['default'] = $default;
+
+        return $this;
+    }
+
+    /**
+     * Gets round
+     *
+     * @return string|null
+     */
+    public function getRound()
+    {
+        return $this->container['round'];
+    }
+
+    /**
+     * Sets round
+     *
+     * @param string|null $round Present when a partial unit is charged as a whole one. A 61 second track on a per-minute rate is charged as two minutes.
+     *
+     * @return self
+     */
+    public function setRound($round)
+    {
+        if (is_null($round)) {
+            throw new \InvalidArgumentException('non-nullable round cannot be null');
+        }
+        $allowedValues = $this->getRoundAllowableValues();
+        if (!in_array($round, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'round', must be one of '%s'",
+                    $round,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['round'] = $round;
 
         return $this;
     }
