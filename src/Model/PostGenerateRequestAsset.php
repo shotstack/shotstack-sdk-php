@@ -1,6 +1,6 @@
 <?php
 /**
- * VideoAsset
+ * PostGenerateRequestAsset
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * VideoAsset Class Doc Comment
+ * PostGenerateRequestAsset Class Doc Comment
  *
  * @category Class
- * @description The VideoAsset adds a video to a Clip. The video can be sourced from a URL (&#x60;src&#x60;), generated from a text prompt (&#x60;prompt&#x60;), or both. At least one of &#x60;src&#x60; or &#x60;prompt&#x60; must be provided.  - **Source URL:** set &#x60;src&#x60; to the URL of an mp4 (or compatible) video file. - **Generated:** set &#x60;prompt&#x60; to describe the motion. Choose a generator   with &#x60;model&#x60; and configure it with model-specific &#x60;options&#x60;. Models that   animate a starting image take it as &#x60;options.inputSrc&#x60;; the default model   generates from the prompt alone. The generated &#x60;src&#x60; is filled in   automatically. - **Both:** &#x60;src&#x60; acts as a preview placeholder while &#x60;prompt&#x60; drives   generation — the video is regenerated from the prompt at render time.   Unchanged prompts and options resolve from the generation cache.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
+class PostGenerateRequestAsset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'VideoAsset';
+    protected static $openAPIModelName = 'postGenerate_request_asset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -63,13 +62,14 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => 'string',
         'model' => 'string',
         'options' => 'array<string,mixed>',
+        'crop' => '\ShotstackClient\Model\Crop',
         'transcode' => 'bool',
         'trim' => 'float',
-        'volume' => '\ShotstackClient\Model\VideoAssetVolume',
+        'volume' => '\ShotstackClient\Model\AudioAssetVolume',
         'volume_effect' => 'string',
         'speed' => 'float',
-        'crop' => '\ShotstackClient\Model\Crop',
-        'chroma_key' => '\ShotstackClient\Model\ChromaKey'
+        'chroma_key' => '\ShotstackClient\Model\ChromaKey',
+        'effect' => 'string'
     ];
 
     /**
@@ -85,13 +85,14 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => null,
         'model' => null,
         'options' => null,
+        'crop' => null,
         'transcode' => null,
         'trim' => null,
         'volume' => null,
         'volume_effect' => null,
         'speed' => 'float',
-        'crop' => null,
-        'chroma_key' => null
+        'chroma_key' => null,
+        'effect' => null
     ];
 
     /**
@@ -105,13 +106,14 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => false,
         'model' => false,
         'options' => false,
+        'crop' => false,
         'transcode' => false,
         'trim' => false,
         'volume' => false,
         'volume_effect' => false,
         'speed' => false,
-        'crop' => false,
-        'chroma_key' => false
+        'chroma_key' => false,
+        'effect' => false
     ];
 
     /**
@@ -205,13 +207,14 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => 'prompt',
         'model' => 'model',
         'options' => 'options',
+        'crop' => 'crop',
         'transcode' => 'transcode',
         'trim' => 'trim',
         'volume' => 'volume',
         'volume_effect' => 'volumeEffect',
         'speed' => 'speed',
-        'crop' => 'crop',
-        'chroma_key' => 'chromaKey'
+        'chroma_key' => 'chromaKey',
+        'effect' => 'effect'
     ];
 
     /**
@@ -225,13 +228,14 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => 'setPrompt',
         'model' => 'setModel',
         'options' => 'setOptions',
+        'crop' => 'setCrop',
         'transcode' => 'setTranscode',
         'trim' => 'setTrim',
         'volume' => 'setVolume',
         'volume_effect' => 'setVolumeEffect',
         'speed' => 'setSpeed',
-        'crop' => 'setCrop',
-        'chroma_key' => 'setChromaKey'
+        'chroma_key' => 'setChromaKey',
+        'effect' => 'setEffect'
     ];
 
     /**
@@ -245,13 +249,14 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'prompt' => 'getPrompt',
         'model' => 'getModel',
         'options' => 'getOptions',
+        'crop' => 'getCrop',
         'transcode' => 'getTranscode',
         'trim' => 'getTrim',
         'volume' => 'getVolume',
         'volume_effect' => 'getVolumeEffect',
         'speed' => 'getSpeed',
-        'crop' => 'getCrop',
-        'chroma_key' => 'getChromaKey'
+        'chroma_key' => 'getChromaKey',
+        'effect' => 'getEffect'
     ];
 
     /**
@@ -295,11 +300,17 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_IMAGE = 'image';
     public const TYPE_VIDEO = 'video';
+    public const TYPE_AUDIO = 'audio';
     public const VOLUME_EFFECT_NONE = 'none';
     public const VOLUME_EFFECT_FADE_IN = 'fadeIn';
     public const VOLUME_EFFECT_FADE_OUT = 'fadeOut';
     public const VOLUME_EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
+    public const EFFECT_NONE = 'none';
+    public const EFFECT_FADE_IN = 'fadeIn';
+    public const EFFECT_FADE_OUT = 'fadeOut';
+    public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
 
     /**
      * Gets allowable values of the enum
@@ -309,7 +320,9 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     public function getTypeAllowableValues()
     {
         return [
+            self::TYPE_IMAGE,
             self::TYPE_VIDEO,
+            self::TYPE_AUDIO,
         ];
     }
 
@@ -329,6 +342,21 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     }
 
     /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getEffectAllowableValues()
+    {
+        return [
+            self::EFFECT_NONE,
+            self::EFFECT_FADE_IN,
+            self::EFFECT_FADE_OUT,
+            self::EFFECT_FADE_IN_FADE_OUT,
+        ];
+    }
+
+    /**
      * Associative array for storing property values
      *
      * @var mixed[]
@@ -343,18 +371,19 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('type', $data ?? [], 'video');
+        $this->setIfExists('type', $data ?? [], 'image');
         $this->setIfExists('src', $data ?? [], null);
         $this->setIfExists('prompt', $data ?? [], null);
         $this->setIfExists('model', $data ?? [], null);
         $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('crop', $data ?? [], null);
         $this->setIfExists('transcode', $data ?? [], null);
         $this->setIfExists('trim', $data ?? [], null);
         $this->setIfExists('volume', $data ?? [], null);
         $this->setIfExists('volume_effect', $data ?? [], null);
         $this->setIfExists('speed', $data ?? [], null);
-        $this->setIfExists('crop', $data ?? [], null);
         $this->setIfExists('chroma_key', $data ?? [], null);
+        $this->setIfExists('effect', $data ?? [], null);
     }
 
     /**
@@ -425,6 +454,15 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             $invalidProperties[] = "invalid value for 'speed', must be bigger than or equal to 0.";
         }
 
+        $allowedValues = $this->getEffectAllowableValues();
+        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'effect', must be one of '%s'",
+                $this->container['effect'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -453,7 +491,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets type
      *
-     * @param string $type The type of asset - set to `video` for videos.
+     * @param string $type The type of asset - set to `image` for images.
      *
      * @return self
      */
@@ -490,7 +528,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets src
      *
-     * @param string|null $src The video source URL. The URL must be publicly accessible or include credentials. When `prompt` is also set, `src` serves as a preview placeholder and the video is regenerated from the prompt at render time.
+     * @param string|null $src The audio source URL. The URL must be publicly accessible or include credentials. When `prompt` is also set, `src` serves as a preview placeholder and the audio is regenerated from the prompt at render time.
      *
      * @return self
      */
@@ -501,10 +539,10 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling VideoAsset., must be bigger than or equal to 1.');
+            throw new \InvalidArgumentException('invalid length for $src when calling PostGenerateRequestAsset., must be bigger than or equal to 1.');
         }
         if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
-            throw new \InvalidArgumentException("invalid value for \$src when calling VideoAsset., must conform to the pattern /\\S/.");
+            throw new \InvalidArgumentException("invalid value for \$src when calling PostGenerateRequestAsset., must conform to the pattern /\\S/.");
         }
 
         $this->container['src'] = $src;
@@ -525,7 +563,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets prompt
      *
-     * @param string|null $prompt A text prompt to generate the video from. The engine generates a video at render time and fills `src` automatically; an existing `src` is treated as a preview placeholder and replaced. Use `model` to choose the generator and `options` to configure it. A starting image goes in `options.inputSrc`, on the models that accept one.
+     * @param string|null $prompt A text prompt. For text-to-speech models the prompt is the spoken text; for music models it describes the sound to generate. The generated `src` is filled in automatically; an existing `src` is treated as a preview placeholder and replaced.
      *
      * @return self
      */
@@ -535,7 +573,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable prompt cannot be null');
         }
         if ((mb_strlen($prompt) > 4000)) {
-            throw new \InvalidArgumentException('invalid length for $prompt when calling VideoAsset., must be smaller than or equal to 4000.');
+            throw new \InvalidArgumentException('invalid length for $prompt when calling PostGenerateRequestAsset., must be smaller than or equal to 4000.');
         }
 
         $this->container['prompt'] = $prompt;
@@ -556,7 +594,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets model
      *
-     * @param string|null $model The generation model to use when `prompt` is set (e.g. `seedance-2.0-text-to-video`). Defaults to `seedance-2.0-text-to-video` if omitted. `GET /models` lists what is available and the options each accepts.
+     * @param string|null $model The generation model to use when `prompt` is set (e.g. `polly-neural`, `elevenlabs-tts`, `elevenlabs-music`). Defaults to `elevenlabs-tts` (with a default voice) if omitted. Each model's available options are defined by the model registry.
      *
      * @return self
      */
@@ -593,6 +631,33 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable options cannot be null');
         }
         $this->container['options'] = $options;
+
+        return $this;
+    }
+
+    /**
+     * Gets crop
+     *
+     * @return \ShotstackClient\Model\Crop|null
+     */
+    public function getCrop()
+    {
+        return $this->container['crop'];
+    }
+
+    /**
+     * Sets crop
+     *
+     * @param \ShotstackClient\Model\Crop|null $crop crop
+     *
+     * @return self
+     */
+    public function setCrop($crop)
+    {
+        if (is_null($crop)) {
+            throw new \InvalidArgumentException('non-nullable crop cannot be null');
+        }
+        $this->container['crop'] = $crop;
 
         return $this;
     }
@@ -637,7 +702,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets trim
      *
-     * @param float|null $trim The start trim point of the video clip, in seconds (defaults to 0). Videos will start from the in trim point. The video will play until the file ends or the Clip length is reached.
+     * @param float|null $trim The start trim point of the audio clip, in seconds (defaults to 0). Audio will start from the in trim point. The audio will play until the file ends or the Clip length is reached.
      *
      * @return self
      */
@@ -654,7 +719,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets volume
      *
-     * @return \ShotstackClient\Model\VideoAssetVolume|null
+     * @return \ShotstackClient\Model\AudioAssetVolume|null
      */
     public function getVolume()
     {
@@ -664,7 +729,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets volume
      *
-     * @param \ShotstackClient\Model\VideoAssetVolume|null $volume volume
+     * @param \ShotstackClient\Model\AudioAssetVolume|null $volume volume
      *
      * @return self
      */
@@ -728,7 +793,7 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets speed
      *
-     * @param float|null $speed Adjust the playback speed of the video clip between 0 (paused) and 10 (10x normal speed) where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire video (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire video (i.e. original length / 2).
+     * @param float|null $speed Adjust the playback speed of the audio clip between 0 (paused) and 10 (10x normal speed), where 1 is normal speed (defaults to 1). Adjusting the speed will also adjust the duration of the clip and may require you to adjust the Clip length. For example, if you set speed to 0.5, the clip will need to be 2x as long to play the entire audio (i.e. original length / 0.5). If you set speed to 2, the clip will need to be half as long to play the entire audio (i.e. original length / 2).
      *
      * @return self
      */
@@ -739,40 +804,13 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         }
 
         if (($speed > 10)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling VideoAsset., must be smaller than or equal to 10.');
+            throw new \InvalidArgumentException('invalid value for $speed when calling PostGenerateRequestAsset., must be smaller than or equal to 10.');
         }
         if (($speed < 0)) {
-            throw new \InvalidArgumentException('invalid value for $speed when calling VideoAsset., must be bigger than or equal to 0.');
+            throw new \InvalidArgumentException('invalid value for $speed when calling PostGenerateRequestAsset., must be bigger than or equal to 0.');
         }
 
         $this->container['speed'] = $speed;
-
-        return $this;
-    }
-
-    /**
-     * Gets crop
-     *
-     * @return \ShotstackClient\Model\Crop|null
-     */
-    public function getCrop()
-    {
-        return $this->container['crop'];
-    }
-
-    /**
-     * Sets crop
-     *
-     * @param \ShotstackClient\Model\Crop|null $crop crop
-     *
-     * @return self
-     */
-    public function setCrop($crop)
-    {
-        if (is_null($crop)) {
-            throw new \InvalidArgumentException('non-nullable crop cannot be null');
-        }
-        $this->container['crop'] = $crop;
 
         return $this;
     }
@@ -800,6 +838,43 @@ class VideoAsset implements ModelInterface, ArrayAccess, \JsonSerializable
             throw new \InvalidArgumentException('non-nullable chroma_key cannot be null');
         }
         $this->container['chroma_key'] = $chroma_key;
+
+        return $this;
+    }
+
+    /**
+     * Gets effect
+     *
+     * @return string|null
+     */
+    public function getEffect()
+    {
+        return $this->container['effect'];
+    }
+
+    /**
+     * Sets effect
+     *
+     * @param string|null $effect The effect to apply to the audio asset <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
+     *
+     * @return self
+     */
+    public function setEffect($effect)
+    {
+        if (is_null($effect)) {
+            throw new \InvalidArgumentException('non-nullable effect cannot be null');
+        }
+        $allowedValues = $this->getEffectAllowableValues();
+        if (!in_array($effect, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'effect', must be one of '%s'",
+                    $effect,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['effect'] = $effect;
 
         return $this;
     }
