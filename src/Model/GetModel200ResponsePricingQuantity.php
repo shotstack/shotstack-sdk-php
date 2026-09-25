@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * GetModel200ResponsePricingQuantity
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * GetModel200ResponsePricingQuantity Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Soundtrack is deprecated, use an [AudioAsset](#tocs_audioasset) clip on its own track instead.** This type continues to function; no behaviour change for existing integrations. A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description How many units a generation consumes. Take the value &#x60;measure&#x60; names, or &#x60;default&#x60; when the request carries none, hold it within &#x60;min&#x60; and &#x60;max&#x60;, divide by &#x60;per&#x60;, and round up when &#x60;round&#x60; is &#x60;up&#x60;. Absent when one generation is one unit.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetModel200ResponsePricingQuantity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'getModel_200_response_pricing_quantity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,12 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'measure' => 'string',
+        'per' => 'float',
+        'min' => 'float',
+        'max' => 'float',
+        'default' => 'float',
+        'round' => 'string'
     ];
 
     /**
@@ -71,9 +74,12 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'measure' => null,
+        'per' => null,
+        'min' => null,
+        'max' => null,
+        'default' => null,
+        'round' => null
     ];
 
     /**
@@ -82,9 +88,12 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'src' => false,
-        'effect' => false,
-        'volume' => false
+        'measure' => false,
+        'per' => false,
+        'min' => false,
+        'max' => false,
+        'default' => false,
+        'round' => false
     ];
 
     /**
@@ -173,9 +182,12 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'measure' => 'measure',
+        'per' => 'per',
+        'min' => 'min',
+        'max' => 'max',
+        'default' => 'default',
+        'round' => 'round'
     ];
 
     /**
@@ -184,9 +196,12 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'measure' => 'setMeasure',
+        'per' => 'setPer',
+        'min' => 'setMin',
+        'max' => 'setMax',
+        'default' => 'setDefault',
+        'round' => 'setRound'
     ];
 
     /**
@@ -195,9 +210,12 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'measure' => 'getMeasure',
+        'per' => 'getPer',
+        'min' => 'getMin',
+        'max' => 'getMax',
+        'default' => 'getDefault',
+        'round' => 'getRound'
     ];
 
     /**
@@ -241,21 +259,32 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const EFFECT_FADE_IN = 'fadeIn';
-    public const EFFECT_FADE_OUT = 'fadeOut';
-    public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
+    public const MEASURE_CLIP_SECONDS = 'clipSeconds';
+    public const MEASURE_PROMPT_CHARACTERS = 'promptCharacters';
+    public const ROUND_UP = 'up';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getEffectAllowableValues()
+    public function getMeasureAllowableValues()
     {
         return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
+            self::MEASURE_CLIP_SECONDS,
+            self::MEASURE_PROMPT_CHARACTERS,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRoundAllowableValues()
+    {
+        return [
+            self::ROUND_UP,
         ];
     }
 
@@ -274,9 +303,12 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('effect', $data ?? [], null);
-        $this->setIfExists('volume', $data ?? [], null);
+        $this->setIfExists('measure', $data ?? [], null);
+        $this->setIfExists('per', $data ?? [], null);
+        $this->setIfExists('min', $data ?? [], null);
+        $this->setIfExists('max', $data ?? [], null);
+        $this->setIfExists('default', $data ?? [], null);
+        $this->setIfExists('round', $data ?? [], null);
     }
 
     /**
@@ -306,22 +338,26 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
+        if ($this->container['measure'] === null) {
+            $invalidProperties[] = "'measure' can't be null";
         }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
-        }
-
-        if (!preg_match("/\\S/", $this->container['src'])) {
-            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
-        }
-
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
+        $allowedValues = $this->getMeasureAllowableValues();
+        if (!is_null($this->container['measure']) && !in_array($this->container['measure'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
+                "invalid value '%s' for 'measure', must be one of '%s'",
+                $this->container['measure'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['per'] === null) {
+            $invalidProperties[] = "'per' can't be null";
+        }
+        $allowedValues = $this->getRoundAllowableValues();
+        if (!is_null($this->container['round']) && !in_array($this->container['round'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'round', must be one of '%s'",
+                $this->container['round'],
                 implode("', '", $allowedValues)
             );
         }
@@ -342,100 +378,183 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets src
+     * Gets measure
      *
      * @return string
      */
-    public function getSrc()
+    public function getMeasure()
     {
-        return $this->container['src'];
+        return $this->container['measure'];
     }
 
     /**
-     * Sets src
+     * Sets measure
      *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
+     * @param string $measure What the count is taken from, and the scale it is measured in.
      *
      * @return self
      */
-    public function setSrc($src)
+    public function setMeasure($measure)
     {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
+        if (is_null($measure)) {
+            throw new \InvalidArgumentException('non-nullable measure cannot be null');
         }
-
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling Soundtrack., must be bigger than or equal to 1.');
-        }
-        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
-            throw new \InvalidArgumentException("invalid value for \$src when calling Soundtrack., must conform to the pattern /\\S/.");
-        }
-
-        $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets effect
-     *
-     * @return string|null
-     */
-    public function getEffect()
-    {
-        return $this->container['effect'];
-    }
-
-    /**
-     * Sets effect
-     *
-     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     *
-     * @return self
-     */
-    public function setEffect($effect)
-    {
-        if (is_null($effect)) {
-            throw new \InvalidArgumentException('non-nullable effect cannot be null');
-        }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!in_array($effect, $allowedValues, true)) {
+        $allowedValues = $this->getMeasureAllowableValues();
+        if (!in_array($measure, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
+                    "Invalid value '%s' for 'measure', must be one of '%s'",
+                    $measure,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['effect'] = $effect;
+        $this->container['measure'] = $measure;
 
         return $this;
     }
 
     /**
-     * Gets volume
+     * Gets per
      *
-     * @return float|null
+     * @return float
      */
-    public function getVolume()
+    public function getPer()
     {
-        return $this->container['volume'];
+        return $this->container['per'];
     }
 
     /**
-     * Sets volume
+     * Sets per
      *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param float $per How many of `measure` make one billable unit.
      *
      * @return self
      */
-    public function setVolume($volume)
+    public function setPer($per)
     {
-        if (is_null($volume)) {
-            throw new \InvalidArgumentException('non-nullable volume cannot be null');
+        if (is_null($per)) {
+            throw new \InvalidArgumentException('non-nullable per cannot be null');
         }
-        $this->container['volume'] = $volume;
+        $this->container['per'] = $per;
+
+        return $this;
+    }
+
+    /**
+     * Gets min
+     *
+     * @return float|null
+     */
+    public function getMin()
+    {
+        return $this->container['min'];
+    }
+
+    /**
+     * Sets min
+     *
+     * @param float|null $min Fewest accepted. A smaller request is charged at this.
+     *
+     * @return self
+     */
+    public function setMin($min)
+    {
+        if (is_null($min)) {
+            throw new \InvalidArgumentException('non-nullable min cannot be null');
+        }
+        $this->container['min'] = $min;
+
+        return $this;
+    }
+
+    /**
+     * Gets max
+     *
+     * @return float|null
+     */
+    public function getMax()
+    {
+        return $this->container['max'];
+    }
+
+    /**
+     * Sets max
+     *
+     * @param float|null $max Most accepted. A larger request is charged at this.
+     *
+     * @return self
+     */
+    public function setMax($max)
+    {
+        if (is_null($max)) {
+            throw new \InvalidArgumentException('non-nullable max cannot be null');
+        }
+        $this->container['max'] = $max;
+
+        return $this;
+    }
+
+    /**
+     * Gets default
+     *
+     * @return float|null
+     */
+    public function getDefault()
+    {
+        return $this->container['default'];
+    }
+
+    /**
+     * Sets default
+     *
+     * @param float|null $default Assumed when the request carries no value.
+     *
+     * @return self
+     */
+    public function setDefault($default)
+    {
+        if (is_null($default)) {
+            throw new \InvalidArgumentException('non-nullable default cannot be null');
+        }
+        $this->container['default'] = $default;
+
+        return $this;
+    }
+
+    /**
+     * Gets round
+     *
+     * @return string|null
+     */
+    public function getRound()
+    {
+        return $this->container['round'];
+    }
+
+    /**
+     * Sets round
+     *
+     * @param string|null $round Present when a partial unit is charged as a whole one. A 61 second track on a per-minute rate is charged as two minutes.
+     *
+     * @return self
+     */
+    public function setRound($round)
+    {
+        if (is_null($round)) {
+            throw new \InvalidArgumentException('non-nullable round cannot be null');
+        }
+        $allowedValues = $this->getRoundAllowableValues();
+        if (!in_array($round, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'round', must be one of '%s'",
+                    $round,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['round'] = $round;
 
         return $this;
     }

@@ -61,6 +61,7 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
         'family' => 'string',
         'size' => 'int',
         'weight' => 'mixed',
+        'style' => 'string',
         'color' => 'string',
         'opacity' => 'float',
         'background' => 'string'
@@ -77,6 +78,7 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
         'family' => null,
         'size' => null,
         'weight' => null,
+        'style' => null,
         'color' => null,
         'opacity' => null,
         'background' => null
@@ -91,6 +93,7 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
         'family' => false,
         'size' => false,
         'weight' => true,
+        'style' => false,
         'color' => false,
         'opacity' => false,
         'background' => false
@@ -185,6 +188,7 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
         'family' => 'family',
         'size' => 'size',
         'weight' => 'weight',
+        'style' => 'style',
         'color' => 'color',
         'opacity' => 'opacity',
         'background' => 'background'
@@ -199,6 +203,7 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
         'family' => 'setFamily',
         'size' => 'setSize',
         'weight' => 'setWeight',
+        'style' => 'setStyle',
         'color' => 'setColor',
         'opacity' => 'setOpacity',
         'background' => 'setBackground'
@@ -213,6 +218,7 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
         'family' => 'getFamily',
         'size' => 'getSize',
         'weight' => 'getWeight',
+        'style' => 'getStyle',
         'color' => 'getColor',
         'opacity' => 'getOpacity',
         'background' => 'getBackground'
@@ -259,6 +265,21 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
         return self::$openAPIModelName;
     }
 
+    public const STYLE_NORMAL = 'normal';
+    public const STYLE_ITALIC = 'italic';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStyleAllowableValues()
+    {
+        return [
+            self::STYLE_NORMAL,
+            self::STYLE_ITALIC,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -278,6 +299,7 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
         $this->setIfExists('family', $data ?? [], 'Roboto');
         $this->setIfExists('size', $data ?? [], 24);
         $this->setIfExists('weight', $data ?? [], null);
+        $this->setIfExists('style', $data ?? [], 'normal');
         $this->setIfExists('color', $data ?? [], '#ffffff');
         $this->setIfExists('opacity', $data ?? [], 1);
         $this->setIfExists('background', $data ?? [], null);
@@ -316,6 +338,15 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
 
         if (!is_null($this->container['size']) && ($this->container['size'] < 1)) {
             $invalidProperties[] = "invalid value for 'size', must be bigger than or equal to 1.";
+        }
+
+        $allowedValues = $this->getStyleAllowableValues();
+        if (!is_null($this->container['style']) && !in_array($this->container['style'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'style', must be one of '%s'",
+                $this->container['style'],
+                implode("', '", $allowedValues)
+            );
         }
 
         if (!is_null($this->container['color']) && !preg_match("/^#[A-Fa-f0-9]{6}$/", $this->container['color'])) {
@@ -441,6 +472,43 @@ class RichCaptionAssetFont implements ModelInterface, ArrayAccess, \JsonSerializ
             }
         }
         $this->container['weight'] = $weight;
+
+        return $this;
+    }
+
+    /**
+     * Gets style
+     *
+     * @return string|null
+     */
+    public function getStyle()
+    {
+        return $this->container['style'];
+    }
+
+    /**
+     * Sets style
+     *
+     * @param string|null $style The font style.
+     *
+     * @return self
+     */
+    public function setStyle($style)
+    {
+        if (is_null($style)) {
+            throw new \InvalidArgumentException('non-nullable style cannot be null');
+        }
+        $allowedValues = $this->getStyleAllowableValues();
+        if (!in_array($style, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'style', must be one of '%s'",
+                    $style,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['style'] = $style;
 
         return $this;
     }
