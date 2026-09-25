@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * TitleAsset Class Doc Comment
  *
  * @category Class
- * @description **Notice: The TitleAsset is deprecated, use the [TextAsset](#tocs_textasset) instead.**  The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning.
+ * @description **Notice: The TitleAsset is deprecated, use the [RichTextAsset](#tocs_richtextasset) instead.**  The TitleAsset clip type lets you create video titles from a text string and apply styling and positioning.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
