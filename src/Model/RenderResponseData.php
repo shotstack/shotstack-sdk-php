@@ -305,6 +305,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const STATUS_FETCHING = 'fetching';
     public const STATUS_PREPROCESSING = 'preprocessing';
     public const STATUS_RENDERING = 'rendering';
+    public const STATUS_GENERATING = 'generating';
     public const STATUS_SAVING = 'saving';
     public const STATUS_DONE = 'done';
     public const STATUS_FAILED = 'failed';
@@ -321,6 +322,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
             self::STATUS_FETCHING,
             self::STATUS_PREPROCESSING,
             self::STATUS_RENDERING,
+            self::STATUS_GENERATING,
             self::STATUS_SAVING,
             self::STATUS_DONE,
             self::STATUS_FAILED,
@@ -511,7 +513,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      *
-     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`preprocessing` - video assets are being processed for compatibility</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
+     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`preprocessing` - video assets are being processed for compatibility</li>   <li>`rendering` - the asset is being rendered</li>   <li>`generating` - AI/media generation is in progress</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
      *
      * @return self
      */
