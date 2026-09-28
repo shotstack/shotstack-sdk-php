@@ -1,6 +1,6 @@
 <?php
 /**
- * RichTextFont
+ * GetModel200Response
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * RichTextFont Class Doc Comment
+ * GetModel200Response Class Doc Comment
  *
  * @category Class
- * @description Font properties for rich text.
+ * @description A generation model available to &#x60;prompt&#x60;-bearing image, video and audio assets, with the options it accepts and what it costs. Render a model picker and its option fields from this rather than hard coding a model list, so a newly launched model is available without a client release.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
+class GetModel200Response implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RichTextFont';
+    protected static $openAPIModelName = 'getModel_200_response';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,14 +58,14 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'family' => 'string',
-        'size' => 'int',
-        'weight' => 'mixed',
-        'style' => 'string',
-        'color' => 'string',
-        'opacity' => 'float',
-        'background' => 'string',
-        'stroke' => '\ShotstackClient\Model\RichTextStroke'
+        'model' => 'string',
+        'type' => 'string',
+        'name' => 'string',
+        'description' => 'string',
+        'pricing' => '\ShotstackClient\Model\GetModel200ResponsePricing',
+        'options' => 'array<string,mixed>',
+        'available' => 'bool',
+        'unavailable_reason' => 'string'
     ];
 
     /**
@@ -76,14 +76,14 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'family' => null,
-        'size' => null,
-        'weight' => null,
-        'style' => null,
-        'color' => null,
-        'opacity' => null,
-        'background' => null,
-        'stroke' => null
+        'model' => null,
+        'type' => null,
+        'name' => null,
+        'description' => null,
+        'pricing' => null,
+        'options' => null,
+        'available' => null,
+        'unavailable_reason' => null
     ];
 
     /**
@@ -92,14 +92,14 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'family' => false,
-        'size' => false,
-        'weight' => true,
-        'style' => false,
-        'color' => false,
-        'opacity' => false,
-        'background' => false,
-        'stroke' => false
+        'model' => false,
+        'type' => false,
+        'name' => false,
+        'description' => false,
+        'pricing' => false,
+        'options' => false,
+        'available' => false,
+        'unavailable_reason' => false
     ];
 
     /**
@@ -188,14 +188,14 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'family' => 'family',
-        'size' => 'size',
-        'weight' => 'weight',
-        'style' => 'style',
-        'color' => 'color',
-        'opacity' => 'opacity',
-        'background' => 'background',
-        'stroke' => 'stroke'
+        'model' => 'model',
+        'type' => 'type',
+        'name' => 'name',
+        'description' => 'description',
+        'pricing' => 'pricing',
+        'options' => 'options',
+        'available' => 'available',
+        'unavailable_reason' => 'unavailableReason'
     ];
 
     /**
@@ -204,14 +204,14 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'family' => 'setFamily',
-        'size' => 'setSize',
-        'weight' => 'setWeight',
-        'style' => 'setStyle',
-        'color' => 'setColor',
-        'opacity' => 'setOpacity',
-        'background' => 'setBackground',
-        'stroke' => 'setStroke'
+        'model' => 'setModel',
+        'type' => 'setType',
+        'name' => 'setName',
+        'description' => 'setDescription',
+        'pricing' => 'setPricing',
+        'options' => 'setOptions',
+        'available' => 'setAvailable',
+        'unavailable_reason' => 'setUnavailableReason'
     ];
 
     /**
@@ -220,14 +220,14 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'family' => 'getFamily',
-        'size' => 'getSize',
-        'weight' => 'getWeight',
-        'style' => 'getStyle',
-        'color' => 'getColor',
-        'opacity' => 'getOpacity',
-        'background' => 'getBackground',
-        'stroke' => 'getStroke'
+        'model' => 'getModel',
+        'type' => 'getType',
+        'name' => 'getName',
+        'description' => 'getDescription',
+        'pricing' => 'getPricing',
+        'options' => 'getOptions',
+        'available' => 'getAvailable',
+        'unavailable_reason' => 'getUnavailableReason'
     ];
 
     /**
@@ -271,19 +271,38 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const STYLE_NORMAL = 'normal';
-    public const STYLE_ITALIC = 'italic';
+    public const TYPE_IMAGE = 'image';
+    public const TYPE_VIDEO = 'video';
+    public const TYPE_AUDIO = 'audio';
+    public const UNAVAILABLE_REASON_AI_CAPABILITY_NOT_INCLUDED = 'AiCapabilityNotIncluded';
+    public const UNAVAILABLE_REASON_AI_DISABLED = 'AiDisabled';
+    public const UNAVAILABLE_REASON_AI_ACCESS_UNAVAILABLE = 'AiAccessUnavailable';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getStyleAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::STYLE_NORMAL,
-            self::STYLE_ITALIC,
+            self::TYPE_IMAGE,
+            self::TYPE_VIDEO,
+            self::TYPE_AUDIO,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getUnavailableReasonAllowableValues()
+    {
+        return [
+            self::UNAVAILABLE_REASON_AI_CAPABILITY_NOT_INCLUDED,
+            self::UNAVAILABLE_REASON_AI_DISABLED,
+            self::UNAVAILABLE_REASON_AI_ACCESS_UNAVAILABLE,
         ];
     }
 
@@ -302,14 +321,14 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('family', $data ?? [], 'Open Sans');
-        $this->setIfExists('size', $data ?? [], 24);
-        $this->setIfExists('weight', $data ?? [], null);
-        $this->setIfExists('style', $data ?? [], 'normal');
-        $this->setIfExists('color', $data ?? [], '#000000');
-        $this->setIfExists('opacity', $data ?? [], 1);
-        $this->setIfExists('background', $data ?? [], null);
-        $this->setIfExists('stroke', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('pricing', $data ?? [], null);
+        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('available', $data ?? [], null);
+        $this->setIfExists('unavailable_reason', $data ?? [], null);
     }
 
     /**
@@ -339,37 +358,28 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['size']) && ($this->container['size'] > 500)) {
-            $invalidProperties[] = "invalid value for 'size', must be smaller than or equal to 500.";
+        if ($this->container['model'] === null) {
+            $invalidProperties[] = "'model' can't be null";
         }
-
-        if (!is_null($this->container['size']) && ($this->container['size'] < 1)) {
-            $invalidProperties[] = "invalid value for 'size', must be bigger than or equal to 1.";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-
-        $allowedValues = $this->getStyleAllowableValues();
-        if (!is_null($this->container['style']) && !in_array($this->container['style'], $allowedValues, true)) {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'style', must be one of '%s'",
-                $this->container['style'],
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
                 implode("', '", $allowedValues)
             );
         }
 
-        if (!is_null($this->container['color']) && !preg_match("/^#[A-Fa-f0-9]{6}$/", $this->container['color'])) {
-            $invalidProperties[] = "invalid value for 'color', must be conform to the pattern /^#[A-Fa-f0-9]{6}$/.";
-        }
-
-        if (!is_null($this->container['opacity']) && ($this->container['opacity'] > 1)) {
-            $invalidProperties[] = "invalid value for 'opacity', must be smaller than or equal to 1.";
-        }
-
-        if (!is_null($this->container['opacity']) && ($this->container['opacity'] < 0)) {
-            $invalidProperties[] = "invalid value for 'opacity', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['background']) && !preg_match("/^#[A-Fa-f0-9]{6}$/", $this->container['background'])) {
-            $invalidProperties[] = "invalid value for 'background', must be conform to the pattern /^#[A-Fa-f0-9]{6}$/.";
+        $allowedValues = $this->getUnavailableReasonAllowableValues();
+        if (!is_null($this->container['unavailable_reason']) && !in_array($this->container['unavailable_reason'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'unavailable_reason', must be one of '%s'",
+                $this->container['unavailable_reason'],
+                implode("', '", $allowedValues)
+            );
         }
 
         return $invalidProperties;
@@ -388,260 +398,237 @@ class RichTextFont implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets family
+     * Gets model
      *
-     * @return string|null
+     * @return string
      */
-    public function getFamily()
+    public function getModel()
     {
-        return $this->container['family'];
+        return $this->container['model'];
     }
 
     /**
-     * Sets family
+     * Sets model
      *
-     * @param string|null $family The font family name. This must be the Family name embedded in the font, i.e. \"Open Sans\".
+     * @param string $model The identifier to set as the asset `model`. Carries no provider name, so routing can change without a public rename.
      *
      * @return self
      */
-    public function setFamily($family)
+    public function setModel($model)
     {
-        if (is_null($family)) {
-            throw new \InvalidArgumentException('non-nullable family cannot be null');
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
         }
-        $this->container['family'] = $family;
+        $this->container['model'] = $model;
 
         return $this;
     }
 
     /**
-     * Gets size
+     * Gets type
      *
-     * @return int|null
+     * @return string
      */
-    public function getSize()
+    public function getType()
     {
-        return $this->container['size'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets size
+     * Sets type
      *
-     * @param int|null $size The size of the font in pixels (px). Must be between 1 and 500.
+     * @param string $type The asset type this model generates.
      *
      * @return self
      */
-    public function setSize($size)
+    public function setType($type)
     {
-        if (is_null($size)) {
-            throw new \InvalidArgumentException('non-nullable size cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-
-        if (($size > 500)) {
-            throw new \InvalidArgumentException('invalid value for $size when calling RichTextFont., must be smaller than or equal to 500.');
-        }
-        if (($size < 1)) {
-            throw new \InvalidArgumentException('invalid value for $size when calling RichTextFont., must be bigger than or equal to 1.');
-        }
-
-        $this->container['size'] = $size;
-
-        return $this;
-    }
-
-    /**
-     * Gets weight
-     *
-     * @return mixed|null
-     */
-    public function getWeight()
-    {
-        return $this->container['weight'];
-    }
-
-    /**
-     * Sets weight
-     *
-     * @param mixed|null $weight The weight of the font. Can be a number (100-900) or a string ('normal', 'bold', etc.). 100 is lightest, 900 is heaviest (boldest).
-     *
-     * @return self
-     */
-    public function setWeight($weight)
-    {
-        if (is_null($weight)) {
-            array_push($this->openAPINullablesSetToNull, 'weight');
-        } else {
-            $nullablesSetToNull = $this->getOpenAPINullablesSetToNull();
-            $index = array_search('weight', $nullablesSetToNull);
-            if ($index !== FALSE) {
-                unset($nullablesSetToNull[$index]);
-                $this->setOpenAPINullablesSetToNull($nullablesSetToNull);
-            }
-        }
-        $this->container['weight'] = $weight;
-
-        return $this;
-    }
-
-    /**
-     * Gets style
-     *
-     * @return string|null
-     */
-    public function getStyle()
-    {
-        return $this->container['style'];
-    }
-
-    /**
-     * Sets style
-     *
-     * @param string|null $style The font style.
-     *
-     * @return self
-     */
-    public function setStyle($style)
-    {
-        if (is_null($style)) {
-            throw new \InvalidArgumentException('non-nullable style cannot be null');
-        }
-        $allowedValues = $this->getStyleAllowableValues();
-        if (!in_array($style, $allowedValues, true)) {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'style', must be one of '%s'",
-                    $style,
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['style'] = $style;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets color
+     * Gets name
      *
      * @return string|null
      */
-    public function getColor()
+    public function getName()
     {
-        return $this->container['color'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets color
+     * Sets name
      *
-     * @param string|null $color The text color using hexadecimal color notation.
+     * @param string|null $name The model's display name, for a model picker.
      *
      * @return self
      */
-    public function setColor($color)
+    public function setName($name)
     {
-        if (is_null($color)) {
-            throw new \InvalidArgumentException('non-nullable color cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
-        if ((!preg_match("/^#[A-Fa-f0-9]{6}$/", ObjectSerializer::toString($color)))) {
-            throw new \InvalidArgumentException("invalid value for \$color when calling RichTextFont., must conform to the pattern /^#[A-Fa-f0-9]{6}$/.");
-        }
-
-        $this->container['color'] = $color;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets opacity
-     *
-     * @return float|null
-     */
-    public function getOpacity()
-    {
-        return $this->container['opacity'];
-    }
-
-    /**
-     * Sets opacity
-     *
-     * @param float|null $opacity The opacity of the text where 1 is opaque and 0 is transparent.
-     *
-     * @return self
-     */
-    public function setOpacity($opacity)
-    {
-        if (is_null($opacity)) {
-            throw new \InvalidArgumentException('non-nullable opacity cannot be null');
-        }
-
-        if (($opacity > 1)) {
-            throw new \InvalidArgumentException('invalid value for $opacity when calling RichTextFont., must be smaller than or equal to 1.');
-        }
-        if (($opacity < 0)) {
-            throw new \InvalidArgumentException('invalid value for $opacity when calling RichTextFont., must be bigger than or equal to 0.');
-        }
-
-        $this->container['opacity'] = $opacity;
-
-        return $this;
-    }
-
-    /**
-     * Gets background
+     * Gets description
      *
      * @return string|null
      */
-    public function getBackground()
+    public function getDescription()
     {
-        return $this->container['background'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets background
+     * Sets description
      *
-     * @param string|null $background The background color behind the text using hexadecimal color notation.
+     * @param string|null $description What the model is suited to, in a sentence or two.
      *
      * @return self
      */
-    public function setBackground($background)
+    public function setDescription($description)
     {
-        if (is_null($background)) {
-            throw new \InvalidArgumentException('non-nullable background cannot be null');
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
-
-        if ((!preg_match("/^#[A-Fa-f0-9]{6}$/", ObjectSerializer::toString($background)))) {
-            throw new \InvalidArgumentException("invalid value for \$background when calling RichTextFont., must conform to the pattern /^#[A-Fa-f0-9]{6}$/.");
-        }
-
-        $this->container['background'] = $background;
+        $this->container['description'] = $description;
 
         return $this;
     }
 
     /**
-     * Gets stroke
+     * Gets pricing
      *
-     * @return \ShotstackClient\Model\RichTextStroke|null
+     * @return \ShotstackClient\Model\GetModel200ResponsePricing|null
      */
-    public function getStroke()
+    public function getPricing()
     {
-        return $this->container['stroke'];
+        return $this->container['pricing'];
     }
 
     /**
-     * Sets stroke
+     * Sets pricing
      *
-     * @param \ShotstackClient\Model\RichTextStroke|null $stroke stroke
+     * @param \ShotstackClient\Model\GetModel200ResponsePricing|null $pricing pricing
      *
      * @return self
      */
-    public function setStroke($stroke)
+    public function setPricing($pricing)
     {
-        if (is_null($stroke)) {
-            throw new \InvalidArgumentException('non-nullable stroke cannot be null');
+        if (is_null($pricing)) {
+            throw new \InvalidArgumentException('non-nullable pricing cannot be null');
         }
-        $this->container['stroke'] = $stroke;
+        $this->container['pricing'] = $pricing;
+
+        return $this;
+    }
+
+    /**
+     * Gets options
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getOptions()
+    {
+        return $this->container['options'];
+    }
+
+    /**
+     * Sets options
+     *
+     * @param array<string,mixed>|null $options JSON Schema for the model's `options` object. Only returned for a single model, or for a list requested with `expand=options`. Values outside this schema are rejected.
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        if (is_null($options)) {
+            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        }
+        $this->container['options'] = $options;
+
+        return $this;
+    }
+
+    /**
+     * Gets available
+     *
+     * @return bool|null
+     */
+    public function getAvailable()
+    {
+        return $this->container['available'];
+    }
+
+    /**
+     * Sets available
+     *
+     * @param bool|null $available Whether the account behind the calling API key can generate with this model. Omitted when that cannot be determined; treat a missing value as unknown, not as available. Generation requests are checked either way.
+     *
+     * @return self
+     */
+    public function setAvailable($available)
+    {
+        if (is_null($available)) {
+            throw new \InvalidArgumentException('non-nullable available cannot be null');
+        }
+        $this->container['available'] = $available;
+
+        return $this;
+    }
+
+    /**
+     * Gets unavailable_reason
+     *
+     * @return string|null
+     */
+    public function getUnavailableReason()
+    {
+        return $this->container['unavailable_reason'];
+    }
+
+    /**
+     * Sets unavailable_reason
+     *
+     * @param string|null $unavailable_reason Why `available` is false. `AiCapabilityNotIncluded`: the account's plan does not include this kind of generation. `AiDisabled`: AI generation is turned off for the account. `AiAccessUnavailable`: access could not be confirmed; try again later.
+     *
+     * @return self
+     */
+    public function setUnavailableReason($unavailable_reason)
+    {
+        if (is_null($unavailable_reason)) {
+            throw new \InvalidArgumentException('non-nullable unavailable_reason cannot be null');
+        }
+        $allowedValues = $this->getUnavailableReasonAllowableValues();
+        if (!in_array($unavailable_reason, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'unavailable_reason', must be one of '%s'",
+                    $unavailable_reason,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['unavailable_reason'] = $unavailable_reason;
 
         return $this;
     }
