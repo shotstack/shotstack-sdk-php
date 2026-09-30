@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * RichTextPadding
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * RichTextPadding Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description Padding properties for individual sides of the text bounding box.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class RichTextPadding implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'RichTextPadding';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'top' => 'float',
+        'right' => 'float',
+        'bottom' => 'float',
+        'left' => 'float'
     ];
 
     /**
@@ -70,8 +72,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'top' => null,
+        'right' => null,
+        'bottom' => null,
+        'left' => null
     ];
 
     /**
@@ -80,8 +84,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'top' => false,
+        'right' => false,
+        'bottom' => false,
+        'left' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'top' => 'top',
+        'right' => 'right',
+        'bottom' => 'bottom',
+        'left' => 'left'
     ];
 
     /**
@@ -180,8 +188,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'top' => 'setTop',
+        'right' => 'setRight',
+        'bottom' => 'setBottom',
+        'left' => 'setLeft'
     ];
 
     /**
@@ -190,8 +200,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'top' => 'getTop',
+        'right' => 'getRight',
+        'bottom' => 'getBottom',
+        'left' => 'getLeft'
     ];
 
     /**
@@ -251,8 +263,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('top', $data ?? [], 0);
+        $this->setIfExists('right', $data ?? [], 0);
+        $this->setIfExists('bottom', $data ?? [], 0);
+        $this->setIfExists('left', $data ?? [], 0);
     }
 
     /**
@@ -282,9 +296,22 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if (!is_null($this->container['top']) && ($this->container['top'] < 0)) {
+            $invalidProperties[] = "invalid value for 'top', must be bigger than or equal to 0.";
         }
+
+        if (!is_null($this->container['right']) && ($this->container['right'] < 0)) {
+            $invalidProperties[] = "invalid value for 'right', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['bottom']) && ($this->container['bottom'] < 0)) {
+            $invalidProperties[] = "invalid value for 'bottom', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['left']) && ($this->container['left'] < 0)) {
+            $invalidProperties[] = "invalid value for 'left', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -301,57 +328,129 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets top
      *
-     * @return string
+     * @return float|null
      */
-    public function getProvider()
+    public function getTop()
     {
-        return $this->container['provider'];
+        return $this->container['top'];
     }
 
     /**
-     * Sets provider
+     * Sets top
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param float|null $top Top padding in pixels.
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setTop($top)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($top)) {
+            throw new \InvalidArgumentException('non-nullable top cannot be null');
         }
-        $this->container['provider'] = $provider;
+
+        if (($top < 0)) {
+            throw new \InvalidArgumentException('invalid value for $top when calling RichTextPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['top'] = $top;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets right
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return float|null
      */
-    public function getOptions()
+    public function getRight()
     {
-        return $this->container['options'];
+        return $this->container['right'];
     }
 
     /**
-     * Sets options
+     * Sets right
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param float|null $right Right padding in pixels.
      *
      * @return self
-     * @deprecated
      */
-    public function setOptions($options)
+    public function setRight($right)
     {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        if (is_null($right)) {
+            throw new \InvalidArgumentException('non-nullable right cannot be null');
         }
-        $this->container['options'] = $options;
+
+        if (($right < 0)) {
+            throw new \InvalidArgumentException('invalid value for $right when calling RichTextPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['right'] = $right;
+
+        return $this;
+    }
+
+    /**
+     * Gets bottom
+     *
+     * @return float|null
+     */
+    public function getBottom()
+    {
+        return $this->container['bottom'];
+    }
+
+    /**
+     * Sets bottom
+     *
+     * @param float|null $bottom Bottom padding in pixels.
+     *
+     * @return self
+     */
+    public function setBottom($bottom)
+    {
+        if (is_null($bottom)) {
+            throw new \InvalidArgumentException('non-nullable bottom cannot be null');
+        }
+
+        if (($bottom < 0)) {
+            throw new \InvalidArgumentException('invalid value for $bottom when calling RichTextPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['bottom'] = $bottom;
+
+        return $this;
+    }
+
+    /**
+     * Gets left
+     *
+     * @return float|null
+     */
+    public function getLeft()
+    {
+        return $this->container['left'];
+    }
+
+    /**
+     * Sets left
+     *
+     * @param float|null $left Left padding in pixels.
+     *
+     * @return self
+     */
+    public function setLeft($left)
+    {
+        if (is_null($left)) {
+            throw new \InvalidArgumentException('non-nullable left cannot be null');
+        }
+
+        if (($left < 0)) {
+            throw new \InvalidArgumentException('invalid value for $left when calling RichTextPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['left'] = $left;
 
         return $this;
     }

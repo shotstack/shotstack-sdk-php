@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * GenerationModelPricingTieredBy
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * GenerationModelPricingTieredBy Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description The option whose value selects the rate, and the value assumed when the option is absent. Present only when &#x60;credits&#x60; is keyed.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationModelPricingTieredBy implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'GenerationModelPricing_tieredBy';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'option' => 'string',
+        'default' => 'string'
     ];
 
     /**
@@ -70,8 +70,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'option' => null,
+        'default' => null
     ];
 
     /**
@@ -80,8 +80,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'option' => false,
+        'default' => false
     ];
 
     /**
@@ -170,8 +170,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'option' => 'option',
+        'default' => 'default'
     ];
 
     /**
@@ -180,8 +180,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'option' => 'setOption',
+        'default' => 'setDefault'
     ];
 
     /**
@@ -190,8 +190,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'option' => 'getOption',
+        'default' => 'getDefault'
     ];
 
     /**
@@ -251,8 +251,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('option', $data ?? [], null);
+        $this->setIfExists('default', $data ?? [], null);
     }
 
     /**
@@ -282,8 +282,11 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['option'] === null) {
+            $invalidProperties[] = "'option' can't be null";
+        }
+        if ($this->container['default'] === null) {
+            $invalidProperties[] = "'default' can't be null";
         }
         return $invalidProperties;
     }
@@ -301,57 +304,55 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets option
      *
      * @return string
      */
-    public function getProvider()
+    public function getOption()
     {
-        return $this->container['provider'];
+        return $this->container['option'];
     }
 
     /**
-     * Sets provider
+     * Sets option
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param string $option option
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setOption($option)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($option)) {
+            throw new \InvalidArgumentException('non-nullable option cannot be null');
         }
-        $this->container['provider'] = $provider;
+        $this->container['option'] = $option;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets default
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return string
      */
-    public function getOptions()
+    public function getDefault()
     {
-        return $this->container['options'];
+        return $this->container['default'];
     }
 
     /**
-     * Sets options
+     * Sets default
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param string $default default
      *
      * @return self
-     * @deprecated
      */
-    public function setOptions($options)
+    public function setDefault($default)
     {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        if (is_null($default)) {
+            throw new \InvalidArgumentException('non-nullable default cannot be null');
         }
-        $this->container['options'] = $options;
+        $this->container['default'] = $default;
 
         return $this;
     }

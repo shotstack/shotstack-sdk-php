@@ -285,9 +285,6 @@ class GoogleDriveDestination implements ModelInterface, ArrayAccess, \JsonSerial
         if ($this->container['provider'] === null) {
             $invalidProperties[] = "'provider' can't be null";
         }
-        if ($this->container['options'] === null) {
-            $invalidProperties[] = "'options' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -333,7 +330,7 @@ class GoogleDriveDestination implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Gets options
      *
-     * @return \ShotstackClient\Model\GoogleDriveDestinationOptions
+     * @return \ShotstackClient\Model\GoogleDriveDestinationOptions|null
      */
     public function getOptions()
     {
@@ -343,7 +340,7 @@ class GoogleDriveDestination implements ModelInterface, ArrayAccess, \JsonSerial
     /**
      * Sets options
      *
-     * @param \ShotstackClient\Model\GoogleDriveDestinationOptions $options options
+     * @param \ShotstackClient\Model\GoogleDriveDestinationOptions|null $options options
      *
      * @return self
      */

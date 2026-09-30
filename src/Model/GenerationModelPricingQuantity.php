@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * GenerationModelPricingQuantity
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * GenerationModelPricingQuantity Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description How many units a generation consumes. Take the value &#x60;measure&#x60; names, or &#x60;default&#x60; when the request carries none, hold it within &#x60;min&#x60; and &#x60;max&#x60;, divide by &#x60;per&#x60;, and round up when &#x60;round&#x60; is &#x60;up&#x60;. Absent when one generation is one unit.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationModelPricingQuantity implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'GenerationModelPricing_quantity';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,12 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'measure' => 'string',
+        'per' => 'float',
+        'min' => 'float',
+        'max' => 'float',
+        'default' => 'float',
+        'round' => 'string'
     ];
 
     /**
@@ -70,8 +74,12 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'measure' => null,
+        'per' => null,
+        'min' => null,
+        'max' => null,
+        'default' => null,
+        'round' => null
     ];
 
     /**
@@ -80,8 +88,12 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'measure' => false,
+        'per' => false,
+        'min' => false,
+        'max' => false,
+        'default' => false,
+        'round' => false
     ];
 
     /**
@@ -170,8 +182,12 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'measure' => 'measure',
+        'per' => 'per',
+        'min' => 'min',
+        'max' => 'max',
+        'default' => 'default',
+        'round' => 'round'
     ];
 
     /**
@@ -180,8 +196,12 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'measure' => 'setMeasure',
+        'per' => 'setPer',
+        'min' => 'setMin',
+        'max' => 'setMax',
+        'default' => 'setDefault',
+        'round' => 'setRound'
     ];
 
     /**
@@ -190,8 +210,12 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'measure' => 'getMeasure',
+        'per' => 'getPer',
+        'min' => 'getMin',
+        'max' => 'getMax',
+        'default' => 'getDefault',
+        'round' => 'getRound'
     ];
 
     /**
@@ -235,6 +259,34 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const MEASURE_CLIP_SECONDS = 'clipSeconds';
+    public const MEASURE_PROMPT_CHARACTERS = 'promptCharacters';
+    public const ROUND_UP = 'up';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getMeasureAllowableValues()
+    {
+        return [
+            self::MEASURE_CLIP_SECONDS,
+            self::MEASURE_PROMPT_CHARACTERS,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getRoundAllowableValues()
+    {
+        return [
+            self::ROUND_UP,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -251,8 +303,12 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('measure', $data ?? [], null);
+        $this->setIfExists('per', $data ?? [], null);
+        $this->setIfExists('min', $data ?? [], null);
+        $this->setIfExists('max', $data ?? [], null);
+        $this->setIfExists('default', $data ?? [], null);
+        $this->setIfExists('round', $data ?? [], null);
     }
 
     /**
@@ -282,9 +338,30 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['measure'] === null) {
+            $invalidProperties[] = "'measure' can't be null";
         }
+        $allowedValues = $this->getMeasureAllowableValues();
+        if (!is_null($this->container['measure']) && !in_array($this->container['measure'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'measure', must be one of '%s'",
+                $this->container['measure'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['per'] === null) {
+            $invalidProperties[] = "'per' can't be null";
+        }
+        $allowedValues = $this->getRoundAllowableValues();
+        if (!is_null($this->container['round']) && !in_array($this->container['round'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'round', must be one of '%s'",
+                $this->container['round'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -301,57 +378,183 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets measure
      *
      * @return string
      */
-    public function getProvider()
+    public function getMeasure()
     {
-        return $this->container['provider'];
+        return $this->container['measure'];
     }
 
     /**
-     * Sets provider
+     * Sets measure
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param string $measure What the count is taken from, and the scale it is measured in.
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setMeasure($measure)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($measure)) {
+            throw new \InvalidArgumentException('non-nullable measure cannot be null');
         }
-        $this->container['provider'] = $provider;
+        $allowedValues = $this->getMeasureAllowableValues();
+        if (!in_array($measure, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'measure', must be one of '%s'",
+                    $measure,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['measure'] = $measure;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets per
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return float
      */
-    public function getOptions()
+    public function getPer()
     {
-        return $this->container['options'];
+        return $this->container['per'];
     }
 
     /**
-     * Sets options
+     * Sets per
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param float $per How many of `measure` make one billable unit.
      *
      * @return self
-     * @deprecated
      */
-    public function setOptions($options)
+    public function setPer($per)
     {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        if (is_null($per)) {
+            throw new \InvalidArgumentException('non-nullable per cannot be null');
         }
-        $this->container['options'] = $options;
+        $this->container['per'] = $per;
+
+        return $this;
+    }
+
+    /**
+     * Gets min
+     *
+     * @return float|null
+     */
+    public function getMin()
+    {
+        return $this->container['min'];
+    }
+
+    /**
+     * Sets min
+     *
+     * @param float|null $min Fewest accepted. A smaller request is charged at this.
+     *
+     * @return self
+     */
+    public function setMin($min)
+    {
+        if (is_null($min)) {
+            throw new \InvalidArgumentException('non-nullable min cannot be null');
+        }
+        $this->container['min'] = $min;
+
+        return $this;
+    }
+
+    /**
+     * Gets max
+     *
+     * @return float|null
+     */
+    public function getMax()
+    {
+        return $this->container['max'];
+    }
+
+    /**
+     * Sets max
+     *
+     * @param float|null $max Most accepted. A larger request is charged at this.
+     *
+     * @return self
+     */
+    public function setMax($max)
+    {
+        if (is_null($max)) {
+            throw new \InvalidArgumentException('non-nullable max cannot be null');
+        }
+        $this->container['max'] = $max;
+
+        return $this;
+    }
+
+    /**
+     * Gets default
+     *
+     * @return float|null
+     */
+    public function getDefault()
+    {
+        return $this->container['default'];
+    }
+
+    /**
+     * Sets default
+     *
+     * @param float|null $default Assumed when the request carries no value.
+     *
+     * @return self
+     */
+    public function setDefault($default)
+    {
+        if (is_null($default)) {
+            throw new \InvalidArgumentException('non-nullable default cannot be null');
+        }
+        $this->container['default'] = $default;
+
+        return $this;
+    }
+
+    /**
+     * Gets round
+     *
+     * @return string|null
+     */
+    public function getRound()
+    {
+        return $this->container['round'];
+    }
+
+    /**
+     * Sets round
+     *
+     * @param string|null $round Present when a partial unit is charged as a whole one. A 61 second track on a per-minute rate is charged as two minutes.
+     *
+     * @return self
+     */
+    public function setRound($round)
+    {
+        if (is_null($round)) {
+            throw new \InvalidArgumentException('non-nullable round cannot be null');
+        }
+        $allowedValues = $this->getRoundAllowableValues();
+        if (!in_array($round, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'round', must be one of '%s'",
+                    $round,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['round'] = $round;
 
         return $this;
     }
