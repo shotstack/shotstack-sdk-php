@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * RichTextBorder
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * RichTextBorder Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Soundtrack is deprecated, use an [AudioAsset](#tocs_audioasset) clip on its own track instead.** This type continues to function; no behaviour change for existing integrations. A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description Border styling properties for the text bounding box.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
+class RichTextBorder implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'RichTextBorder';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'width' => 'float',
+        'color' => 'string',
+        'opacity' => 'float',
+        'radius' => 'float'
     ];
 
     /**
@@ -71,9 +72,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'width' => null,
+        'color' => null,
+        'opacity' => null,
+        'radius' => null
     ];
 
     /**
@@ -82,9 +84,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'src' => false,
-        'effect' => false,
-        'volume' => false
+        'width' => false,
+        'color' => false,
+        'opacity' => false,
+        'radius' => false
     ];
 
     /**
@@ -173,9 +176,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'width' => 'width',
+        'color' => 'color',
+        'opacity' => 'opacity',
+        'radius' => 'radius'
     ];
 
     /**
@@ -184,9 +188,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'width' => 'setWidth',
+        'color' => 'setColor',
+        'opacity' => 'setOpacity',
+        'radius' => 'setRadius'
     ];
 
     /**
@@ -195,9 +200,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'width' => 'getWidth',
+        'color' => 'getColor',
+        'opacity' => 'getOpacity',
+        'radius' => 'getRadius'
     ];
 
     /**
@@ -241,23 +247,6 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const EFFECT_FADE_IN = 'fadeIn';
-    public const EFFECT_FADE_OUT = 'fadeOut';
-    public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -274,9 +263,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('effect', $data ?? [], null);
-        $this->setIfExists('volume', $data ?? [], null);
+        $this->setIfExists('width', $data ?? [], 0);
+        $this->setIfExists('color', $data ?? [], '#000000');
+        $this->setIfExists('opacity', $data ?? [], 1);
+        $this->setIfExists('radius', $data ?? [], 0);
     }
 
     /**
@@ -306,24 +296,24 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        if (!is_null($this->container['width']) && ($this->container['width'] < 0)) {
+            $invalidProperties[] = "invalid value for 'width', must be bigger than or equal to 0.";
         }
 
-        if (!preg_match("/\\S/", $this->container['src'])) {
-            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        if (!is_null($this->container['color']) && !preg_match("/^#[A-Fa-f0-9]{6}$/", $this->container['color'])) {
+            $invalidProperties[] = "invalid value for 'color', must be conform to the pattern /^#[A-Fa-f0-9]{6}$/.";
         }
 
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
-                implode("', '", $allowedValues)
-            );
+        if (!is_null($this->container['opacity']) && ($this->container['opacity'] > 1)) {
+            $invalidProperties[] = "invalid value for 'opacity', must be smaller than or equal to 1.";
+        }
+
+        if (!is_null($this->container['opacity']) && ($this->container['opacity'] < 0)) {
+            $invalidProperties[] = "invalid value for 'opacity', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['radius']) && ($this->container['radius'] < 0)) {
+            $invalidProperties[] = "invalid value for 'radius', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -342,100 +332,132 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets src
-     *
-     * @return string
-     */
-    public function getSrc()
-    {
-        return $this->container['src'];
-    }
-
-    /**
-     * Sets src
-     *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
-     *
-     * @return self
-     */
-    public function setSrc($src)
-    {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
-        }
-
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling Soundtrack., must be bigger than or equal to 1.');
-        }
-        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
-            throw new \InvalidArgumentException("invalid value for \$src when calling Soundtrack., must conform to the pattern /\\S/.");
-        }
-
-        $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets effect
-     *
-     * @return string|null
-     */
-    public function getEffect()
-    {
-        return $this->container['effect'];
-    }
-
-    /**
-     * Sets effect
-     *
-     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     *
-     * @return self
-     */
-    public function setEffect($effect)
-    {
-        if (is_null($effect)) {
-            throw new \InvalidArgumentException('non-nullable effect cannot be null');
-        }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['effect'] = $effect;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
+     * Gets width
      *
      * @return float|null
      */
-    public function getVolume()
+    public function getWidth()
     {
-        return $this->container['volume'];
+        return $this->container['width'];
     }
 
     /**
-     * Sets volume
+     * Sets width
      *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param float|null $width The width of the border in pixels. Must be 0 or greater.
      *
      * @return self
      */
-    public function setVolume($volume)
+    public function setWidth($width)
     {
-        if (is_null($volume)) {
-            throw new \InvalidArgumentException('non-nullable volume cannot be null');
+        if (is_null($width)) {
+            throw new \InvalidArgumentException('non-nullable width cannot be null');
         }
-        $this->container['volume'] = $volume;
+
+        if (($width < 0)) {
+            throw new \InvalidArgumentException('invalid value for $width when calling RichTextBorder., must be bigger than or equal to 0.');
+        }
+
+        $this->container['width'] = $width;
+
+        return $this;
+    }
+
+    /**
+     * Gets color
+     *
+     * @return string|null
+     */
+    public function getColor()
+    {
+        return $this->container['color'];
+    }
+
+    /**
+     * Sets color
+     *
+     * @param string|null $color The border color using hexadecimal color notation.
+     *
+     * @return self
+     */
+    public function setColor($color)
+    {
+        if (is_null($color)) {
+            throw new \InvalidArgumentException('non-nullable color cannot be null');
+        }
+
+        if ((!preg_match("/^#[A-Fa-f0-9]{6}$/", ObjectSerializer::toString($color)))) {
+            throw new \InvalidArgumentException("invalid value for \$color when calling RichTextBorder., must conform to the pattern /^#[A-Fa-f0-9]{6}$/.");
+        }
+
+        $this->container['color'] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Gets opacity
+     *
+     * @return float|null
+     */
+    public function getOpacity()
+    {
+        return $this->container['opacity'];
+    }
+
+    /**
+     * Sets opacity
+     *
+     * @param float|null $opacity The opacity of the border where 1 is opaque and 0 is transparent.
+     *
+     * @return self
+     */
+    public function setOpacity($opacity)
+    {
+        if (is_null($opacity)) {
+            throw new \InvalidArgumentException('non-nullable opacity cannot be null');
+        }
+
+        if (($opacity > 1)) {
+            throw new \InvalidArgumentException('invalid value for $opacity when calling RichTextBorder., must be smaller than or equal to 1.');
+        }
+        if (($opacity < 0)) {
+            throw new \InvalidArgumentException('invalid value for $opacity when calling RichTextBorder., must be bigger than or equal to 0.');
+        }
+
+        $this->container['opacity'] = $opacity;
+
+        return $this;
+    }
+
+    /**
+     * Gets radius
+     *
+     * @return float|null
+     */
+    public function getRadius()
+    {
+        return $this->container['radius'];
+    }
+
+    /**
+     * Sets radius
+     *
+     * @param float|null $radius The border radius in pixels for rounded corners. Must be 0 or greater.
+     *
+     * @return self
+     */
+    public function setRadius($radius)
+    {
+        if (is_null($radius)) {
+            throw new \InvalidArgumentException('non-nullable radius cannot be null');
+        }
+
+        if (($radius < 0)) {
+            throw new \InvalidArgumentException('invalid value for $radius when calling RichTextBorder., must be bigger than or equal to 0.');
+        }
+
+        $this->container['radius'] = $radius;
 
         return $this;
     }

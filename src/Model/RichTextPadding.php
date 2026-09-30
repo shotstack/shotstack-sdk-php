@@ -1,6 +1,6 @@
 <?php
 /**
- * Soundtrack
+ * RichTextPadding
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * Soundtrack Class Doc Comment
+ * RichTextPadding Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Soundtrack is deprecated, use an [AudioAsset](#tocs_audioasset) clip on its own track instead.** This type continues to function; no behaviour change for existing integrations. A music or audio file in mp3 format that plays for the duration of the rendered video or the length of the audio file, which ever is shortest.
+ * @description Padding properties for individual sides of the text bounding box.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
+class RichTextPadding implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'Soundtrack';
+    protected static $openAPIModelName = 'RichTextPadding';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,9 +58,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'src' => 'string',
-        'effect' => 'string',
-        'volume' => 'float'
+        'top' => 'float',
+        'right' => 'float',
+        'bottom' => 'float',
+        'left' => 'float'
     ];
 
     /**
@@ -71,9 +72,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'src' => null,
-        'effect' => null,
-        'volume' => null
+        'top' => null,
+        'right' => null,
+        'bottom' => null,
+        'left' => null
     ];
 
     /**
@@ -82,9 +84,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'src' => false,
-        'effect' => false,
-        'volume' => false
+        'top' => false,
+        'right' => false,
+        'bottom' => false,
+        'left' => false
     ];
 
     /**
@@ -173,9 +176,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'src' => 'src',
-        'effect' => 'effect',
-        'volume' => 'volume'
+        'top' => 'top',
+        'right' => 'right',
+        'bottom' => 'bottom',
+        'left' => 'left'
     ];
 
     /**
@@ -184,9 +188,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'src' => 'setSrc',
-        'effect' => 'setEffect',
-        'volume' => 'setVolume'
+        'top' => 'setTop',
+        'right' => 'setRight',
+        'bottom' => 'setBottom',
+        'left' => 'setLeft'
     ];
 
     /**
@@ -195,9 +200,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'src' => 'getSrc',
-        'effect' => 'getEffect',
-        'volume' => 'getVolume'
+        'top' => 'getTop',
+        'right' => 'getRight',
+        'bottom' => 'getBottom',
+        'left' => 'getLeft'
     ];
 
     /**
@@ -241,23 +247,6 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
-    public const EFFECT_FADE_IN = 'fadeIn';
-    public const EFFECT_FADE_OUT = 'fadeOut';
-    public const EFFECT_FADE_IN_FADE_OUT = 'fadeInFadeOut';
-
-    /**
-     * Gets allowable values of the enum
-     *
-     * @return string[]
-     */
-    public function getEffectAllowableValues()
-    {
-        return [
-            self::EFFECT_FADE_IN,
-            self::EFFECT_FADE_OUT,
-            self::EFFECT_FADE_IN_FADE_OUT,
-        ];
-    }
 
     /**
      * Associative array for storing property values
@@ -274,9 +263,10 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('src', $data ?? [], null);
-        $this->setIfExists('effect', $data ?? [], null);
-        $this->setIfExists('volume', $data ?? [], null);
+        $this->setIfExists('top', $data ?? [], 0);
+        $this->setIfExists('right', $data ?? [], 0);
+        $this->setIfExists('bottom', $data ?? [], 0);
+        $this->setIfExists('left', $data ?? [], 0);
     }
 
     /**
@@ -306,24 +296,20 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['src'] === null) {
-            $invalidProperties[] = "'src' can't be null";
-        }
-        if ((mb_strlen($this->container['src']) < 1)) {
-            $invalidProperties[] = "invalid value for 'src', the character length must be bigger than or equal to 1.";
+        if (!is_null($this->container['top']) && ($this->container['top'] < 0)) {
+            $invalidProperties[] = "invalid value for 'top', must be bigger than or equal to 0.";
         }
 
-        if (!preg_match("/\\S/", $this->container['src'])) {
-            $invalidProperties[] = "invalid value for 'src', must be conform to the pattern /\\S/.";
+        if (!is_null($this->container['right']) && ($this->container['right'] < 0)) {
+            $invalidProperties[] = "invalid value for 'right', must be bigger than or equal to 0.";
         }
 
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!is_null($this->container['effect']) && !in_array($this->container['effect'], $allowedValues, true)) {
-            $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'effect', must be one of '%s'",
-                $this->container['effect'],
-                implode("', '", $allowedValues)
-            );
+        if (!is_null($this->container['bottom']) && ($this->container['bottom'] < 0)) {
+            $invalidProperties[] = "invalid value for 'bottom', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['left']) && ($this->container['left'] < 0)) {
+            $invalidProperties[] = "invalid value for 'left', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -342,100 +328,129 @@ class Soundtrack implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets src
-     *
-     * @return string
-     */
-    public function getSrc()
-    {
-        return $this->container['src'];
-    }
-
-    /**
-     * Sets src
-     *
-     * @param string $src The URL of the mp3 audio file. The URL must be publicly accessible or include credentials.
-     *
-     * @return self
-     */
-    public function setSrc($src)
-    {
-        if (is_null($src)) {
-            throw new \InvalidArgumentException('non-nullable src cannot be null');
-        }
-
-        if ((mb_strlen($src) < 1)) {
-            throw new \InvalidArgumentException('invalid length for $src when calling Soundtrack., must be bigger than or equal to 1.');
-        }
-        if ((!preg_match("/\\S/", ObjectSerializer::toString($src)))) {
-            throw new \InvalidArgumentException("invalid value for \$src when calling Soundtrack., must conform to the pattern /\\S/.");
-        }
-
-        $this->container['src'] = $src;
-
-        return $this;
-    }
-
-    /**
-     * Gets effect
-     *
-     * @return string|null
-     */
-    public function getEffect()
-    {
-        return $this->container['effect'];
-    }
-
-    /**
-     * Sets effect
-     *
-     * @param string|null $effect The effect to apply to the audio file <ul>   <li>`fadeIn` - fade volume in only</li>   <li>`fadeOut` - fade volume out only</li>   <li>`fadeInFadeOut` - fade volume in and out</li> </ul>
-     *
-     * @return self
-     */
-    public function setEffect($effect)
-    {
-        if (is_null($effect)) {
-            throw new \InvalidArgumentException('non-nullable effect cannot be null');
-        }
-        $allowedValues = $this->getEffectAllowableValues();
-        if (!in_array($effect, $allowedValues, true)) {
-            throw new \InvalidArgumentException(
-                sprintf(
-                    "Invalid value '%s' for 'effect', must be one of '%s'",
-                    $effect,
-                    implode("', '", $allowedValues)
-                )
-            );
-        }
-        $this->container['effect'] = $effect;
-
-        return $this;
-    }
-
-    /**
-     * Gets volume
+     * Gets top
      *
      * @return float|null
      */
-    public function getVolume()
+    public function getTop()
     {
-        return $this->container['volume'];
+        return $this->container['top'];
     }
 
     /**
-     * Sets volume
+     * Sets top
      *
-     * @param float|null $volume Set the volume for the soundtrack between 0 and 1 where 0 is muted and 1 is full volume (defaults to 1).
+     * @param float|null $top Top padding in pixels.
      *
      * @return self
      */
-    public function setVolume($volume)
+    public function setTop($top)
     {
-        if (is_null($volume)) {
-            throw new \InvalidArgumentException('non-nullable volume cannot be null');
+        if (is_null($top)) {
+            throw new \InvalidArgumentException('non-nullable top cannot be null');
         }
-        $this->container['volume'] = $volume;
+
+        if (($top < 0)) {
+            throw new \InvalidArgumentException('invalid value for $top when calling RichTextPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['top'] = $top;
+
+        return $this;
+    }
+
+    /**
+     * Gets right
+     *
+     * @return float|null
+     */
+    public function getRight()
+    {
+        return $this->container['right'];
+    }
+
+    /**
+     * Sets right
+     *
+     * @param float|null $right Right padding in pixels.
+     *
+     * @return self
+     */
+    public function setRight($right)
+    {
+        if (is_null($right)) {
+            throw new \InvalidArgumentException('non-nullable right cannot be null');
+        }
+
+        if (($right < 0)) {
+            throw new \InvalidArgumentException('invalid value for $right when calling RichTextPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['right'] = $right;
+
+        return $this;
+    }
+
+    /**
+     * Gets bottom
+     *
+     * @return float|null
+     */
+    public function getBottom()
+    {
+        return $this->container['bottom'];
+    }
+
+    /**
+     * Sets bottom
+     *
+     * @param float|null $bottom Bottom padding in pixels.
+     *
+     * @return self
+     */
+    public function setBottom($bottom)
+    {
+        if (is_null($bottom)) {
+            throw new \InvalidArgumentException('non-nullable bottom cannot be null');
+        }
+
+        if (($bottom < 0)) {
+            throw new \InvalidArgumentException('invalid value for $bottom when calling RichTextPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['bottom'] = $bottom;
+
+        return $this;
+    }
+
+    /**
+     * Gets left
+     *
+     * @return float|null
+     */
+    public function getLeft()
+    {
+        return $this->container['left'];
+    }
+
+    /**
+     * Sets left
+     *
+     * @param float|null $left Left padding in pixels.
+     *
+     * @return self
+     */
+    public function setLeft($left)
+    {
+        if (is_null($left)) {
+            throw new \InvalidArgumentException('non-nullable left cannot be null');
+        }
+
+        if (($left < 0)) {
+            throw new \InvalidArgumentException('invalid value for $left when calling RichTextPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['left'] = $left;
 
         return $this;
     }

@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * MuxDestination Class Doc Comment
  *
  * @category Class
- * @description Send videos to the [Mux](https://shotstack.io/docs/guide/serving-assets/destinations/mux/) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

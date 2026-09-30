@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * CaptionAsset Class Doc Comment
  *
  * @category Class
- * @description The CaptionAsset is used to add captions (subtitles) to a video. It uses a supplied SRT or VTT file which will be read and burnt to the video.  Captions can be applied independently from a video or audio file for greater flexibility with styling and layout. For example you can scale, position or crop a video without modifying the captions.  To sync captions with a video or audio file use a [Video](#tocs_videoasset) or [Audio](#tocs_audioasset) with matching start and end time.
+ * @description **Notice: The CaptionAsset is deprecated, use the [RichCaptionAsset](#tocs_richcaptionasset) instead.**  The CaptionAsset is used to add captions (subtitles) to a video. It uses a supplied SRT or VTT file which will be read and burnt to the video.  Captions can be applied independently from a video or audio file for greater flexibility with styling and layout. For example you can scale, position or crop a video without modifying the captions.  To sync captions with a video or audio file use a [Video](#tocs_videoasset) or [Audio](#tocs_audioasset) with matching start and end time.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

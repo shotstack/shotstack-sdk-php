@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * TextAsset Class Doc Comment
  *
  * @category Class
- * @description The TextAsset is used to add text and titles to a video. The text can be styled with built in and custom [Fonts](#tocs_font). You can also add a background bounding box used to control wrapping and overflow. Emoticons are also supported.
+ * @description **Notice: The TextAsset is deprecated, use the [RichTextAsset](#tocs_richtextasset) instead.** This type continues to function; no behaviour change for existing integrations.  The TextAsset is used to add text and titles to a video. The text can be styled with built in and custom [Fonts](#tocs_font). You can also add a background bounding box used to control wrapping and overflow. Emoticons are also supported.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
