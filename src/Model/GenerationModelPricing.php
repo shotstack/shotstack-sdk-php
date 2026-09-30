@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * GenerationModelPricing
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * GenerationModelPricing Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description What one generation costs, in credits: the rate multiplied by the units consumed. &#x60;quantity&#x60; says how to count the units, and is absent when one generation is one unit. Where a model charges differently per option value, &#x60;credits&#x60; is an object keyed by that value and &#x60;tieredBy&#x60; names the option that selects it.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationModelPricing implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'GenerationModelPricing';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'credits' => '\ShotstackClient\Model\GenerationModelPricingCredits',
+        'tiered_by' => '\ShotstackClient\Model\GenerationModelPricingTieredBy',
+        'quantity' => '\ShotstackClient\Model\GenerationModelPricingQuantity',
+        'effective_from' => 'string'
     ];
 
     /**
@@ -70,8 +72,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'credits' => null,
+        'tiered_by' => null,
+        'quantity' => null,
+        'effective_from' => null
     ];
 
     /**
@@ -80,8 +84,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'credits' => false,
+        'tiered_by' => false,
+        'quantity' => false,
+        'effective_from' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'credits' => 'credits',
+        'tiered_by' => 'tieredBy',
+        'quantity' => 'quantity',
+        'effective_from' => 'effectiveFrom'
     ];
 
     /**
@@ -180,8 +188,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'credits' => 'setCredits',
+        'tiered_by' => 'setTieredBy',
+        'quantity' => 'setQuantity',
+        'effective_from' => 'setEffectiveFrom'
     ];
 
     /**
@@ -190,8 +200,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'credits' => 'getCredits',
+        'tiered_by' => 'getTieredBy',
+        'quantity' => 'getQuantity',
+        'effective_from' => 'getEffectiveFrom'
     ];
 
     /**
@@ -251,8 +263,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('credits', $data ?? [], null);
+        $this->setIfExists('tiered_by', $data ?? [], null);
+        $this->setIfExists('quantity', $data ?? [], null);
+        $this->setIfExists('effective_from', $data ?? [], null);
     }
 
     /**
@@ -282,8 +296,11 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['credits'] === null) {
+            $invalidProperties[] = "'credits' can't be null";
+        }
+        if ($this->container['effective_from'] === null) {
+            $invalidProperties[] = "'effective_from' can't be null";
         }
         return $invalidProperties;
     }
@@ -301,57 +318,109 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets credits
      *
-     * @return string
+     * @return \ShotstackClient\Model\GenerationModelPricingCredits
      */
-    public function getProvider()
+    public function getCredits()
     {
-        return $this->container['provider'];
+        return $this->container['credits'];
     }
 
     /**
-     * Sets provider
+     * Sets credits
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param \ShotstackClient\Model\GenerationModelPricingCredits $credits credits
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setCredits($credits)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($credits)) {
+            throw new \InvalidArgumentException('non-nullable credits cannot be null');
         }
-        $this->container['provider'] = $provider;
+        $this->container['credits'] = $credits;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets tiered_by
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return \ShotstackClient\Model\GenerationModelPricingTieredBy|null
      */
-    public function getOptions()
+    public function getTieredBy()
     {
-        return $this->container['options'];
+        return $this->container['tiered_by'];
     }
 
     /**
-     * Sets options
+     * Sets tiered_by
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param \ShotstackClient\Model\GenerationModelPricingTieredBy|null $tiered_by tiered_by
      *
      * @return self
-     * @deprecated
      */
-    public function setOptions($options)
+    public function setTieredBy($tiered_by)
     {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        if (is_null($tiered_by)) {
+            throw new \InvalidArgumentException('non-nullable tiered_by cannot be null');
         }
-        $this->container['options'] = $options;
+        $this->container['tiered_by'] = $tiered_by;
+
+        return $this;
+    }
+
+    /**
+     * Gets quantity
+     *
+     * @return \ShotstackClient\Model\GenerationModelPricingQuantity|null
+     */
+    public function getQuantity()
+    {
+        return $this->container['quantity'];
+    }
+
+    /**
+     * Sets quantity
+     *
+     * @param \ShotstackClient\Model\GenerationModelPricingQuantity|null $quantity quantity
+     *
+     * @return self
+     */
+    public function setQuantity($quantity)
+    {
+        if (is_null($quantity)) {
+            throw new \InvalidArgumentException('non-nullable quantity cannot be null');
+        }
+        $this->container['quantity'] = $quantity;
+
+        return $this;
+    }
+
+    /**
+     * Gets effective_from
+     *
+     * @return string
+     */
+    public function getEffectiveFrom()
+    {
+        return $this->container['effective_from'];
+    }
+
+    /**
+     * Sets effective_from
+     *
+     * @param string $effective_from The date this rate took effect, or `legacy` for a rate that predates dated pricing.
+     *
+     * @return self
+     */
+    public function setEffectiveFrom($effective_from)
+    {
+        if (is_null($effective_from)) {
+            throw new \InvalidArgumentException('non-nullable effective_from cannot be null');
+        }
+        $this->container['effective_from'] = $effective_from;
 
         return $this;
     }

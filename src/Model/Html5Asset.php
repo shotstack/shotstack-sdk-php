@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * Html5Asset
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * Html5Asset Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description The Html5Asset renders full HTML5/CSS3/JS.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class Html5Asset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'Html5Asset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'type' => 'string',
+        'html' => 'string',
+        'css' => 'string',
+        'js' => 'string'
     ];
 
     /**
@@ -70,8 +72,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'type' => null,
+        'html' => null,
+        'css' => null,
+        'js' => null
     ];
 
     /**
@@ -80,8 +84,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'type' => false,
+        'html' => false,
+        'css' => false,
+        'js' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'type' => 'type',
+        'html' => 'html',
+        'css' => 'css',
+        'js' => 'js'
     ];
 
     /**
@@ -180,8 +188,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'type' => 'setType',
+        'html' => 'setHtml',
+        'css' => 'setCss',
+        'js' => 'setJs'
     ];
 
     /**
@@ -190,8 +200,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'type' => 'getType',
+        'html' => 'getHtml',
+        'css' => 'getCss',
+        'js' => 'getJs'
     ];
 
     /**
@@ -235,6 +247,19 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_HTML5 = 'html5';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_HTML5,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -251,8 +276,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], 'html5');
+        $this->setIfExists('html', $data ?? [], null);
+        $this->setIfExists('css', $data ?? [], null);
+        $this->setIfExists('js', $data ?? [], null);
     }
 
     /**
@@ -282,9 +309,33 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['html'] === null) {
+            $invalidProperties[] = "'html' can't be null";
+        }
+        if ((mb_strlen($this->container['html']) > 1000000)) {
+            $invalidProperties[] = "invalid value for 'html', the character length must be smaller than or equal to 1000000.";
+        }
+
+        if (!is_null($this->container['css']) && (mb_strlen($this->container['css']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'css', the character length must be smaller than or equal to 500000.";
+        }
+
+        if (!is_null($this->container['js']) && (mb_strlen($this->container['js']) > 500000)) {
+            $invalidProperties[] = "invalid value for 'js', the character length must be smaller than or equal to 500000.";
+        }
+
         return $invalidProperties;
     }
 
@@ -301,57 +352,131 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets type
      *
      * @return string
      */
-    public function getProvider()
+    public function getType()
     {
-        return $this->container['provider'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets provider
+     * Sets type
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param string $type The type of asset - set to `html5` for HTML5/CSS3/JS.
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setType($type)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['provider'] = $provider;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets html
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return string
      */
-    public function getOptions()
+    public function getHtml()
     {
-        return $this->container['options'];
+        return $this->container['html'];
     }
 
     /**
-     * Sets options
+     * Sets html
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param string $html The HTML markup for the asset. Max 1,000,000 characters.
      *
      * @return self
-     * @deprecated
      */
-    public function setOptions($options)
+    public function setHtml($html)
     {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        if (is_null($html)) {
+            throw new \InvalidArgumentException('non-nullable html cannot be null');
         }
-        $this->container['options'] = $options;
+        if ((mb_strlen($html) > 1000000)) {
+            throw new \InvalidArgumentException('invalid length for $html when calling Html5Asset., must be smaller than or equal to 1000000.');
+        }
+
+        $this->container['html'] = $html;
+
+        return $this;
+    }
+
+    /**
+     * Gets css
+     *
+     * @return string|null
+     */
+    public function getCss()
+    {
+        return $this->container['css'];
+    }
+
+    /**
+     * Sets css
+     *
+     * @param string|null $css The CSS string applied to the HTML. Max 500,000 characters.
+     *
+     * @return self
+     */
+    public function setCss($css)
+    {
+        if (is_null($css)) {
+            throw new \InvalidArgumentException('non-nullable css cannot be null');
+        }
+        if ((mb_strlen($css) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $css when calling Html5Asset., must be smaller than or equal to 500000.');
+        }
+
+        $this->container['css'] = $css;
+
+        return $this;
+    }
+
+    /**
+     * Gets js
+     *
+     * @return string|null
+     */
+    public function getJs()
+    {
+        return $this->container['js'];
+    }
+
+    /**
+     * Sets js
+     *
+     * @param string|null $js Optional JavaScript. Use for chart libraries, animations, or DOM manipulation. `gsap`, `d3`, `anime` and `lottie` are always available. CSS animations, transitions, and `Element.animate()` are also captured automatically. Max 500,000 characters.
+     *
+     * @return self
+     */
+    public function setJs($js)
+    {
+        if (is_null($js)) {
+            throw new \InvalidArgumentException('non-nullable js cannot be null');
+        }
+        if ((mb_strlen($js) > 500000)) {
+            throw new \InvalidArgumentException('invalid length for $js when calling Html5Asset., must be smaller than or equal to 500000.');
+        }
+
+        $this->container['js'] = $js;
 
         return $this;
     }

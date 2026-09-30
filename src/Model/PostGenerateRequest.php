@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * PostGenerateRequest
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * PostGenerateRequest Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class PostGenerateRequest implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'postGenerate_request';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +57,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'asset' => '\ShotstackClient\Model\PostGenerateRequestAsset',
+        'length' => 'float'
     ];
 
     /**
@@ -70,8 +69,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'asset' => null,
+        'length' => null
     ];
 
     /**
@@ -80,8 +79,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'asset' => false,
+        'length' => false
     ];
 
     /**
@@ -170,8 +169,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'asset' => 'asset',
+        'length' => 'length'
     ];
 
     /**
@@ -180,8 +179,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'asset' => 'setAsset',
+        'length' => 'setLength'
     ];
 
     /**
@@ -190,8 +189,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'asset' => 'getAsset',
+        'length' => 'getLength'
     ];
 
     /**
@@ -251,8 +250,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('asset', $data ?? [], null);
+        $this->setIfExists('length', $data ?? [], null);
     }
 
     /**
@@ -282,9 +281,13 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['asset'] === null) {
+            $invalidProperties[] = "'asset' can't be null";
         }
+        if (!is_null($this->container['length']) && ($this->container['length'] <= 0)) {
+            $invalidProperties[] = "invalid value for 'length', must be bigger than 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -301,57 +304,60 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets asset
      *
-     * @return string
+     * @return \ShotstackClient\Model\PostGenerateRequestAsset
      */
-    public function getProvider()
+    public function getAsset()
     {
-        return $this->container['provider'];
+        return $this->container['asset'];
     }
 
     /**
-     * Sets provider
+     * Sets asset
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param \ShotstackClient\Model\PostGenerateRequestAsset $asset asset
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setAsset($asset)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($asset)) {
+            throw new \InvalidArgumentException('non-nullable asset cannot be null');
         }
-        $this->container['provider'] = $provider;
+        $this->container['asset'] = $asset;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets length
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return float|null
      */
-    public function getOptions()
+    public function getLength()
     {
-        return $this->container['options'];
+        return $this->container['length'];
     }
 
     /**
-     * Sets options
+     * Sets length
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param float|null $length The length, in seconds, of the clip the asset fills. A model that generates to a duration takes it from this value in place of its own duration option. Other models ignore it.
      *
      * @return self
-     * @deprecated
      */
-    public function setOptions($options)
+    public function setLength($length)
     {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        if (is_null($length)) {
+            throw new \InvalidArgumentException('non-nullable length cannot be null');
         }
-        $this->container['options'] = $options;
+
+        if (($length <= 0)) {
+            throw new \InvalidArgumentException('invalid value for $length when calling PostGenerateRequest., must be bigger than 0.');
+        }
+
+        $this->container['length'] = $length;
 
         return $this;
     }
