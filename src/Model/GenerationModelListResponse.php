@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * GenerationModelListResponse
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * GenerationModelListResponse Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description The generation models available to this account.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationModelListResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'GenerationModelListResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'models' => '\ShotstackClient\Model\GenerationModel[]'
     ];
 
     /**
@@ -70,8 +69,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'models' => null
     ];
 
     /**
@@ -80,8 +78,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'models' => false
     ];
 
     /**
@@ -170,8 +167,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'models' => 'models'
     ];
 
     /**
@@ -180,8 +176,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'models' => 'setModels'
     ];
 
     /**
@@ -190,8 +185,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'models' => 'getModels'
     ];
 
     /**
@@ -251,8 +245,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('models', $data ?? [], null);
     }
 
     /**
@@ -282,8 +275,8 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['models'] === null) {
+            $invalidProperties[] = "'models' can't be null";
         }
         return $invalidProperties;
     }
@@ -301,57 +294,28 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets models
      *
-     * @return string
+     * @return \ShotstackClient\Model\GenerationModel[]
      */
-    public function getProvider()
+    public function getModels()
     {
-        return $this->container['provider'];
+        return $this->container['models'];
     }
 
     /**
-     * Sets provider
+     * Sets models
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param \ShotstackClient\Model\GenerationModel[] $models The available models.
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setModels($models)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($models)) {
+            throw new \InvalidArgumentException('non-nullable models cannot be null');
         }
-        $this->container['provider'] = $provider;
-
-        return $this;
-    }
-
-    /**
-     * Gets options
-     *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
-     */
-    public function getOptions()
-    {
-        return $this->container['options'];
-    }
-
-    /**
-     * Sets options
-     *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
-     *
-     * @return self
-     * @deprecated
-     */
-    public function setOptions($options)
-    {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
-        }
-        $this->container['options'] = $options;
+        $this->container['models'] = $models;
 
         return $this;
     }

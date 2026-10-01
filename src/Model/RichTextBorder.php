@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * RichTextBorder
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * RichTextBorder Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description Border styling properties for the text bounding box.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class RichTextBorder implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'RichTextBorder';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'width' => 'float',
+        'color' => 'string',
+        'opacity' => 'float',
+        'radius' => 'float'
     ];
 
     /**
@@ -70,8 +72,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'width' => null,
+        'color' => null,
+        'opacity' => null,
+        'radius' => null
     ];
 
     /**
@@ -80,8 +84,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'width' => false,
+        'color' => false,
+        'opacity' => false,
+        'radius' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'width' => 'width',
+        'color' => 'color',
+        'opacity' => 'opacity',
+        'radius' => 'radius'
     ];
 
     /**
@@ -180,8 +188,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'width' => 'setWidth',
+        'color' => 'setColor',
+        'opacity' => 'setOpacity',
+        'radius' => 'setRadius'
     ];
 
     /**
@@ -190,8 +200,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'width' => 'getWidth',
+        'color' => 'getColor',
+        'opacity' => 'getOpacity',
+        'radius' => 'getRadius'
     ];
 
     /**
@@ -251,8 +263,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('width', $data ?? [], 0);
+        $this->setIfExists('color', $data ?? [], '#000000');
+        $this->setIfExists('opacity', $data ?? [], 1);
+        $this->setIfExists('radius', $data ?? [], 0);
     }
 
     /**
@@ -282,9 +296,26 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if (!is_null($this->container['width']) && ($this->container['width'] < 0)) {
+            $invalidProperties[] = "invalid value for 'width', must be bigger than or equal to 0.";
         }
+
+        if (!is_null($this->container['color']) && !preg_match("/^#[A-Fa-f0-9]{6}$/", $this->container['color'])) {
+            $invalidProperties[] = "invalid value for 'color', must be conform to the pattern /^#[A-Fa-f0-9]{6}$/.";
+        }
+
+        if (!is_null($this->container['opacity']) && ($this->container['opacity'] > 1)) {
+            $invalidProperties[] = "invalid value for 'opacity', must be smaller than or equal to 1.";
+        }
+
+        if (!is_null($this->container['opacity']) && ($this->container['opacity'] < 0)) {
+            $invalidProperties[] = "invalid value for 'opacity', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['radius']) && ($this->container['radius'] < 0)) {
+            $invalidProperties[] = "invalid value for 'radius', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -301,57 +332,132 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets width
      *
-     * @return string
+     * @return float|null
      */
-    public function getProvider()
+    public function getWidth()
     {
-        return $this->container['provider'];
+        return $this->container['width'];
     }
 
     /**
-     * Sets provider
+     * Sets width
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param float|null $width The width of the border in pixels. Must be 0 or greater.
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setWidth($width)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($width)) {
+            throw new \InvalidArgumentException('non-nullable width cannot be null');
         }
-        $this->container['provider'] = $provider;
+
+        if (($width < 0)) {
+            throw new \InvalidArgumentException('invalid value for $width when calling RichTextBorder., must be bigger than or equal to 0.');
+        }
+
+        $this->container['width'] = $width;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets color
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return string|null
      */
-    public function getOptions()
+    public function getColor()
     {
-        return $this->container['options'];
+        return $this->container['color'];
     }
 
     /**
-     * Sets options
+     * Sets color
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param string|null $color The border color using hexadecimal color notation.
      *
      * @return self
-     * @deprecated
      */
-    public function setOptions($options)
+    public function setColor($color)
     {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        if (is_null($color)) {
+            throw new \InvalidArgumentException('non-nullable color cannot be null');
         }
-        $this->container['options'] = $options;
+
+        if ((!preg_match("/^#[A-Fa-f0-9]{6}$/", ObjectSerializer::toString($color)))) {
+            throw new \InvalidArgumentException("invalid value for \$color when calling RichTextBorder., must conform to the pattern /^#[A-Fa-f0-9]{6}$/.");
+        }
+
+        $this->container['color'] = $color;
+
+        return $this;
+    }
+
+    /**
+     * Gets opacity
+     *
+     * @return float|null
+     */
+    public function getOpacity()
+    {
+        return $this->container['opacity'];
+    }
+
+    /**
+     * Sets opacity
+     *
+     * @param float|null $opacity The opacity of the border where 1 is opaque and 0 is transparent.
+     *
+     * @return self
+     */
+    public function setOpacity($opacity)
+    {
+        if (is_null($opacity)) {
+            throw new \InvalidArgumentException('non-nullable opacity cannot be null');
+        }
+
+        if (($opacity > 1)) {
+            throw new \InvalidArgumentException('invalid value for $opacity when calling RichTextBorder., must be smaller than or equal to 1.');
+        }
+        if (($opacity < 0)) {
+            throw new \InvalidArgumentException('invalid value for $opacity when calling RichTextBorder., must be bigger than or equal to 0.');
+        }
+
+        $this->container['opacity'] = $opacity;
+
+        return $this;
+    }
+
+    /**
+     * Gets radius
+     *
+     * @return float|null
+     */
+    public function getRadius()
+    {
+        return $this->container['radius'];
+    }
+
+    /**
+     * Sets radius
+     *
+     * @param float|null $radius The border radius in pixels for rounded corners. Must be 0 or greater.
+     *
+     * @return self
+     */
+    public function setRadius($radius)
+    {
+        if (is_null($radius)) {
+            throw new \InvalidArgumentException('non-nullable radius cannot be null');
+        }
+
+        if (($radius < 0)) {
+            throw new \InvalidArgumentException('invalid value for $radius when calling RichTextBorder., must be bigger than or equal to 0.');
+        }
+
+        $this->container['radius'] = $radius;
 
         return $this;
     }

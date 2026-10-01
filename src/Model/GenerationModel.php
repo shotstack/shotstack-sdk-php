@@ -1,6 +1,6 @@
 <?php
 /**
- * AssetResponseAttributes
+ * GenerationModel
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * AssetResponseAttributes Class Doc Comment
+ * GenerationModel Class Doc Comment
  *
  * @category Class
- * @description The list of asset attributes and their values.
+ * @description A generation model available to &#x60;prompt&#x60;-bearing image, video and audio assets, with the options it accepts and what it costs. Render a model picker and its option fields from this rather than hard coding a model list, so a newly launched model is available without a client release.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationModel implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
       *
       * @var string
       */
-    protected static $openAPIModelName = 'AssetResponseAttributes';
+    protected static $openAPIModelName = 'GenerationModel';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,16 +58,14 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        'id' => 'string',
-        'owner' => 'string',
-        'region' => 'string',
-        'render_id' => 'string',
-        'provider_id' => 'string',
-        'filename' => 'string',
-        'url' => 'string',
-        'status' => 'string',
-        'created' => 'string',
-        'updated' => 'string'
+        'model' => 'string',
+        'type' => 'string',
+        'name' => 'string',
+        'description' => 'string',
+        'pricing' => '\ShotstackClient\Model\GenerationModelPricing',
+        'options' => 'array<string,mixed>',
+        'available' => 'bool',
+        'unavailable_reason' => 'string'
     ];
 
     /**
@@ -78,16 +76,14 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'id' => null,
-        'owner' => null,
-        'region' => null,
-        'render_id' => null,
-        'provider_id' => null,
-        'filename' => null,
-        'url' => null,
-        'status' => null,
-        'created' => null,
-        'updated' => null
+        'model' => null,
+        'type' => null,
+        'name' => null,
+        'description' => null,
+        'pricing' => null,
+        'options' => null,
+        'available' => null,
+        'unavailable_reason' => null
     ];
 
     /**
@@ -96,16 +92,14 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'id' => false,
-        'owner' => false,
-        'region' => false,
-        'render_id' => false,
-        'provider_id' => false,
-        'filename' => false,
-        'url' => false,
-        'status' => false,
-        'created' => false,
-        'updated' => false
+        'model' => false,
+        'type' => false,
+        'name' => false,
+        'description' => false,
+        'pricing' => false,
+        'options' => false,
+        'available' => false,
+        'unavailable_reason' => false
     ];
 
     /**
@@ -194,16 +188,14 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        'id' => 'id',
-        'owner' => 'owner',
-        'region' => 'region',
-        'render_id' => 'renderId',
-        'provider_id' => 'providerId',
-        'filename' => 'filename',
-        'url' => 'url',
-        'status' => 'status',
-        'created' => 'created',
-        'updated' => 'updated'
+        'model' => 'model',
+        'type' => 'type',
+        'name' => 'name',
+        'description' => 'description',
+        'pricing' => 'pricing',
+        'options' => 'options',
+        'available' => 'available',
+        'unavailable_reason' => 'unavailableReason'
     ];
 
     /**
@@ -212,16 +204,14 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        'id' => 'setId',
-        'owner' => 'setOwner',
-        'region' => 'setRegion',
-        'render_id' => 'setRenderId',
-        'provider_id' => 'setProviderId',
-        'filename' => 'setFilename',
-        'url' => 'setUrl',
-        'status' => 'setStatus',
-        'created' => 'setCreated',
-        'updated' => 'setUpdated'
+        'model' => 'setModel',
+        'type' => 'setType',
+        'name' => 'setName',
+        'description' => 'setDescription',
+        'pricing' => 'setPricing',
+        'options' => 'setOptions',
+        'available' => 'setAvailable',
+        'unavailable_reason' => 'setUnavailableReason'
     ];
 
     /**
@@ -230,16 +220,14 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        'id' => 'getId',
-        'owner' => 'getOwner',
-        'region' => 'getRegion',
-        'render_id' => 'getRenderId',
-        'provider_id' => 'getProviderId',
-        'filename' => 'getFilename',
-        'url' => 'getUrl',
-        'status' => 'getStatus',
-        'created' => 'getCreated',
-        'updated' => 'getUpdated'
+        'model' => 'getModel',
+        'type' => 'getType',
+        'name' => 'getName',
+        'description' => 'getDescription',
+        'pricing' => 'getPricing',
+        'options' => 'getOptions',
+        'available' => 'getAvailable',
+        'unavailable_reason' => 'getUnavailableReason'
     ];
 
     /**
@@ -283,23 +271,38 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
         return self::$openAPIModelName;
     }
 
-    public const STATUS_IMPORTING = 'importing';
-    public const STATUS_READY = 'ready';
-    public const STATUS_FAILED = 'failed';
-    public const STATUS_DELETED = 'deleted';
+    public const TYPE_IMAGE = 'image';
+    public const TYPE_VIDEO = 'video';
+    public const TYPE_AUDIO = 'audio';
+    public const UNAVAILABLE_REASON_AI_CAPABILITY_NOT_INCLUDED = 'AiCapabilityNotIncluded';
+    public const UNAVAILABLE_REASON_AI_DISABLED = 'AiDisabled';
+    public const UNAVAILABLE_REASON_AI_ACCESS_UNAVAILABLE = 'AiAccessUnavailable';
 
     /**
      * Gets allowable values of the enum
      *
      * @return string[]
      */
-    public function getStatusAllowableValues()
+    public function getTypeAllowableValues()
     {
         return [
-            self::STATUS_IMPORTING,
-            self::STATUS_READY,
-            self::STATUS_FAILED,
-            self::STATUS_DELETED,
+            self::TYPE_IMAGE,
+            self::TYPE_VIDEO,
+            self::TYPE_AUDIO,
+        ];
+    }
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getUnavailableReasonAllowableValues()
+    {
+        return [
+            self::UNAVAILABLE_REASON_AI_CAPABILITY_NOT_INCLUDED,
+            self::UNAVAILABLE_REASON_AI_DISABLED,
+            self::UNAVAILABLE_REASON_AI_ACCESS_UNAVAILABLE,
         ];
     }
 
@@ -318,16 +321,14 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('id', $data ?? [], null);
-        $this->setIfExists('owner', $data ?? [], null);
-        $this->setIfExists('region', $data ?? [], null);
-        $this->setIfExists('render_id', $data ?? [], null);
-        $this->setIfExists('provider_id', $data ?? [], null);
-        $this->setIfExists('filename', $data ?? [], null);
-        $this->setIfExists('url', $data ?? [], null);
-        $this->setIfExists('status', $data ?? [], null);
-        $this->setIfExists('created', $data ?? [], null);
-        $this->setIfExists('updated', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('description', $data ?? [], null);
+        $this->setIfExists('pricing', $data ?? [], null);
+        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('available', $data ?? [], null);
+        $this->setIfExists('unavailable_reason', $data ?? [], null);
     }
 
     /**
@@ -357,20 +358,26 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
-        if ($this->container['id'] === null) {
-            $invalidProperties[] = "'id' can't be null";
+        if ($this->container['model'] === null) {
+            $invalidProperties[] = "'model' can't be null";
         }
-        if ($this->container['owner'] === null) {
-            $invalidProperties[] = "'owner' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
-        if ($this->container['status'] === null) {
-            $invalidProperties[] = "'status' can't be null";
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
             $invalidProperties[] = sprintf(
-                "invalid value '%s' for 'status', must be one of '%s'",
-                $this->container['status'],
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        $allowedValues = $this->getUnavailableReasonAllowableValues();
+        if (!is_null($this->container['unavailable_reason']) && !in_array($this->container['unavailable_reason'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'unavailable_reason', must be one of '%s'",
+                $this->container['unavailable_reason'],
                 implode("', '", $allowedValues)
             );
         }
@@ -391,281 +398,237 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
 
 
     /**
-     * Gets id
+     * Gets model
      *
      * @return string
      */
-    public function getId()
+    public function getModel()
     {
-        return $this->container['id'];
+        return $this->container['model'];
     }
 
     /**
-     * Sets id
+     * Sets model
      *
-     * @param string $id The unique id of the hosted asset in UUID format.
+     * @param string $model The identifier to set as the asset `model`. Carries no provider name, so routing can change without a public rename.
      *
      * @return self
      */
-    public function setId($id)
+    public function setModel($model)
     {
-        if (is_null($id)) {
-            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
         }
-        $this->container['id'] = $id;
+        $this->container['model'] = $model;
 
         return $this;
     }
 
     /**
-     * Gets owner
+     * Gets type
      *
      * @return string
      */
-    public function getOwner()
+    public function getType()
     {
-        return $this->container['owner'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets owner
+     * Sets type
      *
-     * @param string $owner The owner id of the asset.
+     * @param string $type The asset type this model generates.
      *
      * @return self
      */
-    public function setOwner($owner)
+    public function setType($type)
     {
-        if (is_null($owner)) {
-            throw new \InvalidArgumentException('non-nullable owner cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['owner'] = $owner;
-
-        return $this;
-    }
-
-    /**
-     * Gets region
-     *
-     * @return string|null
-     */
-    public function getRegion()
-    {
-        return $this->container['region'];
-    }
-
-    /**
-     * Sets region
-     *
-     * @param string|null $region The region the asset is hosted, currently only `au` (Australia).
-     *
-     * @return self
-     */
-    public function setRegion($region)
-    {
-        if (is_null($region)) {
-            throw new \InvalidArgumentException('non-nullable region cannot be null');
-        }
-        $this->container['region'] = $region;
-
-        return $this;
-    }
-
-    /**
-     * Gets render_id
-     *
-     * @return string|null
-     */
-    public function getRenderId()
-    {
-        return $this->container['render_id'];
-    }
-
-    /**
-     * Sets render_id
-     *
-     * @param string|null $render_id The original render id that created the asset in UUID format. Multiple assets can share the same render id.
-     *
-     * @return self
-     */
-    public function setRenderId($render_id)
-    {
-        if (is_null($render_id)) {
-            throw new \InvalidArgumentException('non-nullable render_id cannot be null');
-        }
-        $this->container['render_id'] = $render_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets provider_id
-     *
-     * @return string|null
-     */
-    public function getProviderId()
-    {
-        return $this->container['provider_id'];
-    }
-
-    /**
-     * Sets provider_id
-     *
-     * @param string|null $provider_id The third party id of an asset transferred to an external provider, such as Vimeo or S3. If the provider is Shotstack, the providerID is the same as the asset id.
-     *
-     * @return self
-     */
-    public function setProviderId($provider_id)
-    {
-        if (is_null($provider_id)) {
-            throw new \InvalidArgumentException('non-nullable provider_id cannot be null');
-        }
-        $this->container['provider_id'] = $provider_id;
-
-        return $this;
-    }
-
-    /**
-     * Gets filename
-     *
-     * @return string|null
-     */
-    public function getFilename()
-    {
-        return $this->container['filename'];
-    }
-
-    /**
-     * Sets filename
-     *
-     * @param string|null $filename The asset file name.
-     *
-     * @return self
-     */
-    public function setFilename($filename)
-    {
-        if (is_null($filename)) {
-            throw new \InvalidArgumentException('non-nullable filename cannot be null');
-        }
-        $this->container['filename'] = $filename;
-
-        return $this;
-    }
-
-    /**
-     * Gets url
-     *
-     * @return string|null
-     */
-    public function getUrl()
-    {
-        return $this->container['url'];
-    }
-
-    /**
-     * Sets url
-     *
-     * @param string|null $url The asset file name.
-     *
-     * @return self
-     */
-    public function setUrl($url)
-    {
-        if (is_null($url)) {
-            throw new \InvalidArgumentException('non-nullable url cannot be null');
-        }
-        $this->container['url'] = $url;
-
-        return $this;
-    }
-
-    /**
-     * Gets status
-     *
-     * @return string
-     */
-    public function getStatus()
-    {
-        return $this->container['status'];
-    }
-
-    /**
-     * Sets status
-     *
-     * @param string $status The status of the asset. <ul>   <li>`importing` - the asset is being copied to the hosting service</li>   <li>`ready` - the asset is ready to be served to users</li>   <li>`failed` - the asset failed to copy or delete</li>   <li>`deleted` - the asset has been deleted</li> </ul>
-     *
-     * @return self
-     */
-    public function setStatus($status)
-    {
-        if (is_null($status)) {
-            throw new \InvalidArgumentException('non-nullable status cannot be null');
-        }
-        $allowedValues = $this->getStatusAllowableValues();
-        if (!in_array($status, $allowedValues, true)) {
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
             throw new \InvalidArgumentException(
                 sprintf(
-                    "Invalid value '%s' for 'status', must be one of '%s'",
-                    $status,
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
                     implode("', '", $allowedValues)
                 )
             );
         }
-        $this->container['status'] = $status;
+        $this->container['type'] = $type;
 
         return $this;
     }
 
     /**
-     * Gets created
+     * Gets name
      *
      * @return string|null
      */
-    public function getCreated()
+    public function getName()
     {
-        return $this->container['created'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets created
+     * Sets name
      *
-     * @param string|null $created The time the asset was created.
+     * @param string|null $name The model's display name, for a model picker.
      *
      * @return self
      */
-    public function setCreated($created)
+    public function setName($name)
     {
-        if (is_null($created)) {
-            throw new \InvalidArgumentException('non-nullable created cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-        $this->container['created'] = $created;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets updated
+     * Gets description
      *
      * @return string|null
      */
-    public function getUpdated()
+    public function getDescription()
     {
-        return $this->container['updated'];
+        return $this->container['description'];
     }
 
     /**
-     * Sets updated
+     * Sets description
      *
-     * @param string|null $updated The time the asset status was last updated.
+     * @param string|null $description What the model is suited to, in a sentence or two.
      *
      * @return self
      */
-    public function setUpdated($updated)
+    public function setDescription($description)
     {
-        if (is_null($updated)) {
-            throw new \InvalidArgumentException('non-nullable updated cannot be null');
+        if (is_null($description)) {
+            throw new \InvalidArgumentException('non-nullable description cannot be null');
         }
-        $this->container['updated'] = $updated;
+        $this->container['description'] = $description;
+
+        return $this;
+    }
+
+    /**
+     * Gets pricing
+     *
+     * @return \ShotstackClient\Model\GenerationModelPricing|null
+     */
+    public function getPricing()
+    {
+        return $this->container['pricing'];
+    }
+
+    /**
+     * Sets pricing
+     *
+     * @param \ShotstackClient\Model\GenerationModelPricing|null $pricing pricing
+     *
+     * @return self
+     */
+    public function setPricing($pricing)
+    {
+        if (is_null($pricing)) {
+            throw new \InvalidArgumentException('non-nullable pricing cannot be null');
+        }
+        $this->container['pricing'] = $pricing;
+
+        return $this;
+    }
+
+    /**
+     * Gets options
+     *
+     * @return array<string,mixed>|null
+     */
+    public function getOptions()
+    {
+        return $this->container['options'];
+    }
+
+    /**
+     * Sets options
+     *
+     * @param array<string,mixed>|null $options JSON Schema for the model's `options` object. Only returned for a single model, or for a list requested with `expand=options`. Values outside this schema are rejected.
+     *
+     * @return self
+     */
+    public function setOptions($options)
+    {
+        if (is_null($options)) {
+            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        }
+        $this->container['options'] = $options;
+
+        return $this;
+    }
+
+    /**
+     * Gets available
+     *
+     * @return bool|null
+     */
+    public function getAvailable()
+    {
+        return $this->container['available'];
+    }
+
+    /**
+     * Sets available
+     *
+     * @param bool|null $available Whether the account behind the calling API key can generate with this model. Omitted when that cannot be determined; treat a missing value as unknown, not as available. Generation requests are checked either way.
+     *
+     * @return self
+     */
+    public function setAvailable($available)
+    {
+        if (is_null($available)) {
+            throw new \InvalidArgumentException('non-nullable available cannot be null');
+        }
+        $this->container['available'] = $available;
+
+        return $this;
+    }
+
+    /**
+     * Gets unavailable_reason
+     *
+     * @return string|null
+     */
+    public function getUnavailableReason()
+    {
+        return $this->container['unavailable_reason'];
+    }
+
+    /**
+     * Sets unavailable_reason
+     *
+     * @param string|null $unavailable_reason Why `available` is false. `AiCapabilityNotIncluded`: the account's plan does not include this kind of generation. `AiDisabled`: AI generation is turned off for the account. `AiAccessUnavailable`: access could not be confirmed; try again later.
+     *
+     * @return self
+     */
+    public function setUnavailableReason($unavailable_reason)
+    {
+        if (is_null($unavailable_reason)) {
+            throw new \InvalidArgumentException('non-nullable unavailable_reason cannot be null');
+        }
+        $allowedValues = $this->getUnavailableReasonAllowableValues();
+        if (!in_array($unavailable_reason, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'unavailable_reason', must be one of '%s'",
+                    $unavailable_reason,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['unavailable_reason'] = $unavailable_reason;
 
         return $this;
     }
