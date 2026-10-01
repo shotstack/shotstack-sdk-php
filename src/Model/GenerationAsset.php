@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * GenerationAsset
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * GenerationAsset Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description An image, video or audio asset to generate from a text prompt.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationAsset implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'GenerationAsset';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'type' => 'string',
+        'prompt' => 'string',
+        'model' => 'string',
+        'options' => 'array<string,mixed>'
     ];
 
     /**
@@ -70,7 +72,9 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
+        'type' => null,
+        'prompt' => null,
+        'model' => null,
         'options' => null
     ];
 
@@ -80,7 +84,9 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
+        'type' => false,
+        'prompt' => false,
+        'model' => false,
         'options' => false
     ];
 
@@ -170,7 +176,9 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
+        'type' => 'type',
+        'prompt' => 'prompt',
+        'model' => 'model',
         'options' => 'options'
     ];
 
@@ -180,7 +188,9 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
+        'type' => 'setType',
+        'prompt' => 'setPrompt',
+        'model' => 'setModel',
         'options' => 'setOptions'
     ];
 
@@ -190,7 +200,9 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
+        'type' => 'getType',
+        'prompt' => 'getPrompt',
+        'model' => 'getModel',
         'options' => 'getOptions'
     ];
 
@@ -235,6 +247,23 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const TYPE_IMAGE = 'image';
+    public const TYPE_VIDEO = 'video';
+    public const TYPE_AUDIO = 'audio';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getTypeAllowableValues()
+    {
+        return [
+            self::TYPE_IMAGE,
+            self::TYPE_VIDEO,
+            self::TYPE_AUDIO,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -251,7 +280,9 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
+        $this->setIfExists('type', $data ?? [], null);
+        $this->setIfExists('prompt', $data ?? [], null);
+        $this->setIfExists('model', $data ?? [], null);
         $this->setIfExists('options', $data ?? [], null);
     }
 
@@ -282,9 +313,33 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['type'] === null) {
+            $invalidProperties[] = "'type' can't be null";
         }
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!is_null($this->container['type']) && !in_array($this->container['type'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'type', must be one of '%s'",
+                $this->container['type'],
+                implode("', '", $allowedValues)
+            );
+        }
+
+        if ($this->container['prompt'] === null) {
+            $invalidProperties[] = "'prompt' can't be null";
+        }
+        if ((mb_strlen($this->container['prompt']) > 4000)) {
+            $invalidProperties[] = "invalid value for 'prompt', the character length must be smaller than or equal to 4000.";
+        }
+
+        if ((mb_strlen($this->container['prompt']) < 1)) {
+            $invalidProperties[] = "invalid value for 'prompt', the character length must be bigger than or equal to 1.";
+        }
+
+        if (!preg_match("/\\S/", $this->container['prompt'])) {
+            $invalidProperties[] = "invalid value for 'prompt', must be conform to the pattern /\\S/.";
+        }
+
         return $invalidProperties;
     }
 
@@ -301,28 +356,102 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets type
      *
      * @return string
      */
-    public function getProvider()
+    public function getType()
     {
-        return $this->container['provider'];
+        return $this->container['type'];
     }
 
     /**
-     * Sets provider
+     * Sets type
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param string $type The kind of asset to generate.
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setType($type)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($type)) {
+            throw new \InvalidArgumentException('non-nullable type cannot be null');
         }
-        $this->container['provider'] = $provider;
+        $allowedValues = $this->getTypeAllowableValues();
+        if (!in_array($type, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'type', must be one of '%s'",
+                    $type,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['type'] = $type;
+
+        return $this;
+    }
+
+    /**
+     * Gets prompt
+     *
+     * @return string
+     */
+    public function getPrompt()
+    {
+        return $this->container['prompt'];
+    }
+
+    /**
+     * Sets prompt
+     *
+     * @param string $prompt A description of the asset to generate. For text-to-speech models it is the text spoken.
+     *
+     * @return self
+     */
+    public function setPrompt($prompt)
+    {
+        if (is_null($prompt)) {
+            throw new \InvalidArgumentException('non-nullable prompt cannot be null');
+        }
+        if ((mb_strlen($prompt) > 4000)) {
+            throw new \InvalidArgumentException('invalid length for $prompt when calling GenerationAsset., must be smaller than or equal to 4000.');
+        }
+        if ((mb_strlen($prompt) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $prompt when calling GenerationAsset., must be bigger than or equal to 1.');
+        }
+        if ((!preg_match("/\\S/", ObjectSerializer::toString($prompt)))) {
+            throw new \InvalidArgumentException("invalid value for \$prompt when calling GenerationAsset., must conform to the pattern /\\S/.");
+        }
+
+        $this->container['prompt'] = $prompt;
+
+        return $this;
+    }
+
+    /**
+     * Gets model
+     *
+     * @return string|null
+     */
+    public function getModel()
+    {
+        return $this->container['model'];
+    }
+
+    /**
+     * Sets model
+     *
+     * @param string|null $model The generation model. Defaults to `nano-banana-2` for images, `seedance-2.0-text-to-video` for video and `elevenlabs-multilingual-v2` for audio. `GET /models` lists the models for each type.
+     *
+     * @return self
+     */
+    public function setModel($model)
+    {
+        if (is_null($model)) {
+            throw new \InvalidArgumentException('non-nullable model cannot be null');
+        }
+        $this->container['model'] = $model;
 
         return $this;
     }
@@ -330,8 +459,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets options
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return array<string,mixed>|null
      */
     public function getOptions()
     {
@@ -341,10 +469,9 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets options
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param array<string,mixed>|null $options Settings for the chosen `model`. `GET /models` lists the options each model accepts; omitted options use the model's defaults and unknown or invalid options are rejected. A starting image for video goes in `startSrc` (`inputSrc` on the original image-to-video models) and a speech voice in `voice`.
      *
      * @return self
-     * @deprecated
      */
     public function setOptions($options)
     {

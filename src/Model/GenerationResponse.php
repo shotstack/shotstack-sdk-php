@@ -1,6 +1,6 @@
 <?php
 /**
- * MuxDestination
+ * GenerationResponse
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * MuxDestination Class Doc Comment
+ * GenerationResponse Class Doc Comment
  *
  * @category Class
- * @description **Notice: The Mux destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to the [Mux](https://www.mux.com/docs) video hosting and streaming service. Mux credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/mux), not in the request.
+ * @description The status of an on-demand asset generation job. Completed jobs include the public URL of the generated asset.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       *
       * @var string
       */
-    protected static $openAPIModelName = 'MuxDestination';
+    protected static $openAPIModelName = 'GenerationResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,8 +58,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
-        'provider' => 'string',
-        'options' => '\ShotstackClient\Model\MuxDestinationOptions'
+        'id' => 'string',
+        'status' => 'string',
+        'url' => 'string',
+        'error' => 'string'
     ];
 
     /**
@@ -70,8 +72,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'provider' => null,
-        'options' => null
+        'id' => null,
+        'status' => null,
+        'url' => null,
+        'error' => null
     ];
 
     /**
@@ -80,8 +84,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'provider' => false,
-        'options' => false
+        'id' => false,
+        'status' => false,
+        'url' => false,
+        'error' => false
     ];
 
     /**
@@ -170,8 +176,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
-        'provider' => 'provider',
-        'options' => 'options'
+        'id' => 'id',
+        'status' => 'status',
+        'url' => 'url',
+        'error' => 'error'
     ];
 
     /**
@@ -180,8 +188,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
-        'provider' => 'setProvider',
-        'options' => 'setOptions'
+        'id' => 'setId',
+        'status' => 'setStatus',
+        'url' => 'setUrl',
+        'error' => 'setError'
     ];
 
     /**
@@ -190,8 +200,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
-        'provider' => 'getProvider',
-        'options' => 'getOptions'
+        'id' => 'getId',
+        'status' => 'getStatus',
+        'url' => 'getUrl',
+        'error' => 'getError'
     ];
 
     /**
@@ -235,6 +247,25 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
         return self::$openAPIModelName;
     }
 
+    public const STATUS_QUEUED = 'queued';
+    public const STATUS_PROCESSING = 'processing';
+    public const STATUS_DONE = 'done';
+    public const STATUS_FAILED = 'failed';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getStatusAllowableValues()
+    {
+        return [
+            self::STATUS_QUEUED,
+            self::STATUS_PROCESSING,
+            self::STATUS_DONE,
+            self::STATUS_FAILED,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -251,8 +282,10 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('provider', $data ?? [], 'mux');
-        $this->setIfExists('options', $data ?? [], null);
+        $this->setIfExists('id', $data ?? [], null);
+        $this->setIfExists('status', $data ?? [], null);
+        $this->setIfExists('url', $data ?? [], null);
+        $this->setIfExists('error', $data ?? [], null);
     }
 
     /**
@@ -282,9 +315,21 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
     {
         $invalidProperties = [];
 
-        if ($this->container['provider'] === null) {
-            $invalidProperties[] = "'provider' can't be null";
+        if ($this->container['id'] === null) {
+            $invalidProperties[] = "'id' can't be null";
         }
+        if ($this->container['status'] === null) {
+            $invalidProperties[] = "'status' can't be null";
+        }
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!is_null($this->container['status']) && !in_array($this->container['status'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'status', must be one of '%s'",
+                $this->container['status'],
+                implode("', '", $allowedValues)
+            );
+        }
+
         return $invalidProperties;
     }
 
@@ -301,57 +346,119 @@ class MuxDestination implements ModelInterface, ArrayAccess, \JsonSerializable
 
 
     /**
-     * Gets provider
+     * Gets id
      *
      * @return string
      */
-    public function getProvider()
+    public function getId()
     {
-        return $this->container['provider'];
+        return $this->container['id'];
     }
 
     /**
-     * Sets provider
+     * Sets id
      *
-     * @param string $provider The destination to send video to - set to `mux` for Mux.
+     * @param string $id The generation job id. Deterministic for a given owner and asset payload (or idempotency key), so identical requests return the same job and cached result.
      *
      * @return self
      */
-    public function setProvider($provider)
+    public function setId($id)
     {
-        if (is_null($provider)) {
-            throw new \InvalidArgumentException('non-nullable provider cannot be null');
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
         }
-        $this->container['provider'] = $provider;
+        $this->container['id'] = $id;
 
         return $this;
     }
 
     /**
-     * Gets options
+     * Gets status
      *
-     * @return \ShotstackClient\Model\MuxDestinationOptions|null
-     * @deprecated
+     * @return string
      */
-    public function getOptions()
+    public function getStatus()
     {
-        return $this->container['options'];
+        return $this->container['status'];
     }
 
     /**
-     * Sets options
+     * Sets status
      *
-     * @param \ShotstackClient\Model\MuxDestinationOptions|null $options options
+     * @param string $status The status of the generation job.
      *
      * @return self
-     * @deprecated
      */
-    public function setOptions($options)
+    public function setStatus($status)
     {
-        if (is_null($options)) {
-            throw new \InvalidArgumentException('non-nullable options cannot be null');
+        if (is_null($status)) {
+            throw new \InvalidArgumentException('non-nullable status cannot be null');
         }
-        $this->container['options'] = $options;
+        $allowedValues = $this->getStatusAllowableValues();
+        if (!in_array($status, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'status', must be one of '%s'",
+                    $status,
+                    implode("', '", $allowedValues)
+                )
+            );
+        }
+        $this->container['status'] = $status;
+
+        return $this;
+    }
+
+    /**
+     * Gets url
+     *
+     * @return string|null
+     */
+    public function getUrl()
+    {
+        return $this->container['url'];
+    }
+
+    /**
+     * Sets url
+     *
+     * @param string|null $url The public URL of the generated asset. Present only when `status` is `done`.
+     *
+     * @return self
+     */
+    public function setUrl($url)
+    {
+        if (is_null($url)) {
+            throw new \InvalidArgumentException('non-nullable url cannot be null');
+        }
+        $this->container['url'] = $url;
+
+        return $this;
+    }
+
+    /**
+     * Gets error
+     *
+     * @return string|null
+     */
+    public function getError()
+    {
+        return $this->container['error'];
+    }
+
+    /**
+     * Sets error
+     *
+     * @param string|null $error A human readable error message. Present only when `status` is `failed`.
+     *
+     * @return self
+     */
+    public function setError($error)
+    {
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
+        }
+        $this->container['error'] = $error;
 
         return $this;
     }
