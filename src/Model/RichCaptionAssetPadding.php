@@ -58,7 +58,10 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
       * @var string[]
       */
     protected static $openAPITypes = [
-        
+        'top' => 'float',
+        'right' => 'float',
+        'bottom' => 'float',
+        'left' => 'float'
     ];
 
     /**
@@ -69,7 +72,10 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        
+        'top' => null,
+        'right' => null,
+        'bottom' => null,
+        'left' => null
     ];
 
     /**
@@ -78,7 +84,10 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        
+        'top' => false,
+        'right' => false,
+        'bottom' => false,
+        'left' => false
     ];
 
     /**
@@ -167,7 +176,10 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $attributeMap = [
-        
+        'top' => 'top',
+        'right' => 'right',
+        'bottom' => 'bottom',
+        'left' => 'left'
     ];
 
     /**
@@ -176,7 +188,10 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $setters = [
-        
+        'top' => 'setTop',
+        'right' => 'setRight',
+        'bottom' => 'setBottom',
+        'left' => 'setLeft'
     ];
 
     /**
@@ -185,7 +200,10 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
      * @var string[]
      */
     protected static $getters = [
-        
+        'top' => 'getTop',
+        'right' => 'getRight',
+        'bottom' => 'getBottom',
+        'left' => 'getLeft'
     ];
 
     /**
@@ -245,6 +263,10 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('top', $data ?? [], 0);
+        $this->setIfExists('right', $data ?? [], 0);
+        $this->setIfExists('bottom', $data ?? [], 0);
+        $this->setIfExists('left', $data ?? [], 0);
     }
 
     /**
@@ -274,6 +296,22 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
     {
         $invalidProperties = [];
 
+        if (!is_null($this->container['top']) && ($this->container['top'] < 0)) {
+            $invalidProperties[] = "invalid value for 'top', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['right']) && ($this->container['right'] < 0)) {
+            $invalidProperties[] = "invalid value for 'right', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['bottom']) && ($this->container['bottom'] < 0)) {
+            $invalidProperties[] = "invalid value for 'bottom', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['left']) && ($this->container['left'] < 0)) {
+            $invalidProperties[] = "invalid value for 'left', must be bigger than or equal to 0.";
+        }
+
         return $invalidProperties;
     }
 
@@ -288,6 +326,134 @@ class RichCaptionAssetPadding implements ModelInterface, ArrayAccess, \JsonSeria
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets top
+     *
+     * @return float|null
+     */
+    public function getTop()
+    {
+        return $this->container['top'];
+    }
+
+    /**
+     * Sets top
+     *
+     * @param float|null $top Top padding in pixels.
+     *
+     * @return self
+     */
+    public function setTop($top)
+    {
+        if (is_null($top)) {
+            throw new \InvalidArgumentException('non-nullable top cannot be null');
+        }
+
+        if (($top < 0)) {
+            throw new \InvalidArgumentException('invalid value for $top when calling RichCaptionAssetPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['top'] = $top;
+
+        return $this;
+    }
+
+    /**
+     * Gets right
+     *
+     * @return float|null
+     */
+    public function getRight()
+    {
+        return $this->container['right'];
+    }
+
+    /**
+     * Sets right
+     *
+     * @param float|null $right Right padding in pixels.
+     *
+     * @return self
+     */
+    public function setRight($right)
+    {
+        if (is_null($right)) {
+            throw new \InvalidArgumentException('non-nullable right cannot be null');
+        }
+
+        if (($right < 0)) {
+            throw new \InvalidArgumentException('invalid value for $right when calling RichCaptionAssetPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['right'] = $right;
+
+        return $this;
+    }
+
+    /**
+     * Gets bottom
+     *
+     * @return float|null
+     */
+    public function getBottom()
+    {
+        return $this->container['bottom'];
+    }
+
+    /**
+     * Sets bottom
+     *
+     * @param float|null $bottom Bottom padding in pixels.
+     *
+     * @return self
+     */
+    public function setBottom($bottom)
+    {
+        if (is_null($bottom)) {
+            throw new \InvalidArgumentException('non-nullable bottom cannot be null');
+        }
+
+        if (($bottom < 0)) {
+            throw new \InvalidArgumentException('invalid value for $bottom when calling RichCaptionAssetPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['bottom'] = $bottom;
+
+        return $this;
+    }
+
+    /**
+     * Gets left
+     *
+     * @return float|null
+     */
+    public function getLeft()
+    {
+        return $this->container['left'];
+    }
+
+    /**
+     * Sets left
+     *
+     * @param float|null $left Left padding in pixels.
+     *
+     * @return self
+     */
+    public function setLeft($left)
+    {
+        if (is_null($left)) {
+            throw new \InvalidArgumentException('non-nullable left cannot be null');
+        }
+
+        if (($left < 0)) {
+            throw new \InvalidArgumentException('invalid value for $left when calling RichCaptionAssetPadding., must be bigger than or equal to 0.');
+        }
+
+        $this->container['left'] = $left;
+
+        return $this;
+    }
     /**
      * Returns true if offset exists. False otherwise.
      *
