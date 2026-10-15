@@ -1,6 +1,6 @@
 <?php
 /**
- * RichTextAssetPaddingOneOf
+ * GenerationModelErrorResponseError
  *
  * PHP version 7.4
  *
@@ -32,16 +32,15 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * RichTextAssetPaddingOneOf Class Doc Comment
+ * GenerationModelErrorResponseError Class Doc Comment
  *
  * @category Class
- * @description Padding properties for individual sides of the text bounding box.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationModelErrorResponseError implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +49,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RichTextAsset_padding_oneOf';
+    protected static $openAPIModelName = 'GenerationModelErrorResponse_error';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +57,8 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'top' => 'float',
-        'right' => 'float',
-        'bottom' => 'float',
-        'left' => 'float'
+        'name' => 'string',
+        'message' => 'string'
     ];
 
     /**
@@ -72,10 +69,8 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'top' => null,
-        'right' => null,
-        'bottom' => null,
-        'left' => null
+        'name' => null,
+        'message' => null
     ];
 
     /**
@@ -84,10 +79,8 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'top' => false,
-        'right' => false,
-        'bottom' => false,
-        'left' => false
+        'name' => false,
+        'message' => false
     ];
 
     /**
@@ -176,10 +169,8 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'top' => 'top',
-        'right' => 'right',
-        'bottom' => 'bottom',
-        'left' => 'left'
+        'name' => 'name',
+        'message' => 'message'
     ];
 
     /**
@@ -188,10 +179,8 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'top' => 'setTop',
-        'right' => 'setRight',
-        'bottom' => 'setBottom',
-        'left' => 'setLeft'
+        'name' => 'setName',
+        'message' => 'setMessage'
     ];
 
     /**
@@ -200,10 +189,8 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'top' => 'getTop',
-        'right' => 'getRight',
-        'bottom' => 'getBottom',
-        'left' => 'getLeft'
+        'name' => 'getName',
+        'message' => 'getMessage'
     ];
 
     /**
@@ -247,6 +234,21 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
         return self::$openAPIModelName;
     }
 
+    public const NAME_UNKNOWN_GENERATION_MODEL = 'UnknownGenerationModel';
+    public const NAME_WITHDRAWN_GENERATION_MODEL = 'WithdrawnGenerationModel';
+
+    /**
+     * Gets allowable values of the enum
+     *
+     * @return string[]
+     */
+    public function getNameAllowableValues()
+    {
+        return [
+            self::NAME_UNKNOWN_GENERATION_MODEL,
+            self::NAME_WITHDRAWN_GENERATION_MODEL,
+        ];
+    }
 
     /**
      * Associative array for storing property values
@@ -263,10 +265,8 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('top', $data ?? [], 0);
-        $this->setIfExists('right', $data ?? [], 0);
-        $this->setIfExists('bottom', $data ?? [], 0);
-        $this->setIfExists('left', $data ?? [], 0);
+        $this->setIfExists('name', $data ?? [], null);
+        $this->setIfExists('message', $data ?? [], null);
     }
 
     /**
@@ -296,22 +296,21 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['top']) && ($this->container['top'] < 0)) {
-            $invalidProperties[] = "invalid value for 'top', must be bigger than or equal to 0.";
+        if ($this->container['name'] === null) {
+            $invalidProperties[] = "'name' can't be null";
+        }
+        $allowedValues = $this->getNameAllowableValues();
+        if (!is_null($this->container['name']) && !in_array($this->container['name'], $allowedValues, true)) {
+            $invalidProperties[] = sprintf(
+                "invalid value '%s' for 'name', must be one of '%s'",
+                $this->container['name'],
+                implode("', '", $allowedValues)
+            );
         }
 
-        if (!is_null($this->container['right']) && ($this->container['right'] < 0)) {
-            $invalidProperties[] = "invalid value for 'right', must be bigger than or equal to 0.";
+        if ($this->container['message'] === null) {
+            $invalidProperties[] = "'message' can't be null";
         }
-
-        if (!is_null($this->container['bottom']) && ($this->container['bottom'] < 0)) {
-            $invalidProperties[] = "invalid value for 'bottom', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['left']) && ($this->container['left'] < 0)) {
-            $invalidProperties[] = "invalid value for 'left', must be bigger than or equal to 0.";
-        }
-
         return $invalidProperties;
     }
 
@@ -328,129 +327,65 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets top
+     * Gets name
      *
-     * @return float|null
+     * @return string
      */
-    public function getTop()
+    public function getName()
     {
-        return $this->container['top'];
+        return $this->container['name'];
     }
 
     /**
-     * Sets top
+     * Sets name
      *
-     * @param float|null $top Top padding in pixels.
+     * @param string $name `UnknownGenerationModel`: no model has this identifier. `WithdrawnGenerationModel`: the model is no longer listed, but edits that already use it still validate, bill and render.
      *
      * @return self
      */
-    public function setTop($top)
+    public function setName($name)
     {
-        if (is_null($top)) {
-            throw new \InvalidArgumentException('non-nullable top cannot be null');
+        if (is_null($name)) {
+            throw new \InvalidArgumentException('non-nullable name cannot be null');
         }
-
-        if (($top < 0)) {
-            throw new \InvalidArgumentException('invalid value for $top when calling RichTextAssetPaddingOneOf., must be bigger than or equal to 0.');
+        $allowedValues = $this->getNameAllowableValues();
+        if (!in_array($name, $allowedValues, true)) {
+            throw new \InvalidArgumentException(
+                sprintf(
+                    "Invalid value '%s' for 'name', must be one of '%s'",
+                    $name,
+                    implode("', '", $allowedValues)
+                )
+            );
         }
-
-        $this->container['top'] = $top;
+        $this->container['name'] = $name;
 
         return $this;
     }
 
     /**
-     * Gets right
+     * Gets message
      *
-     * @return float|null
+     * @return string
      */
-    public function getRight()
+    public function getMessage()
     {
-        return $this->container['right'];
+        return $this->container['message'];
     }
 
     /**
-     * Sets right
+     * Sets message
      *
-     * @param float|null $right Right padding in pixels.
+     * @param string $message A human readable error message.
      *
      * @return self
      */
-    public function setRight($right)
+    public function setMessage($message)
     {
-        if (is_null($right)) {
-            throw new \InvalidArgumentException('non-nullable right cannot be null');
+        if (is_null($message)) {
+            throw new \InvalidArgumentException('non-nullable message cannot be null');
         }
-
-        if (($right < 0)) {
-            throw new \InvalidArgumentException('invalid value for $right when calling RichTextAssetPaddingOneOf., must be bigger than or equal to 0.');
-        }
-
-        $this->container['right'] = $right;
-
-        return $this;
-    }
-
-    /**
-     * Gets bottom
-     *
-     * @return float|null
-     */
-    public function getBottom()
-    {
-        return $this->container['bottom'];
-    }
-
-    /**
-     * Sets bottom
-     *
-     * @param float|null $bottom Bottom padding in pixels.
-     *
-     * @return self
-     */
-    public function setBottom($bottom)
-    {
-        if (is_null($bottom)) {
-            throw new \InvalidArgumentException('non-nullable bottom cannot be null');
-        }
-
-        if (($bottom < 0)) {
-            throw new \InvalidArgumentException('invalid value for $bottom when calling RichTextAssetPaddingOneOf., must be bigger than or equal to 0.');
-        }
-
-        $this->container['bottom'] = $bottom;
-
-        return $this;
-    }
-
-    /**
-     * Gets left
-     *
-     * @return float|null
-     */
-    public function getLeft()
-    {
-        return $this->container['left'];
-    }
-
-    /**
-     * Sets left
-     *
-     * @param float|null $left Left padding in pixels.
-     *
-     * @return self
-     */
-    public function setLeft($left)
-    {
-        if (is_null($left)) {
-            throw new \InvalidArgumentException('non-nullable left cannot be null');
-        }
-
-        if (($left < 0)) {
-            throw new \InvalidArgumentException('invalid value for $left when calling RichTextAssetPaddingOneOf., must be bigger than or equal to 0.');
-        }
-
-        $this->container['left'] = $left;
+        $this->container['message'] = $message;
 
         return $this;
     }
