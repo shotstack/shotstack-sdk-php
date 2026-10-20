@@ -295,9 +295,6 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['provider'] === null) {
             $invalidProperties[] = "'provider' can't be null";
         }
-        if ($this->container['options'] === null) {
-            $invalidProperties[] = "'options' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -370,7 +367,7 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets options
      *
-     * @return \ShotstackClient\Model\DestinationsAnyOf2Options
+     * @return \ShotstackClient\Model\DestinationsAnyOf2Options|null
      */
     public function getOptions()
     {
@@ -380,7 +377,7 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets options
      *
-     * @param \ShotstackClient\Model\DestinationsAnyOf2Options $options options
+     * @param \ShotstackClient\Model\DestinationsAnyOf2Options|null $options options
      *
      * @return self
      */
