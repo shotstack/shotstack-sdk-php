@@ -326,7 +326,7 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets width
      *
-     * @param int|null $width Set a custom width for the video or image file in pixels. Value must be divisible by 2. Maximum video width is 1920px, maximum image width is 4096px.
+     * @param int|null $width Set a custom width for the video or image file in pixels. Value must be divisible by 2.
      *
      * @return self
      */
@@ -361,7 +361,7 @@ class Size implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets height
      *
-     * @param int|null $height Set a custom height for the video or image file in pixels. Value must be divisible by 2. Maximum video height is 1920px, maximum image height is 4096px.
+     * @param int|null $height Set a custom height for the video or image file in pixels. Value must be divisible by 2.
      *
      * @return self
      */
