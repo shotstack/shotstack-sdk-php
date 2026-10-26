@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * HtmlAsset Class Doc Comment
  *
  * @category Class
- * @description **Notice: The HtmlAsset is deprecated, use the [TextAsset](#tocs_textasset) instead.**  The HtmlAsset clip type lets you create text based layout and formatting using HTML and CSS. You can also set the height and width of a bounding box for the HTML content to sit within. Text and elements will wrap within the bounding box.
+ * @description **Notice: The HtmlAsset is deprecated, use the [RichTextAsset](#tocs_richtextasset) instead.**  The HtmlAsset clip type lets you create text based layout and formatting using HTML and CSS. You can also set the height and width of a bounding box for the HTML content to sit within. Text and elements will wrap within the bounding box.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
