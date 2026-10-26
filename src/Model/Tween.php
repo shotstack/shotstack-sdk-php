@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * Tween Class Doc Comment
  *
  * @category Class
- * @description Use a Tween to [animate properties over time](/docs/guide/architecting-an-application/animations/). The following properties are currently supported and can be animated:   &lt;ul&gt;     &lt;li&gt;Opacity - animate the transparency of a clip.&lt;/li&gt;     &lt;li&gt;Offset - animate the x and y position of a clip.&lt;/li&gt;     &lt;li&gt;Rotation - animate the rotation of a clip.&lt;/li&gt;     &lt;li&gt;Skew - animate the horizontal and vertical shearing effect.&lt;/li&gt;     &lt;li&gt;Volume - animate the audio volume of a clip.&lt;/li&gt;   &lt;/ul&gt;
+ * @description Use a Tween to [animate properties over time](/docs/guide/architecting-an-application/animations/). The following properties are currently supported and can be animated:   &lt;ul&gt;     &lt;li&gt;Opacity - animate the transparency of a clip.&lt;/li&gt;     &lt;li&gt;Offset - animate the x and y position of a clip.&lt;/li&gt;     &lt;li&gt;Scale - animate the size of a clip.&lt;/li&gt;     &lt;li&gt;Rotation - animate the rotation of a clip.&lt;/li&gt;     &lt;li&gt;Skew - animate the horizontal and vertical shearing effect.&lt;/li&gt;     &lt;li&gt;Volume - animate the audio volume of a clip.&lt;/li&gt;     &lt;li&gt;Speed - animate the playback speed of a video clip.&lt;/li&gt;   &lt;/ul&gt;
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
