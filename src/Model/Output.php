@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * Output Class Doc Comment
  *
  * @category Class
- * @description The output format, render range and type of media to generate.
+ * @description The output format, render range and type of media to generate. For all formats except &#x60;mp3&#x60;, either &#x60;resolution&#x60; or &#x60;size&#x60; (with both &#x60;width&#x60; and &#x60;height&#x60;) must be specified. A custom &#x60;size&#x60; can be up to 3840px on each side, or 1920px for &#x60;gif&#x60;. Video can be up to 3840 × 2160 pixels (8,294,400) in any shape, for example 2160 × 3840 for vertical 4K; larger sizes are rejected. Video above 1920 × 1080 pixels, including the &#x60;4k&#x60; resolution, needs a plan that includes 4K.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -625,7 +625,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets resolution
      *
-     * @param string|null $resolution The preset output resolution of the video or image. For custom sizes use the `size` property. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li>   <li>`4k` - 3840px x 2160px @ 25fps</li> </ul>
+     * @param string|null $resolution The preset output resolution of the video or image. For custom sizes use the `size` property. Either `resolution` or `size` (with both `width` and `height`) must be specified for all formats except `mp3`. <ul>   <li>`preview` - 512px x 288px @ 12fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @ 25fps</li>   <li>`hd` - 1280px x 720px @ 25fps</li>   <li>`1080` - 1920px x 1080px @ 25fps</li>   <li>`4k` - 3840px x 2160px @ 25fps</li> </ul>
      *
      * @return self
      */
@@ -726,7 +726,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets fps
      *
-     * @param float|null $fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
+     * @param float|null $fps Override the default frames per second. Useful for when the source footage is recorded at 30fps, i.e. on  mobile devices. Lower frame rates can be used to add cinematic quality (24fps) or to create smaller file size/faster render times or animated gifs (12 or 15fps). Default is 25fps, or 12fps for the `preview` resolution. <ul>   <li>`12` - 12fps</li>   <li>`15` - 15fps</li>   <li>`24` - 24fps</li>   <li>`23.976` - 23.976fps</li>   <li>`25` (default) - 25fps</li>   <li>`29.97` - 29.97fps</li>   <li>`30` - 30fps</li>   <li>`48` - 48fps</li>   <li>`50` - 50fps</li>   <li>`59.94` - 59.94fps</li>   <li>`60` - 60fps</li> </ul>
      *
      * @return self
      */
@@ -763,7 +763,7 @@ class Output implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets scale_to
      *
-     * @param string|null $scale_to Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px @ 15fps</li>   <li>`mobile` - 640px x 360px @ 25fps</li>   <li>`sd` - 1024px x 576px @25fps</li>   <li>`hd` - 1280px x 720px @25fps</li>   <li>`1080` - 1920px x 1080px @25fps</li> </ul>
+     * @param string|null $scale_to Override the resolution and scale the video or image to render at a different size. When using scaleTo the asset should be edited at the resolution dimensions, i.e. use font sizes that look best at HD, then use scaleTo to output the file at SD and the text will be scaled to the correct size. This is useful if you want to create multiple asset sizes. <ul>   <li>`preview` - 512px x 288px</li>   <li>`mobile` - 640px x 360px</li>   <li>`sd` - 1024px x 576px</li>   <li>`hd` - 1280px x 720px</li>   <li>`1080` - 1920px x 1080px</li> </ul>
      *
      * @return self
      */
