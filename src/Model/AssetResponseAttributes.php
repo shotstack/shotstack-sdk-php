@@ -511,7 +511,7 @@ class AssetResponseAttributes implements ModelInterface, ArrayAccess, \JsonSeria
     /**
      * Sets provider_id
      *
-     * @param string|null $provider_id The third party id of an asset transferred to an external provider, i.e. Mux, YouTube or S3. If the provider is Shotstack, the providerID is the same as the asset id.
+     * @param string|null $provider_id The third party id of an asset transferred to an external provider, such as Vimeo or S3. If the provider is Shotstack, the providerID is the same as the asset id.
      *
      * @return self
      */

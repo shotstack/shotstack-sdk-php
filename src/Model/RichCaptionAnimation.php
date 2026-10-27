@@ -377,7 +377,7 @@ class RichCaptionAnimation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets style
      *
-     * @param string $style The animation style to apply to words: <ul>   <li>`karaoke` - Word-by-word color fill as spoken (shows all words, highlights active)</li>   <li>`highlight` - Word changes to active color when spoken (shows all words)</li>   <li>`pop` - Each word scales up when active</li>   <li>`fade` - Gradual opacity transition per word</li>   <li>`slide` - Words slide in from a direction</li>   <li>`bounce` - Spring animation on word appearance</li>   <li>`typewriter` - Words appear one by one and stay visible</li>   <li>`none` - No animation, all words visible immediately</li> </ul>
+     * @param string $style The animation style to apply to words: <ul>   <li>`karaoke` - Word-by-word color fill as spoken (shows all words, highlights active)</li>   <li>`highlight` - Word changes to active color when spoken (shows all words)</li>   <li>`pop` - Each word scales up when active</li>   <li>`fade` - Gradual opacity transition per word</li>   <li>`slide` - Words slide in, travelling in `direction`</li>   <li>`bounce` - Spring animation on word appearance</li>   <li>`typewriter` - Words appear one by one and stay visible</li>   <li>`none` - No animation, all words visible immediately</li> </ul>
      *
      * @return self
      */
@@ -414,7 +414,7 @@ class RichCaptionAnimation implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets direction
      *
-     * @param string|null $direction Direction for directional animations (slide). Only applicable when style is `slide`.
+     * @param string|null $direction The direction words travel when style is `slide`.
      *
      * @return self
      */
