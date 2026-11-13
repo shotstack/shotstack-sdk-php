@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * DestinationsAnyOf1 Class Doc Comment
  *
  * @category Class
- * @description Send videos and assets to [Akamai NetStorage](https://techdocs.akamai.com/netstorage-usage/docs). Send files to your NetStorage upload directory with a custom path and filename. Akamai credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/akamai-netstorage), not in the request.
+ * @description Send videos and assets to [Akamai NetStorage](https://techdocs.akamai.com/netstorage/docs). Send files to your NetStorage upload directory with a custom path and filename. Akamai credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/akamai-netstorage), not in the request.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

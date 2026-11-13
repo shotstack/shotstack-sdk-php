@@ -1,6 +1,6 @@
 <?php
 /**
- * RichTextAssetBorder
+ * GenerationErrorResponse
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * RichTextAssetBorder Class Doc Comment
+ * GenerationErrorResponse Class Doc Comment
  *
  * @category Class
- * @description Border styling properties for the text bounding box.
+ * @description Why a generation request was not accepted or a job could not be found.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializable
+class GenerationErrorResponse implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RichTextAsset_border';
+    protected static $openAPIModelName = 'GenerationErrorResponse';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,9 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var string[]
       */
     protected static $openAPITypes = [
-        'width' => 'float',
-        'color' => 'string',
-        'opacity' => 'float',
-        'radius' => 'float'
+        'error' => 'string',
+        'code' => 'string',
+        'available' => 'float'
     ];
 
     /**
@@ -72,10 +71,9 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'width' => null,
-        'color' => null,
-        'opacity' => null,
-        'radius' => null
+        'error' => null,
+        'code' => null,
+        'available' => null
     ];
 
     /**
@@ -84,10 +82,9 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'width' => false,
-        'color' => false,
-        'opacity' => false,
-        'radius' => false
+        'error' => false,
+        'code' => false,
+        'available' => false
     ];
 
     /**
@@ -176,10 +173,9 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $attributeMap = [
-        'width' => 'width',
-        'color' => 'color',
-        'opacity' => 'opacity',
-        'radius' => 'radius'
+        'error' => 'error',
+        'code' => 'code',
+        'available' => 'available'
     ];
 
     /**
@@ -188,10 +184,9 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $setters = [
-        'width' => 'setWidth',
-        'color' => 'setColor',
-        'opacity' => 'setOpacity',
-        'radius' => 'setRadius'
+        'error' => 'setError',
+        'code' => 'setCode',
+        'available' => 'setAvailable'
     ];
 
     /**
@@ -200,10 +195,9 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
      * @var string[]
      */
     protected static $getters = [
-        'width' => 'getWidth',
-        'color' => 'getColor',
-        'opacity' => 'getOpacity',
-        'radius' => 'getRadius'
+        'error' => 'getError',
+        'code' => 'getCode',
+        'available' => 'getAvailable'
     ];
 
     /**
@@ -263,10 +257,9 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('width', $data ?? [], 0);
-        $this->setIfExists('color', $data ?? [], '#000000');
-        $this->setIfExists('opacity', $data ?? [], 1);
-        $this->setIfExists('radius', $data ?? [], 0);
+        $this->setIfExists('error', $data ?? [], null);
+        $this->setIfExists('code', $data ?? [], null);
+        $this->setIfExists('available', $data ?? [], null);
     }
 
     /**
@@ -296,26 +289,9 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['width']) && ($this->container['width'] < 0)) {
-            $invalidProperties[] = "invalid value for 'width', must be bigger than or equal to 0.";
+        if ($this->container['error'] === null) {
+            $invalidProperties[] = "'error' can't be null";
         }
-
-        if (!is_null($this->container['color']) && !preg_match("/^#[A-Fa-f0-9]{6}$/", $this->container['color'])) {
-            $invalidProperties[] = "invalid value for 'color', must be conform to the pattern /^#[A-Fa-f0-9]{6}$/.";
-        }
-
-        if (!is_null($this->container['opacity']) && ($this->container['opacity'] > 1)) {
-            $invalidProperties[] = "invalid value for 'opacity', must be smaller than or equal to 1.";
-        }
-
-        if (!is_null($this->container['opacity']) && ($this->container['opacity'] < 0)) {
-            $invalidProperties[] = "invalid value for 'opacity', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['radius']) && ($this->container['radius'] < 0)) {
-            $invalidProperties[] = "invalid value for 'radius', must be bigger than or equal to 0.";
-        }
-
         return $invalidProperties;
     }
 
@@ -332,132 +308,82 @@ class RichTextAssetBorder implements ModelInterface, ArrayAccess, \JsonSerializa
 
 
     /**
-     * Gets width
+     * Gets error
      *
-     * @return float|null
+     * @return string
      */
-    public function getWidth()
+    public function getError()
     {
-        return $this->container['width'];
+        return $this->container['error'];
     }
 
     /**
-     * Sets width
+     * Sets error
      *
-     * @param float|null $width The width of the border in pixels. Must be 0 or greater.
+     * @param string $error A human readable error message.
      *
      * @return self
      */
-    public function setWidth($width)
+    public function setError($error)
     {
-        if (is_null($width)) {
-            throw new \InvalidArgumentException('non-nullable width cannot be null');
+        if (is_null($error)) {
+            throw new \InvalidArgumentException('non-nullable error cannot be null');
         }
-
-        if (($width < 0)) {
-            throw new \InvalidArgumentException('invalid value for $width when calling RichTextAssetBorder., must be bigger than or equal to 0.');
-        }
-
-        $this->container['width'] = $width;
+        $this->container['error'] = $error;
 
         return $this;
     }
 
     /**
-     * Gets color
+     * Gets code
      *
      * @return string|null
      */
-    public function getColor()
+    public function getCode()
     {
-        return $this->container['color'];
+        return $this->container['code'];
     }
 
     /**
-     * Sets color
+     * Sets code
      *
-     * @param string|null $color The border color using hexadecimal color notation.
+     * @param string|null $code Why access to AI generation was refused. `AiCapabilityNotIncluded`: the account's plan does not include this kind of generation. `FeatureNotIncluded`: the plan does not include a feature the asset uses. `AiDisabled`: AI generation is turned off for the account. `AiAccessUnavailable`: access could not be confirmed; try again later.
      *
      * @return self
      */
-    public function setColor($color)
+    public function setCode($code)
     {
-        if (is_null($color)) {
-            throw new \InvalidArgumentException('non-nullable color cannot be null');
+        if (is_null($code)) {
+            throw new \InvalidArgumentException('non-nullable code cannot be null');
         }
-
-        if ((!preg_match("/^#[A-Fa-f0-9]{6}$/", ObjectSerializer::toString($color)))) {
-            throw new \InvalidArgumentException("invalid value for \$color when calling RichTextAssetBorder., must conform to the pattern /^#[A-Fa-f0-9]{6}$/.");
-        }
-
-        $this->container['color'] = $color;
+        $this->container['code'] = $code;
 
         return $this;
     }
 
     /**
-     * Gets opacity
+     * Gets available
      *
      * @return float|null
      */
-    public function getOpacity()
+    public function getAvailable()
     {
-        return $this->container['opacity'];
+        return $this->container['available'];
     }
 
     /**
-     * Sets opacity
+     * Sets available
      *
-     * @param float|null $opacity The opacity of the border where 1 is opaque and 0 is transparent.
+     * @param float|null $available The credits the account has available. Present when it has too few.
      *
      * @return self
      */
-    public function setOpacity($opacity)
+    public function setAvailable($available)
     {
-        if (is_null($opacity)) {
-            throw new \InvalidArgumentException('non-nullable opacity cannot be null');
+        if (is_null($available)) {
+            throw new \InvalidArgumentException('non-nullable available cannot be null');
         }
-
-        if (($opacity > 1)) {
-            throw new \InvalidArgumentException('invalid value for $opacity when calling RichTextAssetBorder., must be smaller than or equal to 1.');
-        }
-        if (($opacity < 0)) {
-            throw new \InvalidArgumentException('invalid value for $opacity when calling RichTextAssetBorder., must be bigger than or equal to 0.');
-        }
-
-        $this->container['opacity'] = $opacity;
-
-        return $this;
-    }
-
-    /**
-     * Gets radius
-     *
-     * @return float|null
-     */
-    public function getRadius()
-    {
-        return $this->container['radius'];
-    }
-
-    /**
-     * Sets radius
-     *
-     * @param float|null $radius The border radius in pixels for rounded corners. Must be 0 or greater.
-     *
-     * @return self
-     */
-    public function setRadius($radius)
-    {
-        if (is_null($radius)) {
-            throw new \InvalidArgumentException('non-nullable radius cannot be null');
-        }
-
-        if (($radius < 0)) {
-            throw new \InvalidArgumentException('invalid value for $radius when calling RichTextAssetBorder., must be bigger than or equal to 0.');
-        }
-
-        $this->container['radius'] = $radius;
+        $this->container['available'] = $available;
 
         return $this;
     }
