@@ -58,6 +58,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'string',
         'asset' => '\ShotstackClient\Model\Asset',
         'start' => '\ShotstackClient\Model\ClipStart',
         'length' => '\ShotstackClient\Model\ClipLength',
@@ -83,6 +84,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => null,
         'asset' => null,
         'start' => null,
         'length' => null,
@@ -106,6 +108,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'id' => false,
         'asset' => false,
         'start' => false,
         'length' => false,
@@ -209,6 +212,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'asset' => 'asset',
         'start' => 'start',
         'length' => 'length',
@@ -232,6 +236,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'asset' => 'setAsset',
         'start' => 'setStart',
         'length' => 'setLength',
@@ -255,6 +260,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'asset' => 'getAsset',
         'start' => 'getStart',
         'length' => 'getLength',
@@ -453,6 +459,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('asset', $data ?? [], null);
         $this->setIfExists('start', $data ?? [], null);
         $this->setIfExists('length', $data ?? [], null);
@@ -576,6 +583,33 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id Optional client-generated identifier. Used by client SDKs (e.g. the Shotstack Studio SDK) to reference a clip across edits without relying on its position in the timeline. The render API does not use this field and it does not appear in render output.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
 
     /**
      * Gets asset

@@ -419,7 +419,7 @@ class RichTextAnimation implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets preset
      *
-     * @param string $preset The animation preset to apply. Available presets: <ul>   <li>`fadeIn` - fadeIn in animation</li>   <li>`slideIn` - slide in from a direction</li>   <li>`typewriter` - typewriter effect</li>   <li>`ascend` - ascend from a direction</li>   <li>`shift` - shift in from a direction</li>   <li>`movingLetters` - letters move in from a direction</li> </ul>
+     * @param string $preset The animation preset to apply. Every preset starts with the clip. Available presets: <ul>   <li>`fadeIn` - fade in</li>   <li>`slideIn` - fade in while sliding in `direction`</li>   <li>`typewriter` - type the text out behind a cursor</li>   <li>`ascend` - each word rises (`up`) or drops (`down`) into place</li>   <li>`shift` - fade in while shifting a short distance in `direction`</li>   <li>`movingLetters` - fade in, then ripple the letters along `direction` for the rest of the clip. Ignores `duration` and `style`.</li> </ul>
      *
      * @return self
      */
@@ -456,7 +456,7 @@ class RichTextAnimation implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets duration
      *
-     * @param float|null $duration Override animation duration in seconds. Must be between 0.1 and 30 seconds.
+     * @param float|null $duration Override animation duration in seconds. Must be between 0.1 and 30 seconds. When omitted, the text animates at about 30 characters per second, taking at least 0.3 seconds and at most 90% of the clip.
      *
      * @return self
      */
@@ -491,7 +491,7 @@ class RichTextAnimation implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets style
      *
-     * @param string|null $style Animation style - animate by character or by word. Only applicable for typewriter and shift animations.
+     * @param string|null $style Animate by character or by word. Applies to `fadeIn`, `slideIn`, `typewriter` and `shift`, where `shift` defaults to `character`. `ascend` always animates by word.
      *
      * @return self
      */
@@ -528,7 +528,7 @@ class RichTextAnimation implements ModelInterface, ArrayAccess, \JsonSerializabl
     /**
      * Sets direction
      *
-     * @param string|null $direction Direction for directional animations. Required for slideIn, ascend, shift, and movingLetters presets. <ul>   <li>`ascend` - supports: up, down</li>   <li>`shift` - supports: left, right, up, down</li>   <li>`slideIn` - supports: left, right, up, down</li>   <li>`movingLetters` - supports: left, right, up, down</li> </ul>
+     * @param string|null $direction The direction the text travels. Defaults to `left` for `slideIn` and `shift`, and to `up` for `ascend` and `movingLetters`. <ul>   <li>`ascend` - supports: up, down</li>   <li>`shift` - supports: left, right, up, down</li>   <li>`slideIn` - supports: left, right, up, down</li>   <li>`movingLetters` - supports: left, right, up, down</li> </ul>
      *
      * @return self
      */

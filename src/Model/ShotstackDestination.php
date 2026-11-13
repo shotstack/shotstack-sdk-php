@@ -340,7 +340,7 @@ class ShotstackDestination implements ModelInterface, ArrayAccess, \JsonSerializ
     /**
      * Sets exclude
      *
-     * @param bool|null $exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host/) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+     * @param bool|null $exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host/) from the Shotstack hosting and CDN service. By default files are hosted and stay until you delete them. If you opt out, the file is not hosted and must be downloaded from the render status `url` within 24 hours of rendering.
      *
      * @return self
      */

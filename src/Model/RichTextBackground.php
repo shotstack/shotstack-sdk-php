@@ -60,7 +60,9 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPITypes = [
         'color' => 'string',
         'opacity' => 'float',
-        'border_radius' => 'float'
+        'border_radius' => 'float',
+        'wrap' => 'bool',
+        'padding' => 'int'
     ];
 
     /**
@@ -73,7 +75,9 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $openAPIFormats = [
         'color' => null,
         'opacity' => null,
-        'border_radius' => null
+        'border_radius' => null,
+        'wrap' => null,
+        'padding' => null
     ];
 
     /**
@@ -84,7 +88,9 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static array $openAPINullables = [
         'color' => false,
         'opacity' => false,
-        'border_radius' => false
+        'border_radius' => false,
+        'wrap' => false,
+        'padding' => false
     ];
 
     /**
@@ -175,7 +181,9 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $attributeMap = [
         'color' => 'color',
         'opacity' => 'opacity',
-        'border_radius' => 'borderRadius'
+        'border_radius' => 'borderRadius',
+        'wrap' => 'wrap',
+        'padding' => 'padding'
     ];
 
     /**
@@ -186,7 +194,9 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $setters = [
         'color' => 'setColor',
         'opacity' => 'setOpacity',
-        'border_radius' => 'setBorderRadius'
+        'border_radius' => 'setBorderRadius',
+        'wrap' => 'setWrap',
+        'padding' => 'setPadding'
     ];
 
     /**
@@ -197,7 +207,9 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
     protected static $getters = [
         'color' => 'getColor',
         'opacity' => 'getOpacity',
-        'border_radius' => 'getBorderRadius'
+        'border_radius' => 'getBorderRadius',
+        'wrap' => 'getWrap',
+        'padding' => 'getPadding'
     ];
 
     /**
@@ -260,6 +272,8 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
         $this->setIfExists('color', $data ?? [], null);
         $this->setIfExists('opacity', $data ?? [], 1);
         $this->setIfExists('border_radius', $data ?? [], 0);
+        $this->setIfExists('wrap', $data ?? [], false);
+        $this->setIfExists('padding', $data ?? [], null);
     }
 
     /**
@@ -303,6 +317,14 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
 
         if (!is_null($this->container['border_radius']) && ($this->container['border_radius'] < 0)) {
             $invalidProperties[] = "invalid value for 'border_radius', must be bigger than or equal to 0.";
+        }
+
+        if (!is_null($this->container['padding']) && ($this->container['padding'] > 200)) {
+            $invalidProperties[] = "invalid value for 'padding', must be smaller than or equal to 200.";
+        }
+
+        if (!is_null($this->container['padding']) && ($this->container['padding'] < 0)) {
+            $invalidProperties[] = "invalid value for 'padding', must be bigger than or equal to 0.";
         }
 
         return $invalidProperties;
@@ -415,6 +437,68 @@ class RichTextBackground implements ModelInterface, ArrayAccess, \JsonSerializab
         }
 
         $this->container['border_radius'] = $border_radius;
+
+        return $this;
+    }
+
+    /**
+     * Gets wrap
+     *
+     * @return bool|null
+     */
+    public function getWrap()
+    {
+        return $this->container['wrap'];
+    }
+
+    /**
+     * Sets wrap
+     *
+     * @param bool|null $wrap When true, the background pill shrinks to fit the rendered text bounding box plus the asset's padding (and stroke width, if present), producing a pill or badge effect. When false (default), the background fills the full asset content area. Available on rich-text and rich-caption assets only; not supported on legacy `type: text`.
+     *
+     * @return self
+     */
+    public function setWrap($wrap)
+    {
+        if (is_null($wrap)) {
+            throw new \InvalidArgumentException('non-nullable wrap cannot be null');
+        }
+        $this->container['wrap'] = $wrap;
+
+        return $this;
+    }
+
+    /**
+     * Gets padding
+     *
+     * @return int|null
+     */
+    public function getPadding()
+    {
+        return $this->container['padding'];
+    }
+
+    /**
+     * Sets padding
+     *
+     * @param int|null $padding Inner padding in pixels between the wrap pill edge and the rendered text. Only takes effect when `wrap: true`. When omitted, the renderer applies a sensible default proportional to the font size (approximately 12% of the active page font size on rich-caption assets). Set to 0 for a pill that hugs the text exactly. Available on rich-text and rich-caption assets only.
+     *
+     * @return self
+     */
+    public function setPadding($padding)
+    {
+        if (is_null($padding)) {
+            throw new \InvalidArgumentException('non-nullable padding cannot be null');
+        }
+
+        if (($padding > 200)) {
+            throw new \InvalidArgumentException('invalid value for $padding when calling RichTextBackground., must be smaller than or equal to 200.');
+        }
+        if (($padding < 0)) {
+            throw new \InvalidArgumentException('invalid value for $padding when calling RichTextBackground., must be bigger than or equal to 0.');
+        }
+
+        $this->container['padding'] = $padding;
 
         return $this;
     }

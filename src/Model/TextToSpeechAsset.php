@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * TextToSpeechAsset Class Doc Comment
  *
  * @category Class
- * @description The TextToSpeechAsset lets you generate a voice over from text using a text-to-speech service. The generated audio can be trimmed, faded and have its volume and speed adjusted using the same properties available on the AudioAsset.
+ * @description **Notice: TextToSpeechAsset is deprecated. Use [AudioAsset](#tocs_audioasset) with &#x60;prompt&#x60; (the spoken text) and &#x60;voice&#x60; instead.** This type continues to function and is internally rewritten to AudioAsset; no behaviour change for existing integrations.  The TextToSpeechAsset lets you generate a voice over from text using a text-to-speech service. The generated audio can be trimmed, faded and have its volume and speed adjusted using the same properties available on the AudioAsset.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

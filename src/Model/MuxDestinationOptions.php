@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * MuxDestinationOptions Class Doc Comment
  *
  * @category Class
- * @description Pass additional options to control how Mux processes video. Currently supports playback_policy and passthrough options.
+ * @description **Notice: MuxDestinationOptions, like the Mux destination, is deprecated.** It continues to work, with no behaviour change for existing integrations. Pass additional options to control how Mux processes video. Currently supports playback_policy and passthrough options.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
