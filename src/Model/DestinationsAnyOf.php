@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * DestinationsAnyOf Class Doc Comment
  *
  * @category Class
- * @description Send videos to TikTok. TikTok credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/tiktok), not in the request.
+ * @description **Notice: The TikTok destination is deprecated.** It continues to work, with no behaviour change for existing integrations. Send videos to TikTok. TikTok credentials are required and added via the [dashboard](https://dashboard.shotstack.io/integrations/tiktok), not in the request.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
@@ -331,6 +331,7 @@ class DestinationsAnyOf implements ModelInterface, ArrayAccess, \JsonSerializabl
      * Gets options
      *
      * @return \ShotstackClient\Model\DestinationsAnyOfOptions|null
+     * @deprecated
      */
     public function getOptions()
     {
@@ -343,6 +344,7 @@ class DestinationsAnyOf implements ModelInterface, ArrayAccess, \JsonSerializabl
      * @param \ShotstackClient\Model\DestinationsAnyOfOptions|null $options options
      *
      * @return self
+     * @deprecated
      */
     public function setOptions($options)
     {
