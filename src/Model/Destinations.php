@@ -295,9 +295,6 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
         if ($this->container['provider'] === null) {
             $invalidProperties[] = "'provider' can't be null";
         }
-        if ($this->container['options'] === null) {
-            $invalidProperties[] = "'options' can't be null";
-        }
         return $invalidProperties;
     }
 
@@ -353,7 +350,7 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets exclude
      *
-     * @param bool|null $exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host/) from the Shotstack hosting and CDN service. All files must be downloaded within 24 hours of rendering.
+     * @param bool|null $exclude Set to `true` to [opt-out](https://shotstack.io/docs/guide/serving-assets/self-host/) from the Shotstack hosting and CDN service. By default files are hosted and stay until you delete them. If you opt out, the file is not hosted and must be downloaded from the render status `url` within 24 hours of rendering.
      *
      * @return self
      */
@@ -370,7 +367,7 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets options
      *
-     * @return \ShotstackClient\Model\DestinationsAnyOf2Options
+     * @return \ShotstackClient\Model\DestinationsAnyOf2Options|null
      */
     public function getOptions()
     {
@@ -380,7 +377,7 @@ class Destinations implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets options
      *
-     * @param \ShotstackClient\Model\DestinationsAnyOf2Options $options options
+     * @param \ShotstackClient\Model\DestinationsAnyOf2Options|null $options options
      *
      * @return self
      */
