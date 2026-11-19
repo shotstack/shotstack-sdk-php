@@ -65,7 +65,7 @@ class RichTextAsset implements ModelInterface, ArrayAccess, \JsonSerializable
         'stroke' => '\ShotstackClient\Model\RichTextStroke',
         'shadow' => '\ShotstackClient\Model\RichTextShadow',
         'background' => '\ShotstackClient\Model\RichTextBackground',
-        'border' => '\ShotstackClient\Model\RichTextAssetBorder',
+        'border' => '\ShotstackClient\Model\RichTextBorder',
         'padding' => '\ShotstackClient\Model\RichTextAssetPadding',
         'align' => '\ShotstackClient\Model\RichTextAlignment',
         'animation' => '\ShotstackClient\Model\RichTextAnimation'
@@ -598,7 +598,7 @@ class RichTextAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Gets border
      *
-     * @return \ShotstackClient\Model\RichTextAssetBorder|null
+     * @return \ShotstackClient\Model\RichTextBorder|null
      */
     public function getBorder()
     {
@@ -608,7 +608,7 @@ class RichTextAsset implements ModelInterface, ArrayAccess, \JsonSerializable
     /**
      * Sets border
      *
-     * @param \ShotstackClient\Model\RichTextAssetBorder|null $border border
+     * @param \ShotstackClient\Model\RichTextBorder|null $border border
      *
      * @return self
      */

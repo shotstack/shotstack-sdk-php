@@ -1,6 +1,6 @@
 <?php
 /**
- * RichTextAssetPaddingOneOf
+ * Mute
  *
  * PHP version 7.4
  *
@@ -32,16 +32,16 @@ use \ArrayAccess;
 use \ShotstackClient\ObjectSerializer;
 
 /**
- * RichTextAssetPaddingOneOf Class Doc Comment
+ * Mute Class Doc Comment
  *
  * @category Class
- * @description Padding properties for individual sides of the text bounding box.
+ * @description Silences English profanity in the clip&#39;s speech, and any listed &#x60;words&#x60;. The audio is transcribed when the edit renders, and the volume drops to zero just before each matching word and returns just after it. Rich captions transcribed from this clip show the same words masked. Profanity detection is not exhaustive: list any word that must not be heard. Cannot be combined with &#x60;speed&#x60;, &#x60;duck&#x60; or a volume tween array.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech
  * @implements \ArrayAccess<string, mixed>
  */
-class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSerializable
+class Mute implements ModelInterface, ArrayAccess, \JsonSerializable
 {
     public const DISCRIMINATOR = null;
 
@@ -50,7 +50,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
       *
       * @var string
       */
-    protected static $openAPIModelName = 'RichTextAsset_padding_oneOf';
+    protected static $openAPIModelName = 'Mute';
 
     /**
       * Array of property to type mappings. Used for (de)serialization
@@ -58,10 +58,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
       * @var string[]
       */
     protected static $openAPITypes = [
-        'top' => 'float',
-        'right' => 'float',
-        'bottom' => 'float',
-        'left' => 'float'
+        'words' => 'string[]'
     ];
 
     /**
@@ -72,10 +69,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
-        'top' => null,
-        'right' => null,
-        'bottom' => null,
-        'left' => null
+        'words' => null
     ];
 
     /**
@@ -84,10 +78,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
       * @var boolean[]
       */
     protected static array $openAPINullables = [
-        'top' => false,
-        'right' => false,
-        'bottom' => false,
-        'left' => false
+        'words' => false
     ];
 
     /**
@@ -176,10 +167,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $attributeMap = [
-        'top' => 'top',
-        'right' => 'right',
-        'bottom' => 'bottom',
-        'left' => 'left'
+        'words' => 'words'
     ];
 
     /**
@@ -188,10 +176,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $setters = [
-        'top' => 'setTop',
-        'right' => 'setRight',
-        'bottom' => 'setBottom',
-        'left' => 'setLeft'
+        'words' => 'setWords'
     ];
 
     /**
@@ -200,10 +185,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
      * @var string[]
      */
     protected static $getters = [
-        'top' => 'getTop',
-        'right' => 'getRight',
-        'bottom' => 'getBottom',
-        'left' => 'getLeft'
+        'words' => 'getWords'
     ];
 
     /**
@@ -263,10 +245,7 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
      */
     public function __construct(array $data = null)
     {
-        $this->setIfExists('top', $data ?? [], 0);
-        $this->setIfExists('right', $data ?? [], 0);
-        $this->setIfExists('bottom', $data ?? [], 0);
-        $this->setIfExists('left', $data ?? [], 0);
+        $this->setIfExists('words', $data ?? [], null);
     }
 
     /**
@@ -296,20 +275,12 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
     {
         $invalidProperties = [];
 
-        if (!is_null($this->container['top']) && ($this->container['top'] < 0)) {
-            $invalidProperties[] = "invalid value for 'top', must be bigger than or equal to 0.";
+        if (!is_null($this->container['words']) && (count($this->container['words']) > 200)) {
+            $invalidProperties[] = "invalid value for 'words', number of items must be less than or equal to 200.";
         }
 
-        if (!is_null($this->container['right']) && ($this->container['right'] < 0)) {
-            $invalidProperties[] = "invalid value for 'right', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['bottom']) && ($this->container['bottom'] < 0)) {
-            $invalidProperties[] = "invalid value for 'bottom', must be bigger than or equal to 0.";
-        }
-
-        if (!is_null($this->container['left']) && ($this->container['left'] < 0)) {
-            $invalidProperties[] = "invalid value for 'left', must be bigger than or equal to 0.";
+        if (!is_null($this->container['words']) && (count($this->container['words']) < 1)) {
+            $invalidProperties[] = "invalid value for 'words', number of items must be greater than or equal to 1.";
         }
 
         return $invalidProperties;
@@ -328,129 +299,35 @@ class RichTextAssetPaddingOneOf implements ModelInterface, ArrayAccess, \JsonSer
 
 
     /**
-     * Gets top
+     * Gets words
      *
-     * @return float|null
+     * @return string[]|null
      */
-    public function getTop()
+    public function getWords()
     {
-        return $this->container['top'];
+        return $this->container['words'];
     }
 
     /**
-     * Sets top
+     * Sets words
      *
-     * @param float|null $top Top padding in pixels.
+     * @param string[]|null $words Extra words to silence, each a single word, matched whole and ignoring case and surrounding punctuation.
      *
      * @return self
      */
-    public function setTop($top)
+    public function setWords($words)
     {
-        if (is_null($top)) {
-            throw new \InvalidArgumentException('non-nullable top cannot be null');
+        if (is_null($words)) {
+            throw new \InvalidArgumentException('non-nullable words cannot be null');
         }
 
-        if (($top < 0)) {
-            throw new \InvalidArgumentException('invalid value for $top when calling RichTextAssetPaddingOneOf., must be bigger than or equal to 0.');
+        if ((count($words) > 200)) {
+            throw new \InvalidArgumentException('invalid value for $words when calling Mute., number of items must be less than or equal to 200.');
         }
-
-        $this->container['top'] = $top;
-
-        return $this;
-    }
-
-    /**
-     * Gets right
-     *
-     * @return float|null
-     */
-    public function getRight()
-    {
-        return $this->container['right'];
-    }
-
-    /**
-     * Sets right
-     *
-     * @param float|null $right Right padding in pixels.
-     *
-     * @return self
-     */
-    public function setRight($right)
-    {
-        if (is_null($right)) {
-            throw new \InvalidArgumentException('non-nullable right cannot be null');
+        if ((count($words) < 1)) {
+            throw new \InvalidArgumentException('invalid length for $words when calling Mute., number of items must be greater than or equal to 1.');
         }
-
-        if (($right < 0)) {
-            throw new \InvalidArgumentException('invalid value for $right when calling RichTextAssetPaddingOneOf., must be bigger than or equal to 0.');
-        }
-
-        $this->container['right'] = $right;
-
-        return $this;
-    }
-
-    /**
-     * Gets bottom
-     *
-     * @return float|null
-     */
-    public function getBottom()
-    {
-        return $this->container['bottom'];
-    }
-
-    /**
-     * Sets bottom
-     *
-     * @param float|null $bottom Bottom padding in pixels.
-     *
-     * @return self
-     */
-    public function setBottom($bottom)
-    {
-        if (is_null($bottom)) {
-            throw new \InvalidArgumentException('non-nullable bottom cannot be null');
-        }
-
-        if (($bottom < 0)) {
-            throw new \InvalidArgumentException('invalid value for $bottom when calling RichTextAssetPaddingOneOf., must be bigger than or equal to 0.');
-        }
-
-        $this->container['bottom'] = $bottom;
-
-        return $this;
-    }
-
-    /**
-     * Gets left
-     *
-     * @return float|null
-     */
-    public function getLeft()
-    {
-        return $this->container['left'];
-    }
-
-    /**
-     * Sets left
-     *
-     * @param float|null $left Left padding in pixels.
-     *
-     * @return self
-     */
-    public function setLeft($left)
-    {
-        if (is_null($left)) {
-            throw new \InvalidArgumentException('non-nullable left cannot be null');
-        }
-
-        if (($left < 0)) {
-            throw new \InvalidArgumentException('invalid value for $left when calling RichTextAssetPaddingOneOf., must be bigger than or equal to 0.');
-        }
-
-        $this->container['left'] = $left;
+        $this->container['words'] = $words;
 
         return $this;
     }
