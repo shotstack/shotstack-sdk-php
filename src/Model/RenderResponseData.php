@@ -305,6 +305,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     public const STATUS_FETCHING = 'fetching';
     public const STATUS_PREPROCESSING = 'preprocessing';
     public const STATUS_RENDERING = 'rendering';
+    public const STATUS_GENERATING = 'generating';
     public const STATUS_SAVING = 'saving';
     public const STATUS_DONE = 'done';
     public const STATUS_FAILED = 'failed';
@@ -321,6 +322,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
             self::STATUS_FETCHING,
             self::STATUS_PREPROCESSING,
             self::STATUS_RENDERING,
+            self::STATUS_GENERATING,
             self::STATUS_SAVING,
             self::STATUS_DONE,
             self::STATUS_FAILED,
@@ -511,7 +513,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets status
      *
-     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`preprocessing` - video assets are being processed for compatibility</li>   <li>`rendering` - the asset is being rendered</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
+     * @param string $status The status of the render task. <ul>   <li>`queued` - render is queued waiting to be rendered</li>   <li>`fetching` - assets are being fetched</li>   <li>`preprocessing` - video assets are being processed for compatibility</li>   <li>`rendering` - the asset is being rendered</li>   <li>`generating` - AI/media generation is in progress</li>   <li>`saving` - the final asset is being saved to storage</li>   <li>`done` - the asset is ready to be downloaded</li>   <li>`failed` - there was an error rendering the asset</li> </ul>
      *
      * @return self
      */
@@ -629,7 +631,7 @@ class RenderResponseData implements ModelInterface, ArrayAccess, \JsonSerializab
     /**
      * Sets url
      *
-     * @param string|null $url The URL of the final asset. This will only be available if status is done. This is a temporary URL and will be deleted after 24 hours. By default all assets are copied to the Shotstack hosting and CDN destination.
+     * @param string|null $url A temporary download link to the final asset. This will only be available if status is done. By default all assets are also copied to the [Shotstack hosting and CDN](https://shotstack.io/docs/guide/serving-assets/hosting/) destination, where they stay until you delete them. Serve the asset to your users from its CDN URL, `https://cdn.shotstack.io/au/{version}/{owner}/{id}.{format}`, not from this link, which expires after 24 hours.
      *
      * @return self
      */
