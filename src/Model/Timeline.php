@@ -329,6 +329,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
      * Gets soundtrack
      *
      * @return \ShotstackClient\Model\Soundtrack|null
+     * @deprecated
      */
     public function getSoundtrack()
     {
@@ -341,6 +342,7 @@ class Timeline implements ModelInterface, ArrayAccess, \JsonSerializable
      * @param \ShotstackClient\Model\Soundtrack|null $soundtrack soundtrack
      *
      * @return self
+     * @deprecated
      */
     public function setSoundtrack($soundtrack)
     {

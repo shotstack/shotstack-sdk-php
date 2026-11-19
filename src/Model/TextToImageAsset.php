@@ -35,7 +35,7 @@ use \ShotstackClient\ObjectSerializer;
  * TextToImageAsset Class Doc Comment
  *
  * @category Class
- * @description The TextToImageAsset lets you create a dynamic image from a text prompt.
+ * @description **Notice: TextToImageAsset is deprecated. Use [ImageAsset](#tocs_imageasset) with &#x60;prompt&#x60; instead.** This type continues to function and is internally rewritten to ImageAsset; no behaviour change for existing integrations.  The TextToImageAsset lets you create a dynamic image from a text prompt.
  * @package  ShotstackClient
  * @author   OpenAPI Generator team
  * @link     https://openapi-generator.tech

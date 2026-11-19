@@ -58,6 +58,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var string[]
       */
     protected static $openAPITypes = [
+        'id' => 'string',
         'asset' => '\ShotstackClient\Model\Asset',
         'start' => '\ShotstackClient\Model\ClipStart',
         'length' => '\ShotstackClient\Model\ClipLength',
@@ -70,6 +71,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => '\ShotstackClient\Model\Transition',
         'effect' => 'string',
         'filter' => 'string',
+        'filters' => '\ShotstackClient\Model\Filter[]',
         'opacity' => '\ShotstackClient\Model\ClipOpacity',
         'transform' => '\ShotstackClient\Model\Transformation',
         'alias' => 'string'
@@ -83,6 +85,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
       * @psalm-var array<string, string|null>
       */
     protected static $openAPIFormats = [
+        'id' => null,
         'asset' => null,
         'start' => null,
         'length' => null,
@@ -95,6 +98,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => null,
         'effect' => null,
         'filter' => null,
+        'filters' => null,
         'opacity' => null,
         'transform' => null,
         'alias' => null
@@ -106,6 +110,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
       * @var boolean[]
       */
     protected static array $openAPINullables = [
+        'id' => false,
         'asset' => false,
         'start' => false,
         'length' => false,
@@ -118,6 +123,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => false,
         'effect' => false,
         'filter' => false,
+        'filters' => false,
         'opacity' => false,
         'transform' => false,
         'alias' => false
@@ -209,6 +215,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $attributeMap = [
+        'id' => 'id',
         'asset' => 'asset',
         'start' => 'start',
         'length' => 'length',
@@ -221,6 +228,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => 'transition',
         'effect' => 'effect',
         'filter' => 'filter',
+        'filters' => 'filters',
         'opacity' => 'opacity',
         'transform' => 'transform',
         'alias' => 'alias'
@@ -232,6 +240,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $setters = [
+        'id' => 'setId',
         'asset' => 'setAsset',
         'start' => 'setStart',
         'length' => 'setLength',
@@ -244,6 +253,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => 'setTransition',
         'effect' => 'setEffect',
         'filter' => 'setFilter',
+        'filters' => 'setFilters',
         'opacity' => 'setOpacity',
         'transform' => 'setTransform',
         'alias' => 'setAlias'
@@ -255,6 +265,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
      * @var string[]
      */
     protected static $getters = [
+        'id' => 'getId',
         'asset' => 'getAsset',
         'start' => 'getStart',
         'length' => 'getLength',
@@ -267,6 +278,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         'transition' => 'getTransition',
         'effect' => 'getEffect',
         'filter' => 'getFilter',
+        'filters' => 'getFilters',
         'opacity' => 'getOpacity',
         'transform' => 'getTransform',
         'alias' => 'getAlias'
@@ -453,6 +465,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
      */
     public function __construct(array $data = null)
     {
+        $this->setIfExists('id', $data ?? [], null);
         $this->setIfExists('asset', $data ?? [], null);
         $this->setIfExists('start', $data ?? [], null);
         $this->setIfExists('length', $data ?? [], null);
@@ -465,6 +478,7 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         $this->setIfExists('transition', $data ?? [], null);
         $this->setIfExists('effect', $data ?? [], null);
         $this->setIfExists('filter', $data ?? [], null);
+        $this->setIfExists('filters', $data ?? [], null);
         $this->setIfExists('opacity', $data ?? [], null);
         $this->setIfExists('transform', $data ?? [], null);
         $this->setIfExists('alias', $data ?? [], null);
@@ -576,6 +590,33 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
         return count($this->listInvalidProperties()) === 0;
     }
 
+
+    /**
+     * Gets id
+     *
+     * @return string|null
+     */
+    public function getId()
+    {
+        return $this->container['id'];
+    }
+
+    /**
+     * Sets id
+     *
+     * @param string|null $id Optional client-generated identifier. Used by client SDKs (e.g. the Shotstack Studio SDK) to reference a clip across edits without relying on its position in the timeline. The render API does not use this field and it does not appear in render output.
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        if (is_null($id)) {
+            throw new \InvalidArgumentException('non-nullable id cannot be null');
+        }
+        $this->container['id'] = $id;
+
+        return $this;
+    }
 
     /**
      * Gets asset
@@ -953,6 +994,33 @@ class Clip implements ModelInterface, ArrayAccess, \JsonSerializable
             );
         }
         $this->container['filter'] = $filter;
+
+        return $this;
+    }
+
+    /**
+     * Gets filters
+     *
+     * @return \ShotstackClient\Model\Filter[]|null
+     */
+    public function getFilters()
+    {
+        return $this->container['filters'];
+    }
+
+    /**
+     * Sets filters
+     *
+     * @param \ShotstackClient\Model\Filter[]|null $filters A list of filters to apply to the Clip, in the order they appear. Each filter has a `type` and its own properties. The same type can be used more than once and numeric properties can be animated with [Tween](./#tocs_tween) objects. If `filter` is also set, the filters in this list are applied before it.
+     *
+     * @return self
+     */
+    public function setFilters($filters)
+    {
+        if (is_null($filters)) {
+            throw new \InvalidArgumentException('non-nullable filters cannot be null');
+        }
+        $this->container['filters'] = $filters;
 
         return $this;
     }
